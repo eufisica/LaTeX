@@ -1,0 +1,58 @@
+% Resumo em LaTeX: Referenciais, Centro de Massa e Sistemas de Coordenadas
+% Compilar com pdflatex (pgfplots necessário)
+\documentclass[a4paper,12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[portuguese]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{siunitx}
+\usepackage{physics}
+\usepackage{float}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue}
+\sisetup{detect-all}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{tikz-3dplot} 
+%\usepackage{3dplot}
+
+
+\title{Primeira Lei de Newton}
+\author{José Gonçalves}
+\date{\today}
+
+\begin{document}
+	\maketitle
+	
+	%\tableofcontents
+	%\bigskip
+	
+	\href{https://www.youtube.com/watch?v=-luKN6mad5w&t=58s}{Vídeo sobre a ISS e primeira Lei de Newton.}
+	
+	A experiência, a bordo da Estação Espacial Internacional (ISS), que observamos no vídeo descreve  uma manobra de reboost (impulso orbital) onde ilustra a \textbf{Primeira Lei do Movimento de Newton} (a Lei da Inércia).
+	
+	\textbf{Apenas a ISS é diretamente acelerada} pelos propulsores. O movimento do astronauta é \textbf{uniforme} (velocidade constante) em relação a um referencial externo e não acelerado (como a Terra ou um referencial inercial) durante um breve período.
+	
+	\section*{A Física do Reboost Orbital}
+	
+	\begin{enumerate}
+		\item \textbf{Aceleração da ISS:} A \textbf{ISS} é acelerada por uma \textbf{força externa} --- o \textbf{impulso (\textit{thrust})} dos seus próprios motores ou dos motores de uma nave de carga acoplada. Esta força, $\mathbf{F}_{\text{propulsor}}$, é aplicada na direção do movimento orbital para aumentar a velocidade e elevar a órbita. Pela Segunda Lei de Newton:
+		$$\vec{F}_{\text{propulsor}} = m_{\text{ISS}} \cdot \vec{a}_{\text{ISS}}$$
+		onde $m_{\text{ISS}}$ é a massa da ISS e $\vec{a}_{\text{ISS}}$ é a aceleração da ISS.
+		
+		\item \textbf{Movimento do Astronauta (Inércia):} O astronauta, que está a "\textit{flutuar livremente}" ($m_{\text{ast}}$), não está sujeito a esta mesma força de impulso. Se considerarmos o astronauta isolado, a única força significativa é a atração gravitacional e as forças de maré (que são as forças residuais da microgravidade). A força de propulsão $\vec{F}_{\text{propulsor}}$ não atua sobre ele. Pela \textbf{Primeira Lei de Newton} (inércia), a sua aceleração num referencial inercial ($\vec{a}'_{\text{ast}}$) é:
+		$$\vec{F}_{\text{net, ast}} = m_{\text{ast}} \vec{a}'_{\text{ast}} \approx \mathbf{0}$$
+		(Assumindo que as forças gravitacionais e de arrasto já estavam equilibradas antes do \textit{reboost} para manter a "\textit{flutuação livre}").
+		
+		\item \textbf{Aparência de "Flutuar para Trás":} No referencial da ISS (que é um referencial acelerado), o movimento do astronauta é descrito por uma aceleração relativa $\vec{a}_{\text{rel}}$:
+		$$\vec{a}_{\text{rel}} = \vec{a}'_{\text{ast}} - \vec{a}_{\text{ISS}}$$
+		Como $\vec{a}'_{\text{ast}} \approx \mathbf{0}$ e $\vec{a}_{\text{ISS}}$ é no sentido do movimento (para a frente), a aceleração relativa do astronauta é:
+		$$\vec{a}_{\text{rel}} \approx - \vec{a}_{\text{ISS}}$$
+		Isto significa que o astronauta parece flutuar na direção \textbf{oposta} à aceleração da ISS (para a "traseira" da estação), devido à sua inércia, até que uma força de contacto o force a acelerar juntamente com a estação.
+		
+		O valor típico desta aceleração é muito pequeno, frequentemente menos de $\frac{1}{500}g$ (onde $g \approx 9.8 \text{m/s}^2$), mas é suficiente para que o efeito seja visível.
+	\end{enumerate}
+\end{document}

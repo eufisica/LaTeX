@@ -1,0 +1,538 @@
+% Resumo em LaTeX: Referenciais, Centro de Massa e Sistemas de Coordenadas
+% Compilar com pdflatex (pgfplots necessário)
+\documentclass[a4paper,12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[portuguese]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{siunitx}
+\sisetup{
+	output-decimal-marker={,}% just uncomment if you want to use comma as the decimal marker!
+}
+\usepackage[shortconst]{physconst}
+\usepackage{float}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue}
+\sisetup{detect-all}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,decorations.pathreplacing}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{tikz-3dplot} 
+%\usepackage{3dplot}
+
+
+\title{Resumo: Gráficos posição-tempo e velocidade-tempo}
+\author{José Gonçalves}
+\date{\today}
+
+\begin{document}
+	\maketitle
+	
+	\tableofcontents
+	\bigskip
+	
+	\section{Velocidade e gráficos posição-tempo}
+	\subsection{movimento retilíneo uniforme}
+	A partir de um gráfico posição-tempo é possível calcular a componente escalar da velocidade.\\
+	Para um movimento em que a \emph{velocidade é constante, movimento retílineo uniforme}, considere-se gráfico da figura \ref{fig:grafx1}:
+	
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\begin{axis}[
+				axis lines=middle,
+				xlabel={$t$/s},
+				ylabel={$x$/m},
+				xmin=0, xmax=5,
+				ymin=0, ymax=15,
+				xtick={0,1,2,3,4,5},
+				ytick={0,2,4,6,8,10,12,14},
+				grid=both,
+				width=10cm,
+				height=7cm,
+				enlargelimits=false,
+				xlabel style={at={(axis description cs:1,-0.1)},anchor=north},
+				ylabel style={at={(axis description cs:-0.1,1)},anchor=south},
+				]
+				% Linha do gráfico
+				\addplot[cyan, thick] coordinates {(0,4) (5,14)};
+			\end{axis}
+		\end{tikzpicture}
+		\caption{Gráfico posição-tempo do movimento de um objeto.}
+		\label{fig:grafx1}
+	\end{figure}
+	
+	Como se pode ver na figura \ref{fig:grafx1}, o objeto inicia o seu movimento, no instante inicial ($t_0 = \SI{0}{\second}$), a quatro metros da origem do referencial (posição inicial, $x_0 = \SI{4}{\meter}$), afastando-se sempre no sentido positivo onde, em cada segundo do movimento, varia a sua posição em \SI{2}{\meter}. Ou seja, desloca-se \SI{2}{\meter} em cada segundo.
+	
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\begin{axis}[
+				axis lines=middle,
+				xlabel={$t$/s},
+				ylabel={$x$/m},
+				xmin=0, xmax=5,
+				ymin=0, ymax=15,
+				xtick={0,1,2,3,4,5},
+				ytick={0,2,4,6,8,10,12,14},
+				grid=both,
+				width=10cm,
+				height=7cm,
+				enlargelimits=false,
+				xlabel style={at={(axis description cs:1,-0.1)},anchor=north},
+				ylabel style={at={(axis description cs:-0.1,1)},anchor=south},
+				]
+				
+				% Linha azul
+				\addplot[cyan, thick] coordinates {(0,4) (5,14)};
+				
+				% Degraus em vermelho
+				\addplot[red, thick] coordinates {(0,4) (2,4) (2,8)};
+				\addplot[red, thick] coordinates {(3,10) (4,10) (4,12)};
+				
+				% Etiquetas Delta t
+				\node[orange] at (axis cs:1,3.5) {$\Delta t_1$};
+				\node[orange] at (axis cs:3.5,9.5) {$\Delta t_2$};
+				
+				% Etiquetas Delta x
+				\node[orange] at (axis cs:2.2,6) {$\Delta x_1$};
+				\node[orange] at (axis cs:4.2,11) {$\Delta x_2$};
+				
+				%pontos na reta
+				\fill (0,4) circle (2pt);
+				\fill (2,8) circle (2pt);
+				\fill (3,10) circle (2pt);
+				\fill (4,12) circle (2pt);
+			\end{axis}
+		\end{tikzpicture}
+		\caption{Gráfico posição-tempo do movimento de um objeto, onde se observa os deslocamentos em dois intervalos de tempo diferentes.}
+		\label{fig:grafx2}
+	\end{figure}
+	
+	Neste movimento, quando calculamos a componente escalar da velocidade média, para qualquer intervalo, obtemos sempre o mesmo valor. Por exemplo: 
+	
+	\begin{itemize}
+		\item no intervalo de tempo [1, 3] s obtemos
+		\[
+			v_m = \dfrac{\Delta x_1}{\Delta t_1} \rightarrow v_m = \dfrac{10-6}{3-1} = \SI{2}{\meter \per \second}
+		\]
+		\item no intervalo de tempo [3, 4] s obtemos
+		\[
+		v_m = \dfrac{\Delta x_2}{\Delta t_2} \rightarrow v_m = \dfrac{12-10}{4-3} = \SI{2}{\meter \per \second}
+		\]
+	\end{itemize}
+	
+	Os quocientes são o \emph{\textcolor{blue}{declive da reta}}: este é igual à \emph{\textcolor{blue}{componente escalar da velocidade média}}.\\
+	
+	No \emph{\colorbox{yellow}{movimento retilíneo uniforme}}, como a velocidade é sempre constante, a \emph{\colorbox{yellow}{velocidade é igual à velocidade média}}.
+	
+	\subsection{movimento retilíneo variado (acelerado e retardado)}
+	Considere o movimento de uma bola lançada  verticalmente e para cima de uma varanda e que descrevemos o movimento no eixo \emph{Oy} coincidente com a trajetória (\ref{fig:grafy1}). 
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			% Define a style for the spheres
+			\tikzset{sphere/.style={circle, fill=cyan!60, opacity=0.8, minimum size=1cm}}
+			
+			% Draw the y-axis
+			\draw[->, thick] (0,0) -- (0, 6) node[above] {$y$};
+			
+			% Left side spheres and vectors
+			\node[sphere] (s1) at (2, 5) {};
+			\draw[->, thick, red] (2, 4.5) -- (2, 5.0) node[right, black] {$\vec{v}$};
+			
+			\node[sphere] (s2) at (2, 3) {};
+			\draw[->, thick, red] (2, 2.5) -- (2, 3.5) node[right, black] {$\vec{v}$};
+			
+			\node[sphere] (s3) at (2, 1) {};
+			\draw[->, thick, red] (2, 0.5) -- (2, 2.0) node[right, black] {$\vec{v}$};
+			
+			% Right side spheres and vectors
+			\node[sphere] (s4) at (4, 5) {};
+			\draw[->, thick, red] (4, 5.5) -- (4, 5.0) node[right, black] {$\vec{v}$};
+			
+			\node[sphere] (s5) at (4, 3) {};
+			\draw[->, thick, red] (4, 3.5) -- (4, 2.5) node[right, black] {$\vec{v}$};
+			
+			\node[sphere] (s6) at (4, 1) {};
+			\draw[->, thick, red] (4, 1.5) -- (4, 0.0) node[right, black] {$\vec{v}$};
+			
+			% Add blur effects by layering semitransparent circles
+			\foreach \y in {0.8, 2.8, 4.8} {
+				\fill[cyan!40, opacity=0.4] (2, \y) circle (0.55cm);
+				\fill[cyan!20, opacity=0.3] (2, \y) circle (0.65cm);
+			}
+			\foreach \y in {1.2, 3.2, 5.2} {
+				\fill[cyan!40, opacity=0.4] (4, \y) circle (0.55cm);
+				\fill[cyan!20, opacity=0.3] (4, \y) circle (0.65cm);
+			}
+			
+		\end{tikzpicture}
+		\caption{Gráfico posição-tempo do movimento do lançamento de uma bola para cima.}
+		\label{fig:grafy1}
+	\end{figure}
+	
+	Como podemos observar na figura \ref{fig:grafy1} a \emph{\textcolor{blue}{velocidade}} do centro de massa da bola \emph{\textcolor{blue}{diminui na subida}}, é \emph{\textcolor{blue}{nula no ponto mais alto}} e \emph{\textcolor{blue}{aumenta na descida}}.\\
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			% Define styles for the elements
+			\tikzset{
+				axis/.style={->, thick},
+				curve/.style={blue, thick},
+				point/.style={circle, fill=blue, inner sep=1.5pt},
+				tangent/.style={gray, opacity=0.8},
+				dashed line/.style={dashed, gray, opacity=0.8}
+			}
+			
+			% Set up the axes and labels
+			\draw[axis] (0, 0) -- (11, 0) node[right] {$t$};
+			\draw[axis] (0, 0) -- (0, 6) node[above] {$y$};
+			
+			% Draw the tick marks
+			\foreach \x in {1, 2, 3, ..., 10}
+			\draw (\x, 0) -- (\x, -0.1);
+			\foreach \y in {1, 2, 3, 4, 5}
+			\draw (0, \y) -- (-0.1, \y);
+			
+			% Draw the parabolic curve
+			% Using a function y = -0.2*(x-5)^2 + 5
+			\draw[curve] plot[domain=0:10, samples=100] (\x, {-0.2*(\x-5)^2 + 5});
+			
+			% Define the x-coordinates for the key points
+			\def\tA{2}
+			\def\tB{5}
+			\def\tC{8}
+			
+			% Draw the dashed vertical lines and place labels
+			% The y-coordinate is now calculated inline using the function
+			\draw[dashed line] (\tA, 0) -- (\tA, {-0.2*(\tA-5)^2 + 5}) node[below=5mm, xshift=-1mm, black] {$t_A$};
+			\draw[dashed line] (\tB, 0) -- (\tB, {-0.2*(\tB-5)^2 + 5}) node[below=5mm, xshift=-1mm, black] {$t_B$};
+			\draw[dashed line] (\tC, 0) -- (\tC, {-0.2*(\tC-5)^2 + 5}) node[below=5mm, xshift=-1mm, black] {$t_C$};
+			
+			% Draw the points on the curve
+			\node[point] at (\tA, {-0.2*(\tA-5)^2 + 5}) {};
+			\node[point] at (\tB, {-0.2*(\tB-5)^2 + 5}) {};
+			\node[point] at (\tC, {-0.2*(\tC-5)^2 + 5}) {};
+			
+			% Draw the tangent lines and labels
+			% Tangent at tA (slope = -0.4*(tA-5) = 1.2)
+			\draw[tangent, red] (\tA-2, {-0.2*(\tA-5)^2+5-2.4}) -- (\tA+2, {-0.2*(\tA-5)^2+5+2.4}) node[above left, black, xshift=-20mm, yshift=-22mm] {$v_y > 0$};
+			
+			% Tangent at tB (slope = 0)
+			\draw[tangent, red] (\tB-2, {-0.2*(\tB-5)^2 + 5}) -- (\tB+2, {-0.2*(\tB-5)^2 + 5}) node[above right, black, xshift=-28mm, yshift=2mm] {$v_y = 0$};
+			
+			% Tangent at tC (slope = -0.4*(tC-5) = -1.2)
+			\draw[tangent, red] (\tC-2, {-0.2*(\tC-5)^2+5+2.4}) -- (\tC+2, {-0.2*(\tC-5)^2+5-2.4}) node[above right, black, yshift=22mm, xshift=-20mm] {$v_y < 0$};
+			
+		\end{tikzpicture}
+		\caption{Gráfico posição-tempo do movimento do lançamento de uma bola para cima.}
+		\label{fig:grafy2}
+	\end{figure}
+	
+	O gráfico posição-tempo é dado na figura \ref{fig:grafy2}. Podemos observar a reta tangente à curva do gráfico posição-tempo nos instantes $t_A$, $t_B$ e $t_C$, o declive de cada reta corresponde à componente escalar da velocidade no respetivo instante, simbolizada por $v_y$, pois é usado o eixo dos $yy$.\\
+	Analisando o declive das retas tangentes da, concluímos que:
+	\begin{itemize}
+		\item o declive da reta tangente é positivo no instante $t_A$: $v_y > 0$ e o corpo está a mover-se no sentido positivo;
+		\item o declive da reta tangente é nulo no instante $t_B$: $v_y = 0$;
+		\item o declive da reta tangente é negativo no instante $t_C$: $v_y < 0$ e o corpo está a mover-se no sentido negativo;
+		\item até ao instante $t_B$, os declives das retas tangentes em cada ponto são sempre positivos ($v_y > 0$), mas cada vez menores: o corpo move-se no sentido positivo com velocidade cada vez menor;
+		\item a partir do instante $t_B$, os declives das retas tangentes em cada ponto são sempre negativos ($v_y < 0$), mas cada vez maiores em valor absoluto: o corpo move-se no sentido negativo com velocidade cada vez maior;
+		\item no instante $t_B$, $v_y = 0$: neste caso há inversão do sentido do movimento.
+	\end{itemize}
+	
+	\section{Gráficos velocidade-tempo}
+	
+	É útil traçar um gráfico, \emph{\textcolor{blue}{gráfico velocidade-tempo}}, que traduza o modo como varia a componente escalar da velocidade ao longo do tempo, ou seja, a \emph{\textcolor{blue}{função $v_x(t)$}}.
+	
+	\subsection{interpretação do gráfico velocidade-tempo}
+	Consideremos o movimento do centro de massa de um carrinho de brincar numa parte retilínea de uma pista (figura \ref{fig:grafx3}).
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			% Define styles for the elements
+			\tikzset{
+				axis/.style={->, thick},
+				curve/.style={orange, thick},
+				dashed line/.style={dashed, gray, opacity=0.8}
+			}
+			
+			% Set up the axes and labels
+			\draw[axis] (0,0) -- (12,0) node[right] {$t$};
+			\draw[axis] (0,0) -- (0,6) node[above] {$x$};
+			
+			% Draw the curve using a smooth path
+			\draw[curve] (0, 1.5) -- (1.5, 1.5) .. controls (2.5, 1.5) and (3.5, 4.5) .. (5, 5.2) % rising
+			.. controls (6.5, 4) and (7.5, 2) .. (9.5, 0.2) % falling
+			-- (11.5, 0.2); % flat at the end
+			
+			% Define the x-coordinates for the time labels and dashed lines
+			\def\tA{1.5}
+			\def\tB{3.5}
+			\def\tC{5}
+			\def\tD{6.5}
+			\def\tE{8.5}
+			\def\tF{9.8}
+			
+			% Draw the dashed vertical lines and time labels
+			\draw[dashed line] (\tA, 0) -- (\tA, 1.5) node[below=4mm, black] {$t_1$};
+			\draw[dashed line] (\tB, 0) -- (\tB, 4.45) node[below=4mm, black] {$t_2$};
+			\draw[dashed line] (\tC, 0) -- (\tC, 5.2) node[below=4mm, black] {$t_3$};
+			\draw[dashed line] (\tD, 0) -- (\tD, 3.8) node[below=4mm, black] {$t_4$};
+			\draw[dashed line] (\tE, 0) -- (\tE, 1.1) node[below=4mm, black] {$t_5$};
+			\draw[dashed line] (\tF, 0) -- (\tF, 0.2) node[below=4mm, black] {$t_6$};
+			
+		\end{tikzpicture}
+		\caption{Gráfico posição-tempo do movimento do centro de massa do carrinho numa trajetória retilínea.}
+		\label{fig:grafx3}
+	\end{figure}
+	
+	Analisando o gráfico, vemos que há movimento no sentido positivo até ao instante t3 e no sentido negativo no resto do percurso, ou seja, há inversão de sentido em $t_3$.\\
+	A componente escalar da velocidade, $v_x$, num dado instante, é igual ao declive da reta tangente ao gráfico posição-tempo, $x(t)$.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			% Shared styles
+			\tikzset{
+				axis/.style={->, thick},
+				curve/.style={orange, thick},
+				dashed line/.style={dashed, gray, opacity=0.8}
+			}
+			
+			% Define x-coordinates for consistency between the two graphs
+			\def\tA{1.5}
+			\def\tB{3.5}
+			\def\tC{5}
+			\def\tD{6.5}
+			\def\tE{8.5}
+			\def\tF{9.8}
+			
+			% -----------------------------------------------------------------
+			% TOP GRAPH: Position (x) vs. Time (t)
+			% -----------------------------------------------------------------
+			
+			% Axes
+			\draw[axis] (0, 0) -- (12, 0) node[right] {$t$};
+			\draw[axis] (0, 0) -- (0, 6) node[above] {$x$};
+			
+			% The curve is drawn using a combination of straight lines and
+			% Bézier curves to match the shape
+			\draw[curve] (0, 1.5) -- (\tA, 1.5)
+			.. controls (2.5, 1.5) and (3.5, 4.5) .. (\tC, 5.2)
+			.. controls (6.5, 4) and (7.5, 2) .. (\tF, 0.2)
+			-- (11.5, 0.2);
+			
+			% Dashed vertical lines and labels for t1 through t6
+			% The y-coordinates on the curve are estimated to match the graph
+			\draw[dashed line] (\tA, 0) -- (\tA, 1.5) node[below=4mm, black] {$t_1$};
+			\draw[dashed line] (\tB, 0) -- (\tB, 4.5) node[below=4mm, black] {$t_2$};
+			\draw[dashed line] (\tC, 0) -- (\tC, 5.2) node[below=4mm, black] {$t_3$};
+			\draw[dashed line] (\tD, 0) -- (\tD, 3.8) node[below=4mm, black] {$t_4$};
+			\draw[dashed line] (\tE, 0) -- (\tE, 1.1) node[below=4mm, black] {$t_5$};
+			\draw[dashed line] (\tF, 0) -- (\tF, 0.2) node[below=4mm, black] {$t_6$};
+			
+			% -----------------------------------------------------------------
+			% BOTTOM GRAPH: Velocity (vx) vs. Time (t)
+			% Placed 7cm below the first graph using a scope
+			% -----------------------------------------------------------------
+			\begin{scope}[yshift=-7cm]
+				% Axes
+				\draw[axis] (0, 0) -- (12, 0) node[right] {$t$};
+				\draw[axis] (0, -4) -- (0, 3) node[above] {$v_x$};
+				
+				% The velocity curve is a series of straight line segments
+				% corresponding to the slope of the position-time graph
+				\draw[curve] (0,0) -- (\tA, 0)
+				-- (\tB, 2.5)
+				-- (\tC, 0)
+				-- (\tD, -3)
+				-- (\tE, -3)
+				-- (\tF, 0)
+				-- (11.5, 0);
+				
+				% Dashed vertical lines and labels (reusing the same t-coordinates)
+				\draw[dashed line] (\tA, 0) -- (\tA, -0.1) node[below=2mm, black] {$t_1$};
+				\draw[dashed line] (\tB, 0) -- (\tB, 2.5) node[below=4mm, black] {$t_2$};
+				\draw[dashed line] (\tC, 0) -- (\tC, 0) node[below=4mm, black] {$t_3$};
+				\draw[dashed line] (\tD, 0) -- (\tD, -3) node[below=4mm, black] {$t_4$};
+				\draw[dashed line] (\tE, 0) -- (\tE, -3) node[below=4mm, black] {$t_5$};
+				\draw[dashed line] (\tF, 0) -- (\tF, 0) node[below=4mm, black] {$t_6$};
+			\end{scope}
+			
+		\end{tikzpicture}
+		\caption{Gráficos posição-tempo e velocidade-tempo do movimento do centro de massa do carrinho numa trajetória retilínea.}
+		\label{fig:grafv1}
+	\end{figure}
+	
+	Dos gráficos da figura \ref{fig:grafv1} podemos concluir:
+	\begin{itemize}
+		\item Até ao instante $t_1$, a reta tangente ao gráfico é horizontal, pelo que o seu declive é nulo: a velocidade é nula e o carrinho está em repouso.
+		\item Entre $t_1$ e $t_2$, as sucessivas retas tangentes têm declives positivos e cada vez maiores: o carrinho move-se no sentido positivo, aumentando a  velocidade.
+		\item Entre $t_2$ e $t_3$, o declive das retas tangentes ainda é positivo, mas cada vez menor: o carrinho move-se no sentido positivo, diminuindo a velocidade.
+		\item Em $t_3$, o declive da reta tangente é nulo: a velocidade é nula e há inversão do sentido do movimento.
+		\item Entre $t_3$ e $t_4$, o declive das retas tangentes é negativo e cada vez maior em valor absoluto: o carrinho move-se no sentido negativo, aumentando a velocidade.
+		\item Entre $t_4$ e $t_5$, o declive das retas tangentes é negativo e constante: o carrinho move-se no sentido negativo e a velocidade é constante.
+		\item Entre $t_5$ e $t_6$, o declive das retas tangentes é negativo e cada vez menor em valor absoluto: o carrinho desloca-se no sentido negativo, diminuindo a velocidade.
+		\item A partir de $t_6$, o declive da reta tangente é nulo: o carrinho está em repouso.
+	\end{itemize}
+	
+	Uma forma simplificada do movimento e velocidade está evidenciada na figura \ref{fig:grafv2}
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			% Define styles for the elements
+			\tikzset{
+				axis/.style={->, thick},
+				curve/.style={orange, thick},
+				dashed line/.style={dashed, gray, opacity=0.8},
+				blue arrow/.style={thick, blue!80},
+				blue bracket/.style={thick, blue!80},
+				blue bracket dashed/.style={thick, blue!80, dashed}
+			}
+			
+			% Define x-coordinates for the key points
+			\def\tA{1.5}
+			\def\tB{3.5}
+			\def\tC{5}
+			\def\tD{6.5}
+			\def\tE{8.5}
+			\def\tF{9.8}
+			
+			% Draw the axes and labels
+			\draw[axis] (0, -4) -- (0, 3) node[above] {$v_x$};
+			\draw[axis] (0, 0) -- (12, 0) node[right] {$t$};
+			
+			% Draw the main orange curve
+			\draw[curve] (0, 0) -- (\tA, 0) -- (\tB, 2.5) -- (\tC, 0)
+			-- (\tD, -3) -- (\tE, -3)
+			-- (\tF, 0) -- (11.5, 0);
+			
+			% Draw the dashed vertical lines and labels
+			\draw[dashed line] (\tA, 0) -- (\tA, -0.5) node[below=4mm, black] {$t_1$};
+			\draw[dashed line] (\tB, 0) -- (\tB, -0.5) node[below=4mm, black] {$t_2$};
+			\draw[dashed line] (\tC, 0) -- (\tC, -3) node[below=4mm, black] {$t_3$};
+			\draw[dashed line] (\tD, 0) -- (\tD, -3) node[below=4mm, black] {$t_4$};
+			\draw[dashed line] (\tE, 0) -- (\tE, -3) node[below=4mm, black] {$t_5$};
+			\draw[dashed line] (\tF, 0) -- (\tF, 0) node[below=4mm, black] {$t_6$};
+			
+			% -----------------------------------------------------------------
+			% Add annotations
+			% -----------------------------------------------------------------
+			
+			% Annotation for positive velocity
+			\draw[blue bracket]
+			(\tC, 0) -- node[above=30mm, xshift=0.1cm, text width=5cm] {$v_x(t) > 0$: movimento no sentido positivo} (\tA, 0);
+			\draw[blue bracket] (\tA,0) -- (\tA, 2.8);
+			\draw[blue bracket] (\tC,0) -- (\tC, 2.8);
+			\draw[blue bracket, dashed] (\tA, 2.8) -- (\tC, 2.8);
+			
+			% Annotation for negative velocity
+			\draw[blue bracket]
+			(\tC, 0) -- node[below=40mm, xshift=0.1cm, text width=5cm] {$v_x(t) < 0$: movimento no sentido negativo} (\tF, 0);
+			\draw[blue bracket] (\tC,0) -- (\tC, -3.2);
+			\draw[blue bracket] (\tF,0) -- (\tF, -3.2);
+			\draw[blue bracket, dashed] (\tC, -3.2) -- (\tF, -3.2);
+			
+			% Annotation for rest (v_x = 0)
+			% Left side
+			\draw[blue bracket, decorate, decoration={brace, mirror, amplitude=10pt, raise=4mm}]
+			(0, 0) -- node[below=15mm, xshift=0.3cm, text width=2cm] {$v_x(t) = 0$ num intervalo de tempo: repouso} (\tA, 0);
+			% Right side
+			\draw[blue bracket, decorate, decoration={brace, mirror, amplitude=10pt, raise=4mm}]
+			(\tF, 0) -- node[below=15mm, xshift=0.3cm, text width=2cm] {$v_x(t) = 0$ num intervalo de tempo: repouso} (11.5, 0);
+			
+		\end{tikzpicture}
+		\caption{Gráficos posição-tempo e velocidade-tempo do movimento do centro de massa do carrinho numa trajetória retilínea.}
+		\label{fig:grafv2}
+	\end{figure}
+	
+	\subsection{distância percorrida e deslocamento num gráfico velocidade-tempo}
+	
+	O gráfico velocidade-tempo também permite calcular deslocamentos: a \emph{\textcolor{blue}{área}} compreendida entre a \emph{\colorbox{yellow}{linha do gráfico e o eixo horizontal}} é igual ao módulo do deslocamento do corpo.
+	
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			% Define os estilos para os elementos
+			\tikzset{
+				axis/.style={->, thick},
+				curve/.style={orange, thick},
+				fill area/.style={orange, opacity=0.4},
+				dashed line/.style={dashed, gray, opacity=0.8}
+			}
+			
+			% Define as coordenadas x para os pontos chave
+			\def\tA{1.5}
+			\def\tB{3.5}
+			\def\tC{5}
+			\def\tD{6.5}
+			\def\tE{8.5}
+			\def\tF{9.8}
+			
+			% Desenha os eixos e as legendas
+			\draw[axis] (0, -4) -- (0, 3) node[above] {$v_x$};
+			\draw[axis] (0, 0) -- (12, 0) node[right] {$t$};
+			
+			% Desenha as áreas preenchidas primeiro
+			% Área positiva (acima do eixo)
+			\fill[fill area] (\tA, 0) -- (\tB, 2.5) -- (\tC, 0);
+			
+			% Área negativa (abaixo do eixo)
+			\fill[fill area] (\tC, 0) -- (\tD, -3) -- (\tE, -3) -- (\tF, 0);
+			
+			% Desenha a curva principal cor de laranja com linhas retas
+			\draw[curve] (0, 0) -- (\tA, 0) -- (\tB, 2.5) -- (\tC, 0)
+			-- (\tD, -3) -- (\tE, -3)
+			-- (\tF, 0) -- (11.5, 0);
+			
+			% Desenha as linhas verticais tracejadas e as legendas
+			\draw[dashed line] (\tA, 0) -- (\tA, 0) node[below=4mm, black] {$t_1$};
+			\draw[dashed line] (\tB, 0) -- (\tB, 2.5) node[below=29mm, black] {$t_2$};
+			\draw[dashed line] (\tC, 0) -- (\tC, 0) node[below=4mm, black] {$t_3$};
+			\draw[dashed line] (\tD, 0) -- (\tD, -3) node[below=4mm, black] {$t_4$};
+			\draw[dashed line] (\tE, 0) -- (\tE, -3) node[below=4mm, black] {$t_5$};
+			\draw[dashed line] (\tF, 0) -- (\tF, 0) node[below=4mm, black] {$t_6$};
+			
+		\end{tikzpicture}
+		\caption{Deslocamento a partir do gráfico velocidade-tempo.}
+		\label{fig:grafv3}
+	\end{figure}
+	
+	Se o movimento se der no \emph{\textcolor{blue}{sentido positivo}}, a componente escalar da \emph{\textcolor{blue}{velocidade será positiva}}: atribui‑se o sinal positivo à área que fica por cima do eixo horizontal, pois o \emph{\textcolor{blue}{deslocamento é positivo}}. \\
+	
+	Se o \emph{\textcolor{blue}{sentido for negativo}}, a componente escalar da \emph{\textcolor{blue}{velocidade será negativa}}: atribui-se o sinal negativo à área que fica por baixo do eixo horizontal, pois o \emph{\textcolor{blue}{deslocamento é negativo}}.\\
+	
+	A área acima da linha do tempo na figura \ref{fig:grafv3} indica o \emph{\textcolor{blue}{deslocamento positivo, $\Delta x_1 > 0$}}, entre os instantes $t_1$ e $t_3$, e a área abaixo dessa linha indica o \emph{\textcolor{blue}{deslocamento negativo, $\Delta x_2 < 0$}}, entre $t_3$ e $t_6$.\\
+	
+	A distância percorrida, $s$, em cada um dos intervalos de tempo anteriores é igual ao módulo do respetivo deslocamento: entre 0 e $t_3$ é $s_1 = |\Delta x_1|$ ; entre $t_3$ e $t_6$ é $s_2 = |\Delta x2|$.\\
+	
+	\section{Considerações finais}
+	Uma área acima do eixo horizontal indica um deslocamento positivo; uma área abaixo do eixo horizontal indica um deslocamento negativo.\\
+	
+	O deslocamento total pode obter-se a partir da soma de deslocamentos parcelares (as parcelas podem ser positivas ou negativas):\\
+	
+	\[\Delta x = \Delta x_1 + \Delta x_2 + …\]\\
+	
+	A distância percorrida, s, é igual:
+	\begin{itemize}
+		\item ao módulo do deslocamento se não houver inversão de sentido:\\
+		$s = |\Delta x|$
+		\item à soma dos módulos dos deslocamentos no sentido positivo e no sentido negativo quando há inversão de sentido: \\
+		$s = |\Delta x_\text{sentido positivo}| + |\Delta x_\text{sentido negativo}|$.
+	\end{itemize}
+	
+
+	
+	
+\end{document}

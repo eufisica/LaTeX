@@ -1,0 +1,442 @@
+% Resumo em LaTeX: Referenciais, Centro de Massa e Sistemas de Coordenadas
+% Compilar com pdflatex (pgfplots necessário)
+\documentclass[a4paper,12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[portuguese]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{siunitx}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{tikz}
+\usepackage{tikz-3dplot} 
+\usepackage{3dplot}
+%\usepackage{pgfplots}
+%\pgfplotsset{compat=1.18}
+%\usepackage{float}
+%\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue}
+\sisetup{detect-all}
+
+\title{Resumo: Referencial, Centro de Massa, Sistemas de Coordenadas e Trajetórias}
+\author{José Gonçalves}
+\date{\today}
+
+\begin{document}
+	\maketitle
+	
+	\tableofcontents
+	\bigskip
+	
+	\section{Referencial}
+	Um \emph{referencial} ou sistema de referência é um conjunto de eixos e um observador em relação aos quais se descrevem posições, velocidades e acelerações. Em problemas de mecânica, escolher um referencial significa fixar:
+	\begin{itemize}
+		\item a origem (ponto onde as coordenadas valem zero),
+		\item a orientação dos eixos (direções positivas),
+		\item a unidade de tempo (relógio) e unidade de comprimento.
+	\end{itemize}
+	As equações do movimento dependem do referencial — por exemplo, o mesmo movimento pode ter componentes diferentes em referenciais em repouso ou em movimento relativo.
+	
+	\section{Coordenadas cartesianas}
+	\subsection{1D}
+	Em \emph{uma dimensão} (reta), a posição de uma partícula é dada por um único número $x(t)$ relativo a uma origem. Exemplos:
+	\begin{align*}
+		x(t) & = x_0 + v\,t \quad\text{(movimento retilíneo uniforme)} \\
+		x(t) & = x_0 + v_0 t + \tfrac{1}{2} a t^2 \quad\text{(movimento com aceleração constante)}
+	\end{align*}
+	Neste caso, o referencial é unidimensional e representa-se como indicado na fig. \ref{fig:1D}.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}[scale=1]
+			% axes
+			\draw[->] (0,0) -- (4,0) node[right]{$x$/m};
+			% point
+			\coordinate (P) at (2,0);
+			\fill (P) circle (1.5pt) node[above right]{$P$};
+			\coordinate (O) at (0,0);
+			\fill (O) circle (1.5pt) node[below]{$O$};
+		\end{tikzpicture}
+		\caption{Sistema de coordenadas cartesiano (esquemático) a uma dimensão, onde está representado a posição do ponto $P$ num determinado instante.}
+		\label{fig:1D}
+	\end{figure}
+	
+	
+	
+	\subsection{2D}
+	No plano, usa-se um par ordenado $(x,y)$. 
+	Neste caso, o referencial é bidimensional e representa-se como indicado na fig. \ref{fig:2D}.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}[scale=1]
+			% axes
+			\draw[->] (0,0) -- (4,0) node[right]{$x$/m};
+			\draw[->] (0,0) -- (0,4) node[left]{$y$/m};
+			% point
+			\coordinate (P) at (2,2);
+			\fill (P) circle (1.5pt) node[above right]{$P$};
+			\coordinate (O) at (0,0);
+			\fill (O) circle (1.5pt) node[below]{$O$};
+			\fill (0,2) circle (1pt) node[left]{1,5};
+			\fill (2,0) circle (1pt) node[below]{1,5};
+			\draw[dashed] (0,2)--(2,2);
+			\draw[dashed] (2,0)--(2,2);
+			%vetor r
+			\draw[->, blue] (0,0) -- (2,2) node[below right]{$\vec{r}$};
+		\end{tikzpicture}
+		\caption{Sistema de coordenadas cartesiano (esquemático) a duas dimensões, onde está representado a posição do ponto $P$ num determinado instante.}
+		\label{fig:2D}
+	\end{figure}
+	
+	O vetor $r$ representa o deslocamento feito desde a oridem até ao ponto $P$ e é dado por: $r = 1,5 \vec{e_x} + 1,5 \vec{e_y}$ (m).
+	
+	
+	\subsection{3D}
+	No espaço, as coordenadas são $(x,y,z)$. Neste caso, o referencial é tridimensional e representa-se como indicado na fig. \ref{fig:3D}.
+	
+	\begin{figure}[H]
+		\centering
+		\tdplotsetmaincoords{60}{120} 
+		\begin{tikzpicture} [scale=3, tdplot_main_coords, axis/.style={->,blue,thick}, 
+			vector/.style={-stealth,red,very thick}, 
+			vector guide/.style={dashed,red,thick}]
+			
+			%standard tikz coordinate definition using x, y, z coords
+			\coordinate (O) at (0,0,0);
+			
+			%tikz-3dplot coordinate definition using x, y, z coords
+			
+			\pgfmathsetmacro{\ax}{0.8}
+			\pgfmathsetmacro{\ay}{0.8}
+			\pgfmathsetmacro{\az}{0.8}
+			
+			\coordinate (P) at (\ax,\ay,\az);
+			\fill (P) circle (1.5pt) node[above right]{$P$};
+			%draw axes
+			\draw[axis] (0,0,0) -- (1,0,0) node[anchor=north east]{$x$};
+			\draw[axis] (0,0,0) -- (0,1,0) node[anchor=north west]{$y$};
+			\draw[axis] (0,0,0) -- (0,0,1) node[anchor=south]{$z$};
+			
+			%draw a vector from O to P
+			%\draw[vector] (O) -- (P);
+			
+			%draw guide lines to components
+			\draw[vector guide]         (O) -- (\ax,\ay,0);
+			\draw[vector guide] (\ax,\ay,0) -- (P);
+			\draw[vector guide]         (P) -- (0,0,\az);
+			\draw[vector guide] (\ax,\ay,0) -- (0,\ay,0);
+			\draw[vector guide] (\ax,\ay,0) -- (0,\ay,0);
+			\draw[vector guide] (\ax,\ay,0) -- (\ax,0,0);
+			\node[tdplot_main_coords,anchor=east]
+			at (\ax,0,0){(\ax, 0, 0)};
+			\node[tdplot_main_coords,anchor=west]
+			at (0,\ay,0){(0, \ay, 0)};
+			\node[tdplot_main_coords,anchor=south]
+			at (0,0,\az){(0, 0, \az)};
+			
+			%vector
+			\draw[->, orange] (0,0,0) -- (\ax,\ay,\az) node[above left]{$\vec{r}$};
+		\end{tikzpicture}
+		\caption{Sistema de coordenadas cartesiano (esquemático) a três dimensões, onde está representado a posição do ponto $P$ num determinado instante.}
+		\label{fig:3D}
+	\end{figure}
+	
+	O vetor $r$ representa o deslocamento feito desde a oridem até ao ponto $P$ e é dado por: $r = 0,8 \vec{e_x} + 0,8 \vec{e_y} + 0,8 \vec{e_z}$ (m).
+	
+	
+	
+	\section{Coordenadas cilíndricas}
+	Coordenadas cilíndricas são úteis quando existe simetria em torno de um eixo (por exemplo, problemas envolvendo cilindros ou eixos).
+	
+	%Cylindrical Coordinate
+	\newcommand{\cylindricalcoordinate}[4]{%
+		\coordinate (#4) at ({#1*cos(#2)},{#1*sin(#2)},{#3});%
+		\coordinate (#4xy) at ({#1*cos(#2)},{#1*sin(#2)},0);%
+	}
+	%Axis Angles
+	\tdplotsetmaincoords{70}{110}
+	
+	%Macros
+	\pgfmathsetmacro{\rvec}{5}
+	\pgfmathsetmacro{\phivec}{45}
+	\pgfmathsetmacro{\zvec}{4}
+	
+	\pgfmathsetmacro{\drvec}{1.5}
+	\pgfmathsetmacro{\dphivec}{20}
+	\pgfmathsetmacro{\dzvec}{1}
+	
+	%Layers
+	\pgfdeclarelayer{background}
+	\pgfdeclarelayer{foreground}
+	
+	\pgfsetlayers{background, main, foreground}
+	
+	\begin{tikzpicture}[tdplot_main_coords]
+		\centering
+		%Coordinates
+		\coordinate (O) at (0,0,0);
+		%%
+		\cylindricalcoordinate{\rvec}{\phivec}{\zvec}{A}
+		\cylindricalcoordinate{\rvec}{\phivec}{(\zvec+\dzvec)}{B}
+		\cylindricalcoordinate{\rvec}{(\phivec+\dphivec)}{\zvec}{C}
+		\cylindricalcoordinate{\rvec}{(\phivec+\dphivec)}{(\zvec+\dzvec)}{D}
+		%%
+		\cylindricalcoordinate{(\rvec+\drvec)}{\phivec}{\zvec}{A'}
+		\cylindricalcoordinate{(\rvec+\drvec)}{\phivec}{(\zvec+\dzvec)}{B'}
+		\cylindricalcoordinate{(\rvec+\drvec)}{(\phivec+\dphivec)}{\zvec}{C'}
+		\cylindricalcoordinate{(\rvec+\drvec)}{(\phivec+\dphivec)}{(\zvec+\dzvec)}{D'} 
+		
+		%Axis
+		\begin{pgfonlayer}{background}
+			\draw[thick,-latex] (0,0,0) -- (6,0,0) node[pos=1.1]{$x$};
+			\draw[thick,-latex] (0,0,0) -- (0,6,0) node[pos=1.05]{$y$};
+			\draw[thick,-latex] (0,0,0) -- (0,0,7) node[pos=1.05]{$z$};
+		\end{pgfonlayer}
+		
+		%Vectors
+		\begin{pgfonlayer}{main}
+			\draw[blue, thick] (O) -- (A);
+			\draw[thick] (O) -- (Axy) node [pos=0.6, below left] {$\varpi$};
+			\draw (A) -- ($(A)-(Axy)$) node [left] {$z$};
+			\draw (B) -- ($(A)-(Axy)+(0,0,\dzvec)$) node [left] {$z+\mathrm{d}z$};
+			\draw (D) -- ($(A)-(Axy)+(0,0,\dzvec)$);
+		\end{pgfonlayer}
+		\begin{pgfonlayer}{background}
+			\draw[dashed] (C) -- ($(A)-(Axy)$) node [left] {$z$};
+		\end{pgfonlayer}
+		
+		%Help Lines
+		\begin{pgfonlayer}{background}
+			\draw (A) -- (Axy);
+			\draw (A') -- (A'xy);
+			\draw[thick] (Axy) -- (A'xy) node [pos=0.6, below left] {$\mathrm{d}\varpi$};
+			%
+			\draw (O) -- (D'xy);
+			\draw[dashed] (C) -- (Dxy); 
+			\draw (C') -- (C'xy);
+			%%Arcs
+			\tdplotdrawarc{(0,0,0)}{\rvec}{\phivec}{\phivec+\dphivec}{}{}
+			\tdplotdrawarc{(0,0,0)}{\rvec+\drvec}{\phivec}{\phivec+\dphivec}{}{}
+		\end{pgfonlayer}
+		
+		%Angles
+		\begin{pgfonlayer}{foreground}
+			%Phi, dPhi
+			\tdplotdrawarc[-stealth]{(O)}{0.9}{0}{\phivec}{anchor=north}{$\phi$}
+			\tdplotdrawarc[-stealth]{(O)}{1.5}{\phivec}{\phivec + \dphivec}{}{}
+			\node at (1.4,1.9,0) {$\mathrm{d}\phi$};    
+		\end{pgfonlayer}
+		
+		%Differential Volume
+		
+		%%Lines
+		\begin{pgfonlayer}{foreground}
+			\draw[thick] (A) -- (B) -- (B') -- (A') -- cycle node [midway, below] {$\mathrm{d}\varpi$};
+			\draw[thick] (D) -- (D') -- (C') node [midway, right] {$\mathrm{d}z$};
+		\end{pgfonlayer}
+		\begin{pgfonlayer}{background}
+			\draw[thick, dashed] (C') -- (C) -- (D);
+		\end{pgfonlayer}
+		
+		%%Curved
+		\begin{pgfonlayer}{background}
+			\tdplotdrawarc[thick, dashed]{(0,0,\zvec)}{\rvec} {\phivec}{\phivec+\dphivec}{}{}
+		\end{pgfonlayer}
+		\begin{pgfonlayer}{foreground}
+			\tdplotdrawarc[thick]{(0,0,\zvec+\dzvec)}{\rvec} {\phivec}{\phivec+\dphivec}{}{}
+			\tdplotdrawarc[thick]{(0,0,\zvec+\dzvec)}{\rvec+\drvec} {\phivec}{\phivec+\dphivec}{}{}
+			\tdplotdrawarc[thick]{(0,0,\zvec)}{\rvec+\drvec} {\phivec}{\phivec+\dphivec}{below}{$\varpi\mathrm{d}\phi$}
+		\end{pgfonlayer}
+		
+		%%Fill Color
+		\begin{pgfonlayer}{main}
+			%Front
+			\fill[black, opacity=0.15] (B) to (B') to[bend right=4] (D') to (D) to[bend left=4] cycle;
+			\fill[black, opacity=0.6] (B') to[bend right=4] (D') to (C') to[bend left=4] (A') to cycle;
+			\fill[black, opacity=0.4] (B) to (B')  to (A') to (A) to cycle;
+		\end{pgfonlayer}
+		\begin{pgfonlayer}{background}
+			%Back
+			\fill[black!50, opacity=0.5] (D) to (D') to (C') to (C) to cycle;
+			\fill[black!50, opacity=0.5] (B) to[bend right=4] (D) to (C) to[bend left=4] (A) to cycle;
+			\fill[black!50, opacity=0.5] (A) to (A') to[bend right=4] (C') to (C) to[bend left=4] cycle;
+		\end{pgfonlayer}
+		
+	\end{tikzpicture}
+	
+	\section{Coordenadas esféricas}
+	Coordenadas esféricas são usadas quando existe simetria esférica.
+	
+	%Angle Definitions
+	%-----------------
+	
+	%set the plot display orientation
+	%synatax: \tdplotsetdisplay{\theta_d}{\phi_d}
+	\tdplotsetmaincoords{60}{110}
+	
+	%define polar coordinates for some vector
+	%TODO: look into using 3d spherical coordinate system
+	\pgfmathsetmacro{\rvec}{.8}
+	\pgfmathsetmacro{\thetavec}{45}
+	\pgfmathsetmacro{\phivec}{60}
+	
+	%start tikz picture, and use the tdplot_main_coords style to implement the display 
+	%coordinate transformation provided by 3dplot
+	\begin{tikzpicture}[scale=5,tdplot_main_coords]
+		
+		\shadedraw[tdplot_screen_coords,ball color = white] (0,0) circle (\rvec);
+		
+		%set up some coordinates 
+		%-----------------------
+		\coordinate (O) at (0,0,0);
+		
+		%determine a coordinate (P) using (r,\theta,\phi) coordinates.  This command
+		%also determines (Pxy), (Pxz), and (Pyz): the xy-, xz-, and yz-projections
+		%of the point (P).
+		%syntax: \tdplotsetcoord{Coordinate name without parentheses}{r}{\theta}{\phi}
+		\tdplotsetcoord{P}{\rvec}{\thetavec}{\phivec}
+		
+		%draw figure contents
+		%--------------------
+		
+		%draw the main coordinate system axes
+		\draw[thick,->] (0,0,0) -- (1,0,0) node[anchor=north east]{$x''$};
+		\draw[thick,->] (0,0,0) -- (0,1,0) node[anchor=north west]{$y''$};
+		\draw[thick,->] (0,0,-1) -- (0,0,1) node[anchor=south]{$z''$};
+		
+		%draw a vector from origin to point (P) 
+		\draw[-stealth,color=black] (O) -- (P) node[midway,above] {$r$};
+		
+		%draw projection on xy plane, and a connecting line
+		\draw[dashed, color=red] (O) -- (Pxy);
+		\draw[dashed, color=red] (P) -- (Pxy);
+		
+		%draw the angle \phi, and label it
+		%syntax: \tdplotdrawarc[coordinate frame, draw options]{center point}{r}{angle}{label options}{label}
+		\tdplotdrawarc{(O)}{0.2}{0}{\phivec}{anchor=north}{$\alpha$}
+		
+		
+		%set the rotated coordinate system so the x'-y' plane lies within the
+		%"theta plane" of the main coordinate system
+		%syntax: \tdplotsetthetaplanecoords{\phi}
+		\tdplotsetthetaplanecoords{\phivec}
+		
+		%draw theta arc and label, using rotated coordinate system
+		\tdplotdrawarc[tdplot_rotated_coords]{(0,0,0)}{0.5}{\thetavec}{90}{anchor=south west}{$\beta$}
+		
+		%draw some dashed arcs, demonstrating direct arc drawing
+		\draw[thin,tdplot_rotated_coords] (\rvec,0,0) arc (0:180:\rvec);
+		
+		
+		
+	\end{tikzpicture}
+	
+	\section{Trajetória}
+	\textbf{Definição:} a trajetória de uma partícula é o conjunto de pontos no espaço ocupados por ela (posições) ao longo do tempo — geometricamente, é a curva \footnote{Uma curva em termos físicos, também pode ser representada por uma reta se o vetor posição não mudar de direção.} descrita pelo vetor posição $\mathbf{r}(t)$. Em termos paramétricos:
+	\[ \text{trajetória} = \{\,\mathbf{r}(t) : t_1\le t \le t_2\,\}. \]
+	Uma trajetória pode ser descrita em coordenadas cartesianas $(x(t),y(t),z(t))$ ou em coordenadas adequadas ao problema (cilíndricas, esféricas, etc.).
+	Neste capítulo, vamos apenas abordar movimentos unidimensionais. Assim, o vetor posição $\mathbf{r}(t)$ será apenas descrito apenas por uma coordenada, $x(t)$.
+	
+	
+	VOU AQUI
+	
+	
+	
+	\section{Centro de massa}
+	\subsection{Definição geral}
+	Para um sistema de $N$ partículas com massas $m_i$ e posições $\mathbf{r}_i$, o centro de massa (CM) é:
+	\begin{equation}\label{eq:CM_discrete}
+		\mathbf{R}_{\mathrm{CM}} = \frac{1}{M} \sum_{i=1}^N m_i\,\mathbf{r}_i,\qquad M=\sum_{i=1}^N m_i.
+	\end{equation}
+	Para um corpo contínuo com densidade $\rho(\mathbf{r})$, usamos a integral:
+	\begin{equation}\label{eq:CM_cont}
+		\mathbf{R}_{\mathrm{CM}} = \frac{1}{M}\int_{V} \mathbf{r}\,\rho(\mathbf{r})\,dV,\qquad M=\int_{V}\rho(\mathbf{r})\,dV.
+	\end{equation}
+	
+	\subsection{Exemplo simples}
+	Duas partículas: massa $m_1$ em $x_1$ e massa $m_2$ em $x_2$ (1D). Então
+	\[ X_{\mathrm{CM}} = \frac{m_1 x_1 + m_2 x_2}{m_1+m_2}. \]
+	\textbf{Exemplo numérico:} $m_1=2\,\mathrm{kg}$ em $x_1=1\,\mathrm{m}$ e $m_2=3\,\mathrm{kg}$ em $x_2=5\,\mathrm{m}$. Então
+	\begin{align*}
+		X_{\mathrm{CM}} &= \frac{2\cdot 1 + 3\cdot 5}{2+3} = \frac{2+15}{5} = \frac{17}{5} = 3.4\,\mathrm{m}.
+	\end{align*}
+	
+	\subsection{Propriedades importantes}
+	\begin{itemize}
+		\item O centro de massa se comporta como se toda a massa estivesse concentrada nele quando consideramos forças externas (segunda lei de Newton aplicada ao CM): $M\mathbf{A}_{\mathrm{CM}}=\sum \mathbf{F}_{\mathrm{ext}}$.
+		\item Para colisões e problemas de impulso, é conveniente analisar o movimento do CM.
+	\end{itemize}
+	
+	\section{Trajetórias: retilíneas e curvilíneas}
+	\subsection{Trajetória retilínea}
+	Uma trajetória retilínea é aquela em que o movimento ocorre ao longo de uma reta fixa. Em 1D é sempre retilíneo; em 2D/3D acontece quando $\mathbf{r}(t)$ permanece colinear a uma direção fixa.
+	Exemplo: movimento uniformemente acelerado em linha reta:
+	\[ x(t)=x_0+v_0 t + \tfrac{1}{2} a t^2. \]
+	
+	\subsection{Trajetória curvilínea}
+	Quando a trajetória é uma curva genérica (circunferência, parábola, hélice, etc.). Em coordenadas paramétricas no plano:
+	\[ x(t)=f(t),\quad y(t)=g(t). \]
+	A curvatura e o raio de curvatura são grandezas que descrevem a ``curvatura'' local da trajetória.
+	
+	\paragraph{Exemplos clássicos}
+	\begin{itemize}
+		\item Movimento circular uniforme: $x(t)=R\cos(\omega t)$, $y(t)=R\sin(\omega t)$ (trajetória = circunferência).
+		\item Projéteis (sem resistência do ar): trajetória parabólica no plano $x$--$y$.
+		\item Hélice: $x(t)=R\cos(\omega t)$, $y(t)=R\sin(\omega t)$, $z(t)=v_z t$.
+	\end{itemize}
+	
+	\section{Gráficos posição---tempo (exemplos)}
+	Gráficos posição---tempo mostram $x$ (ou $y$, ou componente de posição) em função do tempo. Vamos apresentar dois exemplos com códigos \texttt{pgfplots}:
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\begin{axis}[xlabel={$t$ (s)},ylabel={$x$ (m)},title={Movimento retilíneo uniforme: $x(t)=x_0+v t$},width=10cm,height=6cm]
+				\addplot[domain=0:10,samples=2]{2 + 1.5*x};
+				\addlegendentry{$x(t)=2+1.5t$}
+			\end{axis}
+		\end{tikzpicture}
+		\caption{Exemplo: posição linear no tempo (velocidade constante 1.5 m/s).}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\begin{axis}[xlabel={$t$ (s)},ylabel={$x$ (m)},title={Movimento com acelera\c{c}\~ao constante: $x(t)=x_0+v_0 t + \tfrac{1}{2}a t^2$},width=10cm,height=6cm]
+				\addplot[domain=0:10,samples=201]{1 + 2*x + 0.5*0.8*x^2};
+				\addlegendentry{$x(t)=1+2t+0.4t^2$}
+			\end{axis}
+		\end{tikzpicture}
+		\caption{Exemplo: movimento com acelera\c{c}\~ao constante (a=0.8 m/s$^2$).}
+	\end{figure}
+	
+	\section{Notas sobre interpretação dos gráficos}
+	\begin{itemize}
+		\item A inclinação (derivada) do gráfico posição---tempo dá a velocidade instantânea: $v(t)=dx/dt$. Para o gráfico linear a inclinação é constante (velocidade constante).
+		\item A concavidade do gráfico posição---tempo indica aceleração: se o gráfico é convexo para cima (concavidade para cima), a aceleração é positiva.
+		\item Um ponto com inclinação zero corresponde a velocidade instantânea nula (máximo ou mínimo local da posição).
+	\end{itemize}
+	
+	\section{Apêndice: pequenas demonstra\c{c}\~oes e fórmulas úteis}
+	\subsection{Velocidade média e instantânea}
+	Velocidade média entre $t_1$ e $t_2$:
+	\[ v_{\mathrm{med}}=\frac{x(t_2)-x(t_1)}{t_2-t_1}. \]
+	Velocidade instantânea: derivada temporal
+	\[ v(t)=\lim_{\Delta t\to 0}\frac{x(t+\Delta t)-x(t)}{\Delta t}=\frac{dx}{dt}. \]
+	
+	\subsection{Exercício resolvido (rápido)}
+	Uma partícula tem $x(t)=3t^2-2t+1$ (m). Determine $v(t)$ e $a(t)$.
+	\begin{align*}
+		v(t) &= \frac{dx}{dt} = 6t-2 \quad(\mathrm{m/s}),\\
+		a(t) &= \frac{d^2x}{dt^2} = 6 \quad(\mathrm{m/s^2}).
+	\end{align*}
+	
+	\bigskip
+%	\noindent Se quiser, posso:
+%	\begin{itemize}
+%		\item adicionar mais exemplos (projétil, movimento circular),
+%		\item incluir figuras 3D ou animações em beamer (PDF),
+%		\item exportar o ficheiro como PDF (se preferires, pede que eu gere o PDF). 
+%	\end{itemize}
+	
+\end{document}

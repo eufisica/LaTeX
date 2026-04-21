@@ -1,0 +1,249 @@
+% Resumo em LaTeX: Referenciais, Centro de Massa e Sistemas de Coordenadas
+% Compilar com pdflatex (pgfplots necessário)
+\documentclass[a4paper,12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[portuguese]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{siunitx}
+\usepackage{float}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue}
+\sisetup{detect-all}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{tikz-3dplot} 
+%\usepackage{3dplot}
+
+
+\title{Resumo: Referencial, Centro de Massa, Sistemas de Coordenadas e Trajetórias}
+\author{José Gonçalves}
+\date{\today}
+
+\begin{document}
+	\maketitle
+	
+	\tableofcontents
+	\bigskip
+	
+	\section{Referencial}
+	Um \emph{referencial} ou sistema de referência é um conjunto de eixos e um observador em relação aos quais se descrevem posições, velocidades e acelerações. Em problemas de mecânica, escolher um referencial significa fixar:
+	\begin{itemize}
+		\item a origem (ponto onde as coordenadas valem zero),
+		\item a orientação dos eixos (direções positivas),
+		\item a unidade de tempo (relógio) e unidade de comprimento.
+	\end{itemize}
+	As equações do movimento dependem do referencial — por exemplo, o mesmo movimento pode ter componentes diferentes em referenciais em repouso ou em movimento relativo.
+	
+	\section{Coordenadas cartesianas}
+	\subsection{1D}
+	Em \emph{uma dimensão} (reta), a posição de uma partícula é dada por um único número $x(t)$ relativo a uma origem. Exemplos:
+	\begin{align*}
+		x(t) & = x_0 + v\,t \quad\text{(movimento retilíneo uniforme)} \\
+		x(t) & = x_0 + v_0 t + \tfrac{1}{2} a t^2 \quad\text{(movimento com aceleração constante)}
+	\end{align*}
+	Neste caso, o referencial é unidimensional e representa-se como indicado na fig. \ref{fig:1D}.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}[scale=1]
+			% axes
+			\draw[->] (0,0) -- (4,0) node[right]{$x$/m};
+			% point
+			\coordinate (P) at (2,0);
+			\fill (P) circle (1.5pt) node[above right]{$P$};
+			\coordinate (O) at (0,0);
+			\fill (O) circle (1.5pt) node[below]{$O$};
+		\end{tikzpicture}
+		\caption{Sistema de coordenadas cartesiano (esquemático) a uma dimensão, onde está representado a posição do ponto $P$ num determinado instante.}
+		\label{fig:1D}
+	\end{figure}
+	
+	
+	
+	\subsection{2D}
+	No plano, usa-se um par ordenado $(x,y)$. 
+	Neste caso, o referencial é bidimensional e representa-se como indicado na fig. \ref{fig:2D}.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}[scale=1]
+			% axes
+			\draw[->] (0,0) -- (4,0) node[right]{$x$/m};
+			\draw[->] (0,0) -- (0,4) node[left]{$y$/m};
+			% point
+			\coordinate (P) at (2,2);
+			\fill (P) circle (1.5pt) node[above right]{$P$};
+			\coordinate (O) at (0,0);
+			\fill (O) circle (1.5pt) node[below]{$O$};
+			\fill (0,2) circle (1pt) node[left]{1,5};
+			\fill (2,0) circle (1pt) node[below]{1,5};
+			\draw[dashed] (0,2)--(2,2);
+			\draw[dashed] (2,0)--(2,2);
+			%vetor r
+			\draw[->, blue] (0,0) -- (2,2) node[below right]{$\vec{r}$};
+		\end{tikzpicture}
+		\caption{Sistema de coordenadas cartesiano (esquemático) a duas dimensões, onde está representado a posição do ponto $P$ num determinado instante.}
+		\label{fig:2D}
+	\end{figure}
+	
+	O vetor $\vec{r}$ representa o deslocamento feito desde a oridem até ao ponto $P$ e é dado por: $\vec{r} = 1,5 \vec{e_x} + 1,5 \vec{e_y}$ (m).
+	
+	
+	\subsection{3D}
+	No espaço, as coordenadas são $(x,y,z)$. Neste caso, o referencial é tridimensional e representa-se como indicado na fig. \ref{fig:3D}.
+	
+	\begin{figure}[H]
+		\centering
+		\tdplotsetmaincoords{60}{120} 
+		\begin{tikzpicture} [scale=3, tdplot_main_coords, axis/.style={->,blue,thick}, 
+			vector/.style={-stealth,red,very thick}, 
+			vector guide/.style={dashed,red,thick}]
+			
+			%standard tikz coordinate definition using x, y, z coords
+			\coordinate (O) at (0,0,0);
+			
+			%tikz-3dplot coordinate definition using x, y, z coords
+			
+			\pgfmathsetmacro{\ax}{0.8}
+			\pgfmathsetmacro{\ay}{0.8}
+			\pgfmathsetmacro{\az}{0.8}
+			
+			\coordinate (P) at (\ax,\ay,\az);
+			\fill (P) circle (1.5pt) node[above right]{$P$};
+			%draw axes
+			\draw[axis] (0,0,0) -- (1,0,0) node[anchor=north east]{$x$};
+			\draw[axis] (0,0,0) -- (0,1,0) node[anchor=north west]{$y$};
+			\draw[axis] (0,0,0) -- (0,0,1) node[anchor=south]{$z$};
+			
+			%draw a vector from O to P
+			%\draw[vector] (O) -- (P);
+			
+			%draw guide lines to components
+			\draw[vector guide]         (O) -- (\ax,\ay,0);
+			\draw[vector guide] (\ax,\ay,0) -- (P);
+			\draw[vector guide]         (P) -- (0,0,\az);
+			\draw[vector guide] (\ax,\ay,0) -- (0,\ay,0);
+			\draw[vector guide] (\ax,\ay,0) -- (0,\ay,0);
+			\draw[vector guide] (\ax,\ay,0) -- (\ax,0,0);
+			\node[tdplot_main_coords,anchor=east]
+			at (\ax,0,0){(\ax, 0, 0)};
+			\node[tdplot_main_coords,anchor=west]
+			at (0,\ay,0){(0, \ay, 0)};
+			\node[tdplot_main_coords,anchor=south]
+			at (0,0,\az){(0, 0, \az)};
+			
+			%vector
+			\draw[->, orange] (0,0,0) -- (\ax,\ay,\az) node[above left]{$\vec{r}$};
+		\end{tikzpicture}
+		\caption{Sistema de coordenadas cartesiano (esquemático) a três dimensões, onde está representado a posição do ponto $P$ num determinado instante.}
+		\label{fig:3D}
+	\end{figure}
+	
+	O vetor $\vec{r}$ representa o deslocamento feito desde a oridem até ao ponto $P$ e é dado por: $\vec{r} = 0,8 \vec{e_x} + 0,8 \vec{e_y} + 0,8 \vec{e_z}$ (m).
+	
+	
+	
+	\section{Coordenadas cilíndricas e esféricas}
+	As coordenadas cilíndricas são úteis quando existe simetria em torno de um eixo (por exemplo, problemas envolvendo cilindros ou rotação em torno de um eixo).
+	As coordenadas esféricas são usadas quando existe simetria esférica (por exemplo, posição de um ponto numa esfera).
+	
+	
+	\section{Trajetória}
+	\textbf{Definição:} a trajetória de uma partícula é o conjunto de pontos no espaço ocupados por ela (posições) ao longo do tempo — geometricamente, é a curva\footnote{Uma curva em termos físicos, também pode ser representada por uma reta se o vetor posição não mudar de direção.} descrita pelo vetor posição $\vec{r}(t)$. Em termos paramétricos:
+	\[ \text{trajetória} = \{\vec{r}(t) : t_1\le t \le t_2\,\}. \]
+	
+	Uma trajetória pode ser descrita em coordenadas cartesianas $(x(t),y(t),z(t))$ ou em coordenadas adequadas ao problema (por exemplo, em coordenadas esféricas).
+	Neste capítulo, vamos apenas abordar movimentos unidimensionais. Assim, o vetor posição $\vec{r}(t)$ será apenas descrito apenas por uma coordenada, $x(t)$.
+	
+	As trajetórias podem ser abertas ou fechadas. Em termos físicos, apenas importa as trajetórias retilíneas ou curvilíneas (que podem ser abertas ou fechadas), como se pode ver na figura \ref{fig:trajec}.
+	
+	\begin{figure}[H]
+		\begin{tikzpicture}[scale=1.2,>=stealth]
+			\centering
+			% Rectilinear trajectory (left)
+			\draw[thick,->] (0,0) -- (3,0);
+			\foreach \x in {0.5,1,1.5,2,2.5}
+			\fill (\x,0) circle (2pt);
+			
+			% Curvilinear trajectory (right)
+			\draw[thick,->] (5,0) .. controls (7,1.5) and (8,1.5) .. (10,0);
+			\foreach \t in {0,0.25,0.5,0.75,1}
+			\fill ({5+5*\t},{1.5*3*\t*(1-\t)}) circle (2pt);
+			
+		\end{tikzpicture}
+		\caption{Trajetória retilínea (direita) e curvilínea (esquerda) descrita pelo centro de massa de uma partícula material.}
+		\label{fig:trajec}
+	\end{figure}
+
+	
+	\section{Centro de massa}
+	\subsection{Definição geral}
+	Para um sistema de $N$ partículas com massas $m_i$ e posições $\vec{r}_i$, o centro de massa (CM) é:
+	\begin{equation}\label{eq:CM_discrete}
+		\vec{R}_{\mathrm{CM}} = \frac{1}{M} \sum_{i=1}^N m_i\,\vec{r}_i,\qquad M=\sum_{i=1}^N m_i.
+	\end{equation}
+	Para um corpo contínuo com densidade $\rho(\vec{r})$, usamos a integral:
+	\begin{equation}\label{eq:CM_cont}
+		\vec{R}_{\mathrm{CM}} = \frac{1}{M}\int_{V} \vec{r}\,\rho(\vec{r})\,dV,\qquad M=\int_{V}\rho(\vec{r})\,dV.
+	\end{equation}
+	
+	\subsection{Exemplo simples}
+	O centro de massa de duas partículas de massa $m_1$ em $x_1$ e massa $m_2$ em $x_2$ (1D), é dado pela expressão:
+	 
+	\[ X_{\mathrm{CM}} = \frac{m_1 x_1 + m_2 x_2}{m_1+m_2}. \]
+	\textbf{Exemplo numérico:} $m_1=2\,\mathrm{kg}$ em $x_1=1\,\mathrm{m}$ e $m_2=3\,\mathrm{kg}$ em $x_2=5\,\mathrm{m}$. Então
+	\begin{align*}
+		X_{\mathrm{CM}} &= \frac{2\cdot 1 + 3\cdot 5}{2+3} = \frac{2+15}{5} = \frac{17}{5} = 3.4\,\mathrm{m}.
+	\end{align*}
+	
+	\subsection{Propriedades importantes}
+	\begin{itemize}
+		\item O centro de massa comporta-se como se toda a massa estivesse concentrada nele quando consideramos forças externas (segunda lei de Newton aplicada ao CM).
+		\item Para colisões e problemas de impulso, é conveniente analisar o movimento do CM.
+	\end{itemize}
+	
+	\section{Gráficos posição-tempo (exemplos)}
+	Gráficos posição---tempo mostram $x$ (ou $y$, ou componente de posição) em função do tempo. É importante saber interpretar os gráficos\footnote{
+	Notas sobre interpretação dos gráficos:\\
+	\begin{itemize}
+		\item O declive da reta do gráfico posição-tempo dá a velocidade instantânea: $v(t)=dx/dt$. Para o gráfico linear a inclinação é constante (velocidade constante).
+		\item A concavidade do gráfico posição-tempo indica aceleração: se o gráfico tem concavidade para cima, a aceleração é positiva.
+		\item Um ponto com inclinação zero corresponde a velocidade instantânea nula (máximo ou mínimo local da posição).
+	\end{itemize}
+	}
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\begin{axis}[xlabel={$t$/s},ylabel={$x$/ m},title={Movimento retilíneo uniforme: $x(t)=x_0+v t$},width=10cm,height=6cm]
+				\addplot[domain=0:10,samples=2]{2 + 1.5*x};
+				\addlegendentry{$x_A(t)=2+1.5t$};
+				\addplot[domain=0:10,samples=2,red]{2 + 0.5*x};
+				\addlegendentry{$x_B(t)=2+0.5t$};
+			\end{axis}
+		\end{tikzpicture}
+		\caption{Movimento feito por dois corpos A (com velocidade constante de 1,5 m/s) e B (com velocidade constante de 0,5 m/s).}
+		\label{fig:graf-pos}
+	\end{figure}
+	
+	Como se pode ver na figura \ref{fig:graf-pos}, o movimento dos corpos iniciam no mesmo instante e posição. Contudo, como o corpo A vai com uma maior velocidade, este tem um deslocamento superior ao do B, no mesmo intervalo de tempo. Também se pode concluir pelo maior declive da reta preta quando comparada com a vermelha.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\begin{axis}[xlabel={$t$ (s)},ylabel={$x$ (m)},title={Movimento com acelera\c{c}\~ao constante: $x(t)=x_0+v_0 t + \tfrac{1}{2}a t^2$},width=10cm,height=6cm]
+				\addplot[domain=0:10,samples=201]{1 + 2*x + 0.5*0.8*x^2};
+				\addlegendentry{$x(t)=1+2t+0.4t^2$}
+			\end{axis}
+		\end{tikzpicture}
+		\caption{Exemplo: movimento com aceleração constante ($a$=0.8 m/s$^2$).}
+		\label{fig:graf-pos-acel}
+	\end{figure}
+	
+	No gráfico da figura \ref{fig:graf-pos-acel} podemos ver que as sucessivas posições ocupadas pelo corpo, no mesmo intervalo de tempo, são cada vez maiores, sugerindo uma variação da velocidade. De facto, se traçarmos uma tangente à função descrita no gráfico, veremos que o seu declive aumenta ao longo do tempo. Como essa tangente corresponderia à velocidade do corpo, podemos concluir que a sua velocidade aumenta.
+	
+\end{document}
