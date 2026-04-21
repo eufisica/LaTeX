@@ -1,0 +1,43 @@
+\begin{tikzpicture}[remember picture, overlay]%overlay permite ultrapassar as margens definidas no geometry
+	\node (logo) at (current page.north west)[anchor=north west,xshift=.5cm,yshift=-.5cm] {\includegraphics[width=2.5cm]{logo_AEVO}};
+	
+	\node(disciplina) at (logo.north east)[anchor=north west, minimum width=\linewidth-2.5cm, align=center, yshift=1mm]{\huge \sc Teste de Avaliação Física e Química A - 11.\textsuperscript{o} Ano};
+	
+	\node (escola) at (disciplina.south west) [anchor=north west] {Agrupamento de Escolas de Vale de Ovil};
+	
+	\node (turma) at (disciplina.south)[anchor=north] {Turma \rule{1cm}{.1mm}};
+	
+	\node (data) at (disciplina.south east)[anchor=north east] {novembro de 2025};
+	
+	\node (nomealuno) at (disciplina.west)[anchor=west,yshift=-1.5cm] {Nome:\rule{12cm}{.1mm}};
+	
+	\node (numaluno) at (disciplina.east)[anchor=east,yshift=-1.5cm] {N.:\rule{1cm}{.1mm}};
+	
+	\node (classificaçãoNum) at (disciplina.west)[anchor=west, yshift=-2.2cm] {Classificação de \framebox(15,15){} \framebox(15,15){} \framebox(15,15){} pontos.};
+	
+	\node (classificaçãoEscrita) at (disciplina.east)[anchor=east,yshift=-2.2cm] {\makebox(15,15){} (\rule{9.5cm}{.1mm})};
+	
+	\node (professor) at (disciplina.west)[anchor=west,yshift=-3.2cm] {O Professor:\rule{4cm}{.1mm}};
+	
+	\node (encarregado) at (disciplina.east)[anchor=east,yshift=-3.2cm] {O Enc. de Educação:\rule{5cm}{.1mm}};
+	
+	\begin{pgfonlayer}{background}
+		\draw[fill=orange!10] ([yshift=2mm,xshift=-2mm]logo.north west) rectangle ([xshift=2mm,yshift=-2mm]encarregado.south east);
+	\end{pgfonlayer}
+	
+\end{tikzpicture}
+
+\vspace{4cm}
+\par\noindent\rule{\textwidth}{0.4pt}
+
+\vspace{10pt}
+\noindent Para cada resposta, identifique o item.\\
+Utilize apenas caneta ou esferográfica de tinta azul ou preta.\\
+Não é permitido o uso de corretor. Risque aquilo que pretende que não seja classificado.\\
+É permitido o uso de régua, esquadro, transferidor e calculadora gráfica.\\
+Apresente apenas uma resposta para cada item.\\
+
+\vspace{2cm}
+Este teste é composto por \textbf{\numquestions\ questões}, num total de \textbf{\numpoints\ pontos}.
+
+\par\noindent\rule{\textwidth}{0.4pt}

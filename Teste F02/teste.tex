@@ -1,0 +1,530 @@
+\documentclass[addpoints]{exam}
+
+\usepackage[portuguese]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{multicol}
+\usepackage{geometry}
+\usepackage{tikz}
+\usepackage{fourier}
+%Font Size
+%\usepackage[12pt]{extsizes}%OR
+\usepackage[fontsize=11pt]{scrextend}
+%-----Physics
+\usepackage{amsfonts,amsmath,amssymb,gensymb}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{caption, subcaption}
+\usepackage{tikz}
+\usepackage{tkz-euclide}
+\usepackage{circuitikz}
+\usepackage{float}
+\usepackage{pgf}
+\usepackage{pgfplots}
+%\usepackage{pgfplotstable}
+\usepackage{wrapfig}
+\usepackage{wrapstuff}
+\usepackage{xcolor}
+\usepackage{cancel}
+\usepackage{hyperref}
+
+\usetikzlibrary{positioning, arrows.meta, intersections, calc, fadings, shapes.geometric, arrows, mindmap, backgrounds, shadings, decorations.markings,decorations.pathmorphing, math, shapes, decorations, patterns, shadows, external, angles, quotes}
+\tikzset{>=latex}
+\usepackage{siunitx}
+\sisetup{output-decimal-marker={,}}
+\usepackage[shortconst]{physconst}
+
+%-----Caixas para apresentar as soluções
+\usepackage{lipsum,framed,color}
+\usepackage{calc}
+\definecolor{shadecolor}{rgb}{1,0.7,0.7}
+\newlength{\boxwidth}
+\newsavebox{\boxcontainer}
+
+\newcommand\mybox[1]{%
+	%\begin{center}%
+	\fcolorbox{white}{shadecolor}{%
+		%\begin{minipage}[t]{\dimexpr\textwidth-2\fboxsep+10\fboxrule}%
+		\begin{minipage}[t]{\textwidth-2\fboxsep}
+			#1%
+	\end{minipage}}%
+	%\end{center}
+}
+
+
+%-----Math
+\usepackage{dsfont}%apresenta as letras R,Z,C matemáticas
+\usepackage{mathtools}%configura os casos entre chavetas
+
+%-----Controlar espaço entre opções nas escolhas múltiplas (ver configuração antes de iniciar o documento)
+\usepackage{xpatch}
+
+\geometry{
+	a4paper,
+	top=1cm,
+	bottom=2cm,
+	left=1.5cm,
+	right=3cm,
+}
+
+\pgfdeclarelayer{background}
+\pgfdeclarelayer{main}
+
+\pgfsetlayers{background,main}
+
+%--------------------------------
+% CONFIGURAR CABEÇALHO E RODAPÉ
+%--------------------------------
+\pagestyle{headandfoot}
+\firstpageheader{}{}{}
+\runningheader{}{}{}
+\firstpagefooter{}{}{}
+\runningfooter{Física e Química A}{Teste}{Pág. \thepage\ de \numpages}
+\runningfootrule
+
+
+%--------------------------------
+% CONFIGURAÇÕES DO DOCUMENTO EXAM
+%--------------------------------
+\renewcommand{\solutiontitle}{\noindent \textbf{Solução:}\enspace}
+\renewcommand{\thequestion}{\bf \arabic{question}}
+\renewcommand{\choicelabel}{{\bf (\thechoice)}}
+\renewcommand{\partlabel}{\bf \thequestion.\arabic{partno}}
+\pointpoints{ponto}{pontos}
+\pointformat{[\bf \thepoints]}
+\pointsinrightmargin
+\setlength{\rightpointsmargin}{.5cm}
+\CorrectChoiceEmphasis{\color{red}\bfseries}%respostas corretas nas escolhas múltiplas a vermelho
+%tabela de cotação
+\hqword{Questão:}%vqword para a tabela na vertical
+\hpword{Cotação:}%vpword para a tabela na vertical
+
+
+\xpatchcmd{\oneparchoices}{\penalty -50\hskip 1em plus 1em\relax}{\hfill}
+
+
+% Deixar as linhas de espaço depois do xpatch
+\begin{document}
+	
+	\input{intro}
+	
+	% Settings for \mybox and Mybox
+	\setlength{\fboxrule}{1pt}
+	\setlength{\fboxsep}{10pt}
+	
+	% Additional settings for MyBox
+	\setlength{\FrameRule}{\fboxrule}
+	\setlength{\FrameSep}{\fboxsep}
+	
+	
+	
+	%INÍCIO DO TESTE
+	\newpage
+	\begin{questions}
+		\fullwidth{\Large \textbf{Grupo I}}
+		\uplevel{
+			
+			\begin{minipage}{0.4\linewidth}
+				O EM-Bird é um dispositivo usado para medir a espessura do gelo marinho, fornecendo dados que possibilitam a monitorização de um dos efeitos do aquecimento global.\\
+				Na Figura ao lado, que não se encontra à escala, estão representados o EM-Bird, de massa \SI{100}{\kilogram}, suspenso de um helicóptero que voa horizontalmente, a baixa altitude, as forças nele aplicadas e as distâncias do dispositivo à superfície e à base do gelo, $d_1$ e $d_2$, respetivamente.	\\
+			\end{minipage}
+			\hspace{15pt}
+			\vspace{20pt} 
+			\begin{minipage}{0.4\linewidth}
+				\vspace{30pt}
+				\centering
+				\includegraphics[width=0.6\textwidth]{heliresistar}
+			\end{minipage}
+		}
+		
+		\question[8] Considere que, no EM-Bird, atuam três forças constantes: a força gravítica, $\vec{F_g}$, a tensão exercida pelo cabo, $\vec{T}$, e a resistência do ar, $\vec{R_\text{ar}}$.\\
+		No deslocamento horizontal do EM-Bird, realiza(m) trabalho a(s) força(s)...
+		
+		\begin{multicols}{2}
+			\begin{choices}
+				\choice $\vec{F_g}$ e $\vec{R_\text{ar}}$.
+				\choice $\vec{F_g}$.
+				\choice $\vec{T}$.
+				\correctchoice $\vec{T}$ e $\vec{R_\text{ar}}$.
+			\end{choices}
+		\end{multicols}
+		
+		\vspace{10pt}
+		\question[16] A tensão do cabo que segura o EM-Bird faz um ângulo de \SI{60}{\degree} com a horizontal.\\
+		Determine o módulo da resistência do ar, considerando que foi alcançada a velocidade terminal.\\
+		Apresente todos os cálculos efetuados. 
+		
+		\begin{solution}
+			\textcolor{white}{.}\\
+			\mybox{
+				Quando é alcançada a velocidade terminal, o EM-Bird passa a movimentar-se com velocidade constante. Logo, $\vec{F_\text{R}} = 0$. Assim,
+				
+				\begin{equation*}
+					\Bigg \{
+					\begin{matrix}
+						T_x - R_\text{ar} = 0\\
+						T_y - P = 0
+					\end{matrix}
+					\Leftrightarrow
+					\Bigg \{
+					\begin{matrix}
+						R_\text{ar} = T_x\\
+						T_y = mg
+					\end{matrix}
+					\Leftrightarrow
+					\Bigg \{
+					\begin{matrix}
+						R_\text{ar} = \dfrac{T_y}{\tan(60)}\\
+						T_y = 100 \times 9,81
+					\end{matrix}
+					\Leftrightarrow
+					\Bigg \{
+					\begin{matrix}
+						R_\text{ar} = \SI{566}{\newton}\\
+						T_y = \SI{981}{\newton}
+					\end{matrix}
+				\end{equation*}
+				
+				A resistência do ar é de \SI{566}{\newton}
+			}
+		\end{solution}
+		
+		\question[8] O EM-Bird, de \SI{1,8}{\kilogram} de massa, foi construído com duas hélices de \SI{1,2}{\meter} de diâmetro, que rodam, em direções opostas, a 2400 rotações por minuto.\\
+		A expressão que permite calcular, no SI, o módulo da velocidade de um ponto na extremidade de uma hélice do helicóptero é
+		
+		\begin{multicols}{2}
+			\begin{choices}
+				\choice $v= \dfrac{2\pi \times 0,60 \times 60}{2400}$ \unit{\meter\per\second}.
+				\correctchoice $v= \dfrac{2\pi \times 0,60 \times 2400}{600}$ \unit{\meter\per\second}.
+				\choice $v= \dfrac{2\pi \times 1,20 \times 2400}{60}$ \unit{\meter\per\second}.
+				\choice $v= \dfrac{2\pi \times 1,20 \times 60}{2400}$ \unit{\meter\per\second}.
+			\end{choices}
+		\end{multicols}
+		
+		\question[8] Suponha agora que o helicóptero se mantém imobilizado no ar, a uma altitude \textit{h} do solo. \\
+		Se entretanto o cabo partir, o tempo de queda do EM-Bird (desprezando a resistência do ar) é dado por...
+		
+		\begin{multicols}{2}
+			\begin{choices}
+				\correctchoice $\sqrt{\dfrac{2 \times h}{g} }$.
+				\choice $\dfrac{2 \times h}{g}$.
+				\choice $\sqrt{\dfrac{2 \times g}{h} }$.
+				\choice $\dfrac{2 g}{h}$.
+			\end{choices}
+		\end{multicols}
+		
+		
+		
+		\noindent\rule{\linewidth}{0.5pt}
+		\vspace{5pt}
+		\fullwidth{\Large \textbf{Grupo II}}
+		 \uplevel{
+		 	Os satélites são muito importantes nos dias que correm devido para manter o nosso modo de vida. Eles são utilizados para podermos deslocar-nos entre localidades, através da utilização do GPS, para a monitorização da Terra, como satélites que medem a variação da temperatura, para a comunicação ou para a nossa segurança.
+		 }
+		
+		\vspace{15pt}
+		\question[16] Os satélites da constelação Iridium descrevem órbitas circulares em Torno da Terra a uma altitude de \SI{780}{\kilo\meter} o que permite estabelecer comunicações em tempo real.\\
+		Verifique se estes satélites são geostacionários.\\
+		$$R_T = \SI{6400}{km}; \hspace{15pt} m_T = \SI{5,97e24}{\kilogram}$$
+		Apresente todas as etapas de resolução.\\
+		
+		\begin{solution}
+			\textcolor{white}{.}\\
+			\mybox{
+				
+				Determinação do raio da órbita do satélite:\\
+				
+				$r = R_t + h \Rightarrow r = 6400 + 780$\\
+				$r = \SI{7280}{\kilo\meter}=\SI{7,28e6}{\meter}$\\
+				
+				Determinação do período orbital:\\
+				$F_c = F_g \Leftrightarrow m a_c = G \dfrac{m_T m}{r^2} \Leftrightarrow$\\
+				$\Leftrightarrow \dfrac{v^2}{r} = G \dfrac{m_T}{r^2} \Leftrightarrow v^2 = G \dfrac{m_T}{r} \Leftrightarrow$\\
+				$\Leftrightarrow \omega^2 r^2 = G \dfrac{m_T}{r} \Leftrightarrow \dfrac{4\pi^2}{T^2} = G \dfrac{m_T}{r^3} \Rightarrow$
+				$\Rightarrow T = \sqrt{\dfrac{4\pi^2r^3}{G m_T}} \Rightarrow T = \sqrt{\dfrac{4\pi^2 \times (7,28 \times 10 ^6)^3}{6,67 \times 10^{-11} \times 5,97 \times 10^{24}}} \Leftrightarrow$
+				$\Leftrightarrow T = \SI{6184,82}{\second}$
+				
+				Determinação do período em horas:\\
+				$T = 6184,82 \cancel{\unit{\second}} \times \dfrac{1 \cancel{\unit{\minute}}}{60 \cancel{\unit{\second}}} \times \dfrac{\SI{1}{\hour}}{60 \cancel{\unit{\minute}}} = \SI{1,72}{\hour}$\\
+				
+				Para ser geoestacionário, o período deveria ser de \SI{24}{\hour} como o resultado é de aproximadamente \SI{2}{\hour}, os satélites não são estacionários.\\	
+			}
+			
+		\end{solution}
+		
+		\question Dois satélites de igual massa, A e B, descrevem movimentos circulares, sendo o raio da órbita de A quatro vezes maior do que o raio da órbita de B.\\
+		\begin{parts}
+			\part[8] A razão entre os módulos da velocidade dos satélites A e B, $v_A/v_B$ é \\
+			\begin{multicols}{4}
+				\begin{choices}
+					\choice 4.
+					\correctchoice 2.
+					\choice 8.
+					\choice 16.
+				\end{choices}
+			\end{multicols}
+			
+			
+			\part[8] A frequência do satélite A será ... \\
+			\begin{multicols}{2}
+				\begin{choices}
+					\choice quatro vezes a frequência de B.
+					\choice duas vezes a frequência de B.
+					\correctchoice oito vezes a frequência de B.
+					\choice igual à frequência de B.
+				\end{choices}
+			\end{multicols}
+		\end{parts}
+		
+		
+		\vspace{15pt}
+		\question[16] 
+		\begin{minipage}{0.7\textwidth}
+			A figura ao lado representa uma centrifugadora, projetada para treinar os astronautas e testar a sua reação e tolerância ao processo de descolagem dos vaivéns espaciais, uma vez que simula as elevadas acelerações a que estão sujeitos nesse processo. Os astronautas são colocados nas extremidades do braço da centrifugadora e, após um movimento inicial de rotação muito acelerado para atingirem o valor da aceleração desejado, passam a estar sujeitos a um movimento circular uniforme. 
+		\end{minipage}
+		\hspace{0.1\textwidth}
+		\begin{minipage}{0.2\textwidth}
+			\includegraphics[width=0.7\textwidth]{centrifugadora}
+		\end{minipage}
+		
+		Determine o período, de uma centrifugadora com \SI{55,0}{\meter} de diâmetro, que permite aos astronautas experimentarem uma aceleração de $2 g$. \\
+		Apresente todas as etapas de resolução.
+		
+		\begin{solution}
+			\textcolor{white}{.}\\
+			\mybox{
+				
+				Determinação da aceleração centrípeta:\\
+				
+				$a_c = 2g \Rightarrow a_c = 2 \times 9,81 = \SI{19,62}{\meter\per\second\squared}$\\
+				
+				Determinação da velocidade angular:\\
+				$a_c = \omega^2 \times r \Leftrightarrow 19,62 = \omega^2 \times 27,5 \Leftrightarrow$\\
+				$\Leftrightarrow \omega = \SI{0,71}{\radian\per\second}$
+				
+				Determinação do período:\\
+				$\omega = \dfrac{2\pi}{T} \Leftrightarrow T = \dfrac{2\pi}{\omega} \Leftrightarrow$\\
+				$\Leftrightarrow T = \dfrac{2\pi}{0,71} \SI{8,85}{\second}$
+			}
+		\end{solution}
+		
+		\noindent\rule{\linewidth}{0.5pt}
+		\vspace{1pt}
+		\fullwidth{\Large \textbf{Grupo III}}
+		\uplevel{Com o objetivo de determinar experimentalmente o módulo da velocidade de propagação do som no ar, um grupo de alunos fez uma montagem semelhante à representada na figura abaixo. Os alunos usaram um sistema de registo de som estereofónico com dois canais, esquerdo e direito, para gravar separadamente o som registado em cada microfone.\\
+		Ao produzir um som brusco (bater de duas mãos), o sinal registado pelo microfone mais afastado da fonte regista um atraso relativamente ao mais próximo, devido ao tempo que o som demora a percorrer a distância $d$.
+		
+		\begin{multicols}{2}
+			\vspace{5pt} 
+			\begin{minipage}{0.9\linewidth}
+				\vspace{3pt}
+				\centering
+				\includegraphics[width=\linewidth]{batepalmas}
+			\end{minipage}
+			
+			\vspace{5pt} 
+			\begin{minipage}{0.9\linewidth}
+				\vspace{3pt}
+				\centering
+				\includegraphics[width=\linewidth]{grafico_batepalmas}
+			\end{minipage}
+		\end{multicols}
+		}
+		
+		\vspace{5pt}
+		\question[10] Qual dos sinais, A ou B, foi captado pelo microfone que se encontra mais longe do altifalante? Justifica a tua resposta.
+		
+		\begin{solution}
+			\textcolor{white}{.}\\
+			\mybox{O B, porque é o sinal que aparece depois no osciloscópio e com menor amplitude.}
+		\end{solution}
+		
+		\vspace{5pt}
+		\question[8] Das afirmações seguintes, selecione a correta.\\
+
+		\begin{choices}
+			\correctchoice Quanto maior for a densidade do meio em que se propaga, maior será a velocidade do som.
+			\choice A velocidade do som diminui à medida que aumenta a distância à fonte sonora.
+			\choice A velocidade do som no ar não depende da temperatura.
+			\choice Geralmente, quanto maior for a amplitude do som, maior será a sua velocidade.
+		\end{choices}
+		
+		\vspace{5pt}
+		\question[20] A experiência foi realizada a uma dada temperatura, variando a distância, $d$, entre os microfones e registando o respetivo intervalo de tempo, $\Delta t$.\\
+		Os resultados encontram-se registados na tabela seguinte:\\
+		\begin{minipage}{\linewidth}
+			\centering
+			\begin{tabular}{|c|c|}
+				$d$/m&$\Delta t$/ms\\ \hline
+				1,80 & 5,2\\ \hline
+				1,95 & 5,7\\ \hline
+				2,10 & 6,1\\ \hline
+				2,25 & 6,5\\ \hline
+				2,40 & 7,0\\ \hline
+			\end{tabular}
+		\end{minipage}
+		\\
+		Com base nos valores obtidos experimentalmente, calcule a velocidade do som obtida pelos alunos.\\
+		Na resposta apresente:
+		\begin{itemize}
+			\item a tabela com os valores a utilizar na construção do gráfico;
+			\item a equação da reta de ajuste do gráfico $d = f(\Delta t)$;
+			\item o cálculo do valor solicitado, a partir da equação da reta de ajuste.
+		\end{itemize}
+		
+		Apresente todos os cálculos efetuados e o resultado com três algarismos significativos.
+		
+		\begin{solution}
+			\textcolor{white}{.}\\
+			\mybox{
+			Considerando a equação $v=\dfrac{d}{\Delta t} \Leftrightarrow \Delta t = \dfrac{1}{v} d$, o intervalo de tempo será a variável dependente, e a distância entre os microfones será a variável independente a considerar nos eixos do gráfico abaixo:
+			
+			\begin{minipage}{\linewidth}
+				\centering
+				\begin{tabular}{|c|c|}
+					$d$/m&$\Delta t$/ms\\ \hline
+					1,80 & $5,2 \times 10^{-3}$\\ \hline
+					1,95 & $5,7 \times 10^{-3}$\\ \hline
+					2,10 & $6,1 \times 10^{-3}$\\ \hline
+					2,25 & $6,5 \times 10^{-3}$\\ \hline
+					2,40 & $7,0 \times 10^{-3}$\\ \hline
+				\end{tabular}
+			\end{minipage}
+			
+			\vspace{5pt}
+			\includegraphics[width=0.9\linewidth]{grafico_tempo_dist}
+			
+			O declive do gráfico permite obter o valor da velocidade do som nesta experiência:\\
+			$\text{decive} = \dfrac{1}{v} \Leftrightarrow 0,0029 = \dfrac{1}{v} \Leftrightarrow v = \SI{3,45}{\meter\per\second}$
+			}
+		\end{solution}
+		
+		\vspace{5pt}
+		\question A figura que se segue representa um sinal gerado por um diapasão de frequência $f$, obtido no ecrã de um osciloscópio.
+		
+		\vspace{10pt}
+		\begin{minipage}{\linewidth}
+			\centering
+			\includegraphics[width=0.4\linewidth]{sinaldiapasao}
+		\end{minipage}
+		\\
+		
+		\begin{parts}
+			\part[10] Refira, justificando, se o som produzido poderá ter sido produzido por um diapasão de frequência \SI{440}{\hertz}.\\
+			Mostre como chegou à conclusão solicitada.
+			\begin{solution}
+				\textcolor{white}{.}\\
+				\mybox{
+					Cálculo do período do sinal apresentado no osciloscópio:\\
+					Como $\ \text{div}=\SI{1}{\milli\second}\Rightarrow \text{m.d.e.}=\frac{1}{5}=\SI{0,2}{\milli\second}$;\\ Assim, $T=4\text{div} \Rightarrow T =(4,0\pm0,1)\unit{\milli\second}$  
+					Obtendo-se, para a frequência do sinal sonoro do diapasão:\\
+					$$f=\dfrac{1}{T} \Rightarrow f = \dfrac{1}{4,0\times 10^{-3}} = \SI{250}{\hertz}$$
+					Conclui-se, por isso, que o som produzido não é do diapasão de \SI{440}{\hertz}.
+				}
+				
+			\end{solution}
+			\part[8] A equação da onda, considerando que o sistema vertical foi ajustado para 0,25 volt/div é
+			\begin{multicols}{2}
+				\begin{choices}
+					\choice $y(t) = 0,25 \sin(250 \pi t)$.
+					\choice $y(t) = 0,25 \sin(500 \pi t)$.
+					\choice $y(t) = 0,50 \sin(250 t)$.
+					\correctchoice $y(t) = 0,50 \sin(500 \pi t)$.
+				\end{choices}
+			\end{multicols}
+			
+			\part[8] No ar, o som é uma onda
+			\begin{multicols}{2}
+				\begin{choices}
+					\choice eletromagnética e longitudinal.
+					\choice mecânica e transversal.
+					\correctchoice mecânica e longitudinal.
+					\choice eletromagnética e transversal.
+				\end{choices}
+			\end{multicols}
+		\end{parts}
+		
+		
+		\noindent\rule{\linewidth}{0.5pt}
+		\vspace{5pt}
+		\fullwidth{\Large \textbf{Grupo IV}}
+		\uplevel{
+			\vspace{10pt}
+			O conjunto \textit{bicicleta elétrica + ciclista}, de massa \SI{140}{\kilogram}, redutível a uma partícula, circula à volta de uma pista circular, a uma distância de \SI{5,5}{\meter} do seu centro, efetuando 3 voltas completas em 1 minuto. 
+		}
+		
+		\vspace{10pt}
+		\question[8] O módulo da velocidade angular do conjunto é
+		\begin{multicols}{2}
+			\begin{choices}
+				\choice $\dfrac{2\pi}{3}$\unit{\radian\per\second}
+				\correctchoice $\dfrac{\pi}{10}$\unit{\radian\per\second}
+				\choice $20\pi$\unit{\radian\per\second}
+				\choice $6\pi$\unit{\radian\per\second}
+			\end{choices}
+		\end{multicols}
+		
+		\vspace{10pt}
+		\question[8] O esboço dos gráficos que representam como varia o módulo da velocidade, $v$, do conjunto e da resultante das forças, $\vec{F_\text{R}}$, que sobre ele atuam, em função do tempo, $t$, são 
+		
+		\begin{oneparchoices}
+			\correctchoice \includegraphics[width=0.15\linewidth]{13A}
+			\choice \includegraphics[width=0.15\linewidth]{13B}
+			\choice \includegraphics[width=0.15\linewidth]{13C}
+			\choice \includegraphics[width=0.15\linewidth]{13D}
+		\end{oneparchoices}
+		
+		\vspace{10pt}
+		\question[10] A energia cinética do conjunto no instante $t$ pode ser determinada por
+		
+		\begin{multicols}{2}
+			\begin{choices}
+				\choice $\dfrac{1}{2} \times 140 \times 0,31^2$
+				\correctchoice $\dfrac{1}{2} \times 140 \times (0,31\times5,5)^2$
+				\choice $\dfrac{1}{2} \times 140 \times 0^2$
+				\choice $140 \times (0,31\times5,5)^2$
+			\end{choices}
+		\end{multicols}
+		
+		\vspace{10pt}
+		\question[16] Admita que o conjunto num dado momento abandona a pista circular e segue em frente. Determine o tempo de paragem, sabendo que o conjunto percorreu \SI{20}{\meter} \\ Apresente todas as etapas da resolução.
+		
+		\begin{solution}
+			\textcolor{white}{.}\\
+			\mybox{
+				Aceleração pela equação das velocidades:\\
+				$v=v_0 - a t \Rightarrow 0 = v_0 - at \Leftrightarrow a = \dfrac{v_0}{t}$\\
+				Equação das posições:\\
+				$x=x_0 + v_0 t - \frac{1}{2}at^2 \Leftrightarrow x-x_0 = v_0 t - \frac{1}{2} \cdot \frac{v_0}{t} t^2 \Leftrightarrow$\\
+				$\Leftrightarrow 20 = 1,71 t - \frac{1,71}{2} t \Leftrightarrow 20 = 0,85 t \Leftrightarrow t = \SI{23,5}{\second}$
+			}
+		\end{solution}
+		
+		\question[6] Representa as forças do conjunto quando esta se desloca na travagem. 
+		\begin{solution}
+			\textcolor{white}{.}\\
+			\mybox{
+				\begin{tikzpicture}
+					% Define the ball
+					\draw[fill=gray] (0,0) circle (0.3);
+					
+					% Draw the forces
+					\draw[thick,->] (0,0) -- (2,0) node[right] {$\vec{F_a}$};
+					\draw[thick,->] (0,0) -- (0,1) node[above] {$\vec{N}$};
+					\draw[thick,->] (0,0) -- (0,-1) node[below] {$\vec{P}$};
+					
+					% Draw the velocity vector
+					\draw[thick,->,red] (-1,0) -- (-1.6,0) node[left] {$\vec{v}$};
+				\end{tikzpicture}
+			}
+		\end{solution}
+		
+	\end{questions}
+	
+	\vspace{10pt}
+	\center
+	FIM
+	
+	\vfill
+	\center
+	\pointtable[h]
+\end{document}

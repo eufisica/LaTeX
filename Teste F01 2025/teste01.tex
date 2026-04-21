@@ -1,0 +1,548 @@
+\documentclass[addpoints]{exam}
+\usepackage{exam-randomizechoices}
+\usepackage[portuguese]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{multicol}
+\usepackage{geometry}
+\usepackage{tikz}
+\usepackage{fourier}
+%Font Size
+%\usepackage[12pt]{extsizes}%OR
+\usepackage[fontsize=11pt]{scrextend}
+%-----Physics
+\usepackage{amsfonts,amsmath,amssymb,gensymb}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{caption, subcaption}
+\usepackage{tikz}
+\usepackage{tkz-euclide}
+\usepackage{circuitikz}
+\usepackage{float}
+\usepackage{pgf}
+\usepackage{pgfplots}
+%\usepackage{pgfplotstable}
+\pgfplotsset{compat=1.18}
+\usepackage{wrapfig}
+\usepackage{wrapstuff}
+\usepackage{xcolor}
+
+\usetikzlibrary{positioning, arrows.meta, intersections, calc, fadings, shapes.geometric, arrows, mindmap, backgrounds, shadings, decorations.markings,decorations.pathmorphing, math, shapes, decorations, patterns, shadows, external, angles, quotes}
+\tikzset{>=latex}
+\usepackage{siunitx}
+\sisetup{output-decimal-marker={,}}
+\usepackage[shortconst]{physconst}
+
+%-----Caixas para apresentar as soluções
+\usepackage{lipsum,framed,color}
+\usepackage{calc}
+\definecolor{shadecolor}{rgb}{1,0.7,0.7}
+\newlength{\boxwidth}
+\newsavebox{\boxcontainer}
+
+\newcommand\mybox[1]{%
+	%\begin{center}%
+	\fcolorbox{white}{shadecolor}{%
+		%\begin{minipage}[t]{\dimexpr\textwidth-2\fboxsep+10\fboxrule}%
+		\begin{minipage}[t]{\textwidth-2\fboxsep}
+			#1%
+		\end{minipage}}%
+	%\end{center}
+}
+
+
+%-----Math
+\usepackage{dsfont}%apresenta as letras R,Z,C matemáticas
+\usepackage{mathtools}%configura os casos entre chavetas
+
+%-----Controlar espaço entre opções nas escolhas múltiplas (ver configuração antes de iniciar o documento)
+\usepackage{xpatch}
+
+\geometry{
+	a4paper,
+	top=1cm,
+	bottom=2cm,
+	left=1.5cm,
+	right=3cm,
+}
+
+\pgfdeclarelayer{background}
+\pgfdeclarelayer{main}
+
+\pgfsetlayers{background,main}
+
+%--------------------------------
+% CONFIGURAR CABEÇALHO E RODAPÉ
+%--------------------------------
+\pagestyle{headandfoot}
+\firstpageheader{}{}{}
+\runningheader{}{}{}
+\firstpagefooter{}{}{}
+\runningfooter{Física e Química A}{Teste}{Pág. \thepage\ de \numpages}
+\runningfootrule
+
+
+%--------------------------------
+% CONFIGURAÇÕES DO DOCUMENTO EXAM
+%--------------------------------
+\renewcommand{\solutiontitle}{\noindent \textbf{Solução:}\enspace}
+\renewcommand{\thequestion}{\bf \arabic{question}}
+\renewcommand{\choicelabel}{{\bf (\thechoice)}}
+\renewcommand{\partlabel}{\bf \thequestion.\arabic{partno}}
+\pointpoints{ponto}{pontos}
+\pointformat{[\bf \thepoints]}
+\pointsinrightmargin
+\setlength{\rightpointsmargin}{.5cm}
+\CorrectChoiceEmphasis{\color{red}\bfseries}%respostas corretas nas escolhas múltiplas a vermelho
+%tabela de cotação
+\hqword{Questão:}%vqword para a tabela na vertical
+\hpword{Cotação:}%vpword para a tabela na vertical
+
+
+\xpatchcmd{\oneparchoices}{\penalty -50\hskip 1em plus 1em\relax}{\hfill}
+
+
+% Deixar as linhas de espaço depois do xpatch
+\begin{document}
+	
+	\input{intro}
+	
+	% Settings for \mybox and Mybox
+	\setlength{\fboxrule}{1pt}
+	\setlength{\fboxsep}{10pt}
+	
+	% Additional settings for MyBox
+	\setlength{\FrameRule}{\fboxrule}
+	\setlength{\FrameSep}{\fboxsep}
+	
+	\begin{center}
+		\textbf{Versão 2}
+	\end{center}
+	
+	%INÍCIO DO TESTE
+	\newpage
+	\begin{questions}
+		\fullwidth{\Large \textbf{Grupo I}}
+		\uplevel{
+			No passado mês de setembro decorreu o Campeonato Mundial de Atletismo, em Tóquio.\\
+			O atleta português Isaac Nader (Figura \ref{fig:nader}) sagrou-se campeão do mundo a 17 de setembro de 2025, ao conquistar a medalha de ouro na prova dos 1500 metros. O jovem algarvio de 26 anos demorou cerca de 3 minutos e 34 segundos a realizar a sua prova.\\
+			A 19 de setembro, neste mesmo local, onde foi campeão Olímpico em 2021 (jogos Olímpicos de Tóquio 2020), o atleta português Pedro Pichardo (Figura \ref{fig:pichardo}) sagrou se bicampeão mundial no triplo salto. Pichardo permaneceu no ar cerca de 0,80 segundos, conseguindo a marca de 17,91 metros (distância percorrida na horizontal).\\
+			
+			\vspace{20pt} 
+			\begin{minipage}{0.4\linewidth}
+				\begin{figure}[H]
+					\centering
+					\includegraphics[width=0.5\textwidth]{nader}
+					\caption{Isaac Nader (por Filip Bossuyt, CC BY 2.0)}
+					\label{fig:nader}
+				\end{figure}
+			\end{minipage}
+			\hspace{0.1\linewidth}
+			\begin{minipage}{0.4\linewidth}
+				\begin{figure}[H]
+					\centering
+					\includegraphics[width=0.4\textwidth]{pichardo}
+					\caption{Pedro Pichardo (por Doha Stadium Plus Qatar, CC BY 2.0)}
+					\label{fig:pichardo}
+				\end{figure}
+			\end{minipage}
+		}
+		
+		\question[15] Determine, com três algarismos significativos, a razão entre a rapidez média de Pedro Pichardo, enquanto percorre a distância horizontal no ar, e a rapidez média de Isaac Nader na sua prova.\\
+		Admita que cada um dos atletas pode ser representado pelo seu centro de massa (modelo da partícula material).\\
+		Apresente todos os cálculos efetuados.\\
+		
+		\begin{solution}
+			\\
+			\mybox{
+				\begin{minipage}{0.4\linewidth}
+					Determinação da rapidez média do Atleta A: [5pts]\\
+					\begin{align*}
+						\text{Atleta A}\\
+						r_{\text{m}}(\text{Nader}) &= \dfrac{d}{\Delta t}\\
+						&= \dfrac{1500}{3\times60+34}\\
+						&= \SI{7,01}{\meter\per\second}
+					\end{align*}
+				\end{minipage}
+				\begin{minipage}{0.4\linewidth}
+					Determinação da rapidez média do Atleta B: [5pts]\\
+					\begin{align*}
+						\text{Atleta B}\\
+						r_{\text{m}}(\text{Pichardo}) &= \dfrac{d}{\Delta t}\\
+						&= \dfrac{17,91}{0,80}\\
+						&= \SI{22,4}{\meter\per\second}
+					\end{align*}
+				\end{minipage}
+				\\[5pt]
+				\begin{minipage}{\linewidth}
+					A razão entre a rapidez média do Nader e do Pichardo é [5pts]
+					\begin{equation*}
+							\dfrac{r_{\text{m Pichardo}}}{r_{\text{m Nader}}} = \dfrac{22,4}{7,01} = 3,19
+					\end{equation*}
+				\end{minipage}
+			}
+		\end{solution}
+		
+		\question[10] Relativamente à trajetória e à posição do Issac Nader em cada instante, podemos afirmar que:
+		
+		\begin{randomizechoices}
+			\choice a trajetória e a posição são independentes do referencial.
+			\choice a trajetória depende do referencial, mas a posição é independente do referencial.
+			\choice a trajetória é independente do referencial, mas a posição depende do referencial.
+			\correctchoice a trajetória e a posição dependem do referencial.
+		\end{randomizechoices}
+		
+		\question Considere o gráfico relativo ao movimento retilíneo do Issac Nader, antes de iniciar a prova. A origem corresponde à linha de partida.
+		\begin{center}
+			\begin{minipage}{0.8\linewidth}
+				\centering
+				\begin{figure}[H]
+					\includegraphics[width=0.8\textwidth]{pos_tempo}
+					\label{fig:pos_tempo}
+				\end{figure}
+			\end{minipage}
+		\end{center}
+		
+		\begin{parts}
+			\part[10] Relativamente ao movimento do atleta, entre os 0 e os 4 segundos, podemos afirmar que:
+
+				\begin{randomizechoices}
+					\choice o movimento do atleta foi curvilíneo.
+					\choice o atleta subiu uma rampa.
+					\correctchoice movimentou-se no sentido positivo.
+					\choice o atleta teve sempre velocidade constante.
+				\end{randomizechoices}
+			
+			\vspace{5pt}
+			\part[10] A que distância se encontrava o atleta, relativamente ao início da contagem do tempo, ao fim de \SI{12}{\second}?\\
+			\begin{solution}
+				\\
+				\mybox{$d=\SI{12}{\meter}$}
+			\end{solution}
+			\part[10] Selecione o intervalo de tempo em que o movimento do atleta ocorreu no sentido negativo.\\
+			\begin{multicols}{4}
+				\begin{randomizechoices}
+					\choice [0,0; 1,5] \unit{\second}.
+					\correctchoice [7,0; 8,0] \unit{\second}.
+					\choice [9,5; 11,5] \unit{\second}.
+					\choice [5,0; 6,0] \unit{\second}.
+				\end{randomizechoices}
+			\end{multicols}
+			\part[10] A componente escalar da velocidade do atleta é nula no instante:\\
+			\begin{multicols}{2}
+			\begin{randomizechoices}
+				\choice \SI{1,8}{\second}.
+				\correctchoice \SI{5,0}{\second}.
+				\choice \SI{8,0}{\second}.
+				\choice \SI{11,5}{\second}.
+			\end{randomizechoices}
+			\end{multicols}
+			\part[10] Ao correr, ambos os atletas exercem uma força no solo, para além do seu respetivo peso. Essas forças resultam de interações\\
+			\begin{randomizechoices}
+				\correctchoice eletromagnética e gravítica, respetivamente.
+				\choice gravítica e nuclear forte, respetivamente.
+				\choice eletromagnética e nuclear fraca, respetivamente.
+				\choice gravíticas, apenas.
+			\end{randomizechoices}
+		\end{parts}
+		
+		\question Durante a prova do Pichardo foi usado um drone. A componente escalar da sua velocidade ao longo do tempo, nos primeiros 30 segundos de movimento que decorreram num troço retilíneo do percurso, está descrita no seguinte gráfico.
+
+		\begin{minipage}{\linewidth}
+			\centering
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.8\textwidth]{vel_tempo}
+				\label{fig:vel_tempo}
+			\end{figure}
+		\end{minipage}
+		
+		\begin{parts}
+			\part[15] Determine o valor da velocidade média do drone, nos primeiros 15 segundos de movimento registados. Apresente todos os cálculos efetuados.\\
+			\begin{solution}
+				\\
+				\mybox{
+				Determinação da distância no sentido positivo pela área do gráfico [5pts]:\\
+				\begin{align*}
+					d (\text{sentido positivo}) &= \dfrac{5,0\times5,0}{2}+(10,0-5,0)\times5,0+\dfrac{(11,5-10,0)\times5}{2}\\
+					&= \SI{41,25}{\meter}
+				\end{align*}
+				Determinação da distância no sentido negativo pela área do gráfico [5pts]:\\
+				\begin{align*}
+					d (\text{sentido negativo}) &= \dfrac{(15,0-11,5)\times10}{2,0}\\
+					&= \SI{17,50}{\meter}
+				\end{align*}
+				Determinação do deslocamento:\\
+				\begin{align*}
+					\Delta x &= 41,25 - 17,50\\
+					&= \SI{23,75}{\meter}
+				\end{align*}
+				Determinação da velocidade média [5 pts]:\\
+				\begin{align*}
+					v_\text{m} &= \dfrac{\Delta x}{\Delta t}\\
+					&= \dfrac{41,25 - 17,50}{15,0-0}\\
+					&= \SI{1,58}{\meter\per\second}
+				\end{align*}
+				}
+			\end{solution}
+			\part[10] Selecione o gráfico posição-tempo que melhor traduz o movimento do drone no intervalo de tempo [20,0; 25,0] \unit{\second}.\\
+			\begin{minipage}{\linewidth}
+				\centering
+				\begin{figure}[H]
+					\centering
+					\includegraphics[width=0.8\textwidth]{xt_escolha}
+					\label{fig:xt_escolha}
+				\end{figure}
+			\end{minipage}
+			\begin{solution}
+				\\
+				\mybox{D}
+			\end{solution}
+		\end{parts}
+		
+		
+		
+		\noindent\rule{\linewidth}{0.5pt}
+		\vspace{5pt}
+		\fullwidth{\Large \textbf{Grupo II}}
+		 \uplevel{
+		 	A figura, que não está à escala, representa-se parte do percurso de um corpo, de \SI{150}{\gram}, que pode ser representado pelo seu centro de massa (modelo da partícula material). \\
+		 	O corpo é lançado da posição A no instante $t = \SI{0,0}{\second}$, passa pela posição B ao fim de \SI{1,0}{\second} e atinge a posição C no instante $t = \SI{1,5}{\second}$.\\
+		 	
+			\vspace{2pt} 
+			 	\begin{minipage}{\linewidth}
+			 		\vspace{3pt}
+			 		\centering
+			 		\begin{tikzpicture}
+			 			
+			 			\draw[fill=gray, rounded corners] (0,0) rectangle (0.5,0.5);
+			 			\draw[black!90] (0,0)--(5,0)--(6.5,1)--(8,1);
+			 			\node[text=black!90] (A) at (0,-0.5) {A};
+			 			\node[text=black!90] (B) at (5,-0.5) {B};
+			 			\node[text=black!90] (C) at (6.5,1.5) {C};
+			 			\draw[black!90,dashed] (5,0)--(8,0);
+			 			\draw (5.8,0) arc (0:90:0.3); 
+			 			\node[right] at (5.8,0.2) {\small \SI{30}{\degree}};
+			 			
+			 		\end{tikzpicture}
+			 	\end{minipage}
+			 
+			 Da análise do movimento obteve-se o gráfico seguinte do módulo da velocidade, $v$, do corpo em função do tempo, $t$.\\
+			 
+			 \vspace{2pt} 
+			 \begin{minipage}{\linewidth}
+			 	\vspace{3pt}
+			 	\centering
+			 	\includegraphics[width=0.9\textwidth]{graf01}
+			 \end{minipage}
+		 }
+		
+		\question[10] Entre as posições A e B, a distância percorrida é
+		\begin{randomizechoices}
+			\choice \SI{5,0}{\meter}, sendo desprezável o atrito entre as superfícies.
+			\correctchoice \SI{5,0}{\meter}, não sendo desprezável o atrito entre as superfícies.
+			\choice \SI{1,0}{\meter}, não sendo desprezável o atrito entre as superfícies.
+			\choice \SI{4,0}{\meter}, sendo desprezável o atrito entre as superfícies.
+		\end{randomizechoices}
+		
+		\vspace{15pt}
+		\question[15] Mostre que há atrito nas superfícies em contacto no percurso entre B e C.\\
+		Apresente todos os cálculos efetuados.
+		\begin{solution}
+			\\
+			\mybox{
+				
+					Determinação da aceleração a partir do declive do gráfico entre os instantes \\ $t \epsilon [1,0 ; 1,5] \unit{\second}$ do gráfico: [3pts]\\
+					
+					$a = \dfrac{\Delta v}{\Delta t} \Rightarrow a = \dfrac{1,0 - 4,0}{1,5 - 1,0}$\\
+					$a = \SI{-6,0}{\meter\per\second\squared}$\\
+					
+					Determinação da força resultante: [2pts]\\
+					$F_{\text{R}} = m a \Rightarrow F_{\text{R}} = 0,150 \times (-6,0) = \SI{-0,90}{\newton}$\\
+					
+					Determinação da força resultante devida apenas à componente horizontal do peso (sem força de atrito): [5pts]\\
+					$F_{\text{R}} = -P_x = - m g \sin(\SI{30}{\degree}) \Rightarrow F_{\text{R}} = - 0,150 \times 9,81 \sin(\SI{30}{\degree}) = \SI{-0,74}{\newton}$\\
+					
+					Logo, no plano inclinado atuou uma força de atrito de intensidade \SI{0,22}{\newton}. [5pts]\\
+					$F_{\text{R}} = -P_x - F_a \Rightarrow -0.90 = -0,74 - F_a \Leftrightarrow F_a = 0,90-0,74 = \SI{0,16}{\newton}$\\
+				
+			}
+			
+		\end{solution}
+		
+		
+		
+		\noindent\rule{\linewidth}{0.5pt}
+		\vspace{1pt}
+		\fullwidth{\Large \textbf{Grupo III}}
+		\uplevel{Uma bola, A, foi lançada, de \SI{2,0}{\meter} de altura, com uma velocidade inicial de \SI{2,0}{\meter\per\second}, de baixo para cima. Uma segunda bola, B, foi lançada simultaneamente e verticalmente com velocidade inicial de \SI{5,0}{\meter\per\second}, de baixo para acima, desde a posição \SI{0,0}{\meter}, como mostra a figura.
+		
+		\vspace{5pt} 
+		\begin{minipage}{\linewidth}
+			\vspace{3pt}
+			\centering
+			\begin{tikzpicture}
+				
+				\draw[fill=gray!70] (0,3) circle (3pt);
+				\draw[fill=gray!70] (2,0) circle (3pt);
+				\draw[gray!90, ->] (-1.5,0)--(-1.5,3.5) node[left]{$y$};
+				\draw[text=gray!90] (-1.6,0)--(-1.4,0) node[below left] {O};
+				\node[text=black!90] (A) at (-0.3,3.2) {A};
+				\node[text=black!90] (B) at (1.7,0) {B};
+				\node[text=black!90] (v1) at (2.5,0.3) {$\vec{v_\text{B}}$};
+				\draw[black!90,->] (2.3,0)--(2.3,1);
+				\node[text=black!90] (v2) at (0.5,3.3) {$\vec{v_\text{A}}$};
+				\draw[black!90,->] (0.3,3)--(0.3,3.5);
+				
+			\end{tikzpicture}
+		\end{minipage}
+		
+		}
+		
+		\vspace{5pt}
+		\question[10] As equações das posições que descrevem o movimento das duas bolas são respetivamente:
+		
+		\begin{multicols}{2}
+			\begin{randomizechoices}
+				\correctchoice $y_{\text{A}} = 2,0 + 2,0 t - 4,9 t^2$ e $y_{\text{B}} = 5,0 t - 4,9 t^2$
+				\choice $y_{\text{A}} = 5,0 - 4,9 t^2$ e $y_{\text{B}} = 2,0 t - 4,9 t^2$
+				\choice $y_{\text{A}} = - 4,9 t^2$ e $y_{\text{B}} = 5,0 t$
+				\choice $y_{\text{A}} = 2,0 - 4,9 t^2$ e $y_{\text{B}} = 5,0 - 4,9 t$
+			\end{randomizechoices}
+		\end{multicols}
+		
+		\vspace{5pt}
+		\question[10] A expressão que permite determinar o tempo que a bola B atinge a altura máxima é\\
+		\begin{multicols}{2}
+			\begin{randomizechoices}
+				\choice $t = \dfrac{2,0}{4,9 \times 2}$
+				\choice $t = \sqrt{\dfrac{5,0}{4,9 \times 2}}$
+				\choice $t = \dfrac{4,9 \times 2}{5,0}$
+				\correctchoice $t = \dfrac{5,0}{4,9 \times 2}$
+			\end{randomizechoices}
+		\end{multicols}
+		
+		\vspace{5pt}
+		\question[10] A imagem com o traçado correto das funções velocidade-tempo, da bola A (linha contínua) e da bola B (linha tracejada), é
+		
+		\vspace{10pt}
+		
+		\begin{multicols}{2}
+			\begin{randomizechoices}
+				\correctchoice 
+				\begin{minipage}{0.3\linewidth}
+					\centering
+					\resizebox{.25\linewidth}{!}{\input{6A}}
+				\end{minipage}
+				\hspace{0.1\textwidth}
+				\choice 
+				\begin{minipage}{0.3\linewidth}
+					\centering
+					\resizebox{.25\linewidth}{!}{\input{6B}}
+				\end{minipage}
+				\choice 
+				\begin{minipage}{0.3\linewidth}
+					\centering
+					\resizebox{.25\linewidth}{!}{\input{6C}}
+				\end{minipage}
+				\hspace{0.1\textwidth}
+				\choice 
+				\begin{minipage}{0.3\linewidth}
+					\centering
+					\resizebox{.25\linewidth}{!}{\input{6D}}
+				\end{minipage}
+			\end{randomizechoices}
+		\end{multicols}
+		
+		\vspace{10pt}
+		\question[10] Determine a altura em que se vão encontrar as duas bolas. \\Apresente todas as etapas da resolução.
+		
+		\begin{solution}
+			\\
+			\mybox{
+				Determinação do instante em que as duas bolas se encontram: [5pts]\\
+				\begin{align*}
+					&y_B = y_A \Leftrightarrow 5,0 t - 4,9 t^2 = 2,0 + 2,0 t - 4,9 t^2 \Leftrightarrow \\
+					&\Leftrightarrow 5,0 t - 2,0 t = 2,0 \Leftrightarrow 3,0 t = 2,0 \Leftrightarrow \\
+					&\Leftrightarrow t= \dfrac{2,0}{3,0} = \SI{0,67}{\second}
+				\end{align*}
+				\\
+				
+				Determinação da altura de encontro das bolas: [5pts]\\
+				$$y_B = 5,0 t - 4,9 t^2 \Rightarrow y_B = 5,0 \times 0,67 - 4,9 \times 0,67^2 = \SI{1,14}{\meter}$$
+			}
+		\end{solution}
+
+		
+		\noindent\rule{\linewidth}{0.5pt}
+		\vspace{5pt}
+		\fullwidth{\Large \textbf{Grupo IV}}
+		\uplevel{
+			O telescópio espacial Hubble, lançado pela NASA em 1990, descreve em torno da Terra uma órbita praticamente circular, a uma altitude de cerca de \SI{5,9e2}{\kilo\meter}, em aproximadamente \SI{95}{\minute}.
+			
+			$$R_{\text{Terra}} = \SI{6,4e3}{\kilo\meter}$$
+		}
+		
+		\vspace{10pt}
+		\question[10] Admita que a altitude do Hubble aumenta para o dobro. Compare as forças gravíticas do Hubble quando esta perto da Terra com a sua posição mais afastada. \\ Apresente todas as etapas da resolução.
+		
+		\begin{solution}
+			\\
+			\mybox{
+				\begin{align*}
+					\dfrac{F_g(\text{próx.})}{F_g(\text{afastado})} &= \dfrac{G \dfrac{m_T m_H}{(R_T + h_1)^2}}{G \dfrac{m_T m_H}{(R_T + h_2)^2}}\\
+					&= \dfrac{(R_T + h_2)^2}{(R_T + h_1)^2}\\
+					&= \dfrac{(6,4 \times 10^6 + 2 \times 5,9 \times 10^5)^2}{(6,4 \times 10^6 + 5,9 \times 10^5)^2}\\
+					&= 1,18
+				\end{align*}
+			}
+		\end{solution}
+		
+		\vspace{10pt}
+		\question Marte, com um raio cerca de 1,88 vezes inferior ao raio da Terra, tem um período de rotação muito semelhante. Em relação à massa, é estimado que a Terra tenha uma massa equivalente a 9,36 massas “marcianas”.\\
+		
+		\begin{parts}
+			\part[10] A intensidade da força gravítica exercida sobre o Hubble, à superfície de Marte, é:\\
+			\begin{randomizechoices}
+				\choice $F_g = \dfrac{4,98 \times G \times m_{\text{Terra}} \times m_{\text{Hubble}} }{r_{\text{Terra}}^2 }$\\[10pt]
+				\choice $F_g = \dfrac{1,75 \times G \times m_{\text{Terra}} \times m_{\text{Hubble}} }{r_{\text{Terra}}^2 }$\\[10pt]
+				\choice $F_g = \dfrac{0,20 \times G \times m_{\text{Terra}} \times m_{\text{Hubble}} }{r_{\text{Terra}}^2 }$\\[10pt]
+				\correctchoice $F_g = \dfrac{0,36 \times G \times m_{\text{Terra}} \times m_{\text{Hubble}} }{r_{\text{Terra}}^2 }$\\[10pt]
+			\end{randomizechoices}
+			\part[15] Sabendo que a massa do Hubble é de aproximadamente 15 toneladas, determine o seu peso à superfície de Marte.\\
+			
+			\begin{solution}
+				\\
+				\mybox{
+					Determinção da aceleração gravítica de Marte. [10pts]\\
+					\begin{align*}
+						\dfrac{a_\text{Marte}}{a_\text{Terra}} &= \dfrac{G \dfrac{m_M}{R_M^2}}{G \dfrac{m_T}{R_T^2}} \Rightarrow\\
+						\Rightarrow \dfrac{a_\text{Marte}}{9,81} &= \dfrac{ \dfrac{m_M}{R_M^2}}{\dfrac{9,36 \times m_M}{1,88^2 \times R_M^2}} \Leftrightarrow\\
+						\Leftrightarrow \dfrac{a_\text{Marte}}{9,81} &= 0,38 \Leftrightarrow \\
+						\Leftrightarrow a_\text{Marte} &= \SI{3,73}{\meter\per\second\squared}
+					\end{align*}
+					Determinação do peso do Hubble à superfície de Marte. [5pts]\\
+					$P = m_{\text{Hubble}} \cdot g_{\text{Marte}} \Rightarrow P = 15000 \times 3,73 = \SI{55950}{\newton}$
+				}
+			\end{solution}
+		\end{parts}
+		
+		
+		
+		
+		
+		
+	\end{questions}
+	
+	\vspace{10pt}
+	\center
+	FIM
+	
+	\vfill
+	\center
+	
+	\ifprintanswers
+	 \printkeytable
+	\fi
+	
+	\pointtable[h]
+\end{document}

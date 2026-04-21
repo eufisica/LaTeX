@@ -1,0 +1,582 @@
+\documentclass[addpoints,answers]{exam}
+\usepackage{exam-randomizechoices}
+\usepackage[portuguese]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{multicol}
+\usepackage{geometry}
+\usepackage{tikz}
+\usepackage{fourier}
+%Font Size
+%\usepackage[12pt]{extsizes}%OR
+\usepackage[fontsize=11pt]{scrextend}
+%-----Physics
+\usepackage{amsfonts,amsmath,amssymb,gensymb}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{caption, subcaption}
+\usepackage{tikz}
+\usepackage{tkz-euclide}
+\usepackage{circuitikz}
+\usepackage{float}
+\usepackage{pgf}
+\usepackage{pgfplots}
+%\usepackage{pgfplotstable}
+\pgfplotsset{compat=1.18}
+\usepackage{wrapfig}
+\usepackage{wrapstuff}
+\usepackage{xcolor}
+
+\usetikzlibrary{positioning, arrows.meta, intersections, calc, fadings, shapes.geometric, arrows, mindmap, backgrounds, shadings, decorations.markings,decorations.pathmorphing, math, shapes, decorations, patterns, shadows, external, angles, quotes}
+\tikzset{>=latex}
+\usepackage{siunitx}
+\sisetup{output-decimal-marker={,}}
+\usepackage[shortconst]{physconst}
+
+%-----Caixas para apresentar as soluções
+\usepackage{lipsum,framed,color}
+\usepackage{calc}
+\definecolor{shadecolor}{rgb}{1,0.7,0.7}
+\newlength{\boxwidth}
+\newsavebox{\boxcontainer}
+
+\newcommand\mybox[1]{%
+	%\begin{center}%
+	\fcolorbox{white}{shadecolor}{%
+		%\begin{minipage}[t]{\dimexpr\textwidth-2\fboxsep+10\fboxrule}%
+		\begin{minipage}[t]{\textwidth-2\fboxsep}
+			#1%
+		\end{minipage}}%
+	%\end{center}
+}
+
+
+%-----Math
+\usepackage{dsfont}%apresenta as letras R,Z,C matemáticas
+\usepackage{mathtools}%configura os casos entre chavetas
+
+%-----Controlar espaço entre opções nas escolhas múltiplas (ver configuração antes de iniciar o documento)
+\usepackage{xpatch}
+
+\geometry{
+	a4paper,
+	top=1cm,
+	bottom=2cm,
+	left=1.5cm,
+	right=3cm,
+}
+
+\pgfdeclarelayer{background}
+\pgfdeclarelayer{main}
+
+\pgfsetlayers{background,main}
+
+%--------------------------------
+% CONFIGURAR CABEÇALHO E RODAPÉ
+%--------------------------------
+\pagestyle{headandfoot}
+\firstpageheader{}{}{}
+\runningheader{}{}{}
+\firstpagefooter{}{}{}
+\runningfooter{Física e Química A}{Teste}{Pág. \thepage\ de \numpages}
+\runningfootrule
+
+
+%--------------------------------
+% CONFIGURAÇÕES DO DOCUMENTO EXAM
+%--------------------------------
+\renewcommand{\solutiontitle}{\noindent \textbf{Solução:}\enspace}
+\renewcommand{\thequestion}{\bf \arabic{question}}
+\renewcommand{\choicelabel}{{\bf (\thechoice)}}
+\renewcommand{\partlabel}{\bf \thequestion.\arabic{partno}}
+\pointpoints{ponto}{pontos}
+\pointformat{[\bf \thepoints]}
+\pointsinrightmargin
+\setlength{\rightpointsmargin}{.5cm}
+\CorrectChoiceEmphasis{\color{red}\bfseries}%respostas corretas nas escolhas múltiplas a vermelho
+%tabela de cotação
+\hqword{Questão:}%vqword para a tabela na vertical
+\hpword{Cotação:}%vpword para a tabela na vertical
+
+
+\xpatchcmd{\oneparchoices}{\penalty -50\hskip 1em plus 1em\relax}{\hfill}
+
+
+% Deixar as linhas de espaço depois do xpatch
+\begin{document}
+	
+	\input{intro}
+	
+	% Settings for \mybox and Mybox
+	\setlength{\fboxrule}{1pt}
+	\setlength{\fboxsep}{10pt}
+	
+	% Additional settings for MyBox
+	\setlength{\FrameRule}{\fboxrule}
+	\setlength{\FrameSep}{\fboxsep}
+	
+	\begin{center}
+		\textbf{Versão 1}
+	\end{center}
+	
+	%INÍCIO DO TESTE
+	\newpage
+	\begin{questions}
+		\fullwidth{\Large \textbf{Grupo I}}
+		\uplevel{
+			Na Figura \ref{fig:graf01}, apresenta-se o gráfico da componente escalar da velocidade, $v$ , de um paraquedista (sistema
+			paraquedista + paraquedas), em função do tempo, $t$ , nos primeiros \SI{60}{\second} do seu movimento de descida, na vertical.\\
+			Considere um referencial O$y$ vertical e admita que o paraquedista pode ser representado pelo seu centro de massa (modelo da partícula material).\\
+			
+			\vspace{1pt} 
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.6\textwidth]{graf01}
+				\caption{}
+				\label{fig:graf01}
+			\end{figure}
+		}
+		
+		\question[10]Qual dos esboços de gráfico seguintes pode representar a componente escalar da posição, $y$,	do paraquedista, em relação ao referencial O$y$ , em função do tempo, $t$ , no intervalo de tempo [0;30] s ?\\
+		
+		\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.5\textwidth]{graf01_choices}
+		\end{figure}
+		
+		\begin{solution}
+			\\
+			\mybox{
+				B
+			}
+		\end{solution}
+		
+		\question[10] Qual das opções pode representar a velocidade, $v$ , do paraquedista e a resultante das forças, $F_\text{R}$, que nele atuam no instante $t = \SI{35}{\second}$ ?
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.6\textwidth]{graf01_choices1}
+		\end{figure}
+		
+		\begin{solution}
+			\\
+			\mybox{
+				A
+			}
+		\end{solution}
+		
+		
+		\question[14] O módulo do trabalho, $W_{\vec{R}_\text{ar,1}}$, realizado pela resistência do ar no intervalo de tempo [20;30] s,	é cinco vezes superior ao módulo do trabalho, $W_{\vec{R}_\text{ar,2}}$, realizado pela resistência do ar no intervalo	de tempo [50;60] s.\\
+		Comprove a veracidade desta afirmação.\\
+		Explicite o seu raciocínio.\\
+		
+		\begin{solution}
+			\\
+			\mybox{
+				Nos intervalos de tempo [20;30] s e [50;60] s , os respetivos valores de variação de energia cinética, $\Delta E_c$, são nulos, pois, em cada um destes intervalos, as respetivas velocidades são constantes.\\
+				Do Teorema da Energia Cinética, tem-se:\\
+				$\Delta E_c = W_{\vec{F}_g} + W_{\vec{R}_\text{ar}} \Leftrightarrow 0 = W_{\vec{F}_g} + W_{\vec{R}_\text{ar}} \Leftrightarrow W_{\vec{R}_\text{ar}} = - W_{\vec{F}_g} \Leftrightarrow |W_{\vec{R}_\text{ar}}| = |- W_{\vec{F}_g}|$\\
+				
+				Mas, em ambos os intervalos, é $|- W_{\vec{F}_g}| = F_g d$ .\\
+				Nos intervalos de tempo considerados, as respetivas velocidades são constantes, então:\\
+				$d =v \Delta t$, logo\\
+				$|- W_{\vec{F}_g}| = F_g v \Delta t \Rightarrow |W_{\vec{R}_\text{ar}}| = F_g v \Delta t$\\
+				
+				Dado que a força gravítica é constante e os intervalos de tempo são iguais ($\Delta t = \SI{10}{\second}$) , pode escrever-se\\
+				
+				$W_{\vec{R}_\text{ar,1}} = F_g v_1 \Delta t$  e  $W_{\vec{R}_\text{ar,2}} = F_g v_2 \Delta t$\\
+				Sendo (ver Figura 3 do enunciado)
+				$v_1 = \SI{50}{\meter\per\second}$  e  $v_2 = \SI{10}{\meter\per\second}$\\
+				tem-se\\
+				$W_{\vec{R}_\text{ar,1}} = 50 F_g \Delta t$ (1)   e  $W_{\vec{R}_\text{ar,2}} = 10 F_g \Delta t$ (2)\\
+				Comparando-se as expressões (1) e (2), comprova-se que\\
+				$W_{\vec{R}_\text{ar,1}} = 5 W_{\vec{R}_\text{ar,2}}$
+			}
+		\end{solution}
+		
+		
+		\noindent\rule{\linewidth}{0.5pt}
+		\vspace{5pt}
+		\fullwidth{\Large \textbf{Grupo II}}
+		 \uplevel{
+		 	Em 2020, foi enviada mais uma sonda espacial ao planeta Marte, integrada na missão Mars 2020. Essa	sonda transportou, pela primeira vez na história da exploração espacial, um pequeno helicóptero.\\
+		 	Fazer voar um helicóptero em Marte foi um desafio. Os engenheiros sabiam que a aceleração gravítica de Marte, aproximadamente $\dfrac{1}{3}$ da terrestre, ajudaria na descolagem, mas a sua atmosfera rarefeita iria tornar mais difícil a sustentação. Assim, o pequeno helicóptero, de \SI{1,8}{\kilogram} de massa, foi construído com	duas hélices de \SI{1,2}{\meter} de diâmetro, que rodam, em direções opostas, a 2400 rotações por minuto.\\
+		 	\begin{flushright}
+		 		\tiny
+		 		https://mars.nasa.gov (consultado em 18/10/2021). (Texto adaptado)
+		 	\end{flushright}
+		}
+		
+		\question Com os dados do altímetro, os engenheiros confirmaram o sucesso do primeiro voo de teste, em que o helicóptero apenas efetuou uma trajetória vertical.\\
+		Na figura \ref{fig:graf02}, encontra-se representado o gráfico da altitude do helicóptero, $y$, em função do tempo, $t$.\\
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.5\textwidth]{graf02}
+			\caption{}
+			\label{fig:graf02}
+		\end{figure}
+		\begin{flushright}
+			\tiny
+			https://mars.nasa.gov/resources/25820/altimeter-chart-for-ingenuitys-first-flight
+			(consultado em 01/05/2021). (Adaptado)
+		\end{flushright}
+		
+		Considere que o helicóptero pode ser representado pelo seu centro de massa (modelo da partícula material).
+		
+		\begin{parts}
+			\part[10] O gráfico da Figura \ref{fig:graf02} permite concluir que,
+				\begin{randomizechoices}
+					\choice entre 0 e $t_1$ , o helicóptero se afastou do ponto de partida.
+					\choice entre $t_1$ e $t_2$ , o movimento do helicóptero foi uniformemente acelerado.
+					\choice entre $t_2$ e $t_3$ , o helicóptero descreveu uma trajetória retilínea.
+					\correctchoice entre 0 e $t_4$ , ocorreu uma inversão no sentido do movimento do helicóptero.
+				\end{randomizechoices}
+			\part[10] A equação do movimento que pode descrever a subida do helicóptero, em unidades SI, é
+			\begin{multicols}{2}
+				\begin{randomizechoices}
+					\choice $y = 0,2 + 3,0 t - 5 t^2$.
+					\correctchoice $y = 0,2 + 3,0 t$.
+					\choice $y = 0,2 + 3,0 t - 1,7 t^2$.
+					\choice $y = 0,2 - 3,0 t$.
+				\end{randomizechoices}
+			\end{multicols}
+			\part[10] Considere uma parte do percurso em que o helicóptero se move com velocidade constante.\\
+			Qual das opções pode representar, na mesma escala, as forças que atuam no helicóptero:\\
+			a força de sustentação gerada pela rotação das hélices, $F_s$ , e a força gravítica, $F_g$ ?\\
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.7\textwidth]{heli}
+			\end{figure}
+			\begin{solution}
+				\\
+				\mybox{
+					B
+				}
+			\end{solution}
+			\part[10] Qual das expressões seguintes permite calcular, em \unit{\meter\per\second}, o módulo da velocidade de um ponto na extremidade de uma hélice do helicóptero?
+			\begin{multicols}{2}
+				\begin{randomizechoices}
+					\choice $\dfrac{2 \pi \times 0,6 \times 60}{2400}$.
+					\choice $\dfrac{2 \pi \times 1,2 \times 60}{2400}$.
+					\correctchoice $\dfrac{2 \pi \times 0,6 \times 2400}{60}$.
+					\choice $\dfrac{2 \pi \times 1,2 \times 2400}{60}$.
+				\end{randomizechoices}
+			\end{multicols}
+			
+			\part[18] A entrada da sonda na atmosfera de Marte foi uma das fases críticas da missão. A interação da sonda
+			com a atmosfera provocou um aumento significativo da temperatura do seu revestimento.
+			Numa aproximação à situação real, esquematiza-se na Figura \ref{fig:sonda}, que não está à escala, uma parte
+			de um percurso retilíneo da sonda ao entrar na atmosfera marciana, entre a posição A e a posição B.
+			Admita que, sobre a sonda, atuam três forças constantes: a força gravítica, $\vec{F}_g$ , uma força perpendicular
+			à trajetória, $\vec{F}$ , e a força de arrasto (força de atrito aerodinâmico), $\vec{F}_a$ .
+			
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.9\textwidth]{sonda}
+				\caption{}
+				\label{fig:sonda}
+			\end{figure}
+			Admita que a sonda, de massa \SI{1050}{\kilogram}, passa pela posição A com uma velocidade de \SI{16 500}{\kilo\meter\per\hour} e descreve uma trajetória que faz um ângulo de \SI{80}{\degree} com a vertical.\\
+			Considere que, no percurso entre A e B:\\
+			–– a sonda perde 55\% da sua energia cinética inicial;\\
+			–– a intensidade da força de arrasto é, em média, 30 vezes superior à da força gravítica.\\
+			Determine a distância percorrida, $d$.\\
+			Apresente todos os cálculos efetuados e o resultado na notação científica.\\
+			
+			\begin{solution}
+				\\
+				\mybox{
+					
+					Determinação da aceleração: [4pts]\\
+					
+					Aplicando a Lei Fundamental da Dinâmica:\\
+					\begin{align*}
+						&\vec{F}_\text{R} = m \vec{a} \Leftrightarrow \\
+						&\Leftrightarrow \vec{F}_\text{g} + \vec{F} + \vec{F}_\text{a} = m \vec{a}
+					\end{align*}
+					Decompondo a força gravítica na direção coincidente com o movimento da sonda, $xx$, e na direção perpendicular à direção do movimento, $yy$, obtém-se:\\
+					\begin{equation}
+						\vec{F}_\text{g}_x + \vec{F}_\text{g}_y + \vec{F} + \vec{F}_\text{a} = m \vec{a}
+						\label{eq:newtonsonda}
+					\end{equation}
+					\\
+					Como a componente vertical da aceleração, $\vec{a}_y$, é nula, dado que nessa direção a sonda não se move, os vetores $\vec{F}_\text{g}_y + \vec{F}$ são simétricos\\
+					$$\vec{F}_\text{g}_y + \vec{F} = m \vec{a}_y \Rightarrow \vec{F}_\text{g}_y + \vec{F} = m \vec{0} \Rightarrow \vec{F}_\text{g}_y = \vec{F}$$\\
+					Substituindo esta última relação na equação \ref{eq:newtonsonda}, têm-se:\\
+					\begin{equation}
+						\vec{F}_\text{g}_x + \vec{F}_\text{a} = m \vec{a}
+						\label{eq:LFDsonda}
+					\end{equation}
+					\\
+					Reescrevendo a equação \ref{eq:LFDsonda} em função das componentes escalares dos vetores correspondentes e assumindo como sendo positivo do eixo dos $xx$ o sentido do movimento, teremos:\\
+					\begin{align*}
+						F_\text{g}_x - F_\text{a} &= m a_x \Leftrightarrow \\
+						\Leftrightarrow m g_\text{marte} \sin \SI{10}{\degree} - 30 m g_\text{marte} &= m a_x \Leftrightarrow \\
+						\Leftrightarrow a_x &= g_\text{marte} \sin \SI{10}{\degree} - 30 g_\text{marte} \Leftrightarrow \\
+						\Leftrightarrow a_x &= \dfrac{g_\text{terra}}{3} \times (\sin \SI{10}{\degree} - 30) \Rightarrow \\
+						\Rightarrow a_x &= \SI{-98}{\meter\per\second\squared}
+					\end{align*}
+					
+					Determinação da velocidade em B: [4pts]\\
+					A sonda diminui 55\% da sua energia cinética no trajeto de A a B, pelo que em B conserva 45\% do seu valor em A, obtendo-se:\\
+					\begin{align*}
+						E_{\text{C}_\text{B}} &= 0,45 E_{\text{C}_\text{A}}\\
+						\dfrac{1}{2} \times m \times v_\text{B}^2 &= 0,45 \times \dfrac{1}{2} \times m \times v_\text{A}^2\\
+						v_\text{B}^2 &= 0,45 \times v_\text{A}^2 \\
+						v_\text{B} &= \sqrt{0,45} \times v_\text{A}\\
+						v_\text{B} &= \sqrt{0,45} \times 4583\\
+						v_\text{B} &= \SI{3074}{\meter\per\second}
+					\end{align*}
+					
+					Determinação do instante em que a sonda passa no ponto B: [4pts]\\
+					Utilizando-se a Lei das Posições para o movimento retilíneo uniforme retardado na direção do eixo dos $xx$, assumindo como nula a coordenada da posição em A, teremos:\\
+					\begin{equation}
+						x(t) = 4583 t + \dfrac{-98}{2} t^2
+						\label{eq:possonda}
+					\end{equation}
+					
+				}
+				
+			\end{solution}
+			\begin{solution}
+				\\
+				\mybox{
+					
+					
+					Utilizando-se a Lei das Velocidades para o movimento retilíneo uniforme retardado na direção do eixo	dos $xx$, teremos:\\
+					\begin{equation}
+						v_\text{B}(t) = 4583 - 98 t
+						\label{eq:velocsonda}
+					\end{equation}
+					Substituindo a velocidade da sonda no ponto B na equação \ref{eq:velocsonda}, determinamos o tempo que demora a chegar a este ponto:\\
+					\begin{align*}
+						v_\text{B}(t) &= 4583 - 98 t \Rightarrow \\
+						\Rightarrow 3074 &= 4583 -98 t \Leftrightarrow \\
+						\Leftrightarrow t &= \dfrac{3074-4583}{-98} \Leftrightarrow \\
+						\Leftrightarrow t &= \SI{15,40}{\second}
+					\end{align*}
+					
+					Determinação da distância percorrida pela sonda. [4pts]\\
+					Usando a equação \ref{eq:possonda} podemos determinar a posição da sonda no ponto B:\\
+					\begin{align*}
+						x_\text{B} &= 4583 \times 15,40 - \dfrac{98}{2} \times 15,40^2\\
+						x_\text{B} &= 58957 m
+					\end{align*}
+					Por último, calcula-se a distância percorrida. Como a sonda não inverte o sentido do seu movimento:\\
+					$$d = |x_\text{B}-x\text{A}| \rightarrow d = |5,9 \times 10^4 - 0| \Leftrightarrow d = \SI{5,9e4}{\meter}$$
+					[+2pts pelo resultado na notação científica]
+				}
+				
+			\end{solution}
+		\end{parts}
+		
+		
+		
+		
+		\noindent\rule{\linewidth}{0.5pt}
+		\vspace{1pt}
+		\fullwidth{\Large \textbf{Grupo III}}
+		\uplevel{
+		\begin{minipage}{0.5\textwidth}
+			A figura \ref{fig:ondasagua} representa uma imagem em que se observam ondas circulares produzidas na superfície da água, numa tina de ondas. Destacam-se três cristas dessas ondas. O centro gerador das ondas é o ponto P, perturbado periodicamente por uma haste vibratória.
+		\end{minipage}
+		\hspace{0.1\textwidth} 
+		\begin{minipage}{0.4\textwidth}
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.9\textwidth]{ondasagua}
+				\caption{}
+				\label{fig:ondasagua}
+			\end{figure}
+		\end{minipage}
+		
+		}
+		
+		\vspace{5pt}
+		\question[12] Sabendo que a haste toca a superfície da água nove vezes, em cada segundo, calcule o módulo da velocidade de propagação dessas ondas na superfície da água.\\
+		Apresente todas as etapas de resolução.  \\
+		\begin{solution}
+			\\
+			\mybox{
+				Cálculo do comprimento de onda: [4pts]\\
+				Pela figura, podemos afirmar que: $2\times\lambda = 3 \Leftrightarrow \lambda = \SI{1,5}{\centi\meter}$\\
+				Obter a frequência: [4pts]\\
+				O número de vezes que a haste toca a superfície da água em cada segundo é a frequência, $f=\SI{9}{\hertz}$.\\
+				Cálculo da velocidade de propagação dessas ondas na água: [4pts]\\
+				$v = \lambda \times f \Leftrightarrow v = 1,5 \times 10^{-2} \times 9 \Leftrightarrow v = \SI{1,35e-1}{\meter\per\second} $
+			}
+		\end{solution}
+		
+		
+		\question[10] A onda produzida é \underline{\hspace{2cm}} e o número de ondas depende \underline{\hspace{4cm}}.
+	
+		\begin{multicols}{2}
+			\begin{randomizechoices}
+				\correctchoice ... transversal ... da oscilação da fonte.
+				\choice ... longitudinal ... da oscilação da fonte.
+				\choice ... transversal ... do comprimento de onda.
+				\choice ... longitudinal ... do comprimento de onda.
+			\end{randomizechoices}
+		\end{multicols}
+		
+		\vspace{5pt}
+		\question[10] Suponha que são emitidos dois sinais sonoros, um pela água e outro pelo ar.\\
+		A velocidade de propagação das ondas emitidas é \SI{350}{\meter\per\second}, no ar, e \SI{1450}{\meter\per\second}, na água. \\
+		A razão entre os intervalos de tempo que o sinal do emissor colocado debaixo de água e o sinal sonoro da sirene demoram a atingir um barco a uma distância $d$ é \\
+		\begin{multicols}{2}
+			\begin{randomizechoices}
+				\choice 4,14
+				\choice 2,07
+				\choice 0,12
+				\correctchoice 0,24
+			\end{randomizechoices}
+		\end{multicols}
+		
+		\vspace{5pt}
+		\question[14] Considere um barco que se encontra nas vizinhanças de um submarino-farol. \\
+		Calcule a distância a que este barco se encontra do submarino-farol, sabendo que os dois sinais foram detetados pelo barco com uma diferença de \SI{9,0}{\second}.
+		\begin{solution}
+			\\
+			\mybox{
+				Determinação do instante: [7pts]\\
+				$t_\text{ar}-t_\text{água} = 9,0 $ com $v_\text{água} = \dfrac{d}{t_\text{água}}$ e $v_\text{ar} = \dfrac{d}{t_\text{ar}}$ obtém-se deste modo\\
+				\begin{align*}
+					&1450 \times t_\text{água} = 350 \times t_\text{ar} \Leftrightarrow t_\text{ar} = 4,14 \times t_\text{água}\\
+					&4,14 \times t_\text{água} - t_\text{água} = 9,0 \Leftrightarrow t_\text{água} = \SI{2,87}{\second}
+				\end{align*}  
+				
+				Determinação da distância: [7pts]\\
+				$$d = v_\text{água} \times t_\text{água} \Rightarrow d = 1450 \times 2,87 \Leftrightarrow d = \SI{4,16e3}{\meter}$$
+			}
+		\end{solution}
+		
+		\noindent\rule{\linewidth}{0.5pt}
+		\vspace{5pt}
+		\fullwidth{\Large \textbf{Grupo IV}}
+		\uplevel{
+			O eletromagnetismo é a área da Física que estuda as relações entre fenómenos elétricos e magnéticos. Ele mostra que cargas elétricas em movimento criam campos magnéticos e que campos magnéticos variáveis podem gerar correntes elétricas. Este ramo da ciência é fundamental para compreender o funcionamento de muitos dispositivos do nosso dia a dia, como motores, geradores, transformadores e até as ondas de rádio.
+		}
+		
+		\vspace{10pt}
+		\question 
+		\begin{minipage}{0.5\textwidth}
+			Pretende-se colocar uma partícula, de massa m, em repouso, numa região entre duas placas planas e paralelas horizontais, como se vê na figura ao lado, onde existe um campo elétrico de intensidade \SI{250}{\volt\per\meter}.
+		\end{minipage}
+		\begin{minipage}{0.4\textwidth}
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.9\textwidth]{placa}
+			\end{figure}
+		\end{minipage}
+		
+		
+		\begin{parts}
+			\part[12] Identifique, justificando, os sinais das placas elétricas I e II.\\
+			\begin{solution}
+				\\
+				\mybox{
+					Placa I tem sinal positivo e a placa II tem sinal negativo. 
+					Entre duas placas paralelas, o campo elétrico é uniforme, sendo o seu sentido o da placa com carga positiva para a placa com carga negativa. Como o sentido do campo elétrico é de cima para baixo, tal significa que a placa I tem carga positiva e a placa II tem carga negativa.
+				}
+			\end{solution}
+			\part[10] Sabendo que a partícula tem uma carga elétrica de módulo \SI{80}{\micro\coulomb} e que se encontra em repouso entre as placas, pode concluir-se que esta apresenta sinal \underline{\hspace{2cm}} e massa \underline{\hspace{2cm}}.
+			\begin{multicols}{2}
+				\begin{randomizechoices}
+					\choice ... positiva ... \SI{2,0}{\gram}
+					\correctchoice ... negativa \SI{2,0}{\gram}
+					\choice ... positiva ... \SI{2,0}{\milli\gram}
+					\choice ... negativa ... \SI{2,0}{\milli\gram}
+				\end{randomizechoices}
+			\end{multicols}
+			\begin{solution}
+				\\
+				\mybox{
+					Como a partícula está em repouso, temos\\
+					$$F_R = 0$$
+					As forças aplicadas na partícula são a força elétrica, $\vec{F}_\text{e}$ que aponta na direção da placa positiva e a o peso da partícula, devido à força gravítica, $\vec{P}$. Assim, temos:\\
+					\begin{align*}
+						&F_R = 0 \Leftrightarrow F_\text{e} - P = 0 \Leftrightarrow F_\text{e} = P \Leftrightarrow q E = m g \Leftrightarrow\\
+						&\Leftrightarrow m = \dfrac{qE}{g} \Rightarrow m = \dfrac{80 \times 10^{-6} \times 250}{9,80} \Leftrightarrow m = \SI{2,0e-3}{\kilogram} = \SI{2,0}{\gram} 
+					\end{align*} 
+				}
+			\end{solution}
+		\end{parts}
+		
+		\question Uma das maneiras de criar corrente elétrica é transformar a energia mecânica em energia elétrica. \\
+			Dispõe-se de ímanes, para produzir um campo magnético, e de uma bobina formada por 50 espiras circulares com \SI{10,0}{\centi\meter} de diâmetro, conforme se mostra na figura \ref{fig:bobina}. \\[5pt]
+			
+		\begin{minipage}{0.6\textwidth}
+			A bobina, com uma resistência elétrica de \SI{900}{\milli\ohm}, está presa a um eixo que passa pelo seu centro e gira com uma frequência de 25,0 rotações por segundo. A bobina possui dois terminais que permitem o aproveitamento da energia elétrica que foi criada.\\ 
+			Num dado instante, as linhas do campo magnético atravessam perpendicularmente o plano das espiras, e o fluxo magnético é máximo; após a bobina rodar \SI{90}{\degree} em torno do eixo, esse fluxo passa a ser zero.\\
+		\end{minipage}
+		\hspace{0.1\textwidth}
+		\begin{minipage}{0.3\textwidth}
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=0.9\textwidth]{bobina}
+				\caption{}
+				\label{fig:bobina}
+			\end{figure}
+		\end{minipage}
+		
+		Considere que, na região da bobina, o campo magnético é uniforme, com módulo igual a \SI{1,00}{\milli\tesla} e orientado conforme a figura. \\
+		
+		\begin{parts}
+			\part[20] Determine a corrente elétrica, expressa em unidades SI, que atravessa a bobina quando esta roda \SI{90}{\degree} a partir da situação de fluxo magnético máximo.\\
+			Apresente todas as etapas de resolução.\\
+			
+			\begin{solution}
+				\\
+				\mybox{
+					Cálculo do intervalo de tempo que a bobina demora a rodar \SI{90}{\degree}: [5pts]\\
+					$\Delta t = \dfrac{1}{4} \times \dfrac{1}{25,0} \Leftrightarrow \Delta t = \SI{0,0100}{\second}$\\
+					Cálculo da variação de fluxo magnético numa espira, quando a bobina roda \SI{90}{\degree} a partir da situação de máximo fluxo:  [5pts]\\
+					\begin{align*}
+						&\Delta \Phi = \Phi_\text{final} - \Phi_\text{inicial} \Leftrightarrow \Delta \Phi = B \times A \times (\cos \SI{90}{\degree} - \cos \SI{0}{\degree}) \Rightarrow\\
+						&\Rightarrow \Delta \Phi = 0,00100 \times \pi \times (0,0500)^2 \times (0-1) \Leftrightarrow \Delta \Phi = \SI{-7,85e-6}{\weber}
+					\end{align*}
+					Cálculo do módulo da força eletromotriz ao rodar \SI{90}{\degree} a partir da situação de máximo fluxo: [5pts]\\
+					$$|\varepsilon| = N \times \Big| \dfrac{\Delta \Phi}{\Delta t} \Big| \Rightarrow |\varepsilon| = 100 \times \Big| \dfrac{-7,85 \times 10^{-6}}{0,0100} \Big| \Leftrightarrow |\varepsilon| = \SI{7,85e-2}{\volt}$$
+					Cálculo da corrente elétrica induzida no circuito: [5pts]\\
+					$$R = \dfrac{\varepsilon}{I} \Rightarrow 0,900 = \dfrac{7,85 \times 10^{-2}}{I} \Leftrightarrow I = \SI{8,72e-3}{\ampere}$$
+				}
+			\end{solution}
+			
+			\part[10] Refere o tipo de corrente que é criada pelo aparelho representado na figura.
+			\begin{solution}
+				\\
+				\mybox{
+					Corrente alternada.
+				}
+			\end{solution}
+			
+			\part[10] O módulo da força eletromotriz induzida será tanto menor quanto...
+			\begin{randomizechoices}
+				\correctchoice ... menor for o número de espiras e menos rápido for o movimento de rotação da bobina no interior do campo magnético. 
+				\choice ...	maior for o número de espiras e mais rápido for o movimento de rotação da bobina no interior do campo magnético.
+				\choice ...	menor for a área de cada espira da bobina e mais rápido for o movimento de rotação da bobina no interior do campo magnético.
+				\choice ...	maior for a área de cada espira da bobina e menor for o movimento de rotação da bobina no interior do campo magnético.
+			\end{randomizechoices}
+			
+		\end{parts}
+		
+		
+		
+		
+		
+		
+	\end{questions}
+	
+	\vspace{10pt}
+	\center
+	FIM
+	
+	\vfill
+	\center
+	
+	\ifprintanswers
+	 \printkeytable
+	\fi
+	
+	\pointtable[h]
+\end{document}

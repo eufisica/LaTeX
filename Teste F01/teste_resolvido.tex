@@ -1,0 +1,506 @@
+\documentclass[addpoints, answers]{exam}
+
+\usepackage[portuguese]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{multicol}
+\usepackage{geometry}
+\usepackage{tikz}
+\usepackage{fourier}
+%Font Size
+%\usepackage[12pt]{extsizes}%OR
+\usepackage[fontsize=11pt]{scrextend}
+%-----Physics
+\usepackage{amsfonts,amsmath,amssymb,gensymb}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{caption, subcaption}
+\usepackage{tikz}
+\usepackage{tkz-euclide}
+\usepackage{circuitikz}
+\usepackage{float}
+\usepackage{pgf}
+\usepackage{pgfplots}
+%\usepackage{pgfplotstable}
+\usepackage{wrapfig}
+\usepackage{wrapstuff}
+\usepackage{xcolor}
+
+\usetikzlibrary{positioning, arrows.meta, intersections, calc, fadings, shapes.geometric, arrows, mindmap, backgrounds, shadings, decorations.markings,decorations.pathmorphing, math, shapes, decorations, patterns, shadows, external, angles, quotes}
+\tikzset{>=latex}
+\usepackage{siunitx}
+\sisetup{output-decimal-marker={,}}
+\usepackage[shortconst]{physconst}
+
+%-----Caixas para apresentar as soluções
+\usepackage{lipsum,framed,color}
+\usepackage{calc}
+\definecolor{shadecolor}{rgb}{1,0.7,0.7}
+\newlength{\boxwidth}
+\newsavebox{\boxcontainer}
+
+\newcommand\mybox[1]{%
+	%\begin{center}%
+	\fcolorbox{white}{shadecolor}{%
+		%\begin{minipage}[t]{\dimexpr\textwidth-2\fboxsep+10\fboxrule}%
+		\begin{minipage}[t]{\textwidth-2\fboxsep}
+			#1%
+	\end{minipage}}%
+	%\end{center}
+}
+
+
+%-----Math
+\usepackage{dsfont}%apresenta as letras R,Z,C matemáticas
+\usepackage{mathtools}%configura os casos entre chavetas
+
+%-----Controlar espaço entre opções nas escolhas múltiplas (ver configuração antes de iniciar o documento)
+\usepackage{xpatch}
+
+\geometry{
+	a4paper,
+	top=1cm,
+	bottom=2cm,
+	left=1.5cm,
+	right=3cm,
+}
+
+\pgfdeclarelayer{background}
+\pgfdeclarelayer{main}
+
+\pgfsetlayers{background,main}
+
+%--------------------------------
+% CONFIGURAR CABEÇALHO E RODAPÉ
+%--------------------------------
+\pagestyle{headandfoot}
+\firstpageheader{}{}{}
+\runningheader{}{}{}
+\firstpagefooter{}{}{}
+\runningfooter{Física e Química A}{Teste}{Pág. \thepage\ de \numpages}
+\runningfootrule
+
+
+%--------------------------------
+% CONFIGURAÇÕES DO DOCUMENTO EXAM
+%--------------------------------
+\renewcommand{\solutiontitle}{\noindent \textbf{Solução:}\enspace}
+\renewcommand{\thequestion}{\bf \arabic{question}}
+\renewcommand{\choicelabel}{{\bf (\thechoice)}}
+\renewcommand{\partlabel}{\bf \thequestion.\arabic{partno}}
+\pointpoints{ponto}{pontos}
+\pointformat{[\bf \thepoints]}
+\pointsinrightmargin
+\setlength{\rightpointsmargin}{.5cm}
+\CorrectChoiceEmphasis{\color{red}\bfseries}%respostas corretas nas escolhas múltiplas a vermelho
+%tabela de cotação
+\hqword{Questão:}%vqword para a tabela na vertical
+\hpword{Cotação:}%vpword para a tabela na vertical
+
+
+\xpatchcmd{\oneparchoices}{\penalty -50\hskip 1em plus 1em\relax}{\hfill}
+
+
+% Deixar as linhas de espaço depois do xpatch
+\begin{document}
+	
+	\input{intro}
+	
+	% Settings for \mybox and Mybox
+	\setlength{\fboxrule}{1pt}
+	\setlength{\fboxsep}{10pt}
+	
+	% Additional settings for MyBox
+	\setlength{\FrameRule}{\fboxrule}
+	\setlength{\FrameSep}{\fboxsep}
+	
+	
+	
+	%INÍCIO DO TESTE
+	\newpage
+	\begin{questions}
+		\fullwidth{\Large \textbf{Grupo I}}
+		\uplevel{
+			No Europeu de 2024, a seleção portuguesa jogou contra a Chéquia, tendo vencido por 2-1. \\
+			O gráfico seguinte da posição em função do tempo descreve o movimento de Bernardo Silva (A) e de Jurásek (B) durante \SI{8,0}{\second}, cujos dados foram obtidos durante o jogo. Considere que o movimento foi sempre retilíneo.\\
+			
+			\vspace{20pt} 
+			\begin{minipage}{\linewidth}
+				\vspace{30pt}
+				\centering
+				\includegraphics[0.6\textwidth]{pos_tempo}
+			\end{minipage}
+		}
+		
+		\question[10] Pela análise do gráfico podemos afirmar que:
+		\begin{choices}
+			\choice Os dois jogadores movimentam-se em sentidos opostos ao longo de todo o percurso realizado.
+			\choice A distância que separa os dois jogadores no instante inicial é de \SI{0,5}{\meter}.
+			\choice O jogador B demorou \SI{3,2}{\second} a chegar à posição inicial do jogador A.
+			\correctchoice No intervalo de tempo [3,0 ; 8,0] \unit{\second}, ambos os jogadores se deslocam no sentido positivo da trajetória.
+		\end{choices}
+		
+		\question[15] Compare as distâncias percorridas entre o Bernardo Silva e o Jurásek até ao instante em que se cruzam.
+		
+		\begin{solution}
+			\\
+			\mybox{
+				\begin{minipage}{0.4\linewidth}
+					\begin{align*}
+						\text{Jogador A}\\
+						d_A &= |\Delta x|\\
+						&= |-0,4 - 0,6|\\
+						&= \SI{1,0}{\meter}
+					\end{align*}
+				\end{minipage}
+				\begin{minipage}{0.4\linewidth}
+					\begin{align*}
+						\text{Jogador B}\\
+						d_B &= |\Delta x|\\
+						&= |-0,4 - (-1,0)|\\
+						&= \SI{0,6}{\meter}
+					\end{align*}
+				\end{minipage}
+				\\[5pt]
+				\begin{minipage}{\linewidth}
+					A razão entre as distâncias é
+					\begin{equation*}
+						\dfrac{d_A}{d_B} = \dfrac{1,0}{0,6} \approx 1,7
+					\end{equation*}
+				\end{minipage}
+			}
+		\end{solution}
+		
+		\question[10] A componente escalar do deslocamento do Bernardo Silva, efetuado no sentido positivo da trajetória é igual a:
+		
+		\begin{multicols}{2}
+			\begin{choices}
+				\choice \SI{1,5}{\meter}.
+				\choice \SI{2,0}{\meter}.
+				\correctchoice \SI{2,5}{\meter}.
+				\choice \SI{-1,5}{\meter}.
+			\end{choices}
+		\end{multicols}
+		
+		\question[10] Ao pontapear a bola, a força aplicada e a força gravítica exercidas na bola resultam de interações
+		
+		\begin{choices}
+			\correctchoice eletromagnética e gravítica, respetivamente.
+			\choice gravítica e eletromagnética, respetivamente.
+			\choice eletromagnéticas.
+			\choice gravíticas.
+		\end{choices}
+		
+		\noindent\rule{\linewidth}{0.5pt}
+		\vspace{5pt}
+		\fullwidth{\Large \textbf{Grupo II}}
+		 \uplevel{
+		 	A figura, que não está à escala, representa-se parte do percurso de um corpo, de \SI{150}{\gram}, que pode ser representado pelo seu centro de massa (modelo da partícula material). \\
+		 	O corpo é lançado da posição A no instante $t = \SI{0,0}{\second}$, passa pela posição B ao fim de \SI{1,0}{\second} e atinge a posição C no instante $t = \SI{1,5}{\second}$.\\
+		 	
+			\vspace{2pt} 
+			 	\begin{minipage}{\linewidth}
+			 		\vspace{3pt}
+			 		\centering
+			 		\begin{tikzpicture}
+			 			
+			 			\draw[fill=gray, rounded corners] (0,0) rectangle (0.5,0.5);
+			 			\draw[black!90] (0,0)--(5,0)--(6.5,0.5)--(8,0.5);
+			 			\node[text=black!90] (A) at (0,-0.5) {A};
+			 			\node[text=black!90] (B) at (5,-0.5) {B};
+			 			\node[text=black!90] (C) at (6.5,1) {C};
+			 			\draw[black!90,dashed] (5,0)--(8,0);
+			 			\draw (5.8,0) arc (0:90:0.2) node[right] {\small \SI{20}{\degree}};
+			 			
+			 		\end{tikzpicture}
+			 	\end{minipage}
+			 
+			 Da análise do movimento obteve-se o gráfico seguinte do módulo da velocidade, $v$, do corpo em função do tempo, $t$.\\
+			 
+			 \vspace{2pt} 
+			 \begin{minipage}{\linewidth}
+			 	\vspace{3pt}
+			 	\centering
+			 	\includegraphics[0.6\textwidth]{graf01}
+			 \end{minipage}
+		 }
+		
+		\question[10] Entre as posições A e B, a distância percorrida é
+		\begin{choices}
+			\choice \SI{5,5}{\meter}, sendo desprezável o atrito entre as superfícies.
+			\correctchoice \SI{5,5}{\meter}, não sendo desprezável o atrito entre as superfícies.
+			\choice \SI{1,0}{\meter}, não sendo desprezável o atrito entre as superfícies.
+			\choice \SI{4,5}{\meter}, sendo desprezável o atrito entre as superfícies.
+		\end{choices}
+		
+		\vspace{15pt}
+		\question[15] Mostre que há atrito nas superfícies em contacto no percurso entre B e C.
+		\begin{solution}
+			\\
+			\mybox{
+				
+					Determinação da aceleração a partir do declive do gráfico entre os instantes \\ $t \epsilon [1,0 ; 1,5] \unit{\second}$ do gráfico:\\
+					
+					$a = \dfrac{\Delta v}{\Delta t} \Rightarrow a = \dfrac{2,0 - 4,4}{1,5 - 1,0}$\\
+					$a = \SI{-4,8}{\meter\per\second\squared}$\\
+					
+					Determinação da força resultante:\\
+					$F_{\text{R}} = m a \Rightarrow F_{\text{R}} = 0,150 \times (-4,8) = \SI{-0,72}{\newton}$\\
+					
+					Determinação da força resultante devida apenas à componente horizontal do peso (sem força de atrito):\\
+					$F_{\text{R}} = -P_x = - m g \sin(\SI{20}{\degree}) \Rightarrow F_{\text{R}} = - 0,150 \times 9,81 \sin(\SI{20}{\degree}) = \SI{-0,50}{\newton}$\\
+					
+					Logo, no plano inclinado atuou uma força de atrito de intensidade \SI{0,22}{\newton}.\\
+					$F_{\text{R}} = -P_x - F_a \Rightarrow -0.72 = -0,50 - F_a \Leftrightarrow F_a = 0,72-0,50 = \SI{0,22}{\newton}$\\
+				
+			}
+			
+		\end{solution}
+		
+		
+		\vspace{15pt}
+		\question[10] Se o bloco fosse colocado no espaço, a uma altitude igual ao diâmetro da Terra, a força gravítica que a Terra exerce nele é
+		
+		\begin{oneparchoices}
+			\choice $\dfrac{1}{3} F_\text{g}$.\hspace{55pt}
+			\correctchoice $\dfrac{1}{9} F_\text{g}$.
+			\choice $\dfrac{1}{2} F_\text{g}$.
+			\choice $\dfrac{1}{4} F_\text{g}$.
+		\end{oneparchoices}
+		
+		\noindent\rule{\linewidth}{0.5pt}
+		\vspace{1pt}
+		\fullwidth{\Large \textbf{Grupo III}}
+		\uplevel{Uma bola, A, foi largada de \SI{2,0}{\meter} de altura. Uma segunda bola, B, foi lançada simultaneamente e verticalmente com velocidade inicial de \SI{5,0}{\meter\per\second}, de baixo para acima, desde a posição \SI{0,0}{\meter}, como mostra a figura.
+		
+		\vspace{5pt} 
+		\begin{minipage}{\linewidth}
+			\vspace{3pt}
+			\centering
+			\begin{tikzpicture}
+				
+				\draw[fill=gray!70] (0,3) circle (3pt);
+				\draw[fill=gray!70] (2,0) circle (3pt);
+				\draw[gray!90, ->] (-0.5,0)--(-0.5,3.5) node[left]{$y$};
+				\draw[text=gray!90] (-0.6,0)--(-0.4,0) node[below left] {O};
+				\node[text=black!90] (A) at (0.3,3.2) {A};
+				\node[text=black!90] (B) at (1.7,0) {B};
+				\node[text=black!90] (v) at (2.5,0.3) {$\vec{v}$};
+				\draw[black!90,->] (2.3,0)--(2.3,1);
+				
+			\end{tikzpicture}
+		\end{minipage}
+		
+		}
+		
+		\vspace{5pt}
+		\question[10] As equações das posições que descrevem o movimento das duas bolas são respetivamente:
+		
+		\begin{multicols}{2}
+			\begin{choices}
+				\correctchoice $y_{\text{A}} = 2,0 - 4,9 t^2$ e $y_{\text{B}} = 5,0 t - 4,9 t^2$
+				\choice $y_{\text{A}} = 5,0 - 4,9 t^2$ e $y_{\text{B}} = 2,0 t - 4,9 t^2$
+				\choice $y_{\text{A}} = - 4,9 t^2$ e $y_{\text{B}} = 5,0 t$
+				\choice $y_{\text{A}} = 2,0 - 4,9 t^2$ e $y_{\text{B}} = 5,0 - 4,9 t$
+			\end{choices}
+		\end{multicols}
+		
+		\vspace{5pt}
+		\question[10] A expressão que permite determinar o tempo que a bola B atinge a altura máxima é\\
+		\begin{multicols}{2}
+			\begin{choices}
+				\choice $t = \dfrac{2,0}{4,9 \times 2}$
+				\choice $t = \sqrt{\dfrac{5,0}{4,9 \times 2}}$
+				\choice $t = \dfrac{4,9 \times 2}{5,0}$
+				\correctchoice $t = \dfrac{5,0}{4,9 \times 2}$
+			\end{choices}
+		\end{multicols}
+		
+		\vspace{5pt}
+		\question[10] A imagem com o traçado correto das funções velocidade-tempo, da bola A (linha contínua) e da bola B (linha tracejada), é
+		
+		\vspace{10pt}
+		\begin{multicols}{2}
+			\begin{choices}
+				\correctchoice 
+				\begin{minipage}{0.3\linewidth}
+					\centering
+					\resizebox{.25\linewidth}{!}{\input{6A}}
+				\end{minipage}
+				\hspace{0.1\textwidth}
+				\choice 
+				\begin{minipage}{0.3\linewidth}
+					\centering
+					\resizebox{.25\linewidth}{!}{\input{6B}}
+				\end{minipage}
+				\choice 
+				\begin{minipage}{0.\linewidth}
+					\centering
+					\resizebox{.25\linewidth}{!}{\input{6C}}
+				\end{minipage}
+				\hspace{0.1\textwidth}
+				\choice 
+				\begin{minipage}{0.3\linewidth}
+					\centering
+					\resizebox{.25\linewidth}{!}{\input{6D}}
+				\end{minipage}
+			\end{choices}
+		\end{multicols}
+		
+		\vspace{10pt}
+		\question[15] Determine a altura em que se encontram as duas bolas. \\Apresente todas as etapas da resolução.
+		
+		\begin{solution}
+			\\
+			\mybox{
+				Determinação do instante em que as duas bolas se encontram:
+				$$y_B = y_A \Leftrightarrow 5,0 t - 4,9 t^2 = 2,0 - 4,9 t^2 \Leftrightarrow t = \dfrac{2,0}{5,0} = \SI{0,40}{\second}$$\\
+				
+				Determinação da altura de encontro das bolas:
+				$$y_B = 5,0 t - 4,9 t^2 \Rightarrow y_B = 5,0 \times 0,40 - 4,9 \times 0,40^2 = \SI{1,22}{\meter}$$
+			}
+			
+		\end{solution}
+		
+		\noindent\rule{\linewidth}{0.5pt}
+		\vspace{5pt}
+		\fullwidth{\Large \textbf{Grupo IV}}
+		\uplevel{
+			\begin{tabular}{p{0.6\linewidth} c}
+				\begin{minipage}{0.9\linewidth}
+					Em 2019, um golo marcado por Cristiano Ronaldo frente à Sampdoria, encheu as primeiras páginas dos jornais e as redes sociais. Na verdade, ninguém ficou indiferente à impressionante capacidade de impulsão e à altura que o internacional português atingiu no golo que valeu ao seu clube a vitória no jogo.\\
+					
+					A figura abaixo, que não está à escala, representa esquematicamente um dos saltos verticais do atleta. Este inicia o movimento a partir do repouso (instante $t_0$), perde o contacto com o solo (instante $t_1$), atinge a altura máxima (instante $t_2$) e volta ao contacto com o solo (instante $t_3$).
+				\end{minipage} 
+				&
+				\begin{minipage}{0.2\linewidth}
+					\includegraphics[\linewidth]{CR7}
+				\end{minipage}
+				\\
+			\end{tabular}
+			
+			\begin{minipage}{0.65\linewidth}
+				\centering
+				\includegraphics[0.25\textwidth]{salto}
+			\end{minipage}
+			
+			\vspace{10pt}
+			Para apontar esse golo, o português subiu a \SI{2,56}{\meter} de altura, elevando-se \SI{76,2}{\centi\meter}, e ficou no ar durante mais de \SI{1}{\second}. \\
+			Considere que:
+			\begin{itemize}
+				\item o atleta, de massa \SI{85}{\kilogram}, pode ser representado pelo seu centro de massa, segundo o modelo da partícula material;
+				\item a resistência do ar é desprezável;
+				\item entre os instantes $t_0$ e $t_1$, decorrem \SI{0,20}{\second}.
+			\end{itemize}
+		}
+		
+		\vspace{10pt}
+		\question[20] Determine o módulo da aceleração média que atua no atleta entre os instantes $t_0$ e $t_1$. \\Apresente todas as etapas da resolução.
+		
+		\begin{solution}
+			\\
+			\mybox{
+				Após o jogador perder o contacto com o chão, e admitindo que a resistência do ar é desprezável, sabe-se que para $y_{\text{máx.}} = \SI{0,762}{\meter}$, $v=0$. Assim:
+				
+				\begin{equation*}
+					\Bigg \{
+					\begin{matrix}
+						0,762 = v_{t_1} t_2 - 4,90 t_2^2\\
+						0 = v_{t_1} - 9,8 t_2
+					\end{matrix}
+					\Leftrightarrow
+					\Bigg \{
+					\begin{matrix}
+						t_2 = \SI{0,394}{\second}\\
+						v_{t_1} = \SI{3,86}{\meter\per\second}
+					\end{matrix}
+				\end{equation*}
+				
+				Sabendo que entre $t_0$ e $t_1$ decorrem \SI{0,20}{\second}, obtém-se para a aceleração:
+				
+				\begin{equation*}
+					a = \dfrac{\Delta v}{\Delta t} \Rightarrow a = \dfrac{3,86 - 0}{0,20 - 0} = \SI{19,3}{\meter\per\second\squared}
+				\end{equation*}
+			}
+		\end{solution}
+		
+		\vspace{10pt}
+		\question[10] A intensidade da reação das forças que, em média, o solo exerce no atleta entre os instantes $t_0$ e $t_1$ é
+		
+		\begin{oneparchoices}
+			\correctchoice $N > F_{\text{g}}$
+			\choice $N < F_{\text{g}}$
+			\choice $N = F_{\text{g}}$
+			\choice $N = 0$
+		\end{oneparchoices}
+		
+		\vspace{10pt}
+		\question[10] A energia cinética do atleta no instante $t_2$ pode ser determinada por
+		
+		\begin{multicols}{2}
+			\begin{choices}
+				\choice $\dfrac{1}{2} \times 85 \times 3,86^2$
+				\choice $\dfrac{1}{2} \times 85 \times 19,3^2$
+				\correctchoice $\dfrac{1}{2} \times 85 \times 0^2$
+				\choice $85 \times 3,86^2$
+			\end{choices}
+		\end{multicols}
+		
+		\noindent\rule{\linewidth}{0.5pt}
+		\vspace{5pt}
+		\fullwidth{\Large \textbf{Grupo V}}
+		\uplevel{
+			O telescópio espacial Hubble, lançado pela NASA em 1990, descreve em torno da Terra uma órbita praticamente circular, a uma altitude de cerca de \SI{5,9e2}{\kilo\meter}, em aproximadamente \SI{95}{\minute}.
+			
+			$$R_{\text{Terra}} = \SI{6,4e3}{\kilo\meter}$$
+		}
+		
+		\vspace{10pt}
+		\question[10] Admitindo que o telescópio Hubble descreve uma órbita circular, a velocidade média do seu movimento é de
+		
+		\begin{multicols}{2}
+			\begin{choices}
+				\choice é de \SI{0,65}{\meter\per\second}.
+				\choice é de \SI{650}{\meter\per\second}.
+				\correctchoice é de \SI{7705}{\meter\per\second}.
+				\choice \SI{7,0}{\meter\per\second}.
+			\end{choices}
+		\end{multicols}
+		
+		\vspace{10pt}
+		\question[10] A constante de Gravitação Universal é
+		
+		\begin{multicols}{2}
+			\begin{choices}
+				\correctchoice $G = \SI{6,67e-11}{\cubic\meter\per\kilogram\per\second\squared}$
+				\choice $G = \SI{6,67e-11}{\per\cubic\meter\kilogram\squared\per\second\squared}$
+				\choice $G = \SI{6,67e-11}{\cubic\meter\per\kilogram\per\second}$
+				\choice $G = \SI{6,67e-11}{\per\cubic\meter\per\kilogram\squared\per\second\squared}$
+			\end{choices}
+		\end{multicols}
+		
+		\vspace{10pt}
+		\question[15] Admita que a altitude do Hubble aumenta para o dobro. Compare as forças gravíticas do Hubble quando esta perto da Terra com a sua posição mais afastada. \\ Apresente todas as etapas da resolução.
+		
+		\begin{solution}
+			\\
+			\mybox{
+				\begin{align*}
+					\dfrac{F_g(\text{próx.})}{F_g(\text{afastado})} &= \dfrac{G \dfrac{m_T m_H}{(R_T + h_1)^2}}{G \dfrac{m_T m_H}{(R_T + h_2)^2}}\\
+					&= \dfrac{(R_T + h_2)^2}{(R_T + h_1)^2}\\
+					&= \dfrac{(6,4 \times 10^6 + 2 \times 5,9 \times 10^5)^2}{(6,4 \times 10^6 + 5,9 \times 10^5)^2}\\
+					&= 1,18
+				\end{align*}
+			}
+		\end{solution}
+		
+		
+	\end{questions}
+	
+	\vspace{10pt}
+	\center
+	FIM
+	
+	\vfill
+	\center
+	\pointtable[h]
+\end{document}

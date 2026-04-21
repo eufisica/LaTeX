@@ -1,0 +1,32 @@
+\begin{minipage}{0.4\textwidth}
+	\pgfplotsset{
+		standard/.style={
+			axis line style = thick,
+			trig format=rad,
+			enlargelimits,
+			axis x line=middle,
+			axis y line=middle,
+			enlarge x limits=0.15,
+			enlarge y limits=0.15,
+			every axis x label/.style={at={(current axis.right of origin)},anchor=north west},
+			every axis y label/.style={at={(current axis.above origin)},anchor=south east}
+		}
+	}
+	\begin{tikzpicture}
+		\begin{axis}[standard,
+			ticks=none,
+			samples=1000,
+			xlabel={$t/$\unit{s}},
+			ylabel={$v/$\unit{\meter\per\second}},
+			xmin=0,xmax=3,
+			ymin=-12,ymax=5]
+			
+			\node[anchor=center,label=south west:$O$] at (axis cs:0,0){};
+			
+			\addplot[color=olive, domain={0:3}, line width=1mm]{2+9.81*x} node[right]{Bola A};
+			
+			\addplot[color=red, domain={0:3}, dashed, line width=1mm]{-5-9.81*x} node[right]{Bola B};
+			
+		\end{axis}
+	\end{tikzpicture}
+\end{minipage}
