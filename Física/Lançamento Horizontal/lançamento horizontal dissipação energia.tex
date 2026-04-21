@@ -1,0 +1,395 @@
+\documentclass[12pt]{article}
+\usepackage[portuguese]{babel}
+\usepackage{amsfonts,amsmath,amssymb,gensymb}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{caption, subcaption}
+\usepackage{tikz}
+\usepackage{tkz-euclide}
+\usepackage{circuitikz}
+\usepackage{scalerel}
+\usepackage{pict2e}
+\usepackage{url}
+\usepackage{hyperref}%onde quiser colocar o link usar o \url só para hiperligação ou \href 
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage{pgf}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage[utf8]{inputenc}
+\pgfplotsset{compat=newest, width=10cm}
+%\pgfplotsset{compat=1.18}
+\usepackage{geometry}
+\usepackage{wrapfig}
+\usepackage{wrapstuff}
+\usepackage{xcolor}
+\usetikzlibrary{positioning, arrows.meta, intersections, calc, fadings, shapes.geometric, arrows, mindmap, backgrounds, shadings, decorations.markings, decorations.pathmorphing, math, shapes, decorations, patterns, shadows, external, angles, quotes, positioning, decorations.pathreplacing, shapes.misc}
+\tikzset{>=latex} % for LaTeX arrow head
+%\colorlet{myblue}{blue!80!black}
+%\colorlet{myred}{black!50!red}
+%\colorlet{glasscol}{blue!10}
+%\tikzstyle{glass}=[top color=glasscol!90!black,bottom color=glasscol!90!black,middle color=glasscol,shading angle=40]
+\usepackage{pgf}
+\usepackage{pgf-spectra}
+\usepackage{siunitx}
+\sisetup{
+	output-decimal-marker={,}% just uncomment if you want to use comma as the decimal marker!
+}
+\usepackage[shortconst]{physconst}
+\usepackage{enumitem}
+%\usepackage[inline]{enumitem}
+\usepackage{tasks}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{bohr}
+\usepackage{tasks}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{tcolorbox}
+\usepackage{tikzorbital}
+\usepackage{framed}
+\usepackage{pstricks}% quando há ficheiros exportados do Inkscape compilar em XeLaTeX
+%\usepackage{chemfig, chemmacros}
+%\usepackage[inkscapeformat=png]{svg}
+\usepackage{longtable, array}
+\tcbuselibrary{raster}
+
+%bibliography
+% Load biblatex with a bibliography file
+\usepackage[backend=biber]{biblatex}
+\addbibresource{bibliography.bib} % Your .bib file
+%\bibliography{bibliography}
+
+% Make bibliography appear in the Table of Contents
+%\usepackage[nottoc,numbib]{tocbibind}
+
+%calculos tools
+\usepackage{calculator}
+\usepackage{calculus}
+\usepackage{calc}
+
+% We will externalize the figures
+\usepgfplotslibrary{external}
+\usepgfplotslibrary{statistics}
+\usepgfplotslibrary{fillbetween}
+\tikzexternalize
+
+%\usepackage[dvipsnames]{xcolor}
+
+\usepackage{xparse}
+\NewDocumentEnvironment{sidebyside}{O{.50} o +m +m}{%
+	\noindent\begin{minipage}[t][][t]{#1\linewidth}%
+		#3% Content of the first minipage
+	\end{minipage}%
+	\hfill%
+	\noindent\begin{minipage}[t][][t]{\IfValueTF{#2}{#2}{#1}\linewidth}%
+		#4% Content of the second minipage
+	\end{minipage}\\% newline is important, it allows \hfill to work correctly, try removing it ;)
+}
+
+%caixa de texto olive e cyan
+\newcommand{\ctoliv}[1]{\colorbox{olive!20}{\textbf{#1}}}
+\newcommand{\ctcy}[1]{\colorbox{cyan!20}{\textbf{#1}}}
+
+%setup texto e caixa colorida ao lado
+\newcommand{\caixaladotexto}[2]{
+	\begin{minipage}{0.55\linewidth}%
+		#1
+	\end{minipage}
+	\hspace{0.05\linewidth}
+	\begin{minipage}{0.40\linewidth}%
+		\begin{tcbraster}[raster columns=1, raster equal height, colframe=orange!20, colback=orange!20]
+			\begin{tcolorbox} 
+				\vspace*{2pt}%Space before
+				#2
+				\vspace*{2pt}%Space after 
+			\end{tcolorbox}
+		\end{tcbraster}
+	\end{minipage}%
+}
+\newcommand{\ladoalado}[2]{
+	\begin{minipage}{0.45\linewidth}%
+		\vspace*{2pt}%Space before
+		#1
+		\vspace*{2pt}%Space after
+	\end{minipage}
+	\hspace{0.05\linewidth}
+	\begin{minipage}{0.45\linewidth}%
+		\vspace*{2pt}%Space before
+		#2
+		\vspace*{2pt}%Space after
+	\end{minipage}%
+}
+
+% Setup de texto colorido blue e olive
+\newcommand{\toliv}[1]{\textcolor{olive!80}{\textbf{#1}}}
+\newcommand{\tcy}[1]{\textcolor{cyan!80}{\textbf{#1}}}
+
+%Setup caixa colorida a ocupar a linha
+\newcommand{\caixacor}[1]{
+	\vspace{15pt}
+	\colorbox{olive!20}{%
+		\begin{minipage}{\linewidth}%
+			\vspace*{2pt}%Space before
+			#1
+			\vspace*{2pt}%Space after
+		\end{minipage}% 
+	}
+}
+
+
+\setlength\parindent{0pt} %to avoid indent
+\graphicspath{ {./images/} } %pasta das imagens
+
+\title{Lançamento Horizontal}
+\author{José Gonçalves}
+
+\begin{document}
+	\maketitle
+	
+	\begin{figure}[H]
+		\begin{tikzpicture}
+			\coordinate (A) at (0,0);
+			\coordinate (B) at (0,2);
+			\coordinate (C) at (0,3);
+			\coordinate (D) at (4,2);
+			\coordinate (E) at (7,2);
+			\coordinate (F) at (7,0);
+			\coordinate (G) at (13,0);
+			\draw (A)--(B)--(C)--(D)--(E)--(F);
+			\draw[dashed] (B)--(D);
+			\draw (F)--(G);
+			\draw[<->, xshift=-6pt] (B)--(C) node[midway, anchor=east]{$h$};
+			\draw[<->, xshift=-6pt] (F)--(E) node[midway, anchor=east]{$H$};
+			\draw[dashed, ->] (F)--(7,4) node[anchor=east]{$y$};
+			\draw[dashed, ->] (G)--(15,0) node[anchor=south]{$x$};
+			\draw (0,3.2) circle [radius=0.2];
+			\draw[dashed] (4,2.2) circle [radius=0.2];
+			\draw[dashed] (7,2.2) circle [radius=0.2];
+			\node[anchor=east] at (-0.3,3.3) {A};
+			\node[anchor=east] at (4,1.7) {B};
+			\node[anchor=east] at (6.9,1.7) {C};
+			\node[anchor=south] at (12,0) {D};
+			\node[anchor=west] at (-1.3,3.7) {$v_0(A)=0$};
+			\draw[->, color=red] (7,2.2)--(7.6,2.2) node[midway, anchor=south]{$v_{x}$};
+			\draw[dashed] (7.7,2.1) circle [radius=0.2];
+			\draw[->, color=red] (7.7,2.1)--(8.3,2.1) node[midway, anchor=south]{$v_{x}$};
+			\draw[->, color=red] (7.7,2.1)--(7.7,1.9) node[midway, anchor=east]{$v_{y}$};
+			\draw[dashed] (8.4,1.9) circle [radius=0.2];
+			\draw[->, color=red] (8.4,1.9)--(9.0,1.9) node[midway, anchor=south]{$v_{x}$};
+			\draw[->, color=red] (8.4,1.9)--(8.4,1.4) node[midway, anchor=east]{$v_{y}$};
+			\draw[dashed] (9.2,1.5) circle [radius=0.2];
+			\draw[->, color=red] (9.2,1.5)--(9.8,1.5) node[midway, anchor=south]{$v_{x}$};
+			\draw[->, color=red] (9.2,1.5)--(9.2,0.8) node[midway, anchor=east]{$v_{y}$};
+			\draw[dashed] (10.1,0.8) circle [radius=0.2];
+			\draw[->, color=red] (10.1,0.8)--(10.7,0.8) node[midway, anchor=south]{$v_{x}$};
+			\draw[->, color=red] (10.1,0.8)--(10.1,-0.1) node[midway, anchor=east]{$v_{y}$};
+			\draw[dashed] (10.5,0.2) circle [radius=0.2];
+			\draw[->, color=red] (10.5,0.2)--(11.1,0.2) node[midway, anchor=south]{$v_{x}$};
+			\draw[->, color=red] (10.5,0.2)--(10.5,-1.2) node[midway, anchor=east]{$v_{y}$};
+			\node at (11.2,-0.2) {$x_{\text{máx}}$};
+			\node at(6.8,-0.3){O};
+		\end{tikzpicture}
+	\end{figure}	
+	
+	\vspace{5mm}
+	\section*{Movimento de A para C (com dissipação de energia)}
+	Durante a descida da esfera no plano inclinado, parte da energia potencial gravitacional é dissipada sob a forma de calor e som, devido ao atrito e à deformação no contacto com o plano.
+	
+	Assim, a conservação da energia mecânica deixa de ser exata, passando a escrever-se:
+	
+	\begin{align*}
+		E_m(A) = E_m(C) + E_{\text{diss}} &\Leftrightarrow mgh = \dfrac{1}{2} m v_C^2 + \dfrac{1}{2} I \omega^2 + E_{\text{diss}}
+	\end{align*}
+	
+	Admitindo que a energia dissipada é uma fração $\eta$ da energia potencial inicial ($E_{\text{diss}} = \eta\, mgh$), com $0 < \eta < 1$, temos:
+	
+	\begin{align*}
+		mgh(1-\eta) &= \dfrac{1}{2} m v_C^2 + \dfrac{1}{2} \cdot \dfrac{2}{5} m r^2 \cdot \dfrac{v_C^2}{r^2}\\
+		&\Rightarrow v_C = \sqrt{\dfrac{10}{7}(1-\eta)gh}
+	\end{align*}
+	
+	O valor de $\eta$ representa a fração de energia perdida por dissipação durante a descida.  
+	Por exemplo, $\eta=0{,}10$ corresponde a uma perda de 10\% da energia mecânica.
+	
+	Durante o movimento sobre o plano horizontal, pode também ocorrer dissipação adicional devido ao atrito de rolamento.  
+	Para incluir este efeito, admite-se que a velocidade da esfera diminui ligeiramente até ao ponto de lançamento, sendo $v_0 = \beta\, v_C$, com $0<\beta\le1$.
+	
+	O valor de $\beta$ traduz a razão entre a velocidade real e a teórica sem perdas.
+	
+	\vspace{5mm}
+	\section*{Movimento de C para D (desprezando a resistência do ar)}
+	No movimento de lançamento horizontal, a esfera cai devido à aceleração da gravidade, $g$. 
+	Como tem velocidade inicial, na horizontal a sua velocidade mantém-se constante porque não existe nenhuma força a atuar nesta direção ($a_x=0$). 
+	Na vertical a sua velocidade irá aumentar, devido à aceleração da gravidade ($a_y=-g$).\\
+	
+	As condições iniciais são:\\
+	\begin{center}
+		$x_0 =0$ \hspace{2mm} e \hspace{2mm} $y_0=H$\\[5pt]
+		$v_{0x}=v_C=v_0$ e $v_{0y}=0$
+	\end{center}
+	
+	As equações do movimento são:\\
+	\begin{center}
+		$x(t) = v_0 t$ \hspace{2mm} e \hspace{2mm} $y(t) = H - \dfrac{1}{2} g t^2$\\[5pt]
+		$v_x(t) = v_0$  \hspace{2mm} e \hspace{2mm} $v_y(t) = -gt$\\[5pt]
+		sendo $v = \sqrt{v_x^2 + v_y^2}$
+	\end{center}
+	
+	O tempo de queda será quando a posição y(t) = 0. Assim, usando a equação da posição, temos:\\
+	\begin{align*}
+		y(t) = H - \dfrac{1}{2} g t^2 &\Leftrightarrow 0 = H - \dfrac{1}{2} g t^2 \Leftrightarrow \dfrac{1}{2} g t^2 = H \Leftrightarrow \\
+		&\Leftrightarrow t^2 = \dfrac{2H}{g} \Leftrightarrow t_{\text{queda}} = \sqrt{\dfrac{2H}{g}}
+	\end{align*}
+	
+	Substituindo este tempo de queda na equação da posição segundo $x$ temos o alcance máximo:\\ 
+	$$x_{\text{máx}} = v_0 \sqrt{\dfrac{2H}{g}}$$\\
+	
+	\section*{Reunindo a informação com dissipação}
+	A velocidade à saída da mesa é agora:
+	
+	\begin{equation}
+		v_0 = \beta\, \sqrt{\dfrac{10}{7}(1-\eta)gh}
+		\label{eq:v0diss}
+	\end{equation}
+	
+	O alcance máximo passa a ser:
+	
+	\begin{equation}
+		x_{\text{máx.}} = v_0 \sqrt{\dfrac{2H}{g}} = \beta\, \sqrt{\dfrac{10}{7}(1-\eta)gh}\, \sqrt{\dfrac{2H}{g}}
+		\label{eq:xmaxdiss}
+	\end{equation}
+	
+
+	Simplificando, a equação \ref{eq:xmaxdiss} fica:\\
+	\begin{equation}
+		x_{\text{máx.}} = \beta\, \sqrt{\dfrac{20}{7}(1-\eta)\,h\,H}
+	\end{equation}
+	
+	
+	\section*{Atividade experimental}
+	
+	A atividade experimental foi realizada largando a esfera de duas alturas diferentes, para evitar qualquer tipo de erro acidental e testar a ligação entre o alcance e possível dissipação de energia.\\
+	
+	Condições iniciais:\\
+	Altura do plano inclinado à mesa - $h = \SI{0,145}{\meter}$\\
+	Altura da mesa ao chão - $H = \SI{0,878}{\meter}$\\
+	$\beta = 1$ e $\eta = 0$\\
+	
+	O alcance teórico, sem dissipação de energia, será:\\
+	\def\hplano{0.145}
+	\def\Hmesa{0.878}
+	\DIVIDE{20}{7}{\tempA}
+	\MULTIPLY{\hplano}{\Hmesa}{\tempB}
+	\MULTIPLY{\tempA}{\tempB}{\tempC}
+	\SQUAREROOT{\tempC}{\tempD}
+	\def\xmax{\tempD}
+	\begin{align*}
+		x_{\text{máx.}} &= \sqrt{\dfrac{20}{7} h \cdot H}\\
+		&= \sqrt{\tempA \cdot \hplano \cdot \Hmesa}\\
+		&= \sqrt{\tempA \cdot \tempB} \\
+		&= \sqrt{\tempC}\\
+		&= \tempD \hspace{2pt} \unit{\meter}
+	\end{align*}
+	
+	A experiência foi realizada 5 vezes, obtendo-se os seguintes valores para o alcance:\\
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{|c|c|c|}
+			\hline
+			Medição & $x_\text{máx.}/$cm & $\delta_i x/$cm\\
+			\hline
+			1 & 52,0 & 0,2\\
+			\hline
+			2 & 51,8 & 0,0\\
+			\hline
+			3 & 51,3 & 0,5\\
+			\hline
+			4 & 51,5 & 0,3\\
+			\hline
+			5 & 52,3 & 0,5\\
+			\hline
+		\end{tabular}
+	\end{table}
+	
+	O valor médio obtido experimentalmente para o alcance da esfera foi de:\\
+	$$\bar{x}_\text{exp.} = (51,8 \pm 0,5)  \unit{\centi\meter}$$
+	
+	O erro experimental é dado por:\\
+	\begin{align*}
+		\epsilon_\text{exp.} &= \dfrac{\delta_a x}{\bar{x}} \times 100\\
+		&= \dfrac{0,5}{51,8}\times100\\
+		&= 0,97\%
+	\end{align*}
+	
+	Este resultado revela consistência nos resultados obtidos, ficando assim reduzidos erros acidentais. Significa, portanto, que a atividade foi bem executada.\\
+	
+	O erro relativo foi de:\\
+	\def\xexp{0.518}
+	\SUBTRACT{\tempD}{\xexp}{\tempE}
+	\DIVIDE{\tempE}{\tempD}{\tempF}
+	\MULTIPLY{\tempF}{100}{\tempG}
+	\TRUNCATE[1]{\tempG}{\sol}
+	\def\erro{\sol}
+	\begin{align*}
+		\varepsilon_r &= \dfrac{|x_\text{máx.}-x_\text{exp.}|}{x_\text{máx.}} \times 100\\
+		&=\dfrac{|\xmax-\xexp|}{\xmax} \times 100\\
+		&=\erro \%
+	\end{align*}
+	
+	
+	
+	Numa tentativa de reduzir os efeitos dissipativos, aumentou-se a altura $h$ em que foi largada a esfera.\\
+	Assim, para uma altura $h= \SI{34,00}{\centi\meter}$, esperava-se um alcance de $x_{\text{máx.}}(\text{teórico}) = \SI{92,35}{\centi\meter}$.\\
+	
+	Os resultados experimentais estão indicados na tabela que se segue:\\
+	
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{|c|c|c|}
+			\hline
+			Medição & $x_\text{máx.}/$cm & $\delta_i x/$cm\\
+			\hline
+			1 & 85,00 & 0,91\\
+			\hline
+			2 & 86,50 & 0,59\\
+			\hline
+			3 & 86,45 & 0,54\\
+			\hline
+			4 & 86,30 & 0,39\\
+			\hline
+			5 & 85,30 & 0,61\\
+			\hline
+		\end{tabular}
+	\end{table}
+	
+	O valor médio obtido experimentalmente para o alcance da esfera foi de:\\
+	$$\bar{x}_\text{exp.} = (85,91 \pm 0,91)  \unit{\centi\meter}$$
+	
+	O erro experimental é dado por:\\
+	\begin{align*}
+		\epsilon_\text{exp.} &= \dfrac{\delta_a x}{\bar{x}} \times 100\\
+		&= \dfrac{0,91}{85,91}\times100\\
+		&= 1,06\%
+	\end{align*}
+	
+	Este resultado revela consistência nos resultados obtidos, ficando assim reduzidos erros acidentais. Significa, portanto, que a atividade foi bem executada.\\
+	
+	O erro relativo foi de:\\
+	
+	\begin{align*}
+		\varepsilon_r &= \dfrac{|x_\text{máx.}-x_\text{exp.}|}{x_\text{máx.}} \times 100\\
+		&=\dfrac{|92,35-85,91|}{\xmax} \times 100\\
+		&=6,98 \%
+	\end{align*}
+	
+	\section*{Conclusão}
+	Como o erro experimental foi significativo na primeira experiência, podemos concluir que existe dissipação de energia durante a descida da esfera no plano inclinado e no plano horizontal.\\
+	O erro experimental observado indica que $\eta>0$ e/ou $\beta<1$, isto é, há dissipação de energia tanto na descida como na deslocação sobre o plano horizontal.\\
+	Essas perdas explicam a diferença entre o alcance teórico e o valor experimental obtido.\\
+	Na segunda experiência as velocidades alcançadas pela esfera eram maiores, havendo menor dissipação de energia, como se pode aferir do erro relativo baixo.
+	
+	\printbibliography[title={Referências}]
+	
+\end{document}

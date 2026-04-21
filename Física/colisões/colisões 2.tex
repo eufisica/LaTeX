@@ -1,0 +1,191 @@
+\documentclass[12pt,a4paper]{article}
+
+% ------------------------------------------------
+% Pacotes
+% ------------------------------------------------
+\usepackage[portuguese]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amssymb}
+\usepackage{physics}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{booktabs}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{hyperref}
+
+\geometry{margin=2.5cm}
+\setstretch{1.2}
+
+% ------------------------------------------------
+% Título
+% ------------------------------------------------
+\title{\textbf{Colisões Elásticas e Inelásticas}\\
+	Física — 12.º Ano}
+\author{}
+\date{}
+
+\begin{document}
+	\maketitle
+	
+	% ------------------------------------------------
+	\section{Introdução}
+	
+	Uma colisão ocorre quando dois ou mais corpos interagem durante um intervalo de tempo muito curto, exercendo forças intensas entre si. Durante este intervalo, as forças externas ao sistema podem ser consideradas desprezáveis, permitindo tratar o sistema como isolado \cite{halliday}.
+	
+	Nestas condições, aplica-se a lei da conservação do momento linear, princípio fundamental da Mecânica Clássica e consequência directa da terceira lei de Newton \cite{serway}.
+	
+	% ------------------------------------------------
+	\section{Momento linear}
+	
+	O momento linear é uma grandeza vectorial associada ao estado de movimento de um corpo, sendo definido pelo produto da sua massa pela sua velocidade \cite{tipler}:
+	\[
+	\vec{p} = m \vec{v}
+	\]
+	
+	Num sistema isolado, o momento linear total mantém-se constante ao longo do tempo:
+	\[
+	\sum \vec{p}_{\text{antes}} = \sum \vec{p}_{\text{depois}}
+	\]
+	
+	Esta lei é válida para qualquer tipo de colisão, independentemente de a energia cinética se conservar ou não \cite{dge}.
+	
+	% ------------------------------------------------
+	\section{Colisão elástica}
+	
+	Numa colisão elástica, conservam-se simultaneamente o momento linear total do sistema e a energia cinética total. Este tipo de colisão é uma boa aproximação em sistemas microscópicos ou em situações idealizadas, como o choque entre bolas de bilhar perfeitamente rígidas \cite{halliday}.
+	
+	Para um sistema constituído por dois corpos, de massas \(m_1\) e \(m_2\), verifica-se:
+	
+	\textbf{Conservação do momento linear:}
+	\[
+	m_1 v_{1i} + m_2 v_{2i} = m_1 v_{1f} + m_2 v_{2f}
+	\]
+	
+	\textbf{Conservação da energia cinética:}
+	\[
+	\frac{1}{2} m_1 v_{1i}^2 + \frac{1}{2} m_2 v_{2i}^2
+	=
+	\frac{1}{2} m_1 v_{1f}^2 + \frac{1}{2} m_2 v_{2f}^2
+	\]
+	
+	Estas duas equações permitem determinar as velocidades finais dos corpos após a colisão \cite{serway}.
+
+	
+	\begin{center}
+		\begin{tikzpicture}[scale=1.1]
+			
+			% Antes
+			\draw[fill=blue!30] (-1.5,0) circle (0.3);
+			\node at (-1.5,-0.6) {$m_1$};
+			\draw[->, thick] (-1.5,0) -- (-0.5,0);
+			
+			\draw[fill=red!30] (1.5,0) circle (0.3);
+			\node at (1.5,-0.6) {$m_2$};
+			\draw[->, thick] (1.5,0) -- (0.5,0);
+			
+			\node at (0,0.8) {Antes da colisão};
+			
+			% Depois
+			\draw[fill=blue!30] (-3.5,-2) circle (0.3);
+			\draw[->, thick] (-3.5,-2) -- (-4.5,-2);
+			
+			\draw[fill=red!30] (3.5,-2) circle (0.3);
+			\draw[->, thick] (3.5,-2) -- (4.5,-2);
+			
+			\node at (0,-1.2) {Depois da colisão};
+			
+		\end{tikzpicture}
+	\end{center}
+	
+	% ------------------------------------------------
+	\section{Colisão inelástica}
+	
+	Numa colisão inelástica, o momento linear total do sistema conserva-se, mas a energia cinética não se mantém constante. Parte desta energia transforma-se noutras formas de energia, como energia térmica, sonora ou energia associada à deformação dos corpos \cite{tipler}.
+	
+	\textbf{Colisão perfeitamente inelástica}
+	
+	Na colisão perfeitamente inelástica, os corpos permanecem unidos após a colisão, passando a mover-se com a mesma velocidade final \cite{dge}.
+	
+	A equação da conservação do momento linear é:
+	\[
+	m_1 v_{1i} + m_2 v_{2i} = (m_1 + m_2) v_f
+	\]
+	
+	Verifica-se sempre que:
+	\[
+	E_{c,\text{antes}} > E_{c,\text{depois}}
+	\]
+
+	
+	\begin{center}
+		\begin{tikzpicture}[scale=1.1]
+			
+			% Antes
+			\draw[fill=blue!30] (-1.5,0) circle (0.3);
+			\node at (-1.5,-0.6) {$m_1$};
+			\draw[->, thick] (-1.5,0) -- (0.5,0);
+			
+			\draw[fill=red!30] (1.5,0) circle (0.3);
+			\node at (1.5,-0.6) {$m_2$};
+			
+			\node at (0,0.8) {Antes da colisão};
+			
+			% Depois
+			\draw[fill=purple!40] (2,-2) circle (0.35);
+			\draw[fill=purple!40] (2.70,-2) circle (0.35);
+			\node at (2.3,-2.7) {$m_1 + m_2$};
+			\draw[->, thick] (2.35,-2) -- (4.35,-2);
+			
+			\node at (0,-1.2) {Depois da colisão};
+			
+		\end{tikzpicture}
+	\end{center}
+	
+	% ------------------------------------------------
+	\section{Comparação entre colisões}
+	
+	\begin{center}
+		\begin{tabular}{lcc}
+			\toprule
+			\textbf{Tipo de colisão} & \textbf{Momento linear} & \textbf{Energia cinética} \\
+			\midrule
+			Elástica & Conserva-se & Conserva-se \\
+			Inelástica & Conserva-se & Não se conserva \\
+			Perfeitamente inelástica & Conserva-se & Perda máxima \\
+			\bottomrule
+		\end{tabular}
+	\end{center}
+	
+	% ------------------------------------------------
+	\section{Conclusão}
+	
+	O estudo das colisões é fundamental para a compreensão de inúmeros fenómenos físicos, desde acidentes rodoviários até interacções entre partículas subatómicas. A aplicação da conservação do momento linear permite analisar sistemas complexos de forma simples e rigorosa \cite{halliday,serway}.
+	
+	% ------------------------------------------------
+	\begin{thebibliography}{9}
+		
+		\bibitem{dge}
+		Direção-Geral da Educação (2018).
+		\textit{Aprendizagens Essenciais — Física A, 12.º Ano}.
+		Ministério da Educação. Portugal.
+		
+		\bibitem{halliday}
+		Halliday, D., Resnick, R. \& Walker, J. (2014).
+		\textit{Fundamentals of Physics} (10th ed.).
+		Wiley.
+		
+		\bibitem{serway}
+		Serway, R. A. \& Jewett, J. W. (2018).
+		\textit{Physics for Scientists and Engineers} (9th ed.).
+		Cengage Learning.
+		
+		\bibitem{tipler}
+		Tipler, P. A. \& Mosca, G. (2008).
+		\textit{Physics for Scientists and Engineers} (6th ed.).
+		W. H. Freeman.
+		
+	\end{thebibliography}
+	
+\end{document}

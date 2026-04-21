@@ -1,0 +1,497 @@
+\documentclass{article}
+\usepackage[portuguese]{babel}
+\usepackage{amsfonts,amsmath,amssymb,gensymb}
+\usepackage{physics}
+\usepackage{cancel}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{caption, subcaption}
+\usepackage{tikz}
+\usepackage{tkz-euclide}
+\usepackage{circuitikz}
+\usepackage{scalerel}
+\usepackage{pict2e}
+\usepackage{url}
+\usepackage{hyperref}%onde quiser colocar o link usar o \url só para hiperligação ou \href 
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage{pgf}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage[utf8]{inputenc}
+\pgfplotsset{compat=newest, width=10cm}
+%\pgfplotsset{compat=1.18}
+\usepackage{geometry}
+\usepackage{wrapfig}
+\usepackage{wrapstuff}
+\usepackage{xcolor}
+\usetikzlibrary{positioning, arrows.meta, intersections, calc, fadings, shapes.geometric, arrows, mindmap, backgrounds, shadings, decorations.markings,decorations.pathmorphing, math, shapes, decorations, patterns, shadows, external, angles, quotes, positioning, scopes}
+\tikzset{>=latex} % for LaTeX arrow head
+%\colorlet{myblue}{blue!80!black}
+%\colorlet{myred}{black!50!red}
+%\colorlet{glasscol}{blue!10}
+%\tikzstyle{glass}=[top color=glasscol!90!black,bottom color=glasscol!90!black,middle color=glasscol,shading angle=40]
+\usepackage{pgf}
+\usepackage{pgf-spectra}
+\usepackage{siunitx}
+\sisetup{
+	output-decimal-marker={,}% just uncomment if you want to use comma as the decimal marker!
+}
+\usepackage[shortconst]{physconst}
+\usepackage{enumitem}
+%\usepackage[inline]{enumitem}
+\usepackage{tasks}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{bohr}
+\usepackage{tasks}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{tcolorbox}
+\usepackage{tikzorbital}
+\usepackage{framed}
+\usepackage{pstricks}% quando há ficheiros exportados do Inkscape compilar em XeLaTeX
+\usepackage{chemfig, chemmacros}
+\usepackage[inkscapeformat=png]{svg}
+\usepackage{longtable, array}
+\usepackage{ifthen}
+\usepackage[outline]{contour} % glow around text
+\tcbuselibrary{raster}
+
+\usepackage{verbatim}
+
+% We will externalize the figures
+\usepgfplotslibrary{external}
+\usepgfplotslibrary{statistics}
+\usepgfplotslibrary{fillbetween}
+\tikzexternalize
+
+%\usepackage[dvipsnames]{xcolor}
+
+\usepackage{xparse}
+\NewDocumentEnvironment{sidebyside}{O{.50} o +m +m}{%
+	\noindent\begin{minipage}[t][][t]{#1\linewidth}%
+		#3% Content of the first minipage
+	\end{minipage}%
+	\hfill%
+	\noindent\begin{minipage}[t][][t]{\IfValueTF{#2}{#2}{#1}\linewidth}%
+		#4% Content of the second minipage
+	\end{minipage}\\% newline is important, it allows \hfill to work correctly, try removing it ;)
+}
+
+%caixa de texto olive e cyan
+\newcommand{\ctoliv}[1]{\colorbox{olive!20}{\textbf{#1}}}
+\newcommand{\ctcy}[1]{\colorbox{cyan!20}{\textbf{#1}}}
+
+%setup texto e caixa colorida ao lado
+\newcommand{\caixaladotexto}[2]{
+	\begin{minipage}{0.55\linewidth}%
+		#1
+	\end{minipage}
+	\hspace{0.05\linewidth}
+	\begin{minipage}{0.40\linewidth}%
+		\begin{tcbraster}[raster columns=1, raster equal height, colframe=orange!20, colback=orange!20]
+			\begin{tcolorbox} 
+				\vspace*{2pt}%Space before
+				#2
+				\vspace*{2pt}%Space after 
+			\end{tcolorbox}
+		\end{tcbraster}
+	\end{minipage}%
+}
+\newcommand{\ladoalado}[2]{
+	\begin{minipage}{0.45\linewidth}%
+		\vspace*{2pt}%Space before
+		#1
+		\vspace*{2pt}%Space after
+	\end{minipage}
+	\hspace{0.05\linewidth}
+	\begin{minipage}{0.45\linewidth}%
+		\vspace*{2pt}%Space before
+		#2
+		\vspace*{2pt}%Space after
+	\end{minipage}%
+}
+
+% Setup de texto colorido blue e olive
+\newcommand{\toliv}[1]{\textcolor{olive!80}{\textbf{#1}}}
+\newcommand{\tcy}[1]{\textcolor{cyan!80}{\textbf{#1}}}
+
+%Setup caixa colorida a ocupar a linha
+\newcommand{\caixacor}[1]{
+	\vspace{15pt}
+	\colorbox{olive!20}{%
+		\begin{minipage}{\linewidth}%
+			\vspace*{2pt}%Space before
+			#1
+			\vspace*{2pt}%Space after
+		\end{minipage}% 
+	}
+}
+
+
+\setlength\parindent{0pt} %to avoid indent
+\graphicspath{ {./images/} } %pasta das imagens
+
+\title{Atrito estático e cinético}
+\author{José Gonçalves}	
+
+
+
+
+
+
+\begin{document}
+	\maketitle
+
+\section*{Introdução}
+	As forças de atrito entre sólidos dependem dos materiais das superfícies em contacto, mas não da área (aparente) dessas superfícies, devida às diverentes rugosidades dessas superfícies, em que vão existir interações eletromagnéticas entre os corpúsculos que as constituem. É possível obter os coeficientes de atrito estático e cinético de um par de superfícies em contacto de forma experimental.
+	Para colocar um objeto em movimento a força que está a ser aplicada é maior do que quando o objeto se move, implicando que a força de atrito estático é superior à força de atrito cinético.
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}[scale=1, every node/.style={font=\small}]
+			
+			% parâmetros (ajusta para mais/menos rugosidade)
+			\def\width{10}         % largura total
+			\def\gap{0.8}          % espaço entre superfícies (apenas visual)
+			\def\ampHigh{0.8mm}    % amplitude rugosidade alta (amplia no detalhe para ver mais)
+			\def\segHigh{4mm}      % comprimento de segmento para random steps (alta rugosidade)
+			\def\ampLow{0.25mm}    % amplitude rugosidade baixa
+			\def\segLow{8mm}       % comprimento de segmento para random steps (baixa rugosidade)
+			\def\contactStart{1}   % início da zona de contacto (em x)
+			\def\contactEnd{9}     % fim da zona de contacto (em x)
+			
+			%----------------------------------------
+			% superfícies (representação principal)
+			%----------------------------------------
+			% superfície superior (rugosidade alta)
+			\begin{scope}
+				\clip (0,-1) rectangle (\width,2.5);
+				\draw[very thick, decorate,
+				decoration={random steps,segment length=\segHigh,amplitude=\ampHigh},
+				fill=gray!5] 
+				(0,1.6) -- (\width,1.6) ;
+			\end{scope}
+			
+			% superfície inferior (rugosidade baixa)
+			\begin{scope}
+				\clip (0,-2) rectangle (\width,1);
+				\draw[very thick, decorate,
+				decoration={random steps,segment length=\segLow,amplitude=\ampLow},
+				fill=gray!3]
+				(0,-0.6) -- (\width,-0.6) ;
+			\end{scope}
+			
+			% zona de contacto (uma linha simples para indicar o contacto)
+			\draw[line width=1pt, black!70] (\contactStart,0.5) -- (\contactEnd,0.5);
+			
+			% preenchimento entre superfícies (apenas para visual)
+			\fill[gray!10] (\contactStart,0.5) rectangle (\contactEnd,0.5-\gap);
+			
+			% etiquetas
+			\node[left] at (0,1.6) {Superfície A};
+			\node[left] at (0,-0.6) {Superfície B};
+			\node[above] at ($ (-3.5,1.6)!.5!(\width,1.6) $) {Rugosidade alta};
+			\node[below] at ($ (-3.5,-0.6)!.5!(\width,-0.6) $) {Rugosidade baixa};
+			
+			% setas e legendas de rugosidade
+			\draw[->, thick] (10.5,1.6) -- ++(1.2,0) node[right] {amplitude maior};
+			\draw[->, thick] (10.5,-0.6) -- ++(1.2,0) node[right] {amplitude menor};
+			
+			%----------------------------------------
+			% detalhe ampliado (caixa e linha de ligação)
+			%----------------------------------------
+			\coordinate (boxBL) at (2.4,-0.2);
+			\coordinate (boxTR) at (3.8,0.9);
+			
+			% retângulo que marca a área a ampliar
+			\draw[dashed, darkgray] (boxBL) rectangle (boxTR);
+			\node[below right, darkgray] at (boxTR) {Área ampliada};
+			
+			% linha ligando caixa à ampliação
+			\draw[->, shorten >=2pt] (boxTR) -- ++(1.0,1.2) -- ++(2.0,1.0);
+			
+			% desenho da ampliação (detalhe)
+			\begin{scope}[shift={(6.5,2.2)}, scale=1.6]
+				% fundo da janela de detalhe
+				\draw[rounded corners=4pt, fill=white] (-1.2,-0.9) rectangle (1.2,0.9);
+				
+				% desenhar rugosidades na ampliação com mais detalhe
+				% superfície superior (amplitude ampliada para visual)
+				\draw[very thick, decorate,
+				decoration={random steps,segment length=2mm,amplitude=1.8mm}]
+				(-1.0,0.6) -- (1.0,0.6);
+				
+				% superfície inferior (suave)
+				\draw[very thick, decorate,
+				decoration={random steps,segment length=6mm,amplitude=0.6mm}]
+				(-1.0,-0.2) -- (1.0,-0.2);
+				
+				% pequenas marcas para indicar picos/vales (opcional)
+				\foreach \x in {-0.8,-0.4,0.0,0.25,0.6}
+				\draw[gray!60] (\x,0.6) -- (\x,-0.2);
+				
+				% setas e escala na ampliação
+				\draw[<->] (-1.0, -0.6) -- (1.0,-0.6) node[midway, below] {Largura ampliada};
+				\node[above] at (0,0.9) {\small Detalhe do contacto (ampliação)};
+			\end{scope}
+			
+			% setas indicando a área selecionada na vista grande
+			\draw[->, thick, gray!70] (3.8,0.9) .. controls (4.6,1.6) .. (6.2,2.6);
+			
+		\end{tikzpicture}
+	\end{figure}
+	
+	Macroscopicamente, podemos definir coeficientes de atrito (estático e cinético) entre duas superfícies que estão em contacto.\\
+	Ao exercer uma força sobre uma caixa (figura \ref{fig:pushblock}), esta não entra logo em movimento devido à dificuldade que existe em deslizar sobre a outra superfície. Existe uma força que contraria a força que está a ser aplicada. Denominamos esa força contrária ao movimento de \toliv{\textbf{\textit{força de atrito}}}.
+	
+	\begin{figure}[H]
+		\centering
+		\resizebox{0.9\linewidth}{!}{%
+			\input{pushblock}
+		}
+		\caption{Forças exercidas ao empurrar uma caixa que está em contacto com uma superfície horizontal.}
+		\label{fig:pushblock}
+	\end{figure}
+	
+	À medida que aumentámos o módulo da força aplicada sobre o caixote, o módulo da força de atrito estático aumenta até chegar a um valor máximo, em que a força aplicada colocará o objeto em movimento. Se aplicarmos essa força continuamente o objeto manterá o seu tipo de movimento. A força de atrito continua a existir, mas em módulo inferior ao módulo do atrito estático máximo (ver gráfico da figura \ref{fig:atrito_graf}). Chamamos a este atrito que ocorre no movimento, força de atrito cinético.
+		
+	\begin{figure}[H]
+		\centering
+		\resizebox{0.7\linewidth}{!}{%
+			\input{atrito_graf}
+		}
+		\caption{Gráfico da força de atrito em função da força aplicada.}
+		\label{fig:atrito_graf}
+	\end{figure}
+	
+	\section{Atrito estático}
+	
+	O \toliv{\textbf{\textit{atrito estático}}} pode ser obtido mediante o estudo de um cubo, cujas superfícies laterais são de diferentes materiais, em repouso num plano inclinado (ver figura \ref{fig:atritoestatico}). À medida que aumentamos a inclinação do plano, a componente horizontal do peso aumenta, chegando a um instante em que será eminente o deslizamento do cubo no plano. A representação das forças está esquematizada na figura \ref{fig:atritoestatico} (direita). 
+	
+	\begin{figure}[H]
+		\centering
+		\resizebox{0.9\linewidth}{!}{%
+			\input{atritoestatico}
+		}
+		\caption{Representação do cubo em repouso num plano inclinado (direita) e reprsentação das forças aplicadas no cubo (esquerda).}
+		\label{fig:atritoestatico}
+	\end{figure}
+	
+	A força resultante neste caso será nula, $F_R = 0$, porque o cubo está em repouso. 
+	
+	Decompondo as forças, usando os eixos indicados, temos que
+	
+	\begin{center}
+		$
+		\begin{cases}
+			F_R(x) = 0\\
+			F_R(y) = 0
+		\end{cases}
+		\Leftrightarrow
+		\begin{cases}
+			P_x - F_a = 0\\
+			N - Py = 0
+		\end{cases}
+		\Leftrightarrow
+		\begin{cases}
+			F_a = P \sin \alpha\\
+			N = P \cos \alpha
+		\end{cases}
+		$
+	\end{center}
+	
+	Dividindo ambos os termos fica
+	
+	\begin{align*}
+		\dfrac{F_a}{N} &= \dfrac{\cancel{m} \cancel{g} \sin \alpha}{\cancel{m} \cancel{g} \cos \alpha}\\
+					   &= \tan \alpha
+	\end{align*}
+	
+	Deste modo, o coeficiente de atrito estático máximo ($\mu_e(\text{máx})$), nesta situação será
+	
+	\begin{equation}
+		\boxed{\mu_e = \dfrac{F_a}{N} = \tan \alpha}
+		\label{eq:atrito_estatico}
+	\end{equation}
+	
+	
+	\section{Atrito cinético}
+	
+	O mesmo cubo quando é colocado numa superfície horizontal, onde sofre uma força de atrito devido ao contacto entre as duas superfícies (base do cubo e mesa). Chamamos a esse atrito, \toliv{\textbf{\textit{atrito cinético}}}.
+	
+	Para manter o cubo (A) em movimento é possível ligar, através de um fio inextensível e de massa desprezável que passa numa roldana de massa e atrito desprezável,  um corpo suspenso (B), de modo a que adquira um movimento retilíneo uniformemente acelerado (fig. \ref{fig:block_horiz}).
+	
+	\begin{figure}[H]
+		\centering
+		\resizebox{0.9\linewidth}{!}{%
+			\input{block_horiz}
+		}
+		\caption{Representação do cubo em movimento num plano horizontal e as forças aplicadas.}
+		\label{fig:block_horiz}
+	\end{figure}
+	
+	Usando a segunda lei de Newton, temos para o cubo (A):
+	
+	\begin{center}
+		$
+		\begin{cases}
+			F_R(x) = m_\text{A} a\\
+			F_R(y) = 0
+		\end{cases}
+		\Leftrightarrow
+		\begin{cases}
+			T_\text{A} - F_\text{a} = m_\text{A} a\\
+			N - P_\text{A} = 0
+		\end{cases}
+		\Leftrightarrow
+		\begin{cases}
+			T_\text{A} = F_\text{a} +m_\text{A} a\\
+			N = m_\text{A} g
+		\end{cases}
+		$
+	\end{center}
+	
+	Para o corpo B, temos:
+	\[ 
+		F_R(B) = m_\text{B} a \Leftrightarrow P_\text{B} - T_\text{B} = m_\text{B} a \Leftrightarrow T_\text{B} =  P_\text{B} - m_\text{B} a \Leftrightarrow T_\text{B} =  m_\text{B} g - m_\text{B} a
+	\]
+	
+	Como o módulo das tensões dos fios são iguais $|\vec{T}_\text{A}|=|\vec{T}_\text{B}|$, podemos susbsituir a informação do corpo A no de B.
+	
+	\[
+		F_\text{a} + m_\text{A} a =  m_\text{B} g - m_\text{B} a \Leftrightarrow F_\text{a} =  - m_\text{A} a + m_\text{B} g - m_\text{B} a \Leftrightarrow F_\text{A} = m_\text{B} g -(m_\text{A}+m_\text{B}) a 
+	\]
+	
+	Como o atrito cinético é dada pela relação $\mu = \frac{F_\text{a}}{N}$ e $N = P_\text{A} = m_\text{A} g $, podemos escrever na equação da força de atrito obtendo a relação para o coeficiente de atrito cinético.
+	
+	\[
+	F_\text{A} = m_\text{B} g -(m_\text{A}+m_\text{B}) a \Leftrightarrow \dfrac{F_\text{a}}{N} = \dfrac{m_\text{B} g -(m_\text{A}+m_\text{B}) a}{N} \Leftrightarrow \mu_e = \dfrac{m_\text{B} g -(m_\text{A}+m_\text{B}) a}{N}
+	\]
+	
+	Logo, o atrito cinético é dado por
+	
+	\begin{equation}
+		\boxed{\mu_c = \dfrac{m_\text{B} g -(m_\text{A}+m_\text{B}) a}{m_\text{A} g}}
+		\label{eq:atrito_cinetico}
+	\end{equation}
+	
+	\textbf{Nota:} No caso do sistema estar parado ($a = 0$), a equaçao \ref{eq:atrito_cinetico} simplifica, dando o valor do coeficiente de atrito estático:\\
+	\begin{equation}
+		\mu_e = \dfrac{m_\text{B}}{m_\text{A}}
+		\label{eq:atrito_estat2}
+	\end{equation}
+	
+	
+	\section{Atividade experimental}
+	
+	A atividade foi desenvolvida em duas etapas: 
+	\begin{itemize}
+		\item a primeira parte, consistiu na colocação de um cubo ou paralelepípedo, para determinar o coeficiente de atrito estático máximo (eq. \ref{eq:atrito_estatico}), conforme o esquema indicado na figura \ref{fig:atritoestatico}. O objeto foi colocado num plano inclinado que foi erguido até que o objeto mostra-se evidência de querer iniciar o seu movimento. Interrompeu-se a elevação do plano e, dessa forma, foi medido o ângulo máximo;
+		\item a segunda, consistiu na utilização do mesmo objeto, pousado numa superfície horizontal, consoante o esquema indicado na figura \ref{fig:block_horiz}, para determinar o coeficiente de atrito estático (\ref{eq:atrito_estat2}) e cinético (\ref{eq:atrito_cinetico}). O objeto estava ligado por um fio, inextensível e de massa desprezável, a um outro corpo em suspenso. O fio passava por uma roldana, com massa e atrito desprezáveis. No corpo suspenso foram adicionadas massas, uma de cada vez, até que o sistema evidencia-se querer movimentar-se. Foi medida a massa total suspensa, obtendo-se a massa total da carga ($m_\text{B}$) que permite determinar o coeficiente de atrito estático. Após isso, adicionaram-se mais massas à carga que estava suspensa (mediu-se a massa total suspensa na balança), de modo a que o sistema adquiri-se aceleração. Usou-se o Tracker, nas filmagens efetuadas, para a marcação das diversas posições ao longo do tempo, do bloco que estava na mesa e foi determinada, mediante o traçado do gráfico de $x=f(t)$, o valor da aceleração do sistema.
+	\end{itemize}	
+	
+	Os dados foram recolhidos e trabalhados na folha de cálculo.
+	
+	\section*{Resultados}
+	
+	Atrito estático para a face de madeira:
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{|c|c|c|}
+			\hline
+			\multicolumn{3}{c}{Madeira} \\
+			\hline
+			$\theta_\text{máx}/\unit{\celsius}$ & $\mu_e$ & $\delta_i$ \\
+			\hline
+			13 & 0,231 & 0,011 \\
+			\hline
+			14 & 0,249 & 0,007 \\
+			\hline
+			13,5 & 0,240 & 0,002 \\
+			\hline
+			14 & 0,249 & 0,007 \\
+			\hline
+			13,5 & 0,240 & 0,002 \\
+			\hline
+		\end{tabular}
+		\caption{Resultados para o coeficiente de atrito da face de madeira do cubo que estava em contacto com a superfície horizontal.}
+		\label{tab:atrito_estatico}
+	\end{table}
+	
+	O valor médio para o coeficiente de atrito da madeira, a partir dos dados da tabela \ref{tab:atrito_estatico}, foi de $\mu_e(\text{madeira})= (0,242\pm0,011)$.
+	
+	Agora é apresentado dados de uma das faces da segunda parte da experiência.
+	
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{|c c|}
+			\hline
+			\multicolumn{2}{|c|}{Tabela de Massas}  \\
+			\hline
+			$m_\text{cubo}$ & $= \SI{2,31E-01}{\kilogram}$ \\
+			
+			$m_\text{carga est}$ & $= \SI{6,85E-02}{\kilogram}$ \\
+			
+			$m_\text{carga cin}$ & $= \SI{8,88E-02}{\kilogram} $ \\
+			\hline
+		\end{tabular}
+	\end{table}
+	
+	Após a marcação dos pontos no tracker e importados para o Excel, obteve-se o seguinte gráfico de $x=f(t)$:
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\linewidth]{graf_xt_metal}
+		\caption{Gráfico da posição do cubo ao longo do tempo, cuja superfície metálica estava em contacto com a superfície horizontal.}
+		\label{fig:grafxtmetal}
+	\end{figure}
+	
+	Como o termo quadrático (usando as equações do movimento) corresponde a $a/2$. Então, determina-se a aceleração deste movimento $a=2\times 0,4316 = \SI{0,8632}{\meter\per\second\squared}$
+	
+	Assim, o coeficiente de atrito cinético para a superfície metálica foi de:
+	$\mu_c=(0,262\pm 0,001)$
+	
+	Em laboratório foram obtidos os seguintes coeficientes de atrito, para as outras faces, indicados na tabela \ref{tab:atritos}
+	
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{ccc}
+			\hline
+			\rowcolor{blue!30}\multicolumn{3}{c}{Resultados Gerais}\\
+			\hline
+			\rowcolor{blue!10}Material	& $\mu_\text{estático}$ &	$\mu_\text{cinético}$\\
+			\hline
+			Metal	& 0,2964	& 0,2623\\
+			\hline
+			Acrílico	& 0,2698	& 0,2605\\
+			\hline
+			Lixa	& 0,3812	& 0,3761\\
+			\hline
+		\end{tabular}
+		\caption{Atrito estático e cinemático para diversas superfícies do cubo que ficaram em contacto com a superfície horizontal.}
+		\label{tab:atritos}
+	\end{table}
+	
+	\section{Conclusões}
+	
+	De acordo com os resultados obtidos podemos concluir  que o coeficiente de atrito estático é sempre superior ao de atrito cinético, isto porque a aceleração influencia o coeficiente: quanto maior for a aceleração do cubo, menor é o coeficiente de atrito cinético.\\
+	Comparando os coeficientes de atrito correspondentes às diferentes faces dos cubos: 
+	\begin{itemize}
+		\item $\mu_c(\text{lixa})>\mu_c(\text{metal})>\mu_c(\text{acrílico})$	
+		\item $\mu_e(\text{lixa})>\mu_e(\text{metal})>\mu_e(\text{acrílico})$
+	\end{itemize}
+	
+	Sendo estes coeficientes diretamente proporcionais à força de atrito, o que é possível verificar pela equação: \\
+	$Fa = \mu \times N$,
+	 
+	sendo $\mu$ o coeficiente de atrito (estático ou cinético) e $N$ a força normal.
+	Também podemos concluir que a lixa é o material com maior força de atrito, por apresentar maior coeficiente de atrito, tanto cinético como estático. Por outro lado, o material que apresenta menor força de atrito é o acrílico.
+	$$F_a (\text{lixa}) > F_a (\text{metal}) > F_a (\text{acrílico})$$
+	
+
+	 
+	 
+\end{document}

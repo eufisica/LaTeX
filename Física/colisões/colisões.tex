@@ -1,0 +1,191 @@
+\documentclass[12pt,a4paper]{article}
+
+% ------------------------------------------------
+% Pacotes
+% ------------------------------------------------
+\usepackage[portuguese]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amssymb}
+\usepackage{physics}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{booktabs}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{hyperref}
+
+\geometry{margin=2.5cm}
+\setstretch{1.2}
+
+% ------------------------------------------------
+% Título
+% ------------------------------------------------
+\title{\textbf{Colisões Elásticas e Inelásticas}\\
+	Física — 12.º Ano}
+\author{}
+\date{}
+
+\begin{document}
+	\maketitle
+	
+	% ------------------------------------------------
+	\section{Introdução}
+	
+	Uma colisão ocorre quando dois ou mais corpos interagem durante um intervalo de tempo muito curto, exercendo forças intensas entre si. Durante este intervalo, as forças externas ao sistema são, em geral, desprezáveis, permitindo considerar o sistema como isolado.
+	
+	Nestas condições, verifica-se a \textbf{lei da conservação do momento linear}, um dos princípios fundamentais da Física, directamente relacionado com as leis de Newton.
+	
+	% ------------------------------------------------
+	\section{Momento linear}
+	
+	O \textbf{momento linear} de um corpo é uma grandeza vectorial definida por:
+	\[
+	\vec{p} = m \vec{v}
+	\]
+	onde \(m\) representa a massa do corpo e \(\vec{v}\) a sua velocidade.
+	
+	Num sistema isolado, o momento linear total mantém-se constante:
+	\[
+	\sum \vec{p}_{\text{antes}} = \sum \vec{p}_{\text{depois}}
+	\]
+	
+	Esta lei é válida para qualquer tipo de colisão, independentemente da energia cinética se conservar ou não.
+	
+	% ------------------------------------------------
+	\section{Colisão elástica}
+	
+	Numa \textbf{colisão elástica}, conservam-se simultaneamente:
+	\begin{itemize}
+		\item o momento linear total;
+		\item a energia cinética total.
+	\end{itemize}
+	
+	Estas colisões são uma boa aproximação em sistemas microscópicos ou em situações idealizadas, como bolas de bilhar perfeitamente rígidas.
+	
+	\subsection{Equações fundamentais}
+	
+	Para dois corpos de massas \(m_1\) e \(m_2\):
+	
+	\textbf{Conservação do momento linear:}
+	\[
+	m_1 v_{1i} + m_2 v_{2i} = m_1 v_{1f} + m_2 v_{2f}
+	\]
+	
+	\textbf{Conservação da energia cinética:}
+	\[
+	\frac{1}{2} m_1 v_{1i}^2 + \frac{1}{2} m_2 v_{2i}^2
+	=
+	\frac{1}{2} m_1 v_{1f}^2 + \frac{1}{2} m_2 v_{2f}^2
+	\]
+	
+	\subsection{Representação esquemática}
+	
+	\begin{center}
+		\begin{tikzpicture}[scale=1.1]
+			
+			% Antes
+			\draw[fill=blue!30] (-1.5,0) circle (0.3);
+			\node at (-1.5,-0.6) {$m_1$};
+			\draw[->, thick] (-1.5,0) -- (-0.5,0);
+			
+			\draw[fill=red!30] (1.5,0) circle (0.3);
+			\node at (1.5,-0.6) {$m_2$};
+			\draw[->, thick] (1.5,0) -- (0.5,0);
+			
+			\node at (0,0.8) {Antes da colisão};
+			
+			% Depois
+			\draw[fill=blue!30] (-3.5,-2) circle (0.3);
+			\draw[->, thick] (-3.5,-2) -- (-4.5,-2);
+			
+			\draw[fill=red!30] (3.5,-2) circle (0.3);
+			\draw[->, thick] (3.5,-2) -- (4.5,-2);
+			
+			\node at (0,-1.2) {Depois da colisão};
+			
+		\end{tikzpicture}
+	\end{center}
+	
+	% ------------------------------------------------
+	\section{Colisão inelástica}
+	
+	Numa \textbf{colisão inelástica}, apenas o momento linear total se conserva. Parte da energia cinética transforma-se noutras formas de energia, como energia térmica, sonora ou energia de deformação.
+	
+	\subsection{Colisão perfeitamente inelástica}
+	
+	Na colisão perfeitamente inelástica, os corpos ficam ligados após a colisão, passando a mover-se com a mesma velocidade final.
+	
+	\textbf{Conservação do momento linear:}
+	\[
+	m_1 v_{1i} + m_2 v_{2i} = (m_1 + m_2) v_f
+	\]
+	
+	A energia cinética diminui:
+	\[
+	E_{c,\text{antes}} > E_{c,\text{depois}}
+	\]
+	
+	\subsection{Representação esquemática}
+	
+	\begin{center}
+		\begin{tikzpicture}[scale=1.1]
+			
+			% Antes
+			\draw[fill=blue!30] (-1.5,0) circle (0.3);
+			\node at (-1.5,-0.6) {$m_1$};
+			\draw[->, thick] (-1.5,0) -- (0.5,0);
+			
+			\draw[fill=red!30] (1.5,0) circle (0.3);
+			\node at (1.5,-0.6) {$m_2$};
+			
+			\node at (0,0.8) {Antes da colisão};
+			
+			% Depois
+			\draw[fill=purple!40] (2,-2) circle (0.35);
+			\draw[fill=purple!40] (2.70,-2) circle (0.35);
+			\node at (2.3,-2.7) {$m_1 + m_2$};
+			\draw[->, thick] (2.35,-2) -- (4.35,-2);
+			
+			\node at (0,-1.2) {Depois da colisão};
+			
+		\end{tikzpicture}
+	\end{center}
+	
+	% ------------------------------------------------
+	\section{Comparação entre colisões}
+	
+	\begin{center}
+		\begin{tabular}{lcc}
+			\toprule
+			\textbf{Tipo de colisão} & \textbf{Momento linear} & \textbf{Energia cinética} \\
+			\midrule
+			Elástica & Conserva-se & Conserva-se \\
+			Inelástica & Conserva-se & Não se conserva \\
+			Perfeitamente inelástica & Conserva-se & Perda máxima \\
+			\bottomrule
+		\end{tabular}
+	\end{center}
+	
+	% ------------------------------------------------
+	\section{Importância do estudo das colisões}
+	
+	O estudo das colisões permite:
+	\begin{itemize}
+		\item analisar acidentes rodoviários;
+		\item compreender interacções entre partículas;
+		\item aplicar as leis de Newton a sistemas reais;
+		\item estudar a conservação de grandezas físicas fundamentais.
+	\end{itemize}
+	
+	% ------------------------------------------------
+	\section{Fontes}
+	
+	\begin{itemize}
+		\item Direção-Geral da Educação — \textit{Aprendizagens Essenciais de Física A — 12.º Ano}
+		\item Halliday, D., Resnick, R. \& Walker, J., \textit{Fundamentals of Physics}, Wiley
+		\item Serway, R. A. \& Jewett, J. W., \textit{Physics for Scientists and Engineers}, Cengage Learning
+		\item Tipler, P. A. \& Mosca, G., \textit{Physics for Scientists and Engineers}, W. H. Freeman
+	\end{itemize}
+	
+\end{document}

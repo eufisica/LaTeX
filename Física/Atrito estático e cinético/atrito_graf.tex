@@ -1,0 +1,20 @@
+
+% FRICTION static/dynamical
+\begin{tikzpicture}
+	\def\xmax{5.2}
+	\def\ymax{2.8}
+	\def\xc{0.37*\xmax}
+	\def\yc{0.7*\ymax}
+	\draw[dashed] (\xc,0) --++ (0,0.97*\ymax); % coordinate (C);
+	\draw[myred!80!black,thick]
+	(0,0) -- (\xc,\yc)
+	node[scale=0.9,midway,right=5,above=0,rotate={atan2(\yc,\xc)}] {$F_\mathrm{a} = F \leq \mu_\mathrm{e}N$}
+	to[out=-90,in=180]++ (0.06*\xmax,-0.08*\xmax) --++ (0.45*\xmax,0)
+	node[scale=0.9,midway,above=-2] {$F_\mathrm{a} = \mu_\mathrm{c}N \leq F$};
+	\draw[->,thick] (-0.1*\xmax,0) -- (\xmax,0) node[right=4,below left=0.5] {Força aplicada $F$};
+	\draw[->,thick] (0,-0.1*\ymax) -- (0,\ymax) node[above left=0.5,rotate=90] {Força de atrito $F_\mathrm{a}$};
+	\draw[thick] (\xc,0.1) --++ (0,-0.2) node[scale=0.9,left=1,below] {$\mu_\mathrm{e}N$};
+	\node[] at (\xc/2,0.85*\ymax) {estático};
+	\node[] at ({(\xmax+\xc)/2},0.85*\ymax) {cinético};
+	
+\end{tikzpicture}

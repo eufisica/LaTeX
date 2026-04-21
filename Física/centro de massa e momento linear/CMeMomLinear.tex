@@ -1,0 +1,263 @@
+\documentclass[12pt,a4paper]{article}
+
+% Pacotes
+\usepackage[portuguese]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amssymb}
+\usepackage{physics}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{hyperref}
+
+% Margens
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+\setstretch{1.2}
+
+\title{\textbf{Centro de Massa e Momento Linear}}
+\author{}
+\date{}
+
+\begin{document}
+	
+	\maketitle
+	
+	\section{Centro de Massa}
+	
+	O \textbf{centro de massa (CM)} é o ponto que representa a posição média da massa de um sistema. O movimento de um sistema pode ser descrito como se toda a sua massa estivesse concentrada nesse ponto (Física 12.o Ano - F1.2. $\star$ EstudaFQ, 2026).
+	
+	\subsection{Sistema de partículas}
+	
+	Para um sistema constituído por partículas de massas $m_i$, localizadas nas posições $\vec{r}_i$, o centro de massa é dado por:
+	
+	\begin{equation}
+		\vec{r}_{\text{CM}} = \frac{\sum_{i=1}^{n} m_i \vec{r}_i}{\sum_{i=1}^{n} m_i}
+	\end{equation}
+	
+	Cálculo por Coordenadas Cartesianas
+	O cálculo pode ser realizado de forma independente para cada um dos eixos ($x$, $y$ e $z$) utilizando as coordenadas cartesianas das partículas:
+	\begin{itemize}
+		\item Coordenada $x$: $x_{\text{CM}} = \dfrac{m_1 x_1 + m_2 x_2 + m_3 x_3 + \cdots + m_n x_n}{m_1+m_2+m_3+\cdots+m_n}$
+		\item Coordenada $y$: $y_{\text{CM}} = \dfrac{m_1 y_1 + m_2 y_2 + m_3 y_3 + \cdots + m_n y_n}{m_1+m_2+m_3+\cdots+m_n}$
+		\item Coordenada $z$: $z_{\text{CM}} = \dfrac{m_1 z_1 + m_2 z_2 + m_3 z_3 + \cdots + m_n x_n}{m_1+m_2+m_3+\cdots+m_n}$
+	\end{itemize}
+	
+	O \textbf{vector posição final} é a combinação destas coordenadas:  
+	
+	\begin{equation}
+		\vec{r}_{\text{CM}} = x_{\text{CM}} \vec{e}_x + y_{\text{CM}} \vec{e}_y + z_{\text{CM}} \vec{e}_z
+	\end{equation}
+
+	Casos Particulares e Propriedades
+	A localização do centro de massa depende da distribuição de massa no sistema:
+	\begin{itemize}
+		\item Se o sistema tiver apenas duas partículas com massas iguais ($m_1=m_2$), o centro de massa encontra-se equidistante de ambas.
+		\item Se as massas forem diferentes, o centro de massa estará mais próximo da partícula de maior massa.
+		\item Em corpos rígidos ou sistemas complexos, o centro de massa pode inclusive encontrar-se num ponto fora do corpo físico (como num objeto em forma de anel).
+		\item Para objetos com densidade constante e formas geométricas regulares, a posição pode ser determinada por razões de simetria. No caso de corpos sólidos contínuos, o cálculo envolve integração: $r_{\text{CM}} = \dfrac{1}{\sum_{i=1}^{n} m_i} \int r dm$
+	\end{itemize}
+	
+	Grandezas Dinâmicas Associadas
+	Além da posição, é possível calcular a velocidade e a aceleração deste ponto:
+	\begin{itemize}
+		\item \textbf{Velocidade} ($v_{\text{CM}}$): É a média ponderada das velocidades das partículas, dada por $v_{\text{CM}} = \dfrac{\sum_{i=1}^{n} m_i v_i}{\sum_{i=1}^{n} m_i}$;
+		\item \textbf{Aceleração} ($a_{\text{CM}}$): É calculada como  $a_{\text{CM}} = \dfrac{\sum_{i=1}^{n} m_i a_i}{\sum_{i=1}^{n} m_i}$, sendo que apenas as forças exteriores podem alterar esta aceleração, uma vez que a resultante das forças interiores de um sistema é nula.
+	\end{itemize}
+	
+ 
+	
+	
+	
+	\subsection{Exemplo em uma dimensão (1D)}
+	
+	Considere duas partículas situadas ao longo do eixo $x$:
+	\begin{itemize}
+		\item $m_1 = 2\,\text{kg}$ em $x_1 = 1\,\text{m}$
+		\item $m_2 = 4\,\text{kg}$ em $x_2 = 4\,\text{m}$
+	\end{itemize}
+	
+	O centro de massa é:
+	
+	\begin{equation}
+		x_{\text{CM}} = \frac{2\cdot1 + 4\cdot4}{2+4} = 3\,\text{m}
+	\end{equation}
+	
+	\subsection{Exemplo em duas dimensões (2D)}
+	
+	Três massas iguais colocadas nos vértices de um triângulo equilátero têm o seu centro de massa no \textbf{centro geométrico} do triângulo, devido à simetria do sistema.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{centro_massa_momento_linear.png}
+		\caption{Exemplos ilustrativos de centro de massa, momento linear e colisões.}
+	\end{figure}
+	
+	\section{Momento Linear}
+	
+	O \textbf{momento linear} (também designado por quantidade de movimento) de uma partícula é definido por:
+	
+	\begin{equation}
+		\vec{p} = m\vec{v}
+	\end{equation}
+	
+	Para um sistema de partículas, o momento linear total é:
+	
+	\begin{equation}
+		\vec{p} = \sum_{i=1}^{n} m_i \vec{v}_i
+	\end{equation}
+	
+	\subsection{Exemplo}
+	
+	Considere:
+	\begin{itemize}
+		\item $m_1 = 2\,\text{kg}$ com $v_1 = 3\,\text{m/s}$
+		\item $m_2 = 1\,\text{kg}$ com $v_2 = -2\,\text{m/s}$
+	\end{itemize}
+	
+	O momento linear total do sistema é:
+	
+	\begin{equation}
+		p = 2\cdot3 + 1\cdot(-2) = 4\,\text{kg·m/s}
+	\end{equation}
+	
+	\section{Relação entre Momento Linear e Centro de Massa}
+	
+	O momento linear total de um sistema pode ser escrito como:
+	
+	\begin{equation}
+		\vec{p} = \sum_{i=1}^{n}m_i \vec{v}_i = M \cdot \vec{v}_{\text{CM}}
+	\end{equation}
+	
+	onde $M$ representa a massa total do sistema e $\vec{v}_{\text{CM}}$ a velocidade do centro de massa.
+	
+	\subsection{Velocidade do centro de massa}
+	
+	Usando o exemplo anterior, temos uma velocidade do centro de massa: 
+	
+	\begin{equation}
+		v_{\text{CM}} = \frac{p}{M} = \frac{4}{3} \approx 1{,}33\,\text{m/s}
+	\end{equation}
+	
+	\subsection{Conservação da Velocidade}
+	De acordo com a \textit{Lei da Conservação do Momento Linear}, se a resultante das forças exteriores que atuam sobre o sistema for nula ($\sum \vec{F}_\text{ext.} = 0$, o momento linear do sistema permanece constante e, consequentemente, a velocidade do centro de massa permanece constante em módulo, direção e sentido.
+	
+	\section{Leis de Newton e Momento Linear}
+	
+	A segunda lei de Newton, na sua forma geral, pode ser expressa por:
+	
+	\begin{equation}
+		\sum \vec{F}_{\text{ext}} = \frac{d\vec{p}}{dt}
+	\end{equation}
+	
+	Se a resultante das forças externas for nula:
+	
+	\begin{equation}
+		\sum \vec{F}_{ext} = 0 \Rightarrow \vec{p} = \text{constante}
+	\end{equation}
+	
+	Este resultado traduz a \textbf{lei da conservação do momento linear}.
+	
+	\section{Colisões}
+	
+	Durante uma colisão, as forças internas obedecem à terceira lei de Newton (acção e reacção), cancelando-se mutuamente. Assim, na ausência de forças externas significativas, o momento linear total do sistema conserva-se. Assim, a principal diferença entre as colisões elásticas e inelásticas reside na conservação ou não da energia cinética do sistema, embora em ambos os casos o momento linear se conserve
+	
+	\subsection{Colisão perfeitamente inelástica}
+	
+	Após a colisão, os corpos permanecem unidos:
+	
+	\begin{equation}
+		m_1 v_1 + m_2 v_2 = (m_1 + m_2)v_f
+	\end{equation}
+	
+	Neste caso, o momento linear conserva-se, mas a energia cinética não.
+	
+	Assim, nas colisões inelásticas, o comportamento do sistema altera-se:
+	\begin{itemize}
+		\item Conservação do momento linear: Tal como nas elásticas, o momento linear total do sistema conserva-se ($p_i = p_f$);
+		\item Dissipação de energia: A energia cinética total do sistema não se conserva ($E_c(i) \neq E_C(f)$), havendo geralmente uma perda de energia cinética durante a interação.
+		\item Colisões Perfeitamente Inelásticas: São um caso extremo onde as partículas passam a mover-se juntas após a colisão, partilhando a mesma velocidade final. Nestes casos, o coeficiente de restituição é $e=0$.
+	\end{itemize}
+
+
+
+	
+	\subsection{Colisão elástica}
+	
+	Numa colisão elástica conservam-se:
+	\begin{itemize}
+		\item o momento linear: O momento linear total antes da colisão é igual ao momento linear total após a colisão ($p_i=p_f$);
+		\item a energia cinética: A energia cinética total do sistema permanece constante ($E_c(f) = E_c(i)$);
+		\item Coeficiente de restituição ($e$): Apresentam um valor de $e=1$, o que significa que a velocidade relativa de recessão é igual à velocidade relativa de aproximação;
+		\item Propriedade específica: Numa colisão elástica não frontal entre duas partículas iguais, estando uma em repouso, as partículas são projetadas em direções perpendiculares entre si após o embate.
+	\end{itemize}
+	
+	
+	
+	\section{Centro de Massa em Colisões}
+	
+	O movimento do centro de massa é descrito por:
+	
+	\begin{equation}
+		M\vec{a}_{CM} = \sum \vec{F}_\text{ext}
+	\end{equation}
+	
+	Se a resultante das forças externas for nula, o centro de massa desloca-se com velocidade constante antes, durante e após a colisão.
+	
+	\section{Centro de Massa e explosões}
+	Durante uma explosão, o movimento do centro de massa (CM) de um sistema não é alterado pelas forças internas que provocam a fragmentação. Isto ocorre porque, de acordo com a Segunda Lei de Newton aplicada a sistemas de partículas, apenas as forças exteriores podem alterar a aceleração do centro de massa.\\
+	Os principais aspetos do comportamento do centro de massa numa explosão são:
+	\begin{itemize}
+		\item Conservação do Momento Linear: Numa explosão, as forças de interação entre os fragmentos são forças interiores de elevada intensidade que atuam num intervalo de tempo muito curto. Como a resultante das forças interiores de um sistema é nula, o momento linear total do sistema ($p_\text{sistema}= M v_{CM}$) conserva-se, desde que a resultante das forças exteriores seja nula ou desprezável durante o evento.
+		\item Velocidade do Centro de Massa: Se o momento linear se conserva, a velocidade do centro de massa ($v_{CM}$) permanece constante em módulo, direção e sentido. O sistema move-se como se toda a sua massa estivesse concentrada no CM e como se todas as forças externas fossem aplicadas nesse ponto.
+		\item Trajetória Inalterada:
+		\begin{itemize}
+			\item Em repouso: Se um objeto (como um asteroide) estiver em repouso e explodir, o seu centro de massa permanece parado no mesmo local, enquanto os fragmentos são projetados em direções opostas de forma a que a soma vetorial dos seus momentos lineares continue a ser zero.
+			\item Em movimento balístico: Se um projétil (como um "foguete") explodir no ar, o seu centro de massa continua a descrever a mesma trajetória balística que seguiria se a explosão não tivesse ocorrido. Os fragmentos espalham-se em torno do CM, mas a posição média ponderada pelas massas desses fragmentos segue o caminho original.
+		\end{itemize}
+	\end{itemize}
+	
+	Em suma, embora as partes individuais do sistema mudem radicalmente as suas trajetórias devido às forças internas da explosão, o ponto que representa o centro de massa ignora essas forças internas, respondendo apenas à resultante das forças externas (como a gravidade).
+	
+	\section{Conservação do momento linear em colisões}
+	A conservação do momento linear em colisões fundamenta-se no facto de as interações entre as partículas ocorrerem num intervalo de tempo muito curto, durante o qual as forças de colisão (forças interiores) apresentam intensidades muito elevadas. Nesse período, as forças exteriores que possam atuar sobre o sistema têm uma intensidade desprezável quando comparadas com as forças de colisão, permitindo considerar a resultante das forças exteriores como nula ($\sum F_\text{ext.} = 0$).
+	
+	\subsection{O Princípio de Conservação}
+	De acordo com a Lei da Conservação do Momento Linear, se a resultante das forças exteriores for nula, o momento linear total do sistema permanece constante ao longo do tempo. Isto implica que:
+	\begin{itemize}
+		\item O momento linear total antes da colisão é igual ao momento linear total após a colisão ($p_i=p_f$).
+		\item A velocidade do centro de massa do sistema permanece constante durante todo o processo.
+	\end{itemize}
+
+	O momento linear de um sistema de partículas é definido como a soma dos momentos lineares de cada partícula constituinte, sendo também igual ao produto da massa total do sistema pela velocidade do seu centro de massa ($p_\text{sistema}=M v_{CM}$).
+	
+	\subsection{Aplicação nos diferentes tipos de colisão}
+	A conservação do momento linear verifica-se em todos os tipos de colisão, independentemente de haver ou não conservação da energia cinética:
+	\begin{itemize}
+		\item Colisões Elásticas: Verificam-se as conservações do momento linear e da energia cinética total do sistema ($E_\text{ci}=E_\text{cf}$). Nestes casos, o coeficiente de restituição ($e$), que mede a elasticidade do choque, é igual a 1.
+		\item Colisões Inelásticas: O momento linear conserva-se, mas a energia cinética total não se conserva ($E_\text{ci} \neq E_\text{cf}$), ocorrendo dissipação de energia.
+		\item Colisões Perfeitamente Inelásticas: São um caso específico onde as partículas, após colidirem, passam a mover-se juntas com a mesma velocidade final. A expressão matemática para este sistema é $m_1 v_{1i} + m_2 v_{2i} = (m_1 + m_2) v_f$, e o coeficiente de restituição é nulo ($e=0$).
+	\end{itemize}
+	
+	\subsection{Fatores influentes}
+	A eficácia da conservação e as forças envolvidas dependem também do tempo de interação ($\Delta t$). Numa colisão, a variação do momento linear ($\Delta p$) é igual ao impulso da força exercida. Assim, para uma determinada variação de momento linear, quanto menor for o intervalo de tempo da colisão, maior será a força exercida entre as partículas. Por esta razão, em termos experimentais, a utilização de calhas de ar ou de baixo atrito é importante para garantir que as forças exteriores (como o atrito) sejam mínimas e a lei da conservação seja observada com precisão.
+	
+	
+	\section{Resumo}
+	
+	\begin{itemize}
+		\item O centro de massa representa a posição média da massa de um sistema;
+		\item O momento linear total é dado por $\vec{p} = M\vec{v}_{CM}$;
+		\item Na ausência de forças externas, o momento linear conserva-se;
+		\item As colisões não alteram o movimento do centro de massa quando as forças externas são desprezáveis.
+	\end{itemize}
+	
+	\section*{Referências}
+	\begin{itemize}
+		\item Física 12.o ano - F1.2. $\star$ EstudaFQ. (2026, January 26). EstudaFQ. \url{https://estudafq.pt/f12/fisica-12-o-ano-f1-2-centro-de-massa-e-momento-linear/}
+	\end{itemize}
+	
+	
+\end{document}
