@@ -1,0 +1,79 @@
+
+<style>
+  .wrap { padding: 1.5rem 0; max-width: 660px; font-family: var(--font-sans); }
+  .badge { display: inline-block; font-size: 12px; padding: 3px 10px; border-radius: var(--border-radius-md); background: var(--color-background-info); color: var(--color-text-info); margin-bottom: 1rem; }
+  .card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1.25rem 1.5rem; margin-bottom: 1.25rem; }
+  .card h2 { font-size: 15px; font-weight: 500; margin: 0 0 0.75rem; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.04em; }
+  .card p { font-size: 15px; line-height: 1.75; color: var(--color-text-primary); margin: 0 0 0.75rem; }
+  .card p:last-child { margin-bottom: 0; }
+  .data-box { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 0.9rem 1.1rem; font-size: 14px; color: var(--color-text-secondary); line-height: 2; margin-top: 0.75rem; }
+  .data-box strong { color: var(--color-text-primary); }
+  .divider { border: none; border-top: 0.5px solid var(--color-border-tertiary); margin: 1.1rem 0; }
+  .step-title { font-size: 14px; font-weight: 500; color: var(--color-text-secondary); margin: 0 0 0.4rem; }
+  .step-body { font-size: 15px; line-height: 1.75; color: var(--color-text-primary); margin: 0 0 0.5rem; }
+  .result { display: inline-block; background: var(--color-background-success); color: var(--color-text-success); font-size: 14px; font-weight: 500; padding: 4px 14px; border-radius: var(--border-radius-md); margin-top: 2px; }
+  .eq { font-style: italic; }
+  .sol-label { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; color: var(--color-text-secondary); margin-bottom: 1rem; }
+  .sol-label i { font-size: 16px; }
+</style>
+
+<div class="wrap">
+  <span class="badge">Física e Química A — 11.º ano</span>
+
+  <div class="card">
+    <h2>Enunciado</h2>
+    <p>
+      Um técnico de análise ambiental mergulha uma sonda ótica numa solução aquosa de carbonato de cálcio em equilíbrio com o sólido, a 25 °C. A sonda emite um raio de luz que passa do interior do sensor (vidro, <em>n</em><sub>vidro</sub> = 1,500) para a solução, com um ângulo de incidência de 60,0°. O raio refrata-se na solução com um ângulo de refração de <strong>40,6°</strong>.
+    </p>
+    <p>
+      Usando exclusivamente este dado experimental, determine a concentração de iões Ca²⁺ em solução e comprove se é consistente com o valor tabelado de K<sub>s</sub>.
+    </p>
+    <div class="data-box">
+      <strong>K<sub>s</sub> (CaCO₃, 25 °C)</strong> = 4,96 × 10⁻⁹<br>
+      <strong>Índice de refração da água pura (25 °C)</strong>: n<sub>água</sub> = 1,3330<br>
+      <strong>Variação do índice com a concentração</strong>: Δn ≈ +1,45 × 10⁻² L/mol por mol/L de soluto dissolvido<br>
+      <strong>Lei de Snell-Descartes</strong>: n₁ sen θ₁ = n₂ sen θ₂
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="sol-label">
+      <i class="ti ti-circle-check" aria-hidden="true"></i>
+      Resolução
+    </div>
+
+    <div>
+      <p class="step-title">Passo 1 — Calcular o índice de refração da solução (Física)</p>
+      <p class="step-body eq">n₁ sen θ₁ = n₂ sen θ₂</p>
+      <p class="step-body">1,500 × sen(60,0°) = n<sub>sol</sub> × sen(40,6°)</p>
+      <p class="step-body">n<sub>sol</sub> = (1,500 × 0,8660) / 0,6521 ≈ <strong>1,3924</strong></p>
+      <span class="result">n<sub>sol</sub> ≈ 1,3924</span>
+    </div>
+
+    <hr class="divider">
+
+    <div>
+      <p class="step-title">Passo 2 — Obter a concentração da solução (ponte entre Física e Química)</p>
+      <p class="step-body">A variação do índice em relação à água pura é:</p>
+      <p class="step-body eq">Δn = n<sub>sol</sub> − n<sub>água</sub> = 1,3924 − 1,3330 = 0,0594</p>
+      <p class="step-body">Usando o dado de proporcionalidade:</p>
+      <p class="step-body eq">c = Δn / (1,45 × 10⁻²) = 0,0594 / 0,0145 ≈ <strong>4,10 × 10⁻² mol/L</strong></p>
+      <p class="step-body" style="font-size:13px; color: var(--color-text-secondary);">
+        Esta é a concentração total de soluto, correspondente a [Ca²⁺] + [CO₃²⁻] = 2s, logo [Ca²⁺] ≈ 2,05 × 10⁻² mol/L... 
+        <br>Espera — vamos verificar com K<sub>s</sub> antes de concluir.
+      </p>
+    </div>
+
+    <hr class="divider">
+
+    <div>
+      <p class="step-title">Passo 3 — Verificar com K<sub>s</sub> (Química)</p>
+      <p class="step-body">Para CaCO₃ puro em água: [Ca²⁺] = [CO₃²⁻] = s</p>
+      <p class="step-body eq">s = √K<sub>s</sub> = √(4,96 × 10⁻⁹) ≈ 7,04 × 10⁻⁵ mol/L</p>
+      <p class="step-body">Concentração total esperada: 2s ≈ 1,41 × 10⁻⁴ mol/L</p>
+      <p class="step-body">Δn esperado = 1,41 × 10⁻⁴ × 1,45 × 10⁻² ≈ 2,04 × 10⁻⁶ — variação <em>muito inferior</em> à resolução da sonda.</p>
+      <p class="step-body">O valor medido (Δn = 0,0594) é demasiado elevado para corresponder a dissolução pura de CaCO₃. A solução contém outros eletrólitos dissolvidos — a sonda deteta a presença de iões adicionais não provenientes do CaCO₃.</p>
+      <span class="result">Inconsistente com K<sub>s</sub> — há iões em excesso na solução</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,133 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage{enumitem}
+
+\geometry{margin=2.5cm}
+
+\definecolor{azul}{RGB}{30, 100, 180}
+\definecolor{cinza}{RGB}{245, 245, 245}
+\definecolor{verde}{RGB}{20, 130, 80}
+
+\mdfdefinestyle{enunciado}{
+  backgroundcolor=cinza,
+  linecolor=azul,
+  linewidth=1.2pt,
+  topline=false, rightline=false, bottomline=false,
+  innerleftmargin=14pt, innerrightmargin=14pt,
+  innertopmargin=12pt, innerbottommargin=12pt
+}
+
+\mdfdefinestyle{dados}{
+  backgroundcolor=cinza,
+  linecolor=gray!50,
+  linewidth=0.5pt,
+  innerleftmargin=12pt, innerrightmargin=12pt,
+  innertopmargin=8pt, innerbottommargin=8pt,
+  roundcorner=4pt
+}
+
+\mdfdefinestyle{resolucao}{
+  backgroundcolor=white,
+  linecolor=verde,
+  linewidth=1.2pt,
+  topline=false, rightline=false, bottomline=false,
+  innerleftmargin=14pt, innerrightmargin=14pt,
+  innertopmargin=12pt, innerbottommargin=12pt
+}
+
+\begin{document}
+
+\begin{center}
+  {\small\textcolor{azul}{\textbf{F\'isica e Qu\'imica A\,---\,11.\textordmasculine{} ano}}}
+\end{center}
+
+\bigskip
+
+%---------------------------------------------------------------
+\begin{mdframed}[style=enunciado]
+
+Um investigador prepara uma solu\c{c}\~ao aquosa saturada de um sal pouco
+sol\'uvel, XY, a 25\,\textdegree C, que se dissolve segundo o equil\'ibrio:
+\[
+  \mathrm{XY}_{(s)} \rightleftharpoons \mathrm{X}^{+}_{(aq)}
+  + \mathrm{Y}^{-}_{(aq)}
+\]
+Para medir a concentra\c{c}\~ao da solu\c{c}\~ao, o investigador recorre a um
+feixe de luz \textit{laser}: dirige-o do ar para a superf\'icie da solu\c{c}\~ao
+com um \^angulo de incid\^encia de $45{,}0^\circ$ e mede um \^angulo de
+refra\c{c}\~ao de $32{,}0^\circ$. Sabe-se que o \'indice de refra\c{c}\~ao de
+uma solu\c{c}\~ao aquosa varia com a concentra\c{c}\~ao total de i\~oes segundo:
+\[
+  n_{\text{sol}} = n_{\text{\'{a}gua}} + k \cdot c_{\text{total}}
+\]
+Usando a lei de Snell-Descartes e a express\~ao acima, determine a
+solubilidade molar de XY e verifique se o resultado \'e consistente com
+o valor de $K_s$ fornecido.
+
+\end{mdframed}
+
+\medskip
+
+%---------------------------------------------------------------
+\begin{mdframed}[style=dados]
+\textbf{Dados:}
+\quad $K_s\,(\mathrm{XY},\;25\,\text{\textdegree C}) = 7{,}50 \times 10^{-4}$
+\quad;\quad
+$n_{\text{ar}} = 1{,}000$
+\quad;\quad
+$n_{\text{\'{a}gua}} = 1{,}333$
+\quad;\quad
+$k = 2{,}50 \times 10^{-2}\ \text{L\,mol}^{-1}$
+\end{mdframed}
+
+\bigskip\bigskip
+
+%---------------------------------------------------------------
+\noindent\textcolor{verde}{\rule{\linewidth}{0.5pt}}\\[4pt]
+{\textcolor{verde}{\textbf{Resolu\c{c}\~ao}}}\\[-2pt]
+\noindent\textcolor{verde}{\rule{\linewidth}{0.5pt}}
+
+\bigskip
+
+\begin{mdframed}[style=resolucao]
+
+Pela lei de Snell-Descartes, o \'indice de refra\c{c}\~ao da solu\c{c}\~ao \'e:
+\[
+  n_{\text{sol}}
+  = \frac{n_{\text{ar}}\,\sin 45{,}0^\circ}{\sin 32{,}0^\circ}
+  = \frac{1{,}000 \times 0{,}7071}{0{,}5299}
+  = 1{,}3344
+\]
+
+Substituindo na express\~ao do \'indice de refra\c{c}\~ao:
+\[
+  c_{\text{total}}
+  = \frac{n_{\text{sol}} - n_{\text{\'{a}gua}}}{k}
+  = \frac{1{,}3344 - 1{,}333}{2{,}50 \times 10^{-2}}
+  = \frac{1{,}4 \times 10^{-3}}{2{,}50 \times 10^{-2}}
+  = 5{,}47 \times 10^{-2}\ \text{mol\,L}^{-1}
+\]
+
+Como XY $\rightleftharpoons$ X$^+$ + Y$^-$, t\^em-se $[\mathrm{X}^+] =
+[\mathrm{Y}^-] = s$ e $c_{\text{total}} = 2s$, logo:
+\[
+  s = \frac{c_{\text{total}}}{2}
+    = \frac{5{,}47 \times 10^{-2}}{2}
+    \approx 2{,}74 \times 10^{-2}\ \text{mol\,L}^{-1}
+\]
+
+\textit{Verifica\c{c}\~ao:} pelo $K_s$,
+$s = \sqrt{K_s} = \sqrt{7{,}50 \times 10^{-4}} \approx 2{,}74 \times 10^{-2}$
+mol\,L$^{-1}$. Os valores coincidem, confirmando a consist\^encia entre a
+medida \'otica e o equil\'ibrio de solubilidade.
+
+\end{mdframed}
+
+\end{document}

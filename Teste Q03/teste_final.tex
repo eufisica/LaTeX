@@ -1,0 +1,612 @@
+\documentclass[addpoints]{exam}
+
+\usepackage[portuguese]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{multicol}
+\usepackage{geometry}
+\usepackage{tikz}
+\usetikzlibrary{arrows, decorations.markings}
+
+\usepackage{fourier}
+%Font Size
+%\usepackage[12pt]{extsizes}%OR
+\usepackage[fontsize=11pt]{scrextend}
+%-----Physics
+\usepackage{amsfonts,amsmath,amssymb,gensymb}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{caption, subcaption}
+\usepackage{tikz}
+\usepackage{tkz-euclide}
+\usepackage{circuitikz}
+\usepackage{float}
+\usepackage{pgf}
+\usepackage{pgfplots}
+%\usepackage{pgfplotstable}
+\usepackage{wrapfig}
+\usepackage{wrapstuff}
+\usepackage{tcolorbox}
+\tcbset{width=\linewidth,boxrule=0pt,colback=gray!10,arc=0pt,auto outer arc,left=0pt,right=0pt,boxsep=15pt}
+
+\usepackage{xcolor}
+\usepackage{cancel}
+\usepackage{hyperref}
+
+\usetikzlibrary{positioning, arrows.meta, intersections, calc, fadings, shapes.geometric, arrows, mindmap, backgrounds, shadings, decorations.markings,decorations.pathmorphing, math, shapes, decorations, patterns, shadows, external, angles, quotes}
+\tikzset{>=latex}
+\usepackage{siunitx}
+\sisetup{output-decimal-marker={,}}
+\usepackage[shortconst]{physconst}
+\usepackage{chemfig, chemmacros}
+\usepackage[version=4]{mhchem}
+
+%-----Caixas para apresentar as soluções
+\usepackage{lipsum,framed,color}
+\usepackage{calc}
+\definecolor{shadecolor}{rgb}{1,0.7,0.7}
+\newlength{\boxwidth}
+\newsavebox{\boxcontainer}
+
+\newcommand\mybox[1]{%
+	%\begin{center}%
+	\fcolorbox{white}{shadecolor}{%
+		%\begin{minipage}[t]{\dimexpr\textwidth-2\fboxsep+10\fboxrule}%
+		\begin{minipage}[t]{\textwidth-2\fboxsep}
+			#1%
+	\end{minipage}}%
+	%\end{center}
+}
+
+
+%-----Math
+\usepackage{dsfont}%apresenta as letras R,Z,C matemáticas
+\usepackage{mathtools}%configura os casos entre chavetas
+
+%-----Controlar espaço entre opções nas escolhas múltiplas (ver configuração antes de iniciar o documento)
+\usepackage{xpatch}
+
+\geometry{
+	a4paper,
+	top=1cm,
+	bottom=2cm,
+	left=1.5cm,
+	right=3cm,
+}
+
+\pgfdeclarelayer{background}
+\pgfdeclarelayer{main}
+
+\pgfsetlayers{background,main}
+
+%--------------------------------
+% CONFIGURAR CABEÇALHO E RODAPÉ
+%--------------------------------
+\pagestyle{headandfoot}
+\firstpageheader{}{}{}
+\runningheader{}{}{}
+\firstpagefooter{}{}{}
+\runningfooter{Física e Química A}{Teste}{Pág. \thepage\ de \numpages}
+\runningfootrule
+
+
+%--------------------------------
+% CONFIGURAÇÕES DO DOCUMENTO EXAM
+%--------------------------------
+\renewcommand{\solutiontitle}{\noindent \textbf{Solução:}\enspace}
+\renewcommand{\thequestion}{\bf \arabic{question}}
+\renewcommand{\choicelabel}{{\bf (\thechoice)}}
+\renewcommand{\partlabel}{\bf \thequestion.\arabic{partno}}
+\pointpoints{ponto}{pontos}
+\pointformat{[\bf \thepoints]}
+\pointsinrightmargin
+\setlength{\rightpointsmargin}{.5cm}
+\CorrectChoiceEmphasis{\color{red}\bfseries}%respostas corretas nas escolhas múltiplas a vermelho
+%tabela de cotação
+\hqword{Questão:}%vqword para a tabela na vertical
+\hpword{Cotação:}%vpword para a tabela na vertical
+
+
+\xpatchcmd{\oneparchoices}{\penalty -50\hskip 1em plus 1em\relax}{\hfill}
+
+
+% Deixar as linhas de espaço depois do xpatch
+\begin{document}
+	
+	\input{intro}
+	
+	% Settings for \mybox and Mybox
+	\setlength{\fboxrule}{1pt}
+	\setlength{\fboxsep}{10pt}
+	
+	% Additional settings for MyBox
+	\setlength{\FrameRule}{\fboxrule}
+	\setlength{\FrameSep}{\fboxsep}
+	
+	
+	
+	%INÍCIO DO TESTE
+	\newpage
+	\begin{questions}
+		\fullwidth{\Large \textbf{Grupo I}}
+		\uplevel{
+			
+			\begin{minipage}{0.4\linewidth}
+				A figura mostra uma bobina, constituída por 550 espiras com uma área de secção transversal de \SI{40}{\centi\meter\squared}, a girar em sentido anti-horário, com velocidade angular constante, em torno de um eixo perpendicular à direção de um campo magnético uniforme de \SI{0,25}{\tesla}. No instante representado na figura, o ângulo entre a normal ao plano da bobina e a direção do campo magnético é de \SI{30}{\degree}.\\
+				Nota: a representação não está à escala.
+				
+			\end{minipage}
+			\hspace{15pt}
+			\vspace{20pt} 
+			\begin{minipage}{0.4\linewidth}
+				\vspace{30pt}
+				\centering
+				\begin{tikzpicture}
+					% Linhas do campo magnético
+					\foreach \y in {0,1,2,3,4} {
+						\draw[thick,->,color=black!59] (-3,\y) -- (3,\y);
+					}
+					
+					% Bobina inclinada
+					\draw[thick, rotate around={30:(0,2)}] (-0.4,1) rectangle (-0.2,3);
+					\draw[thick, rotate around={30:(0,2)}] (-0.4,1) rectangle (0,3);
+					\draw[thick, rotate around={30:(0,2)}] (-0.4,1) rectangle (0.2,3);
+					\draw[thick, rotate around={30:(0,2)}] (-0.4,1) rectangle (0.4,3);
+					
+					% Eixo de rotação
+					\draw[dashed] (0,2) -- (2,4.5) node[right] {Eixo};
+					
+					% Ponto de rotação
+					\filldraw[black] (0,2) circle (2pt);
+					
+					% Ângulo de inclinação
+					\draw[dashed] (-2,1.5) -- (0,2);
+					\draw (-1,2) arc [start angle=180, end angle=210, radius=0.5];
+					\node at (-1.4,1.8) {30$^\circ$};
+					
+					% Indicação da bobina
+					\node[right] at (1,1.5) {Bobina};
+					
+					% Indicação do campo magnético
+					\node[right,color=black!59] at (3,1.5) {Campo magnético};
+					\node[right,color=black!59] at (3,1) {uniforme};
+					
+					% Indicação da rotação
+					\draw[<-] (-1,3) arc [start angle=150, end angle=100, radius=1] node[above] {Rotação};
+					
+				\end{tikzpicture}
+			\end{minipage}
+		}
+		
+		\question[14] Determine o valor do fluxo magnético que atravessa a bobina quando se encontra na posição indicada na figura. Apresente todas as etapas de resolução.
+		
+		\begin{solution}
+			\textcolor{white}{.}\\
+			\mybox{
+				Etapa A - Determinar o fluxo numa espira (7pt):\\
+				$\phi = B A \cos(\alpha) \Rightarrow \phi = 0,25 \times 4,0 \times 10^{-3} \times \cos(\SI{30}{\degree}) = \SI{8,66e-4}{\weber}$. \\
+				
+				Etapa B - Determinar o fluxo na bobina (7pt):\\
+				$\phi_\text{bobina} = N \phi_\text{espira} \Rightarrow \phi_\text{bobina}= 550 \times 8,66 \times 10^{-4} = \SI{0,48}{\weber}$
+			}
+		\end{solution}
+		
+		\vspace{10pt}
+		\question[8] Indique o ângulo mínimo que a bobina tem de rodar, a partir da posição indicada na figura, para que o fluxo magnético que a atravessa seja máximo.
+		
+		\begin{solution}
+			\textcolor{white}{.}\\
+			\mybox{
+				Terá que rodar: $60+90=\SI{150}{\degree}$
+			}
+		\end{solution}
+		
+		
+		\vspace{10pt}
+		\question[12] Determine o módulo da força eletromotriz induzida na bobina sabendo que a sua rotação origina um fluxo magnético máximo após \SI{1,4}{\second}. \\Apresente todas as etapas de resolução
+		
+		\begin{solution}
+			\textcolor{white}{.}\\
+			\mybox{
+				Etapa A - Determinar o fluxo máximo (6pt):\\
+				$\phi = N B A \cos(\alpha) \Rightarrow \phi = 550 \times 0,25 \times 4,0 \times 10^{-3} \times \cos(\SI{0}{\degree}) = \SI{0,55}{\weber}$. \\
+				
+				Etapa B - Determinar a força eletromotriz (6pt):\\
+				$|\varepsilon_i| = \dfrac{|\Delta \phi_m|}{\Delta t} \Leftrightarrow |\varepsilon_i| = \dfrac{|0,55-0,48|}{1,4} = \SI{0,05}{\volt}$
+			}
+		\end{solution}
+		
+		\question[8] A força eletromotriz induzida é tanto maior quanto \underline{\hspace{50pt}} for a variação do fluxo do campo magnético, \underline{\hspace{50pt}} for o intervalo de tempo em que ocorre a variação do fluxo de campo magnético e \underline{\hspace{50pt}} for o número de espiras. (selecione a opção correta)
+		
+		\begin{multicols}{2}
+			\begin{choices}
+				\correctchoice $\ldots$ maior $\ldots$ menor $\ldots$ maior.
+				\choice $\ldots$ menor $\ldots$ menor $\ldots$ maior.
+				\choice $\ldots$ maior $\ldots$ maior $\ldots$ maior.
+				\choice $\ldots$ maior $\ldots$ menor $\ldots$ menor.
+			\end{choices}
+		\end{multicols}
+
+		
+		\question Um anel metálico, de raio $r$, rola, com velocidade constante igual a \SI{2,0}{\centi\meter\per\second}, sobre uma mesa, passando sucessivamente pelas posições, igualmente espaçadas, P, Q, R, S e T, como representado na figura.\\
+		
+		\begin{minipage}{0.4\textwidth}
+			Na região indicada pela parte sombreada na figura existe um campo magnético uniforme, de intensidade \SI{100,0}{\milli\tesla}, perpendicular ao plano do anel e que aponta para fora da página.
+		\end{minipage}
+		\hspace{0.1\textwidth}
+		\begin{minipage}{0.4\textwidth}
+			\begin{tikzpicture}
+				% Base
+				\draw[thick] (-3,-0.5) -- (3,-0.5);
+				
+				
+				% Campo magnético
+				\fill[gray!30] (-1,-0.5) rectangle (1,1.5);
+				\foreach \x in {-0.8,-0.4,0,0.4,0.8} {
+					\foreach \y in {-0.3, 0,0.3,0.6,0.9,1.2} {
+						%\draw[thick] (\x,\y) circle (0.15);
+						\draw[thick] (\x,\y) node {\small $\odot$};
+					}
+				}
+				
+				% Bobinas
+				\foreach \x in {-2, -1, 0, 1, 2} {
+					\draw[thick] (\x,0) circle (0.5);
+				}
+				
+				% Indicação da direção
+				\draw[thick,->] (-2.5,0.7) -- (-1.5,0.7);
+				
+				%linhas verticais para os pontos P e Q
+				\draw[dashed] (-2,0)--(-2,-1.8);
+				\draw[dashed] (-1,0)--(-1,-1.8);
+				
+				% Rótulos
+				\node[below] at (-2,-1) {P};
+				\node[below] at (-1,-1) {Q};
+				\node[below] at (0,-1) {R};
+				\node[below] at (1,-1) {S};
+				\node[below] at (2,-1) {T};
+				
+				% Escala
+				\draw[thin, <->] (-2,-1.5) -- (-1,-1.5);
+				\node[below] at (-1.5,-1.5) {$\overline{PQ} = \SI{2,0}{\centi\meter}$};
+				
+			\end{tikzpicture}
+		\end{minipage}
+		
+		\begin{parts}
+			\part[8] Se o fluxo do campo magnético através do anel no ponto Q for igual a $\phi$, qual será o fluxo do campo magnético no ponto R? 
+			\begin{multicols}{2}
+				\begin{choices}
+					\choice	$\phi$
+					\choice $\dfrac{\phi}{2}$
+					\choice $\phi \times \pi r^2$
+					\correctchoice $2\phi$
+				\end{choices}
+			\end{multicols}
+			
+			\part[8]	Considere o movimento da espira, de raio 65 cm, da posição R para a posição T como mostra a figura. O valor da força eletromotriz induzida na espira é: 
+			\begin{multicols}{2}
+				\begin{choices}
+					\choice	$\varepsilon_i = \dfrac{|100,0 \times \pi \times 65^2 \times \cos(0) |}{2}$
+					\correctchoice $\varepsilon_i = \dfrac{|100,0 \times \pi \times 65^2 \times 10^{-7} \times \cos(0) |}{2}$
+					\choice $\varepsilon_i = \dfrac{|100,0 \times \pi \times 65^2 \times 10^{-5} \times \cos(0) |}{1}$
+					\choice $\varepsilon_i = \dfrac{|100,0 \times \pi \times 65^2 \times \cos(90) |}{1}$
+				\end{choices}
+			\end{multicols}
+			
+			\part[16]	Considere que numa outra situação a espira em R começa a rodar sobre o eixo X de modo a produzir uma força eletromotriz máxima de \SI{10,4}{\volt}. Determine a frequência de rotação da espira. \\
+			Apresente todas as etapas de resolução.
+			
+			\begin{solution}
+				\textcolor{white}{.}\\
+				\mybox{
+					Etapa A - Determinar o fluxo máximo (4pt):\\
+					$\phi_\text{máx} = B \times A \times \cos(\theta) \Rightarrow \phi_\text{máx} = 100 \times 10^{-3} \times (65 \times 10^{-2})^2 \times \pi \times \cos(0) = \SI{0,133}{\weber}$\\
+					
+					Etapa B - Determinar o tempo que demora a variar do fluxo máximo ao fluxo mínimo (4pt):\\
+					$\varepsilon_i = \dfrac{\Delta \phi}{\Delta t} \Leftrightarrow 10,4 = \dfrac{0,133 - 0}{\Delta t} \Leftrightarrow \Delta t = \SI{0,0128}{\second}$\\
+					
+					Etapa C - Determinar o período de rotação (4pt):\\
+					$T = 4 \times \Delta t \Rightarrow T = 4 \times 0,0128 = \SI{0,0512}{\second}$\\
+					
+					Etapa D - Determinar a frequência (4pt):\\
+					$f = \dfrac{1}{T} \Rightarrow f = \dfrac{1}{0,0512} = \SI{19,5}{\hertz}$
+				}
+			\end{solution}
+		\end{parts}
+		
+		
+		\noindent\rule{\linewidth}{0.5pt}
+		\vspace{5pt}
+		\fullwidth{\Large \textbf{Grupo II}}
+		\uplevel{
+			\begin{minipage}{0.6\textwidth}
+				A radiação eletromagnética propaga-se no ar com uma velocidade praticamente igual à sua velocidade de propagação no vazio, pelo que o índice de refração do ar é 1,00.\\
+				A figura representa o trajeto de um feixe de radiação monocromática de \SI{5,0e14}{\hertz} de frequência, muito fino, que, propagando-se no ar, atravessa um semicilindro de um material transparente, voltando depois a propagar-se no ar.
+			\end{minipage}
+			\hspace{0.1\textwidth}
+			\begin{minipage}{0.3\textwidth}
+				\begin{tikzpicture}
+					[decoration={markings, 
+						mark= at position 0.25 with {\arrow{stealth}},
+						mark= at position 2cm with {\arrow{stealth}}}
+					]
+					
+					% Semicírculo
+					\draw[thick] (0,0) arc [start angle=270, end angle=90, radius=2];
+					\draw[thick] (0,0) -- (0,4);
+					
+					% Linha inclinada
+					\draw[thick, postaction={decorate}] (-3,0) -- (0,2);
+					\draw[thick, postaction={decorate}] (0,2) -- (1,4);
+					
+					% Linha tracejada
+					\draw[dashed] (-1.5,2) -- (1.5,2);
+					
+					% Ângulos
+					\draw (0.5,3) arc [start angle=40, end angle=90, radius=0.6];
+					\node[right] at (0,3.5) {\textbf{26$^\circ$}};
+					
+					\draw (-0.6,2) arc [start angle=180, end angle=208, radius=0.8];
+					\node[left] at (-0.6,1.6) {\textbf{32$^\circ$}};
+					
+				\end{tikzpicture}
+			\end{minipage}
+		}
+		
+		\vspace{15pt}
+		\question[12] Uma parte do feixe incidente na superfície plana do semicilindro sofre reflexão nessa superfície.\\
+		Determine o ângulo, em graus, que se deverá observar entre o feixe refletido nessa superfície (não representado na figura) e o feixe refratado.
+		\\
+		
+		
+		\begin{solution}
+			\textcolor{white}{.}\\
+			\mybox{
+				
+				$(90 - \theta_\text{refletido}) + \theta_\text{refratado} = (90 - 32) + 26 = \SI{84}{\degree}$	
+			}
+			
+		\end{solution}
+		
+		\vspace{15pt}
+		\question[16] Determine o comprimento de onda, em nanometros, do feixe de radiação monocromática no interior do material constituinte do semicilindro representado. \\
+		Apresente todas as etapas de resolução.\\
+		
+		
+		\begin{solution}
+			\textcolor{white}{.}\\
+			\mybox{
+				Determinar o $n_v$ (5pt):\\
+				$n_v \sin(\theta_i) = n_\text{ar} \sin(\theta_r) \Leftrightarrow n_v \sin(32) = 1,000 \sin(64) \Leftrightarrow n_v = 1,70$\\
+				
+				Determinar a $v_v$ (velocidade da luz no vidro) (5pt):\\
+				$n=\dfrac{c}{v} \Leftrightarrow 1,70 = \dfrac{3,00 \times 10^8}{v} \Leftrightarrow v = \SI{1,76e8}{\meter\per\second}$\\
+				
+				Determinar o comprimento de onda, $\lambda$ (5pt):\\
+				$v = \lambda \times f \Leftrightarrow 1,76 \times 10^8 = \lambda \times 5,0 \times 10^{14} \Leftrightarrow \lambda = \SI{3,52e-7}{\meter}$
+				
+				Resultado em nanometros (1pt):\\
+				$\lambda = \SI{352}{\nano\meter}$
+			}
+			
+		\end{solution}
+		
+		\vspace{15pt}
+		\question[12] Indique, justificando,  em qual dos meios de separação ar-semicilindro ou semicilindro-ar pode ocorrer o fenómeno da reflexão total da luz e refere, justificando, os ângulos de incidência para os quais esse fenómeno pode ocorrer.\\
+		Apresente todas as etapas de resolução.\\
+		
+		\begin{solution}
+			\textcolor{white}{.}\\
+			\mybox{
+				A resposta integra os tópicos de referência seguintes ou outros de conteúdo equivalente:\\
+				
+				(A)	Só pode ocorrer reflexão total da luz se a radiação passar de um meio mais refringente para um meio menos refringente, ou seja, neste caso do semicilindro para o ar.\\
+				
+				(B) O ângulo limite é dado por: $n_v \sin(\theta_\text{lim}) = n_ar \sin(90º) \Leftrightarrow \theta_\text{lim} = \SI{36}{\degree}$\\
+				
+				(C)	E este fenómeno só poderá ocorrer para ângulos superiores a \SI{36}{\degree}\\
+				
+				\begin{tabular}{|c|p{0.5\textwidth}|c|}
+					\hline
+					NÍVEIS & DESCRITORES DO NÍVEL DE DESEMPENHO & PONTUAÇÃO \\
+					\hline
+					4 & Na resposta, são apresentados os três tópicos de referência com organização coerente dos conteúdos e linguagem cientifica adequada. & 12 \\
+					\hline
+					3 & Na resposta, são apresentados os três tópicos de referência com falhas na organização dos conteúdos ou na utilização da linguagem cientifica. & 9 \\
+					\hline
+					2 & Na resposta, é apresentado apenas dois dos tópicos de referência com linguagem cientifica adequada. & 6 \\
+					\hline
+					1 & Na resposta, é apresentado apenas um dos tópicos de referência com falhas na utilização da linguagem cientifica. & 3 \\
+					\hline
+				\end{tabular}
+				
+			}
+		\end{solution}
+		
+		\question[8] O feixe de radiação monocromática \underline{\hspace{50pt}} de um meio material para se propagar, sendo estas ondas, no modo como se propagam, \underline{\hspace{50pt}}.\\
+		
+		\begin{multicols}{2}
+			\begin{choices}
+				\choice $\ldots$ necessita $\ldots$ transversais.
+				\correctchoice $\ldots$ não necessita $\ldots$ transversais.
+				\choice $\ldots$ não necessita $\ldots$ longitudinais.
+				\choice $\ldots$ necessita $\ldots$ longitudinais.
+			\end{choices}
+		\end{multicols}
+		
+		
+		
+		
+		\noindent\rule{\linewidth}{0.5pt}
+		\vspace{1pt}
+		\fullwidth{\Large \textbf{Grupo III}}
+		\uplevel{Considere a seguinte informação.\\
+			
+			\begin{minipage}{0.9\textwidth}
+				\begin{tcolorbox}
+					\textbf{Métodos usados para proteção de grupos –COOH }\\
+					\textbf{Método 1}\\
+					Seguindo o processo tradicional, é possível proteger o grupo carboxilo (–COOH) através da seguinte reação química:
+					
+					\ce{CH3COOH (aq) + CH3I (aq) ->[\'{a}cido, base, metal, etc.] CH3COOCH3 (aq) + HI (aq)}
+					
+					\textbf{Método 2}\\
+					Um grupo de investigadores da universidade de Fuzhou, na China, publicou em 2018, na revista The Royal Society of Chemistry, um processo alternativo de proteção do grupo funcional –COOH, catalisado por ferro(III), utilizando reagentes mais económicos do que os usados pelo método tradicional. Este processo, ambientalmente mais sustentável, não utiliza ácidos nem bases e não produz desperdícios. Elimina igualmente a necessidade de uso de outros processos físico-químicos para purificar o produto da reação.\\
+					
+					Adaptado de\\ \text{https://doi.org/10.1039/C8GC00037A} (publicado em 2018-02-06)
+				\end{tcolorbox}
+				
+			\end{minipage}
+			
+		}
+		
+		\vspace{5pt}
+		\question[8] De acordo com a informação apresentada, é possível afirmar que:\\
+		
+		\begin{choices}
+			\choice O processo tradicional não utiliza reagentes prejudiciais ao ambiente.
+			\choice Não é possível comparar os dois processos do ponto de vista da química verde.
+			\choice O processo tradicional obedece aos principais princípios defendidos pela química verde.
+			\correctchoice O processo concebido pelos investigadores chineses aproxima-se mais do que o tradicional dos princípios defendidos pela química verde.
+		\end{choices}
+		
+		\vspace{5pt}
+		\question[8] Se no esquema químico apresentado (método tradicional) reagirem \SI{60}{\gram} de ácido etanoico (\ce{CH3COOH}), correspondentes a \underline{\hspace{50pt}}, então, reagem \underline{\hspace{50pt}} de iodometano (\ce{CH3I}).\\
+		
+		\begin{multicols}{2}
+			\begin{choices}
+				\correctchoice $\ldots$ \SI{1,0}{\mole} $\ldots$ \SI{142}{\gram} $\ldots$
+				\choice $\ldots$ \SI{2,0}{\mole} $\ldots$ \SI{1,0}{\mole} $\ldots$
+				\choice $\ldots$ \SI{1,0}{\mole} $\ldots$ \SI{2,0}{\mole} $\ldots$
+				\choice $\ldots$ \SI{2,0}{\mole} $\ldots$ \SI{142}{\gram} $\ldots$
+			\end{choices}
+		\end{multicols}
+		
+		\vspace{5pt}
+		\question[16] Pelo método I, adicionaram-se \SI{100}{\gram} de ácido etanoico a \SI{100}{\gram} de iodometano obtendo-se \SI{50}{\gram} de \ce{CH3COOCH3}. Determine o rendimento da reação.\\
+		Apresente todas as etapas de resolução.\\
+		
+		\begin{solution}
+			\textcolor{white}{.}\\
+			\mybox{
+				
+				Determinar a quantidade de cada reagente (3pt):\\
+				$n_{\ce{CH3COOH}} = \dfrac{m}{M} \Leftrightarrow n_{\ce{CH3COOH}} = \dfrac{100}{60,05} = \SI{1,66}{mol}$\\
+				$n_{\ce{CH3I}} = \dfrac{m}{M} \Leftrightarrow n_{\ce{CH3I}} = \dfrac{100}{141,94} = \SI{0,705}{\mol}$\\
+				
+				Concluir que o reagente limitante é o \ce{CH3I} (3pt).\\
+				
+				Determinar o $n(\ce{CH3COOCH3})_\text{previsto}$ (3pt):\\
+				$n(\ce{CH3COOCH3})_\text{previsto} = n(\ce{CH3I}) = \SI{0,705}{\mole}$\\
+				
+				Determinar o $n(\ce{CH3COOCH3})_\text{obtido}$ (3pt):\\
+				$n(\ce{CH3COOCH3})_\text{obtido} = \dfrac{m}{M} \Leftrightarrow n(\ce{CH3COOCH3})_\text{obtido} = \dfrac{50}{74,09} = \SI{0,675}{\mole}$\\
+				
+				Determinar o rendimento da reação (4pt):\\
+				$\eta(\%) = \dfrac{n(\ce{CH3COOCH3})_\text{obtido}}{n(\ce{CH3COOCH3})_\text{previsto}} \times 100 \Leftrightarrow \eta(\%) = \dfrac{0,675}{0,705}\times100 = 95,7\%$\\
+				
+			}
+		\end{solution}
+		
+		
+		\noindent\rule{\linewidth}{0.5pt}
+		\vspace{5pt}
+		\fullwidth{\Large \textbf{Grupo IV}}
+		\uplevel{
+			\vspace{3pt}
+			O pentacloreto de fósforo, utilizado em processos de coloração, pode ser produzido a partir da reação entre o tricloreto de fósforo e o dicloro, estabelecendo-se o equilíbrio químico traduzido pela seguinte equação química:
+			\begin{center}
+				\ce{PCl3 (g) + Cl2 (g) -> PCl5 (g)} \hspace{10pt} $K_c(\SI{200}{\celsius})=50$ e $\Delta H > 0$
+			\end{center}
+			O gráfico que se segue representa a evolução da quantidade de \ce{PCl5} e de \ce{Cl2} no decorrer do processo, num reator com \SI{50}{\liter} de capacidade.
+			\begin{center}
+				\includegraphics[width=0.6\linewidth]{equil_quim}
+			\end{center}
+			
+		}
+		
+		\vspace{5pt}
+		\question[8] Selecione a opção que apresenta a expressão matemática que permite calcular a constante de equilíbrio do processo apresentado.
+		\begin{multicols}{2}
+			\begin{choices}
+				\choice $K_c=\dfrac{[\ce{PCl5}]_e}{[\ce{PCl3}]_e + [\ce{Cl2}]_e}$
+				\choice $K_c=\dfrac{[\ce{PCl3}]_e \times [\ce{Cl2}]_e}{[\ce{PCl5}]_e}$
+				\choice $K_c=\dfrac{[\ce{PCl3}]_e + [\ce{Cl2}]_e}{[\ce{PCl5}]_e}$
+				\correctchoice $K_c=\dfrac{[\ce{PCl5}]_e}{[\ce{PCl3}]_e \times [\ce{Cl2}]_e}$
+			\end{choices}
+		\end{multicols}
+		
+		\vspace{5pt}
+		\question[8] Selecione a opção que apresenta a constante de equilíbrio da reação inversa, $K_c'$.
+		
+		\begin{multicols}{4}
+			\begin{choices}
+				\choice $K_c' = 50$
+				\correctchoice $K_c' = \dfrac{1}{50}$
+				\choice $K_c' = 4$
+				\choice $K_c' = 0,25$
+			\end{choices}
+		\end{multicols}
+		
+		
+		\vspace{5pt}
+		\question[14] Determine a quantidade de tricloreto de fósforo, \ce{PCl3}, utilizado no processo.\\
+		
+		\begin{solution}
+			\textcolor{white}{.}\\
+			\mybox{
+				Composição do sistema (7pt):\\
+				
+				\begin{tabular}{ccccccc}
+					&  & \ce{PCl3 (g)} & $+$ & \ce{Cl2 (g)} & \ce{->} & \ce{PCl5 (g)} \\
+					\hline
+					$n_\text{início}/\unit{mole}$&  & x & & 2,20 &  & – \\
+					
+					$n_\text{equilíbrio}/\unit{\mole}$ & & $x-y = 10,0$ & & $2,20 - y = 0,20$ && 2,00\\
+					\hline
+				\end{tabular}
+				
+				\vspace{15pt}
+				Quantidade de \ce{PCl3} utilizado (7pt):\\
+				
+				$2,20 - y = 0,20 \Leftrightarrow y = \SI{2,00}{\mole}$\\
+				$x-y=10,00 \Leftrightarrow x-2,00=10,00 \Leftrightarrow x = \SI{12,00}{\mole}$
+			}
+		\end{solution}
+		
+		\vspace{5pt}
+		\question[8] Se aumentar a pressão do reator onde ocorre a reação...
+		
+		\begin{multicols}{2}
+			\begin{choices}
+				\choice $\ldots$ aumenta a produção de \ce{PCl3} e de \ce{Cl2}.
+				\choice $\ldots$ aumenta a constante de equilíbrio.
+				\correctchoice $\ldots$ aumenta a produção de \ce{PCl5}.
+				\choice $\ldots$ diminui a constante de equilíbrio.
+			\end{choices}
+		\end{multicols}
+		
+		\vspace{5pt}
+		\question[8] Se aumentar a temperatura do reator onde ocorre a reação...
+		
+		\begin{multicols}{2}
+			\begin{choices}
+				\choice $\ldots$ aumenta a produção de \ce{PCl3} e de \ce{Cl2}.
+				\choice $\ldots$ aumenta a concentração de reagentes.
+				\correctchoice $\ldots$ aumenta a produção de \ce{PCl5}.
+				\choice $\ldots$ a constante de equilíbrio mantém-se constante.
+			\end{choices}
+		\end{multicols}
+		
+	\end{questions}
+	
+	\vspace{3pt}
+	\center
+	FIM
+	
+	\vfill
+	\center
+	\pointtable[h]
+\end{document}

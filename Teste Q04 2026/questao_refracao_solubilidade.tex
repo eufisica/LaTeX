@@ -1,0 +1,218 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage{enumitem}
+\usepackage{chemformula}
+
+\geometry{margin=2.5cm}
+
+\definecolor{azul}{RGB}{30, 100, 180}
+\definecolor{cinza}{RGB}{245, 245, 245}
+\definecolor{verde}{RGB}{20, 130, 80}
+
+\mdfdefinestyle{enunciado}{
+  backgroundcolor=cinza,
+  linecolor=azul,
+  linewidth=1pt,
+  topline=false,
+  rightline=false,
+  bottomline=false,
+  innerleftmargin=12pt,
+  innerrightmargin=12pt,
+  innertopmargin=10pt,
+  innerbottommargin=10pt
+}
+
+\mdfdefinestyle{dados}{
+  backgroundcolor=cinza,
+  linecolor=gray!40,
+  linewidth=0.5pt,
+  innerleftmargin=12pt,
+  innerrightmargin=12pt,
+  innertopmargin=8pt,
+  innerbottommargin=8pt,
+  roundcorner=4pt
+}
+
+\mdfdefinestyle{resolucao}{
+  backgroundcolor=white,
+  linecolor=verde,
+  linewidth=1pt,
+  topline=false,
+  rightline=false,
+  bottomline=false,
+  innerleftmargin=12pt,
+  innerrightmargin=12pt,
+  innertopmargin=10pt,
+  innerbottommargin=10pt
+}
+
+\begin{document}
+
+\begin{center}
+  {\small\textcolor{azul}{\textbf{Física e Química A --- 11.º ano}}}
+\end{center}
+
+\bigskip
+
+%---------------------------------------------------------------
+% ENUNCIADO
+%---------------------------------------------------------------
+\begin{mdframed}[style=enunciado]
+
+Numa experiência laboratorial, um aluno pretende determinar a solubilidade do
+carbonato de cálcio (\ch{CaCO3}) numa solução aquosa a \(25\,^\circ\text{C}\),
+usando um feixe de luz \textit{laser}.
+
+\medskip
+
+O aluno dirige o laser, no ar, para a superfície da solução com um ângulo de
+incidência de \(\theta_1 = 45{,}0^\circ\) e mede um ângulo de refração de
+\(\theta_2 = 32{,}1^\circ\). Sabe que o índice de refração de uma solução
+aquosa aumenta proporcionalmente com a concentração de soluto, de acordo com:
+
+\[
+  n_{\text{solução}} = n_{\text{água}} + k \cdot c
+\]
+
+sendo \(c\) a concentração em \(\text{mol\,L}^{-1}\) e
+\(k = 1{,}45 \times 10^{-2}\,\text{L\,mol}^{-1}\).
+
+\medskip
+
+Sabendo que o \ch{CaCO3} se dissolve segundo o equilíbrio:
+
+\[
+  \ch{CaCO3}_{(s)} \rightleftharpoons \ch{Ca^{2+}}_{(aq)} + \ch{CO3^{2-}}_{(aq)}
+\]
+
+\end{mdframed}
+
+\medskip
+
+%---------------------------------------------------------------
+% DADOS
+%---------------------------------------------------------------
+\begin{mdframed}[style=dados]
+\textbf{Dados:}
+\begin{itemize}[leftmargin=1.5em, itemsep=2pt, topsep=4pt]
+  \item $K_s\,(\ch{CaCO3},\; 25\,^\circ\text{C}) = 4{,}96 \times 10^{-9}$
+  \item $n_{\text{ar}} = 1{,}000$ \quad $n_{\text{água pura}} = 1{,}333$
+  \item $M(\ch{CaCO3}) = 100{,}1\,\text{g\,mol}^{-1}$
+\end{itemize}
+\end{mdframed}
+
+\medskip
+
+%---------------------------------------------------------------
+% ALÍNEAS
+%---------------------------------------------------------------
+\begin{enumerate}[label=\textbf{\alph*)}, leftmargin=1.8em, itemsep=6pt]
+  \item Determine o índice de refração da solução.
+  \item Calcule a concentração total de iões em solução.
+  \item Determine a solubilidade molar do \ch{CaCO3} e compare o valor obtido
+        com o calculado a partir de $K_s$. Os resultados são consistentes?
+\end{enumerate}
+
+\bigskip\bigskip
+
+%---------------------------------------------------------------
+% RESOLUÇÃO
+%---------------------------------------------------------------
+\noindent\textcolor{verde}{\rule{\linewidth}{0.5pt}}
+
+\medskip
+\noindent{\textcolor{verde}{\textbf{Resolução}}}
+\medskip
+
+\noindent\textcolor{verde}{\rule{\linewidth}{0.5pt}}
+
+\bigskip
+
+%--- alínea a)
+\begin{mdframed}[style=resolucao]
+\textbf{a) Índice de refração da solução --- Lei de Snell-Descartes}
+
+\medskip
+
+Aplicando a lei de Snell-Descartes na interface ar/solução:
+
+\[
+  n_{\text{ar}}\,\sin\theta_1 = n_{\text{sol}}\,\sin\theta_2
+\]
+
+\[
+  1{,}000 \times \sin(45{,}0^\circ) = n_{\text{sol}} \times \sin(32{,}1^\circ)
+\]
+
+\[
+  n_{\text{sol}} = \frac{0{,}7071}{0{,}5314} \approx \boxed{1{,}331}
+\]
+\end{mdframed}
+
+\bigskip
+
+%--- alínea b)
+\begin{mdframed}[style=resolucao]
+\textbf{b) Concentração total de iões}
+
+\medskip
+
+Isolando \(c\) na expressão do índice de refração:
+
+\[
+  c = \frac{n_{\text{sol}} - n_{\text{água}}}{k}
+\]
+
+Usando o valor mais preciso \(n_{\text{sol}} = 1{,}3331\):
+
+\[
+  c = \frac{1{,}3331 - 1{,}3330}{1{,}45 \times 10^{-2}}
+    \approx \boxed{6{,}9 \times 10^{-5}\,\text{mol\,L}^{-1}}
+\]
+
+\medskip
+Como \([\ch{Ca^{2+}}] = [\ch{CO3^{2-}}] = s\), a concentração total de iões
+é \(2s \approx 6{,}9 \times 10^{-5}\,\text{mol\,L}^{-1}\).
+\end{mdframed}
+
+\bigskip
+
+%--- alínea c)
+\begin{mdframed}[style=resolucao]
+\textbf{c) Solubilidade molar e comparação com $K_s$}
+
+\medskip
+
+\textit{Valor experimental} (da alínea b):
+
+\[
+  s_{\text{exp}} = \frac{c_{\text{total}}}{2} \approx 3{,}45 \times 10^{-5}\,\text{mol\,L}^{-1}
+\]
+
+\textit{Valor teórico} a partir de $K_s$:
+
+\[
+  K_s = [\ch{Ca^{2+}}][\ch{CO3^{2-}}] = s^2
+  \implies s = \sqrt{K_s} = \sqrt{4{,}96 \times 10^{-9}}
+  \approx \boxed{7{,}04 \times 10^{-5}\,\text{mol\,L}^{-1}}
+\]
+
+\medskip
+
+Os dois valores são da mesma ordem de grandeza ($10^{-5}\,\text{mol\,L}^{-1}$),
+confirmando a consistência do método. A pequena diferença deve-se ao
+arredondamento nos ângulos medidos --- uma variação de décimas de grau numa
+solução tão diluída traduz-se numa grande incerteza no índice de refração.
+\end{mdframed}
+
+\end{document}

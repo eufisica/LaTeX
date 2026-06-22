@@ -1,0 +1,576 @@
+\documentclass[addpoints,answers]{exam}
+
+\usepackage[portuguese]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{multicol}
+\usepackage{geometry}
+\usepackage{tikz}
+\usetikzlibrary{arrows, decorations.markings}
+
+\usepackage{fourier}
+%Font Size
+%\usepackage[12pt]{extsizes}%OR
+\usepackage[fontsize=11pt]{scrextend}
+%-----Physics
+\usepackage{amsfonts,amsmath,amssymb,gensymb}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{caption, subcaption}
+\usepackage{tikz}
+\usepackage{tkz-euclide}
+\usepackage{circuitikz}
+\usepackage{float}
+\usepackage{pgf}
+\usepackage{pgfplots}
+%\usepackage{pgfplotstable}
+\usepackage{wrapfig}
+\usepackage{wrapstuff}
+\usepackage{tcolorbox}
+\tcbset{width=\linewidth,boxrule=0pt,colback=gray!10,arc=0pt,auto outer arc,left=0pt,right=0pt,boxsep=15pt}
+
+\usepackage{xcolor}
+\usepackage[table, svgnames, dvipsnames]{xcolor}
+\usepackage{makecell, cellspace, caption}
+\usepackage{cancel}% to use to cancel expressions in equations
+\usepackage{hyperref}
+
+\usetikzlibrary{positioning, arrows.meta, intersections, calc, fadings, shapes.geometric, arrows, mindmap, backgrounds, shadings, decorations.markings,decorations.pathmorphing, math, shapes, decorations, patterns, shadows, external, angles, quotes}
+\tikzset{>=latex}
+\usepackage{siunitx}
+\sisetup{output-decimal-marker={,}}
+\usepackage[shortconst]{physconst}
+\usepackage{chemfig, chemmacros}
+\usepackage{chemformula}
+\usepackage[version=4]{mhchem}
+
+%-----Caixas para apresentar as soluções
+\usepackage{lipsum,framed,color}
+\usepackage{calc}
+\definecolor{shadecolor}{rgb}{1,0.7,0.7}
+\newlength{\boxwidth}
+\newsavebox{\boxcontainer}
+
+\newcommand\mybox[1]{%
+	%\begin{center}%
+	\fcolorbox{white}{shadecolor}{%
+		%\begin{minipage}[t]{\dimexpr\textwidth-2\fboxsep+10\fboxrule}%
+		\begin{minipage}[t]{\textwidth-2\fboxsep}
+			#1%
+	\end{minipage}}%
+	%\end{center}
+}
+
+
+%-----Math
+\usepackage{dsfont}%apresenta as letras R,Z,C matemáticas
+\usepackage{mathtools}%configura os casos entre chavetas
+
+%-----Controlar espaço entre opções nas escolhas múltiplas (ver configuração antes de iniciar o documento)
+\usepackage{xpatch}
+
+\geometry{
+	a4paper,
+	top=1cm,
+	bottom=2cm,
+	left=1.5cm,
+	right=3cm,
+}
+
+\pgfdeclarelayer{background}
+\pgfdeclarelayer{main}
+
+\pgfsetlayers{background,main}
+
+%--------------------------------
+% CONFIGURAR CABEÇALHO E RODAPÉ
+%--------------------------------
+\pagestyle{headandfoot}
+\firstpageheader{}{}{}
+\runningheader{}{}{}
+\firstpagefooter{}{}{}
+\runningfooter{Física e Química A}{Teste}{Pág. \thepage\ de \numpages}
+\runningfootrule
+
+
+%--------------------------------
+% CONFIGURAÇÕES DO DOCUMENTO EXAM
+%--------------------------------
+\renewcommand{\solutiontitle}{\noindent \textbf{Solução:}\enspace}
+\renewcommand{\thequestion}{\bf \arabic{question}}
+\renewcommand{\choicelabel}{{\bf (\thechoice)}}
+\renewcommand{\partlabel}{\bf \thequestion.\arabic{partno}}
+\pointpoints{ponto}{pontos}
+\pointformat{[\bf \thepoints]}
+\pointsinrightmargin
+\setlength{\rightpointsmargin}{.5cm}
+\CorrectChoiceEmphasis{\color{red}\bfseries}%respostas corretas nas escolhas múltiplas a vermelho
+%tabela de cotação
+\hqword{Questão:}%vqword para a tabela na vertical
+\hpword{Cotação:}%vpword para a tabela na vertical
+
+
+\xpatchcmd{\oneparchoices}{\penalty -50\hskip 1em plus 1em\relax}{\hfill}
+
+
+% Deixar as linhas de espaço depois do xpatch
+\begin{document}
+	
+	\input{intro}
+	
+	% Settings for \mybox and Mybox
+	\setlength{\fboxrule}{1pt}
+	\setlength{\fboxsep}{10pt}
+	
+	% Additional settings for MyBox
+	\setlength{\FrameRule}{\fboxrule}
+	\setlength{\FrameSep}{\fboxsep}
+	
+	
+	
+	%INÍCIO DO TESTE
+	\newpage
+	\begin{questions}
+		\fullwidth{\Large \textbf{Grupo I}}
+		\uplevel{
+			
+			\begin{minipage}{0.7\linewidth}
+				O trabalho desenvolvido por um grupo de investigadores, na Alemanha, refere que alguns sistemas de água doce tornaram-se mais ácidos com a subida da p\ch{CO2} (pressão parcial de dióxido de carbono na atmosfera).\\[5pt]
+				À medida que os níveis de dióxido de carbono sobem na atmosfera, mais deste elemento é absorvido pela água do mar, aumentando a acidificação dos oceanos e causando um conjunto de problemas aos ecossistemas e às espécies marinhas, já identificados através de vários estudos. (...)\\[5pt]
+				No trabalho divulgado na publicação científica Current Biology, os investigadores apresentam as primeiras provas de que uma situação semelhante está também a acontecer na água doce.
+			\end{minipage}
+			\hspace{15pt}
+			\vspace{20pt} 
+			\begin{minipage}{0.3\linewidth}
+				\includegraphics[width=0.9\textwidth]{pHmeter}
+			\end{minipage}
+			Através de estudos em laboratório, os cientistas demonstraram que aumentos de dióxido de carbono na água doce podem ter efeitos negativos em, pelo menos, uma espécie decisiva na cadeia alimentar, um pequeno crustáceo ('daphnia') que aparece em lagos, lagoas e reservatórios afetando a sua capacidade de defender-se dos predadores. O intervalo de pH aceitável para a sua sobrevivência é entre 6,5 e 9,5 mas o ideal é entre 7,2 e 8,5.\\[5pt]
+			O 'daphnia' é importante porque é uma primeira fonte de alimento para vários animais maiores.\\[5pt]
+			Adaptado de um artigo do DN, acedido em: https://www.dn.pt/arquivo/diario-de-noticias/ecossistemas-de-agua-doce-tambem-sao-afetados-por-acidificacao-devido-a-dioxido-de-carbono-9040495.html \\[10pt]
+			
+			Numa pequena lagoa, mediu-se o pH da água a \SI{25}{\celsius} e verificou-se, tal como mostra a imagem, que tinha o valor de 2,06.\\
+		}
+		
+		
+		\question[10] O valor da concentração de iões \ch{H3O+} presentes na lagoa é:
+		
+		\begin{multicols}{2}
+			\begin{choices}
+				\correctchoice \SI{8,71e-3}{\mole\per\cubic\deci\meter}
+				\choice \SI{8,71e-10}{\mole\per\cubic\deci\meter}
+				\choice \SI{2,06e-3}{\mole\per\cubic\deci\meter}
+				\choice \SI{2,06e-10}{\mole\per\cubic\deci\meter}
+			\end{choices}
+		\end{multicols}
+		
+		
+		\vspace{10pt}
+		\question[12] Foi estimado que a lagoa teria um volume total de \SI{5,00e5}{\cubic\deci\meter}, a \SI{25}{\celsius}. Determine o volume mínimo de solução de \ch{NaOH}, de concentração \SI{0,1}{\mole\per\cubic\deci\meter}, que é necessário adicionar para que o pH se encontre no valor mínimo ideal para o 'daphnia'.
+		
+		\begin{solution}
+			\textcolor{white}{.}\\
+			\mybox{
+				Etapa A: Determinação da quantidade de \ch{H3O+} ideal (4pt):\\
+				Valor de pH minimo ideal: pH = 7,2\\
+				$[\ch{H3O+}] = 10^{-\text{pH}} \Rightarrow [\ch{H3O+}] = 10^{-7,2} \Leftrightarrow [\ch{H3O+}] = \SI{6,3e-8}{\mole\per\cubic\deci\meter}$\\
+				$n(\ch{H3O+}) = c \times V \Rightarrow n(\ch{H3O+}) = 6,3 \times 10^{-8} \times 5,00 \times 10^{5} \Leftrightarrow n(\ch{H3O+}) = \SI{3,15e-2}{\mole}$\\[5pt]
+				Etapa B: Determinação da quantidade de \ch{H3O+} em excesso (4pt):\\
+				Valor de pH atual: pH = 2,06\\
+				$[\ch{H3O+}] = 10^{-\text{pH}} \Rightarrow [\ch{H3O+}] = 10^{-2,06} \Leftrightarrow [\ch{H3O+}] = \SI{8,71e-3}{\mole\per\cubic\deci\meter}$\\
+				$n(\ch{H3O+}) = c \times V \Rightarrow n(\ch{H3O+}) = 8,71 \times 10^{-3} \times 5,00 \times 10^{5} \Leftrightarrow n(\ch{H3O+}) = \SI{4,36e3}{\mole}$\\
+				Quantidade de \ch{H3O+} em excesso:\\
+				$n(\ch{H3O+}) = 4,36 \times 10^{-3} - 3,15 \times 10^{-2} = \SI{4,35e3}{\mole}$\\[5pt]
+				Etapa C: Determinação do volume de \ch{NaOH} a adicionar (4pt):\\
+				Para neutralizar essa quantidade de \ch{H3O+} é necessário adicionar a mesma quantidade de \ch{NaOH} (que corresponde à mesma quantidade de \ch{OH-}):\\
+				$c=\dfrac{n}{V} \Leftrightarrow V = \dfrac{n}{c} \Rightarrow V=\dfrac{4,35 \times 10^3}{0,1} = \SI{4,35e4}{\cubic\deci\meter}$\\
+			}
+		\end{solution}
+		
+		
+		\vspace{10pt}
+		\question Quando o \ch{CO2} se dissolve na água forma-se ácido carbónico, \ch{H2CO3}, que diminui o seu pH. Considere que a primeira etapa da reação do ácido carbónico com a água, de constante de acidez igual a $4,50 \times 10^{–7}$, a \SI{25}{\celsius}, pode ser traduzida pela equação seguinte:\\
+		$$\ch{H2CO3 (aq) + H2O (l) <=> HCO3- (aq) + H3O+ (aq)}$$
+		
+		\vspace{5pt}
+			\begin{parts}
+				\part[12] Determine a quantidade de ácido carbónico não ionizado numa amostra de \SI{50}{\milli\liter} de água da lagoa que apresenta pH mínimo aceitável para a sobrevivência do 'daphnia'. Considere apenas a reação representada.\\ 
+				Apresente todos os cálculos efetuados.\\
+				
+				\begin{solution}
+					\textcolor{white}{.}\\
+					\mybox{
+						Etapa A - Determinar a concentração de iões \ch{H3O+} (4pt):\\
+						$[\ch{H3O+}]=10^{-6,5} \Leftrightarrow [\ch{H3O+}] = \SI{3,16e-7}{\mole\per\cubic\deci\meter}$. \\
+						
+						Etapa B - Determinar a concentração de ácido carbónico (4pt):\\
+						$[\ch{H3O+}] = [\ch{HCO3-}]\\	
+						K_a = \dfrac{ [\ch{H3O+}]_e \cdot  [\ch{HCO3-}]_e }{[\ch{H2CO3}]_e} \Rightarrow 4,50 \times 10^{-7} = \dfrac{(3,16 \times 10^{-7})^2}{[\ch{H2CO3}]_e} \Leftrightarrow \\
+						\Leftrightarrow [\ch{H2CO3}]_e = \SI{2,22e-7}{\mole\per\cubic\deci\meter}$\\
+							
+						Etapa C - Determinar a quantidade de ácido carbónico não ionizado (4pt):\\
+						$n(\ch{H2CO3})=2,22 \times 10^{-7} \times 50 \times 10^{-3} \Leftrightarrow n(\ch{H2CO3}) = \SI{1,10e-8}{\mole}$\\
+						}
+					\end{solution}
+				
+				\vspace{5pt}
+				\part[10] Numa solução de ácido carbónico, se for adicionada uma pequena quantidade de NaOH, o grau de ionização do ácido \underline{\hspace{50pt}} e o pH da solução \underline{\hspace{50pt}}.\\
+				\begin{multicols}{2}
+					\begin{choices}
+						\correctchoice	aumenta$\ldots$ altera-se
+						\choice aumenta$\ldots$ mantém-se
+						\choice diminui$\ldots$ altera-se
+						\choice diminui$\ldots$ mantém-se
+					\end{choices}
+				\end{multicols}
+				
+				\vspace{5pt}
+				\part[10] Para a reação indicada, as duas espécies que são pares conjugados ácido-base podem ser:\\
+				\begin{multicols}{2}
+					\begin{choices}
+						\choice	$\ch{H2CO3}/\ch{CO3^{2-}}$
+						\choice $\ch{HCO3-}/\ch{H2CO3}$
+						\choice $\ch{H2CO3}/\ch{H2O}$
+						\correctchoice $\ch{H2CO3}/\ch{HCO3-}$
+					\end{choices}
+				\end{multicols}
+			\end{parts}
+		
+		
+		\vspace{10pt}
+		\question 	Considere a reação de autoionização da água: \ch{H2O (l) <=> H3O+ (aq) + OH- (aq)} \\
+		Na tabela seguinte, é apresentado o pH da água para diferentes temperaturas.\\
+		
+		\begin{center}
+				\begin{tabular}{|c|c|c|c|c|c|c|c|}
+				\hline
+				\rowcolor{gray!30}
+				$\theta/\unit{\celsius}$ & 10 & 20 & 25 & 30 & 40 & 50 & 60 \\
+				
+				pH & 7,26 & 7,08 & 7,00 & 6,92 & 6,77 & 6,63 & 6,51 \\
+				\hline
+			\end{tabular}
+		\end{center}
+		
+		\vspace{5pt}
+		\begin{parts}
+			\part[16] Explique a razão de se poder concluir, a partir da tabela, que a autoionização da água é uma reação endotérmica.\\
+			
+			\begin{solution}
+				\textcolor{white}{.}\\
+				\mybox{
+					A resposta integra os tópicos de referência seguintes ou outros de conteúdo equivalente:\\
+					
+					(A)	Observa-se, na tabela, que o aumento de temperatura leva a uma diminuição no valor do pH da água.\\
+					
+					(B) Isso significa que o aumento de temperatura está a favorecer o aumento da concentração do ião \ch{H3O+}, ou seja, o aumento da concentração de produtos.\\
+					
+					(C)	Conclui-se, que o aumento de temperatura está a favorecer a reação direta. De acordo com o princípio de Le Châtelier, um aumento da temperatura favorece sempre a reação endotérmica. Pode, assim, concluir-se que a reação direta é endotérmica.\\
+					
+					\begin{tabular}{|c|p{0.5\textwidth}|c|}
+						\hline
+						NÍVEIS & DESCRITORES DO NÍVEL DE DESEMPENHO & PONTUAÇÃO \\
+						\hline
+						4 & Na resposta, são apresentados os três tópicos de referência com organização coerente dos conteúdos e linguagem cientifica adequada. & 16 \\
+						\hline
+						3 & Na resposta, são apresentados os três tópicos de referência com falhas na organização dos conteúdos ou na utilização da linguagem cientifica. & 12 \\
+						\hline
+						2 & Na resposta, é apresentado apenas dois dos tópicos de referência com linguagem cientifica adequada. & 8 \\
+						\hline
+						1 & Na resposta, é apresentado apenas um dos tópicos de referência com falhas na utilização da linguagem cientifica. & 4 \\
+						\hline
+					\end{tabular}	
+				}
+			\end{solution}
+			
+			\vspace{5pt}
+			\part[10] A partir da tabela pode concluir-se que:\\
+			
+			\begin{choices}
+				\choice	A concentração hidrogeniónica diminui com a temperatura.
+				\choice A acidez da água aumenta com a temperatura.
+				\choice A acidez da água diminui com a temperatura.
+				\correctchoice A concentração hidrogeniónica aumenta com a temperatura.
+			\end{choices}
+			
+			\vspace{5pt}
+			\part[10] Ordene os produtos seguintes por ordem crescente da sua acidez, a \SI{25}{\celsius}, indicando os números correspondentes na sua folha de resposta.\\
+			
+			\begin{center}
+				\begin{tabular}{|c|c|c|}
+					\hline
+					& Produto & Concentração (\unit{\mole\per\cubic\deci\meter}) \\
+					\hline
+					1 & Detergente & $[\ch{OH-}]=1,0\times10^{-3}$ \\
+					\hline
+					2 & Leite de vaca & $[\ch{H3O+}]=1,0\times10^{-6}$ \\
+					\hline
+					3 & Clara de ovo & $[\ch{OH-}]=1,0\times10^{-6}$ \\
+					\hline
+					4 & Água engarrafada & $[\ch{H3O+}]=1,0\times10^{-8}$ \\
+					\hline
+					5 & Água destilada & $[\ch{H3O+}]=1,0\times10{-7}$ \\
+					\hline
+				\end{tabular}
+			\end{center}
+			
+			\begin{solution}
+				\textcolor{white}{.}\\
+				\mybox{
+					$1-4-3-5-2$
+				}
+			\end{solution}
+			
+		\end{parts}
+		
+		
+		
+		\noindent\rule{\linewidth}{0.5pt}
+		\vspace{5pt}
+		\fullwidth{\Large \textbf{Grupo II}}
+		\uplevel{
+			\begin{minipage}{0.7\textwidth}
+				A Rosa e a Joana pretendiam, no laboratório da sua escola, determinar a concentração de uma solução de ácido sulfúrico, \ch{H2SO4}. Colocaram \SI{35}{\milli\liter} de ácido num balão de Erlenmeyer e utilizaram, como titulante, uma solução padrão de hidróxido de bário, \ch{Ba(OH)2}, de concentração \SI{0,25}{\mole\per\cubic\deci\meter}.\\
+			\end{minipage}
+			\hspace{0.1\textwidth}
+			\begin{minipage}{0.2\textwidth}
+				\begin{center}
+					\includegraphics[width=0.9\linewidth]{lab_tit}
+				\end{center}
+			\end{minipage}
+		}
+		\vspace{5pt}
+		Medindo o pH do titulado obtiveram a curva de titulação seguinte:\\
+		\begin{center}
+			\includegraphics[width=0.7\linewidth]{titulacao}
+		\end{center}
+		
+		\vspace{5pt}
+		\question[10] Escreva a equação química que traduz a reação que ocorre durante a neutralização.\\
+
+		\begin{solution}
+			\textcolor{white}{.}\\
+			\mybox{
+				\ch{H2SO4 (aq) + Ba(OH)2 (aq) -> BaSO4 (aq) + 2 H2O (l)}
+			}
+		\end{solution}
+		
+		\vspace{5pt}
+		\question[10] Para medir o volume de solução titulada deve usar-se uma \underline{\hspace{50pt}} e para medir o volume de titulante deve usar-se uma \underline{\hspace{50pt}}.\\
+		
+		\begin{multicols}{2}
+			\begin{choices}
+				\correctchoice pipeta$\ldots$ bureta
+				\choice bureta $\ldots$ bureta
+				\choice pipeta $\ldots$ pipeta
+				\choice bureta $\ldots$ pipeta
+			\end{choices}
+		\end{multicols}
+		
+		\vspace{5pt}
+		\question[12] Determine a concentração da solução de ácido sulfúrico.\\
+		
+		\begin{solution}
+			\textcolor{white}{.}\\
+			\mybox{
+				Etapa A - Determina a quantidade de hidróxido de bário (4pt):\\
+				$n(\ch{Ba(OH)2}) = c \times V \Leftrightarrow n(\ch{Ba(OH)2}) = 0,25 \times 20 \times 10^{-3} \Leftrightarrow n(\ch{Ba(OH)2}) = \SI{5,0e-3}{\mole}$\\[5pt]
+				Etapa B - Determina a quantidade de de ácido sulfúrico (4pt):\\
+				$n(\ch{H2SO4}) = n(\ch{Ba(OH)2}) \Rightarrow n(\ch{H2SO4}) = \SI{5,0e-3}{\mole}$\\[5pt]
+				Etapa C - Calcula a concentração de de ácido sulfúrico (4pt):\\
+				$[\ch{H2SO4}] = \dfrac{n}{V} \Leftrightarrow [\ch{H2SO4}] = \dfrac{5,0 \times 10^{-3}}{35 \times 10^{-3}} =\SI{0,14}{\mole\per\cubic\deci\meter}$\\
+			}
+		\end{solution}
+		
+		\vspace{5pt}
+		\question[10] Com base na tabela seguinte, o indicador adequado para a deteção do ponto final desta titulação é...\\ 
+		
+		\begin{center}
+			\begin{tabular}{|c|c|c|c|}
+				\hline
+				\rowcolor{gray!30}
+				Indicador & Zona de viragem & Cor da forma ácida & Cor da forma básica \\
+				\hline
+				Vermelho de metilo & 4,8 – 6,0 & vermelho & amarelo \\
+				\hline
+				Tornesol & 5,8 – 8,0 & vermelho & azul \\
+				\hline
+				Fenolftaleína & 8,2 – 10,0 & incolor & carmim \\
+				\hline
+			\end{tabular}
+		\end{center}
+		
+		\begin{multicols}{2}
+			\begin{choices}
+				\choice $\ldots$ o vermelho de metilo.
+				\choice $\ldots$ o tornesol.
+				\choice $\ldots$ a fenolftaleína.
+				\correctchoice qualquer um dos indicadores.
+			\end{choices}
+		\end{multicols}
+		
+		
+		\noindent\rule{\linewidth}{0.5pt}
+		\vspace{1pt}
+		\fullwidth{\Large \textbf{Grupo III}}
+		\uplevel{
+			O aço inoxidável é uma liga de ferro e cromo amplamente utilizada em materiais do quotidiano, nomeadamente em talheres.\\
+			Tenha em conta os metais na série eletroquímica seguinte:\\
+			\begin{center}
+				\begin{tikzpicture}
+					\node at (-2,0) {Ag};
+					\node at (-1,0) {Cr};
+					\node at (0,0) {Al};
+					\node at (1,0) {Mg};
+					\draw[thick,->] (-3,-0.5) -- (3,-0.5);
+					\node[below] at (0,-1) {Aumento do poder redutor};
+				\end{tikzpicture}
+			\end{center}
+		}
+		
+		\vspace{5pt}
+		\question[10] Com base na série eletroquímica representada, associe cada um dos metais, apresentados na coluna I, à afirmação correspondente, na coluna II.\\
+		Escreva, na folha de respostas, cada letra da coluna I seguida do número correspondente da coluna II.\\
+		A cada letra corresponde apenas um número.\\
+		\begin{center}
+			\begin{tabular}{|c|c|}
+				\hline
+				Coluna I & Coluna II \\
+				\hline
+				(a) Ag & (1) Reduz os catiões dos restantes elementos.\\
+				(b) Cr & (2) Reduz apenas \ch{Ag+}.\\
+				(c) Mg & (3) O catião reduz os restantes metais.\\
+				 & (4) O catião oxida os restantes metais.\\
+				 & (5) O catião oxida apenas \ch{Ag} e \ch{Cr}. \\
+				\hline
+			\end{tabular}
+		\end{center}
+		
+		\begin{solution}
+			\textcolor{white}{.}\\
+			\mybox{
+				(a) 4; (b) 2; (c) 1
+			}
+		\end{solution}
+		
+		\vspace{5pt}
+		\question[8] Selecione a opção que representa corretamente a semirreação de oxidação do \ch{Cr}.
+		
+		\begin{choices}
+			\correctchoice \ch{Cr (s) -> Cr^{3+} (aq) + 3 e-}
+			\choice \ch{Cr (s) + 3 e- -> Cr^{3+} (aq)}
+			\choice \ch{Cr^{3+} (aq) + 3 e- -> Cr (s)}
+			\choice \ch{Cr^{3+} (aq) -> Cr (s) + 3 e-}
+		\end{choices}
+		
+		\vspace{5pt}
+		\question[8] Na reação \ch{Mg (s) + 2 Ag+ (aq) -> Mg^{2+} (aq) + 2 Ag (s)} o magnésio sofre \underline{\hspace{50pt}}, atuando como agente \underline{\hspace{50pt}}.\\
+		
+		\begin{multicols}{2}
+			\begin{choices}
+				\correctchoice oxidação $\ldots$ redutor
+				\choice oxidação $\ldots$ oxidante
+				\choice redução $\ldots$ oxidante
+				\choice redução $\ldots$ redutor
+			\end{choices}
+		\end{multicols}
+		
+		\noindent\rule{\linewidth}{0.5pt}
+		\vspace{5pt}
+		\fullwidth{\Large \textbf{Grupo IV}}
+		\uplevel{
+			\vspace{10pt}
+			Considere as soluções aquosas de ácido clorídrico, \ch{HCl}, um ácido forte, e de hidróxido de potássio, \ch{KOH}, uma base forte, a seguir apresentadas, à temperatura de \SI{20}{\celsius}. \\
+			Dado: $K_w (\SI{20}{\celsius}) = 6,9 \times 10^{-15}$\\
+			\begin{center}
+				\includegraphics[width=0.5\linewidth]{acido_base}
+			\end{center}
+		}
+		
+		\vspace{5pt}
+		\question[12] Calcule a concentração de iões hidróxido na solução (I).\\
+		\begin{solution}
+			\textcolor{white}{.}\\
+			\mybox{
+				Etapa A - Cálculo de $[\ch{H3O+}]_e$ (6pt):\\
+				Tratando-se de um ácido forte, $[\ch{H3O+}]_e = [\ch{HCl}]_i = \SI{0,100}{\mole\per\cubic\deci\meter}$\\[5pt]
+				Etapa B - Cálculo de $[\ch{OH-}]_e$ (6pt):\\
+				$K_w=[\ch{H3O+}]_e \times [\ch{OH-}]_e \Leftrightarrow 6,9 \times 10^{-15} = 0,100 \times [\ch{OH-}]_e \Leftrightarrow [\ch{OH-}]_e = \dfrac{6,9 \times 10^{-15}}{0,100} = \SI{6,9e-14}{\mole\per\cubic\deci\meter}$
+			}
+		\end{solution}
+		
+		\vspace{5pt}
+		\question[8] Selecione a opção que apresenta a expressão que permite calcular o valor do pH da solução (II).
+		
+		\begin{multicols}{2}
+			\begin{choices}
+				\choice $-\text{log}(0,100)$
+				\choice $-\text{log} \left( \dfrac{0,100}{6,9 \times 10^{-15}} \right)$
+				\correctchoice $-\text{log} \left( \dfrac{6,9 \times 10^{-15}}{0,100} \right)$
+				\choice $-\text{log} (6,9 \times 10^{-15}) $
+			\end{choices}
+		\end{multicols}
+		
+		
+		\noindent\rule{\linewidth}{0.5pt}
+		\vspace{5pt}
+		\fullwidth{\Large \textbf{Grupo V}}
+		\uplevel{
+			\vspace{10pt}
+			O ácido etanoico, \ch{CH3COOH}, é um ácido fraco, com constante de acidez $1,8 \times 10^{-5}$, a \SI{25}{\celsius}.\\
+			Considere uma solução de ácido etanoico, de concentração inicial \SI{0,100}{\mole\per\cubic\deci\meter}.
+		}
+		
+		\vspace{5pt}
+		\question[10] Indique, justificando, qual dos diagramas pode representar a relação das concentrações dos componentes do sistema durante a reação de ionização.\\
+		\begin{center}
+			\includegraphics[width=0.9\linewidth]{diagrama}
+		\end{center}
+		
+		\vspace{5pt}
+		\begin{solution}
+			\textcolor{white}{.}\\
+			\mybox{
+				Etapa A - Identificação do diagrama (5pt):\\
+				Diagrama (II)\\[5pt]
+				Etapa B - Justificação (5pt):\\
+				Tratando-se de um ácido fraco, a sua ionização em água é pouco extensa, pelo que as concentrações de \ch{CH3COO-} e de \ch{H3O+} serão menores do que a concentração inicial do ácido.
+			}
+		\end{solution}
+		
+		\vspace{5pt}
+		\question[12] Determine o valor do pH da solução, na situação de equilíbrio.\\
+		
+		\begin{solution}
+			\textcolor{white}{.}\\
+			\mybox{
+				Etapa A - Representação do equilíbrio (6pt):\\
+				
+				\begin{tabular}{ccccccccc}
+					&  & \ce{CH3COOH (aq)} & $+$ & \ce{H2O (l)} & \ce{->} & \ce{CH3COO- (aq)} & $+$ & \ce{H3O+ (aq)} \\
+					\hline
+					$c_\text{i}/\unit{\mole\per\cubic\deci\meter}$&  & 0,100 & & &  & – & & -\\
+					
+					$c_\text{eq}/\unit{\mole\per\cubic\deci\meter}$ & & $0,100 - x$ & & && x && x\\
+					\hline
+				\end{tabular}
+				
+				\vspace{5pt}
+				$K_a = \dfrac{ [\ch{CH3COO-}]_e \times [\ch{H3O+}]_e }{ [\ch{CH3COOH}]_e } \Leftrightarrow 1,8 \times 10^{-5} = \dfrac{x^2}{0,100-x} \Leftrightarrow x = \SI{1,3e-3}{\mole\per\cubic\deci\meter}$
+				
+				\vspace{5pt}
+				Etapa B - Cálculo do pH (6pt):\\
+				$\text{pH} = -\text{log}[\ch{H3O+}]_e = -\text{log}(1,3\times 10^{-3}) = 2,9$
+			}
+		\end{solution}
+		
+		
+		
+	\end{questions}
+	
+	\vspace{10pt}
+	\center
+	FIM
+	
+	\vfill
+	\center
+	\pointtable[h]
+\end{document}

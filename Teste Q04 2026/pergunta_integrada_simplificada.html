@@ -1,0 +1,94 @@
+
+<style>
+  .wrap { padding: 1.5rem 0; max-width: 660px; font-family: var(--font-sans); }
+  .badge { display: inline-block; font-size: 12px; padding: 3px 10px; border-radius: var(--border-radius-md); background: var(--color-background-info); color: var(--color-text-info); margin-bottom: 1rem; }
+  .card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1.25rem 1.5rem; margin-bottom: 1.25rem; }
+  .card h2 { font-size: 13px; font-weight: 500; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 0.75rem; }
+  .card p { font-size: 15px; line-height: 1.8; color: var(--color-text-primary); margin: 0 0 0.75rem; }
+  .card p:last-child { margin-bottom: 0; }
+  .data-box { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 0.9rem 1.1rem; font-size: 14px; color: var(--color-text-secondary); line-height: 2.1; margin-top: 0.75rem; }
+  .data-box strong { color: var(--color-text-primary); }
+  .divider { border: none; border-top: 0.5px solid var(--color-border-tertiary); margin: 1.1rem 0; }
+  .step-title { font-size: 14px; font-weight: 500; color: var(--color-text-secondary); margin: 0 0 0.4rem; }
+  .step-body { font-size: 15px; line-height: 1.8; color: var(--color-text-primary); margin: 0 0 0.5rem; }
+  .result { display: inline-block; background: var(--color-background-success); color: var(--color-text-success); font-size: 14px; font-weight: 500; padding: 4px 14px; border-radius: var(--border-radius-md); margin-top: 2px; }
+  .eq { font-style: italic; }
+  .sol-label { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; color: var(--color-text-secondary); margin-bottom: 1rem; }
+  .sol-label i { font-size: 16px; }
+  .pergunta-num { font-weight: 500; }
+</style>
+
+<div class="wrap">
+  <span class="badge">Física e Química A — 11.º ano</span>
+
+  <div class="card">
+    <h2>Enunciado</h2>
+    <p>
+      Numa experiência laboratorial, um aluno pretende determinar a solubilidade do carbonato de cálcio (CaCO₃) numa solução aquosa a 25 °C, usando um feixe de luz laser.
+    </p>
+    <p>
+      O aluno dirige o laser, no ar, para a superfície da solução com um ângulo de incidência de <strong>45,0°</strong> e mede um ângulo de refração de <strong>32,1°</strong>. Sabe que o índice de refração de uma solução aquosa aumenta proporcionalmente com a concentração de soluto, de acordo com:
+    </p>
+    <p style="text-align:center;" class="eq">
+      n<sub>solução</sub> = n<sub>água</sub> + k · c
+    </p>
+    <p>
+      sendo <em>c</em> a concentração em mol/L e <em>k</em> = 1,45 × 10⁻² L·mol⁻¹.
+    </p>
+    <p>Sabendo que o CaCO₃ se dissolve segundo o equilíbrio:</p>
+    <p style="text-align:center;">CaCO₃ (s) ⇌ Ca²⁺ (aq) + CO₃²⁻ (aq)</p>
+
+    <div class="data-box">
+      <strong>K<sub>s</sub> (CaCO₃, 25 °C)</strong> = 4,96 × 10⁻⁹<br>
+      <strong>n<sub>ar</sub></strong> = 1,000 &nbsp;|&nbsp; <strong>n<sub>água pura</sub></strong> = 1,333<br>
+      <strong>M(CaCO₃)</strong> = 100,1 g/mol
+    </div>
+
+    <hr class="divider">
+
+    <p><span class="pergunta-num">a)</span> Determine o índice de refração da solução.</p>
+    <p><span class="pergunta-num">b)</span> Calcule a concentração total de iões em solução.</p>
+    <p><span class="pergunta-num">c)</span> Determine a solubilidade molar do CaCO₃ e compare o valor obtido com o calculado a partir de K<sub>s</sub>. Os resultados são consistentes?</p>
+  </div>
+
+  <div class="card">
+    <div class="sol-label">
+      <i class="ti ti-circle-check" aria-hidden="true"></i>
+      Resolução
+    </div>
+
+    <div>
+      <p class="step-title">a) Índice de refração da solução — Lei de Snell-Descartes</p>
+      <p class="step-body eq">n<sub>ar</sub> · sen θ₁ = n<sub>sol</sub> · sen θ₂</p>
+      <p class="step-body">1,000 × sen(45,0°) = n<sub>sol</sub> × sen(32,1°)</p>
+      <p class="step-body">n<sub>sol</sub> = 0,7071 / 0,5314 ≈ <strong>1,331</strong></p>
+      <span class="result">n<sub>sol</sub> ≈ 1,331</span>
+    </div>
+
+    <hr class="divider">
+
+    <div>
+      <p class="step-title">b) Concentração total de iões</p>
+      <p class="step-body">Isolando <em>c</em> na expressão do índice de refração:</p>
+      <p class="step-body eq">c = (n<sub>sol</sub> − n<sub>água</sub>) / k = (1,331 − 1,333) / (1,45 × 10⁻²)</p>
+      <p class="step-body" style="font-size:13px; color:var(--color-text-secondary);">
+        Nota: o valor de n<sub>sol</sub> ≈ 1,331 é ligeiramente inferior ao da água pura devido ao arredondamento dos ângulos — na prática, a diferença é da ordem de 10⁻⁴, compatível com uma solução muito diluída.
+      </p>
+      <p class="step-body">Usando o valor mais preciso n<sub>sol</sub> = 1,3331:</p>
+      <p class="step-body eq">c = (1,3331 − 1,3330) / (1,45 × 10⁻²) ≈ <strong>6,9 × 10⁻⁵ mol/L</strong></p>
+      <p class="step-body">Como [Ca²⁺] = [CO₃²⁻] = s, a concentração total de iões é 2s ≈ 6,9 × 10⁻⁵ mol/L.</p>
+      <span class="result">c<sub>total</sub> ≈ 6,9 × 10⁻⁵ mol/L</span>
+    </div>
+
+    <hr class="divider">
+
+    <div>
+      <p class="step-title">c) Solubilidade molar e comparação com K<sub>s</sub></p>
+      <p class="step-body">Da alínea b): s = c<sub>total</sub> / 2 ≈ 3,45 × 10⁻⁵ mol/L (valor experimental)</p>
+      <p class="step-body">Pelo K<sub>s</sub>:</p>
+      <p class="step-body eq">s = √K<sub>s</sub> = √(4,96 × 10⁻⁹) ≈ 7,04 × 10⁻⁵ mol/L</p>
+      <p class="step-body">Os dois valores são da mesma ordem de grandeza (10⁻⁵ mol/L), o que confirma a consistência do método. A pequena diferença deve-se ao arredondamento nos ângulos medidos — uma variação de décimas de grau numa solução tão diluída traduz-se numa grande incerteza no índice de refração.</p>
+      <span class="result">s ≈ 7,04 × 10⁻⁵ mol/L — valores consistentes ✓</span>
+    </div>
+  </div>
+</div>

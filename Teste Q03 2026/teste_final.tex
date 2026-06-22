@@ -1,0 +1,572 @@
+\documentclass[addpoints]{exam}
+\usepackage{exam-randomizechoices}
+\usepackage[portuguese]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{multicol}
+\usepackage{geometry}
+\usepackage{tikz}
+\usetikzlibrary{arrows, decorations.markings}
+
+\usepackage{fourier}
+%Font Size
+%\usepackage[12pt]{extsizes}%OR
+\usepackage[fontsize=11pt]{scrextend}
+%-----Physics
+\usepackage{amsfonts,amsmath,amssymb,gensymb}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{caption, subcaption}
+\usepackage{tikz}
+\usepackage{tkz-euclide}
+\usepackage{circuitikz}
+\usepackage{float}
+\usepackage{pgf}
+\usepackage{pgfplots}
+%\usepackage{pgfplotstable}
+\usepackage{wrapfig}
+\usepackage{wrapstuff}
+\usepackage{tcolorbox}
+\tcbset{width=\linewidth,boxrule=0pt,colback=gray!10,arc=0pt,auto outer arc,left=0pt,right=0pt,boxsep=15pt}
+
+\usepackage{xcolor}
+\usepackage{cancel}
+\usepackage{hyperref}
+
+\usetikzlibrary{positioning, arrows.meta, intersections, calc, fadings, shapes.geometric, arrows, mindmap, backgrounds, shadings, decorations.markings,decorations.pathmorphing, math, shapes, decorations, patterns, shadows, external, angles, quotes}
+\tikzset{>=latex}
+\usepackage{siunitx}
+\sisetup{output-decimal-marker={,}}
+\usepackage[shortconst]{physconst}
+\usepackage{chemfig, chemmacros}
+\usepackage[version=4]{mhchem}
+
+%-----Caixas para apresentar as soluções
+\usepackage{lipsum,framed,color}
+\usepackage{calc}
+\definecolor{shadecolor}{rgb}{1,0.7,0.7}
+\newlength{\boxwidth}
+\newsavebox{\boxcontainer}
+
+\newcommand\mybox[1]{%
+	%\begin{center}%
+	\fcolorbox{white}{shadecolor}{%
+		%\begin{minipage}[t]{\dimexpr\textwidth-2\fboxsep+10\fboxrule}%
+		\begin{minipage}[t]{\textwidth-2\fboxsep}
+			#1%
+	\end{minipage}}%
+	%\end{center}
+}
+
+
+%-----Math
+\usepackage{dsfont}%apresenta as letras R,Z,C matemáticas
+\usepackage{mathtools}%configura os casos entre chavetas
+
+%-----Controlar espaço entre opções nas escolhas múltiplas (ver configuração antes de iniciar o documento)
+\usepackage{xpatch}
+
+\geometry{
+	a4paper,
+	top=1cm,
+	bottom=2cm,
+	left=1.5cm,
+	right=3cm,
+}
+
+\pgfdeclarelayer{background}
+\pgfdeclarelayer{main}
+
+\pgfsetlayers{background,main}
+
+%--------------------------------
+% CONFIGURAR CABEÇALHO E RODAPÉ
+%--------------------------------
+\pagestyle{headandfoot}
+\firstpageheader{}{}{}
+\runningheader{}{}{}
+\firstpagefooter{}{}{}
+\runningfooter{Física e Química A}{Teste}{Pág. \thepage\ de \numpages}
+\runningfootrule
+
+
+%--------------------------------
+% CONFIGURAÇÕES DO DOCUMENTO EXAM
+%--------------------------------
+\renewcommand{\solutiontitle}{\noindent \textbf{Solução:}\enspace}
+\renewcommand{\thequestion}{\bf \arabic{question}}
+\renewcommand{\choicelabel}{{\bf (\thechoice)}}
+\renewcommand{\partlabel}{\bf \thequestion.\arabic{partno}}
+\pointpoints{ponto}{pontos}
+\pointformat{[\bf \thepoints]}
+\pointsinrightmargin
+\setlength{\rightpointsmargin}{.5cm}
+\CorrectChoiceEmphasis{\color{red}\bfseries}%respostas corretas nas escolhas múltiplas a vermelho
+%tabela de cotação
+\hqword{Questão:}%vqword para a tabela na vertical
+\hpword{Cotação:}%vpword para a tabela na vertical
+
+
+\xpatchcmd{\oneparchoices}{\penalty -50\hskip 1em plus 1em\relax}{\hfill}
+
+
+% Deixar as linhas de espaço depois do xpatch
+\begin{document}
+	
+	\input{intro}
+	
+	% Settings for \mybox and Mybox
+	\setlength{\fboxrule}{1pt}
+	\setlength{\fboxsep}{10pt}
+	
+	% Additional settings for MyBox
+	\setlength{\FrameRule}{\fboxrule}
+	\setlength{\FrameSep}{\fboxsep}
+	
+	\begin{center}
+		\textbf{Versão 4}
+	\end{center}
+	
+	%INÍCIO DO TESTE
+	
+	\begin{questions}
+		\fullwidth{\Large \textbf{Grupo I}}
+		\uplevel{
+				Uma espira condutora rígida, com \SI{10,0}{\centi\meter} de lado e uma resistência elétrica total de \SI{0,40}{\ohm}, move-se com velocidade constante num plano horizontal. \\
+				Em \SI{0,0}{\second}, a espira começa a entrar numa região onde existe um campo magnético uniforme, $\vec{B}$, perpendicular ao plano da espira e com sentido para "dentro" do plano. O gráfico seguinte representa a variação do fluxo magnético, $\phi$, que atravessa a área da espira em função do tempo, $t$, durante o processo de entrada completa na região do campo.
+				
+				\begin{figure}[H]
+					\centering
+					\includegraphics[width=0.8\textwidth]{fluxo}
+				\end{figure}
+				
+				Com base nas informações fornecidas e no gráfico, calcule:
+		}
+		
+		\question[10] a intensidade do vetor campo magnético uniforme, $B$, existente na região.
+		Apresente todas as etapas de resolução.
+		
+		\begin{solution}
+			\textcolor{white}{.}\\
+			\mybox{
+				
+				$\phi = B A \cos(\alpha) \Rightarrow \phi = 0,25 \times 4,0 \times 10^{-3} \times \cos(\SI{30}{\degree}) = \SI{8,66e-4}{\weber}$. \\
+				A partir do gráfico, verifica-se que o fluxo aumenta linearmente desde o instante inicial até ao instante $t=\SI{0,5}{\second}$. O aumento linear corresponde ao intervalo de tempo até a espira estar completamente inserida no campo magnético uniforme – valor máximo do gráfico.\\
+				Etapa A - Determinar a área da espira (3pt):\\
+				$A = 10,0 \times 10,0 = \SI{100}{\centi\meter\squared} = \SI{0,0100}{\meter\squared}$\\
+				Etapa B - Identifica o fluxo máximo a partir do gráfico (2pt):\\
+				Do gráfico: $\phi_\text{máx} = \SI{8,0e-3}{\weber}$\\
+				Etapa C - Determinar o campo magnético (5pt):\\
+				$\phi_\text{máx} = B A \cos⁡ 0\degree \Leftrightarrow 8,0\times10^{-3} = B \times 0,0100 \Leftrightarrow B=\SI{0,80}{\tesla}$. 
+			}
+		\end{solution}
+		
+		\vspace{10pt}
+		\question[10] a intensidade da corrente elétrica induzida na espira durante o intervalo de tempo.
+		Apresente todas as etapas de resolução.
+		
+		
+		\begin{solution}
+			\textcolor{white}{.}\\
+			\mybox{
+				Etapa A - Determinar a força eletromotriz induzida (5pt):\\
+				Cálculo da força eletromotriz induzida no intervalo de tempo em que há variação de fluxo magnético: \\
+				$|\varepsilon_i| = \dfrac{\Delta \phi}{\Delta t} \Leftrightarrow |\varepsilon_i| = \dfrac{8,0\times10^(-3)-0}{0,5-0,0} \Leftrightarrow |\varepsilon_i|= \SI{0,016}{\volt}$\\
+				Etapa B - Calcular a corrente elétrica induzida (5pt):\\
+				$\varepsilon= RI \Leftrightarrow I= \dfrac{0,016}{0,4} \Leftrightarrow I= \SI{0,04}{\ampere} = \SI{40}{\milli\ampere}$
+			}
+		\end{solution}
+
+		
+		\noindent\rule{\linewidth}{0.5pt}
+		\vspace{5pt}
+		\fullwidth{\Large \textbf{Grupo II}}
+		\uplevel{
+			\begin{minipage}{0.3\textwidth}
+				Um feixe de luz, de frequência \SI{3,9e14}{\hertz}, incide na superfície de separação vidro/água, segundo um ângulo de \SI{43}{\degree},na direção indicada na figura.\\[5pt]
+				$n_\text{vidro} = 1,50$\\
+				$n_\text{água} = 1,33$\\
+				$n_\text{ar} = 1,00$\\
+			\end{minipage}
+			\hspace{0.1\textwidth}
+			\begin{minipage}{0.6\textwidth}
+				\begin{tikzpicture}
+				% --- Definição de Cores ---
+				\definecolor{vidro}{RGB}{210, 225, 235}
+				\definecolor{agua}{RGB}{160, 220, 250}
+				\definecolor{raio}{RGB}{255, 195, 0}
+				
+				% --- Camadas (Background) ---
+				% Vidro
+				\fill[vidro] (-4, 0) rectangle (4, 3);
+				\node[anchor=west, font=\sffamily\bfseries] at (-3.8, 0.5) {Vidro};
+				
+				% Água
+				\fill[agua] (-4, -2.5) rectangle (4, 0);
+				\node[anchor=west, font=\sffamily\bfseries] at (-3.8, -0.5) {Água};
+				
+				% Ar (e linha de separação inferior)
+				\fill[gray!40] (-4, -2.6) rectangle (4, -2.5);
+				\node[anchor=west, font=\sffamily\bfseries] at (-3.8, -3.2) {Ar};
+				
+				% --- Linha Normal ---
+				\draw[dashed, red!60!black, thick] (0, 3.5) -- (0, -4);
+				
+				% --- Raio de Luz Incidente ---
+				% Calculando as coordenadas com base no ângulo de 43 graus com a normal
+				% O raio vem do quadrante superior esquerdo.
+				\coordinate (O) at (0,0);
+				\coordinate (P) at ({3*tan(43)}, 3); % Ponto de origem do raio no topo
+				\coordinate (N) at (0, 2); % Ponto auxiliar na normal para o arco do ângulo
+				
+				\draw[raio, line width=1.5pt, -{Stealth[length=10pt]}] 
+				(-2.8, 3) -- (O);
+				
+				% --- Ângulo ---
+				%\pic [draw, "43°", angle eccentricity=1.5, angle radius=1cm, font=\sffamily\small] {angle = P--O--N};
+				\end{tikzpicture}
+			\end{minipage}
+		}
+		
+		\vspace{15pt}
+		\question[8] Sobre as propriedades da luz ao passar do vidro para a água, é correto afirmar que:
+		
+		\begin{randomizechoices}
+			\choice A velocidade de propagação aumenta, e o comprimento de onda diminui.
+			\choice A frequência da luz aumenta, tornando a cor mais azulada.
+			\choice A velocidade de propagação diminui, pois a água é um meio material.
+			\correctchoice A velocidade de propagação aumenta, e o comprimento de onda aumenta.
+		\end{randomizechoices}
+		
+		\vspace{15pt}
+		\question[12] Considere o sistema representado na figura anterior. O feixe atravessa a camada de água e atinge a interface \textit{água-ar}.\\
+		Determine, apresentando todos os cálculos, se ocorre o fenómeno de reflexão total interna quando a luz tenta passar da água para o ar.
+
+		\begin{solution}
+			\textcolor{white}{.}\\
+			\mybox{
+				Cálculo do ângulo de refração na superfície vidro/água (4pt):\\
+				$n_\text{vidro} \sin \theta_i = n_\text{água} \sin \theta_r \Rightarrow 1,50 \sin⁡ \SI{43}{\degree} = 1,33 \sin \theta_r \Leftrightarrow \sin \theta_r = 0,7692 \Rightarrow \theta_r \approx \SI{50}{\degree}$\\
+				Determinação do ângulo crítico na superfície água/ar (4pt):\\
+				$\sin \theta_c = \dfrac{n_\text{ar}}{n_\text{água}} \Rightarrow \sin \theta_c = \dfrac{1,00}{1,33} \Leftrightarrow \sin \theta_c = 0,7519 \Rightarrow \theta_c \approx \SI{48,8}{\degree}$\\
+				Conclui que ocorre reflexão total (4pt):\\
+				Assim, sendo o ângulo de incidência na interface água-ar maior do que $\theta_c$, ocorre reflexão total nesta superfície.
+			}
+			
+		\end{solution}
+	
+	\question[8] A frequência da luz na água é \underline{\hspace{50pt}} frequência da luz no vidro e o comprimento de onda da luz na água é \underline{\hspace{50pt}} comprimento da luz no vidro.
+	\begin{multicols}{2}
+		\begin{randomizechoices}
+			\choice \ldots igual à \ldots igual ao \ldots
+			\choice \ldots menor do que a \ldots maior do que \ldots
+			\choice \ldots maior do que a \ldots menor do que \ldots
+			\correctchoice \ldots igual à \ldots menor do que \ldots
+		\end{randomizechoices}
+	\end{multicols}
+	
+	\question[8] A expressão que permite calcular o comprimento de onda do feixe de luz na água é:
+	\begin{multicols}{2}
+		\begin{randomizechoices}
+			\choice $\lambda = \dfrac{1,33}{3,00 \times 10^8 \times 3,9 \times 10^{14}}$
+			\choice $\lambda = \dfrac{3,9 \times 10^{14}}{1,33 \times 3,00 \times 10^8}$
+			\choice $\lambda = \dfrac{1,33 \times 3,9 \times 10^{14}}{3,00 \times 10^8}$
+			\correctchoice $\lambda = \dfrac{1,33 \times 3,00 \times 10^8}{3,9 \times 10^{14}}$
+		\end{randomizechoices}
+	\end{multicols}
+	
+	\noindent\rule{\linewidth}{0.5pt}
+	\vspace{5pt}
+	\fullwidth{\Large \textbf{Grupo III}}
+	\uplevel{
+		\vspace{3pt}
+		Num automóvel a gasolina, ocorre a combustão de octano, de acordo com a seguinte reação química:\\
+		\begin{center}
+			\ce{2 C8H18 (l) + 25 O2 (g) -> 16 CO2 (g) + 18H2O (g)}
+		\end{center}
+		Considere que o automóvel se desloca entre Porto e Lisboa, percorrendo \SI{300}{\kilo\meter} com uma média de consumo de gasolina de \SI{5,00}{\liter} (o que corresponde a \SI{4,75}{\liter} de octano) por cada \SI{100}{\kilo\meter}.\\
+		Dados: $\rho_\text{octano} = \SI{703}{\kilogram\per\cubic\meter}; M(\ce{C8H18}) = \SI{114,26}{\gram\per\mole}; M(\ce{CO2}) = \SI{44,01}{\gram\per\mole}$
+	}
+	
+	\question[16] Calcula a massa de dióxido de carbono libertado para a atmosfera na referida viagem. Apresente todos os cálculos efetuados.
+	\begin{solution}
+		\textcolor{white}{.}\\
+		\mybox{
+			Determinação do volume de octano consumido (4pt):\\
+			$V(\ce{C8H18})= \dfrac{\SI{4,75}{\liter}}{\SI{100}{\kilo\meter}} \times \SI{300}{\kilo\meter} = \SI{14,25}{\liter}$ \\
+			Determinação da quantidade de octano consumido (4pt):\\
+			$\rho_\text{octano} = \dfrac{m}{V} \Leftrightarrow 0,703 = \dfrac{m}{14,25} \Leftrightarrow m(\ce{C8H18}) = \SI{10,02}{\kilogram} $\\
+			$n_\text{octano} = \dfrac{m}{M} \Rightarrow n_\text{octano} = \dfrac{10,02}{114,26} \Leftrightarrow n_\text{octano} = \SI{87,7}{\mole}$\\
+			Determinação da quantidade de dióxido de carbono libertado (4pt):\\
+			Pela estequiometria, verifica-se a razão molar: $n(\ce{CO2}) = \dfrac{16}{25} n(\ce{O2})$, então:\\
+			$n(\ce{CO2}) = \dfrac{16}{25} \times 87,7 = \SI{56,1}{\mole}$\\
+			Determinação da massa de dióxido de carbono libertado para a atmosfera (4pt):\\
+			$n(\ce{CO2}) = \dfrac{m}{M} \Rightarrow 56,1 = \dfrac{m}{44,01} \Leftrightarrow m(\ce{CO2}) = \SI{2,47e3}{\gram} = \SI{2,47}{\kilogram}$
+		}
+		
+	\end{solution}
+	
+	\question Se o automóvel estiver a realizar uma combustão com um rendimento inferior ao desejado, por falta de ar no motor, forma-se, entre outros, monóxido de carbono, de acordo com o seguinte esquema químico:
+	\begin{center}
+		\ce{a C8H18 (g) + b O2 (g) -> c CO (g) + d H2O (g)}
+	\end{center}
+	\begin{parts}
+		\part[8] Selecione a opção que contém os valores dos coeficientes estequiométricos desta reação para que fique de acordo com a Lei de Lavoisier.
+		\begin{randomizechoices}
+			\choice $a = 2; b = 25; c = 16; d = 18$
+			\correctchoice $a = 2; b = 17; c = 16; d = 18$ 
+			\choice	$a = 1; b = 17; c = 8; d = 9$
+			\choice 	$a = 1; b = 25; c = 8; d = 9$
+		\end{randomizechoices} 
+		\part[8] Nestas condições pode afirmar-se que\ldots
+		\begin{randomizechoices}
+			\choice \ldots a água é o produto limitante.
+			\choice \ldots o octano é o reagente limitante.
+			\correctchoice \ldots o dioxigénio é o reagente limitante.
+			\choice \ldots o monóxido de carbono é o reagente em excesso.
+		\end{randomizechoices}
+	\end{parts}
+	
+	\question[10] Determine o volume mínimo de dioxigénio que deve entrar no motor de combustão para que a viagem possa ser realizada sem formação de monóxido de carbono.\\
+	Considere o dioxigénio um gás ideal, à pressão de \SI{1}{\atmosphere} atm e a \SI{0}{\celsius}.
+	\begin{solution}
+		\textcolor{white}{.}\\
+		\mybox{
+			Determinação da quantidade de dioxigénio consumido (5pt):\\
+			Pela estequiometria, verifica-se a razão molar: $n(\ce{O2}) = \dfrac{25}{2} n(\ce{C8H18})$, então:\\
+			$n(\ce{O2}) = \dfrac{25}{2} \times 87,7 = \SI{1,10e3}{\mole}$\\
+			Determinação do volume de dioxigénio gasoso, condições PTN (5pt):\\
+			$n(\ce{O2}) = \dfrac{V}{V_m} \Rightarrow 1,10 \times 10^3 = \dfrac{V}{22,4} \Leftrightarrow V(\ce{O2}) = \SI{2,46e4}{\cubic\deci\meter} = \SI{25}{\cubic\meter}$
+		}
+	\end{solution}
+	
+	
+	\noindent\rule{\linewidth}{0.5pt}
+	\vspace{1pt}
+	\fullwidth{\Large \textbf{Grupo IV}}
+	\uplevel{Considere a seguinte informação.\\
+	
+	\begin{minipage}{0.9\linewidth}
+		\begin{tcolorbox}
+			O cloreto de magnésio, \ce{MgCl2}, é um composto muito solúvel em água. Sob orientação médica pode ser usado para corrigir deficiências de magnésio, essencial para o funcionamento muscular, nervoso e cardiovascular, sendo também frequentemente recomendado durante a gravidez, como profilaxia de contrações precoces.\\
+			O cloreto de magnésio ($M=\SI{95,21}{\gram\per\mole}$) pode ser obtido em laboratório através da reação entre o ácido clorídrico e diferentes substâncias contendo magnésio, como ilustrado nas três reações seguintes:\\
+			\textbf{Reação 1}\\
+			Reação entre magnésio metálico e solução aquosa de ácido clorídrico:\\
+			\ce{Mg (s) + 2 HCl (aq) -> MgCl2 (aq) + H2 (g)} \\
+			\textbf{Reação 2}\\
+			Reação entre óxido de magnésio e solução aquosa de ácido clorídrico:\\
+			\ce{MgO (s) + 2 HCl (aq) -> MgCl2 (aq) + H2O (l)} \\
+			\textbf{Reação 3}\\
+			Reação entre carbonato de magnésio e solução aquosa de ácido clorídrico:\\
+			\ce{MgCO3 (s) + 2 HCl (aq) -> MgCl2 (aq) + CO2 (g) + H2O (l)}	
+		\end{tcolorbox}
+		
+	\end{minipage}
+}
+	\question Considere a reação 1.
+	
+	\begin{parts}
+		\part[12] Determine a quantidade de cloreto de magnésio, \ce{MgCl2}, que se pode obter a partir da reação completa de \SI{2,43}{\gram} de magnésio metálico com excesso de ácido clorídrico, \ce{HCl}.\\
+		Apresente todas as etapas de resolução.
+		\begin{solution}
+			\textcolor{white}{.}\\
+			\mybox{
+				Determinação da quantidade de magnésio (6pt):\\
+				$M(\ce{Mg})=\SI{24,31}{\gram\per\mole}$ \\
+				$M=\dfrac{m}{n} \Rightarrow n(\ch{Mg})=\dfrac{2,43}{24,31} =\SI{0,100}{\mole}$ \\
+				Determinação da quantidade de cloreto de magnésio (6pt):\\
+				Pela estequiometria, verifica-se a razão molar: $n(\ce{Mg}) = n(\ce{MgCl2})$, então:\\
+				$n(\ce{MgCl2})=n(\ce{Mg})\Rightarrow n(\ce{MgCl2})=\SI{0,100}{\mole}$\\
+			}
+		\end{solution}
+		
+		\part[12] Partindo de \SI{120,0}{\gram} de carnalite, um minério que contém magnésio, obtiveram-se \SI{350,0}{\gram} de cloreto de magnésio.\\
+		Considerando a reação completa, determine a percentagem de impurezas existente na carnalite.\\
+		Apresente todas as etapas de resolução.
+		\begin{solution}
+			\textcolor{white}{.}\\
+			\mybox{
+				Determinação da quantidade de cloreto de magnésio formado (4pt):\\
+				$M(\ce{MgCl2})=\SI{95,21}{\gram\per\mole}$\\
+				$M=\dfrac{m}{n} \Rightarrow n(\ce{MgCl2})=\dfrac{350}{95,21} =\SI{3,68}{\mole} (\text{formado})$
+				Determinação da massa que reage (4pt):\\
+				Pela estequiometria, verifica-se a razão molar: $n(\ce{MgCl2}) = n(\ce{Mg})$, então:
+				$n(\ce{MgCl2}) = n(\ce{Mg}) = \SI{3,68}{\mole}$\\
+				$M(Mg)=\SI{24,31}{\gram\per\mole}$\\ 
+				$M=\dfrac{m}{n} \Rightarrow m(\ce{Mg})= n \times M \Rightarrow m(\ce{Mg}) = 3,68 \times 24,31 = \SI{89,46}{\gram} (\text{que reage})$
+				Determinação da massa de impurezas (4pt):\\
+				$m(\text{impurezas})= m(\text{total})- m(\ce{Mg}) \Rightarrow m(\text{impurezas}) = 120,0 - 89,46 = \SI{30,54}{\gram} (\text{de impurezas}) $\\
+				Cálculo da percentagem de impurezas (4pt):\\
+				$\% \text{impurezas} = \dfrac{m(\text{impurezas})}{m(\text{total})} \times 100 \Rightarrow \% \text{impurezas}=\dfrac{30,54}{120} \times 100 = 25,5 \% $
+			}
+		\end{solution}
+		
+	\end{parts}
+
+	\question A Química Verde assenta em 12 princípios fundamentais elaborados por Paul Anastas e John Warner. Estes princípios, relacionados com a Agenda 2030 da ONU, visam conceber produtos e processos químicos que, priorizando a prevenção de resíduos e o recurso a matérias-primas renováveis, aumentem a eficiência energética, promovendo a sustentabilidade e a proteção ambiental.\\
+	\textbf{Considere as reações 2 e 3.}\\
+
+	\begin{parts}
+		\part[12] Qual das reações é, do ponto de vista da Química Verde, a mais adequada para a obtenção de cloreto de magnésio, \ce{MgCl2}? Justifique a sua resposta com base nos princípios da Química Verde. \\
+		Apresente a sua fundamentação num texto estruturado e com linguagem científica adequada.
+		\begin{solution}
+			\textcolor{white}{.}\\
+			\mybox{
+				A resposta integra os tópicos de referência seguintes ou outros de conteúdo equivalente:\\
+				
+				(A)	Considerando os princípios da economia atómica, da prevenção de resíduos e da minimização do impacto ambiental, a reação 2 é a alternativa mais sustentável.\\
+				
+				(B) Na reação 2 há maior incorporação de matéria-prima no produto desejado (maior economia atómica), minimizando a formação de resíduos.\\
+				
+				(C)	Na reação 2, para além do produto final desejado, forma-se água, um subproduto ambientalmente inofensivo, enquanto na reação 3 ocorre a libertação de dióxido de carbono que, embora não seja tóxico em baixas concentrações, a sua emissão contribui para o efeito de estufa.\\
+				
+				\begin{tabular}{|c|p{0.5\textwidth}|c|}
+					\hline
+					NÍVEIS & DESCRITORES DO NÍVEL DE DESEMPENHO & PONTUAÇÃO \\
+					\hline
+					4 & Na resposta, são apresentados os três tópicos de referência com organização coerente dos conteúdos e linguagem cientifica adequada. & 12 \\
+					\hline
+					3 & Na resposta, são apresentados os três tópicos de referência com falhas na organização dos conteúdos ou na utilização da linguagem cientifica. & 9 \\
+					\hline
+					2 & Na resposta, é apresentado apenas dois dos tópicos de referência com linguagem cientifica adequada. & 6 \\
+					\hline
+					1 & Na resposta, é apresentado apenas um dos tópicos de referência com falhas na utilização da linguagem cientifica. & 3 \\
+					\hline
+				\end{tabular}
+			}
+		\end{solution}
+		\part[8] Num reator foram colocados \SI{8,0}{\gram} de óxido de magnésio,\ce{MgO}, com \SI{50,0}{\cubic\centi\meter} de ácido clorídrico de concentração \SI{6,0}{\mole\per\cubic\deci\meter}, para obtenção de cloreto de magnésio (reação 2).\\
+		Numa reação completa, pode afirmar-se que o \underline{\hspace{50pt}} é o reagente limitante, obtendo-se uma quantidade máxima de \ce{MgCl2} \underline{\hspace{50pt}} à quantidade de \underline{\hspace{50pt}}.
+		\begin{multicols}{2}
+			\begin{randomizechoices}
+				\choice $\ldots$ \ce{MgO} $\ldots$ igual $\ldots$ \ce{MgO}
+				\choice $\ldots$ \ce{HCl} $\ldots$ igual $\ldots$ \ce{MgO}
+				\choice $\ldots$ \ce{MgO} $\ldots$ inferior $\ldots$ \ce{HCl}
+				\correctchoice $\ldots$ \ce{HCl} $\ldots$ inferior $\ldots$ \ce{HCl}
+			\end{randomizechoices}
+		\end{multicols}
+		\part[12] Para produzir o cloreto de magnésio a partir da reação 3 fizeram-se reagir \SI{0,200}{\kilogram} de carbonato de magnésio ($M(\ce{MgCO3})=\SI{84,32}{\gram\per\mole}$) com excesso de ácido clorídrico.\\
+		Determine o volume de dióxido de carbono, \ce{CO2}, que se liberta, à pressão de 1 atmosfera e temperatura de \SI{0}{\celsius}, assumindo que o rendimento global da reação é de 80,0 \%.\\
+		Apresente todas as etapas de resolução.
+		\begin{solution}
+			\textcolor{white}{.}\\
+			\mybox{
+				Determinação da quantidade de dióxido de carbono previsto (4pt):\\
+				$M(\ce{MgCO3}) = \SI{84,32}{\gram\per\mole}$\\; 
+				$M=\dfrac{m}{n} \Rightarrow n(\ce{MgCO3})=\dfrac{200}{84,32} = \SI{2,37}{\mole}$\\
+				Razão estequiométrica (4pt):\\
+				Pela estequiometria da reação: 1 mol \ce{MgCO3} : 1 mol \ce{CO2}, então:
+				Se o rendimento fosse de 100\% formar-se-iam \SI{2,37}{\mole}  de \ce{CO2}.
+				Determinação da quantidade de carbonato de magnésio previsto (4pt):\\
+				Sendo o rendimento de 80\%: $n(\ce{CO2}) = 2,37 \times 0,80 = \SI{1,90}{\mole}$ 
+				Cálculo do volume de CO2 libertado (4pt):\\
+				Em condições PTN:  $V = n \times V_m \Rightarrow V(\ce{CO2}) = 1,90 \times 22,4 = \SI{42,6}{\cubic\deci\meter}$.\\
+			}
+		\end{solution}
+	\end{parts}
+
+
+			
+	\noindent\rule{\linewidth}{0.5pt}
+	\vspace{5pt}
+	\fullwidth{\Large \textbf{Grupo V}}
+	\uplevel{
+		\vspace{3pt}
+		O tetróxido de dinitrogénio, \ce{N2O4}, é um composto químico incolor, altamente tóxico e corrosivo. No espaço, o \ce{N2O4} é o “oxigénio” dos foguetões, o comburente que permite ao combustível arder.\\
+		O \ce{N2O4} existe em equilíbrio dinâmico com o dióxido de nitrogénio (\ce{NO2}), de cor acastanhada, de acordo com a reação química traduzida pela equação química seguinte
+		\begin{center}
+			\ce{2 NO2 (g) <=> N2O4 (g)} \hspace{10pt} $\Delta H < 0$
+		\end{center}
+	}
+	
+		\vspace{5pt}
+		\question[8] O texto refere “equilíbrio dinâmico”. Indique o significado desta expressão.\\
+
+		\begin{solution}
+			\textcolor{white}{.}\\
+			\mybox{
+				Equilíbrio dinâmico significa que, quando se estabelece o equilíbrio químico, as reações direta e inversa continuam a ocorrer, simultaneamente e à mesma velocidade, mantendo todas as concentrações constantes.
+			}
+		\end{solution}
+		
+		\question O gráfico da figura abaixo apresenta a variação temporal da concentração de \ce{NO2} e de \ce{N2O4} no sistema reacional.\\
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.6\textwidth]{conc_tempo}
+		\end{figure}
+		
+		\begin{parts}
+			\part[10] Determine a constante de equilíbrio, $K_c$, da reação, à temperatura correspondente ao intervalo de tempo $[t_1; t_2]$.
+			\begin{solution}
+				\textcolor{white}{.}\\
+				\mybox{
+					Concentrações de equilíbrio a partir do gr+afico para o intervalo referido (5pt):\\
+					Entre $[t_1; t_2]: [\ce{NO2}]_e = \SI{0,30}{\mole\per\cubic\deci\meter}; [\ce{N2O4}]_e = \SI{0,20}{\mole\per\cubic\deci\meter}$ \\
+					Determinação da constante de equilíbrio (5pt):\\
+					$K_c = \dfrac{[\ce{N2O4}]_e}{[\ce{NO2}]_e^2} \Rightarrow K_c = \dfrac{0,20}{0,30^2} \Leftrightarrow K_c = 2,22$
+				}
+			\end{solution}
+			
+			\part[12] Complete o texto seguinte, selecionando a opção correta para cada espaço. Escreva, na folha de respostas, cada uma das letras seguida do número que corresponde à opção selecionada.\\[10pt]
+			A partir da análise do gráfico é possível concluir que, no intervalo de tempo $[0;t_1]$, a reação evoluiu no sentido \underline{\hspace{25pt}}\underline{a)}\underline{\hspace{25pt}}, sendo o valor de $Q_c$, nesse intervalo de tempo, \underline{\hspace{25pt}}\underline{b)}\underline{\hspace{25pt}} a $K_c$.\\
+			No instante $t_4$, a temperatura \underline{\hspace{25pt}}\underline{c)}\underline{\hspace{25pt}}. No intervalo $[t_5; t_6]$ a constante de equilíbrio, $K_c$, é \underline{\hspace{25pt}}\underline{d)}\underline{\hspace{25pt}} à constante de equilíbrio no intervalo $[t_1; t_2]$.\\
+			\begin{table}[H]
+				\centering
+				\begin{tabular}{|c|c|c|c|}
+					\hline
+					a) & b) & c) & d) \\
+					\hline
+					1. direto & 1. igual & 1. manteve-se  & 1. igual \\
+					\hline
+					2. indireto & 2. inferior & 2. diminuiu & 2. inferior \\
+					\hline
+					3. inverso & 3. superior & 3. aumentou & 3. superior \\
+					\hline
+				\end{tabular}
+			\end{table}
+			\begin{solution}
+				\textcolor{white}{.}\\
+				\mybox{
+					a) 1; b) 2; c) 3; d) 2
+				}
+			\end{solution}
+			
+			\part[16] A constante de equilíbrio da reação à temperatura $T$ é igual a 6,9.\\
+			Considere que, num reator de \SI{2,0}{\cubic\deci\meter}, vazio, fechado e indeformável, se colocaram \SI{3,0}{\mole} de \ce{NO2} e \SI{4,0}{\mole} de \ce{N2O4}. Determine a concentração de cada espécie no equilíbrio químico à temperatura $T$.\\
+			Apresente todas as etapas de resolução.
+			\begin{solution}
+				\textcolor{white}{.}\\
+				\mybox{
+					Determinação da concentração de \ce{NO2} e de \ce{N2O4} (4pt):\\
+					$c=\dfrac{n}{V} \Rightarrow [\ce{NO2}] = \dfrac{3,0}{2,0} =\SI{1,5}{\mole\per\cubic\deci\meter}; [\ce{N2O4}] = \dfrac{4,0}{2,0} = \SI{2,0}{\mole\per\cubic\deci\meter}$\\
+					Determinação do quociente da reação e o sentido em que evolui a reação química (4pt):\\
+					$Q_c = \dfrac{[\ce{N2O4}]}{[\ce{NO2}]^2} \Rightarrow Q_c = \dfrac{2,0}{1,5^2} \Leftrightarrow Q_c = 0,89 ; \text{Como} Q_c < K_c, \Rightarrow \text{a reação evolui no sentido direto.}$\\
+					Determinação do valor de $x$ (4pt):\\
+					\begin{table}[H]
+						\begin{tabular}{l ccc}
+							conc./\unit{\mole\per\cubic\deci\meter} & 2\ce{NO2 (g)} & \ce{<=>} & \ce{N2O4 (g)}\\
+							inic. & 1,5 && 2,0 \\
+							$\Delta$ & $-2x$ && $+x$\\
+							Equil. & $1,5-2x$ && $2,0+x$\\
+						\end{tabular}
+					\end{table}
+					$K_c= \dfrac{[\ce{N2O4}]_e}{[\ce{NO2}]_e} = 6,9 \Rightarrow 6,9 = \dfrac{2+x}{(1,5-2x)^2} \Rightarrow x=0,450$
+					Determinação das concentrações dos compostos no equilíbrio (4pt):\\
+					$[\ce{N2O4}]_e = \SI{2,450}{\mole\per\cubic\deci\meter} \text{ e } [\ce{NO2}]_e = \SI{0,600}{\mole\per\cubic\deci\meter}$
+					
+				}
+			\end{solution}
+		\end{parts}
+		
+
+		
+	\end{questions}
+	
+	\vspace{3pt}
+	\center
+	FIM
+	
+	\vfill
+	\center
+	\pointtable[h]
+\end{document}

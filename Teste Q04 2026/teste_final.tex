@@ -1,0 +1,578 @@
+\documentclass[addpoints]{exam}
+\usepackage{exam-randomizechoices}
+\usepackage[portuguese]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{multicol}
+\usepackage{geometry}
+
+
+\usepackage{fourier}
+%Font Size
+%\usepackage[12pt]{extsizes}%OR
+\usepackage[fontsize=11pt]{scrextend}
+%-----Physics
+\usepackage{amsfonts,amsmath,amssymb,gensymb}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{caption, subcaption}
+\usepackage{tikz}
+\usetikzlibrary{arrows, decorations.markings}
+\usetikzlibrary{decorations.pathmorphing}
+\usepackage{tkz-euclide}
+\usepackage{circuitikz}
+\usepackage{float}
+\usepackage{pgf}
+\usepackage{pgfplots}
+%\usepackage{pgfplotstable}
+\usepackage{wrapfig}
+\usepackage{wrapstuff}
+\usepackage{tcolorbox}
+\tcbset{width=\linewidth,boxrule=0pt,colback=gray!10,arc=0pt,auto outer arc,left=0pt,right=0pt,boxsep=15pt}
+
+\usepackage{xcolor}
+\usepackage{cancel}
+\usepackage{hyperref}
+
+\usetikzlibrary{positioning, arrows.meta, intersections, calc, fadings, shapes.geometric, arrows, mindmap, backgrounds, shadings, decorations.markings,decorations.pathmorphing, math, shapes, decorations, patterns, shadows, external, angles, quotes}
+\tikzset{>=latex}
+\usepackage{siunitx}
+\sisetup{output-decimal-marker={,}}
+\usepackage[shortconst]{physconst}
+\usepackage{chemfig, chemmacros}
+\usepackage[version=4]{mhchem}
+
+%-----Caixas para apresentar as soluções
+\usepackage{lipsum,framed,color}
+\usepackage{calc}
+\definecolor{shadecolor}{rgb}{1,0.7,0.7}
+\newlength{\boxwidth}
+\newsavebox{\boxcontainer}
+
+\newcommand\mybox[1]{%
+	%\begin{center}%
+	\fcolorbox{white}{shadecolor}{%
+		%\begin{minipage}[t]{\dimexpr\textwidth-2\fboxsep+10\fboxrule}%
+		\begin{minipage}[t]{\textwidth-2\fboxsep}
+			#1%
+	\end{minipage}}%
+	%\end{center}
+}
+
+
+%-----Math
+\usepackage{dsfont}%apresenta as letras R,Z,C matemáticas
+\usepackage{mathtools}%configura os casos entre chavetas
+
+%-----Controlar espaço entre opções nas escolhas múltiplas (ver configuração antes de iniciar o documento)
+\usepackage{xpatch}
+
+\geometry{
+	a4paper,
+	top=1cm,
+	bottom=2cm,
+	left=1.5cm,
+	right=3cm,
+}
+
+\pgfdeclarelayer{background}
+\pgfdeclarelayer{main}
+
+\pgfsetlayers{background,main}
+
+%--------------------------------
+% CONFIGURAR CABEÇALHO E RODAPÉ
+%--------------------------------
+\pagestyle{headandfoot}
+\firstpageheader{}{}{}
+\runningheader{}{}{}
+\firstpagefooter{}{}{}
+\runningfooter{Física e Química A}{Teste}{Pág. \thepage\ de \numpages}
+\runningfootrule
+
+
+%--------------------------------
+% CONFIGURAÇÕES DO DOCUMENTO EXAM
+%--------------------------------
+\renewcommand{\solutiontitle}{\noindent \textbf{Solução:}\enspace}
+\renewcommand{\thequestion}{\bf \arabic{question}}
+\renewcommand{\choicelabel}{{\bf (\thechoice)}}
+\renewcommand{\partlabel}{\bf \thequestion.\arabic{partno}}
+\pointpoints{ponto}{pontos}
+\pointformat{[\bf \thepoints]}
+\pointsinrightmargin
+\setlength{\rightpointsmargin}{.5cm}
+\CorrectChoiceEmphasis{\color{red}\bfseries}%respostas corretas nas escolhas múltiplas a vermelho
+%tabela de cotação
+\hqword{Questão:}%vqword para a tabela na vertical
+\hpword{Cotação:}%vpword para a tabela na vertical
+
+
+\xpatchcmd{\oneparchoices}{\penalty -50\hskip 1em plus 1em\relax}{\hfill}
+
+
+% Deixar as linhas de espaço depois do xpatch
+\begin{document}
+	
+	\input{intro}
+	
+	% Settings for \mybox and Mybox
+	\setlength{\fboxrule}{1pt}
+	\setlength{\fboxsep}{10pt}
+	
+	% Additional settings for MyBox
+	\setlength{\FrameRule}{\fboxrule}
+	\setlength{\FrameSep}{\fboxsep}
+	
+	\begin{center}
+		\textbf{Versão 4}
+	\end{center}
+	
+	%INÍCIO DO TESTE
+	
+	\begin{questions}
+		\fullwidth{\Large \textbf{Grupo I}}
+		\uplevel{
+				A análise feita ao rio Ovil, durante uma atividade de campo, permitiu analisar parâmetros biológicos, físicos e químicos de modo a poder-se concluir sobre o estado ecológico da sua água, que tinha uma temperatura média de \SI{16}{\celsius}.\\
+				Considere a reação de autoionização da água:\\
+				$$\ce{H2O (l) + H2O (l) <=> H3O+ (aq) + OH- (aq)}$$
+				
+				Foi recolhida uma amostra da água do Ovil, à temperatura de \SI{16}{\celsius}, e determinou-se o seu pH, usando um aparelho medidor de pH digital. A tabela apresenta os valores das três medições efetuadas.\\
+				
+				\begin{table}[H]
+					\centering
+					\begin{tabular}{cc}
+						Medição & pH \\
+						\hline
+						1 & 7,03 \\
+						2 & 7,01 \\
+						3 & 7,04 \\
+						\hline
+					\end{tabular}
+				\end{table}
+				
+				De seguida, a aqueceu-se a amostra até aos \SI{25}{\celsius} e mediu-se de novo o pH, verificando que passou a ser de 6,87.
+		}
+		
+		\question[8] O valor mais provável para o pH da água do Ovil, a 16 ºC, em função da incerteza absoluta, é...
+		
+		\begin{randomizechoices}
+			\choice $\text{pH}=7,03\pm0,01$
+			\choice $\text{pH}=7,02\pm0,02$
+			\choice $\text{pH}=7,02\pm0,01$
+			\correctchoice $\text{pH}=7,03\pm0,02$
+		\end{randomizechoices}
+		
+		\vspace{10pt}
+		\question[10] A partir do valor de pH da medição 1 indique o valor da concentração de iões \ce{H3O+} presentes na água.
+		
+		
+		\begin{solution}
+			\textcolor{white}{.}\\
+			\mybox{
+				$[\ce{H3O+}]=10^{-\text{pH}}\Rightarrow [\ce{H3O+}]=10^{-7,03}= \SI{9,3e-8}{\mole\per\cubic\deci\meter}$
+			}
+		\end{solution}
+		
+		\vspace{10pt}
+		\question[8] Com o aquecimento da água, houve \underline{\hspace{50pt}} da concentração de iões \ce{H3O+} presentes na água, \underline{\hspace{50pt}} o caráter da água.
+		
+		\begin{multicols}{2}
+			\begin{randomizechoices}
+				\choice \ldots aumento \ldots alterando-se \ldots
+				\choice \ldots diminuição \ldots alterando-se \ldots
+				\choice \ldots diminuição \ldots não se alterando \ldots
+				\correctchoice \ldots aumento \ldots não se alterando \ldots
+			\end{randomizechoices}
+		\end{multicols}
+		
+		\vspace{10pt}
+		\question[12] O aumento da temperatura levou à diminuição do pH da água. Classifique, em termos energéticos, a reação de autoionização da água. \\
+		Fundamente a sua resposta num texto bem estruturado e usando linguagem científica adequada.\\
+		
+		\begin{solution}
+			\textcolor{white}{.}\\
+			\mybox{
+				A resposta integra os tópicos de referência seguintes ou outros de conteúdo equivalente:\\
+				
+				(A)	O $pH=-log⁡[\ce{H3O+}]$, pelo que a diminuição do pH da água se deve ao aumento de \ce{H3O+}. \\
+				
+				(B) O aumento de temperatura fez a reação evoluir no sentido de formar \ce{H3O+}, no sentido direto.\\
+				
+				(C)	De acordo com o princípio de Le Châtelier, o aumento da temperatura favorece o sentido endotérmico da reação, então podemos concluir que a reação de autoionização da água é endotérmica [no sentido direto].\\
+				
+				\begin{tabular}{|c|p{0.5\textwidth}|c|}
+					\hline
+					NÍVEIS & DESCRITORES DO NÍVEL DE DESEMPENHO & PONTUAÇÃO \\
+					\hline
+					4 & Na resposta, são apresentados os três tópicos de referência com organização coerente dos conteúdos e linguagem cientifica adequada. & 12 \\
+					\hline
+					3 & Na resposta, são apresentados os três tópicos de referência com falhas na organização dos conteúdos ou na utilização da linguagem cientifica. & 9 \\
+					\hline
+					2 & Na resposta, é apresentado apenas dois dos tópicos de referência com linguagem cientifica adequada. & 6 \\
+					\hline
+					1 & Na resposta, é apresentado apenas um dos tópicos de referência com falhas na utilização da linguagem cientifica. & 3 \\
+					\hline
+				\end{tabular}
+			}
+		\end{solution}
+		
+		
+		\noindent\rule{\linewidth}{0.5pt}
+		\vspace{5pt}
+		\fullwidth{\Large \textbf{Grupo II}}
+		\uplevel{
+			Os terrenos agrícolas junto ao rio Ovil são conhecidos pela sua fertilidade.\\
+			O amoníaco (\ce{NH3}), substância essencial na produção de fertilizantes, desempenha um papel fundamental na agricultura moderna ao aumentar a produtividade das culturas.\\
+			A reação do amoníaco com a água é traduzida por:\\
+			\begin{center}
+				\ce{NH3 (aq) + H2O(l) <=> NH4+ (aq) + OH- (aq)}
+			\end{center}
+			
+		}
+		
+		\vspace{15pt}
+		\question[8] A reação do amoníaco com a água é uma...
+		
+		\begin{randomizechoices}
+			\choice \ldots dissociação completa.
+			\choice \ldots dissociação parcial.
+			\choice \ldots ionização completa.
+			\correctchoice \ldots ionização parcial.
+		\end{randomizechoices}
+		
+		\vspace{15pt}
+		\question[10] Identifique os pares conjugados ácido-base da reação.
+
+		\begin{solution}
+			\textcolor{white}{.}\\
+			\mybox{
+				Pares conjugados: \ce{NH4+}/\ce{NH3} e \ce{H2O}/\ce{OH-}
+			}
+			
+		\end{solution}
+	
+	
+	\question[12] Desprezando o efeito da autoionização da água, determine a quantidade de amoníaco não ionizado em \SI{50,00}{\milli\liter} de uma solução aquosa de amoníaco de concentração \SI{3,55e-2}{\mole\per\cubic\deci\meter}, à temperatura de \SI{25}{\celsius}.\\ 
+	Apresente todas as etapas de resolução. ($K_a (\ce{NH3}, \SI{25}{\celsius}) =\num{1,80e-5})$.
+	
+	\begin{solution}
+		\textcolor{white}{.}\\
+		\mybox{
+			Determinação da concentração de \ce{NH3} ionizado (4pt):\\
+			A variação das concentrações: $\Delta [\ce{NH4+}] =\Delta [\ce{OH-}] = x$ e $\Delta[\ce{NH3}]=-x$\\
+			$K_b=\dfrac{[\ce{NH4+}] [\ce{OH-}]}{[\ce{NH3}]} \Rightarrow  \num{1,80e-5} = \dfrac{x^2}{\num{3,55e-2}-x}\Leftrightarrow x=\SI{7,90e-4}{\mole\per\cubic\deci\meter}$\\ 
+			$x=[\ce{NH3}]_\text{ionizado}$\\
+			Determinação da quantidade de \ce{NH3} não ionizado (4pt):\\ $[\ce{NH3}]_{\text{não ionizado}} = \num{3,55e-2} - \num{7,90e-4} = \SI{3,47e-2}{\mole\per\cubic\deci\meter}$\\
+			Determinação da quantidade não-ionizada (4pt):\\
+			$n = c\times V \Rightarrow n = \num{3,47e-2} \times 0,05000 = \SI{1,74e-3}{\mole}$
+		}
+		
+	\end{solution}
+	
+	
+	
+	\noindent\rule{\linewidth}{0.5pt}
+	\vspace{5pt}
+	\fullwidth{\Large \textbf{Grupo III}}
+	\uplevel{
+		A zona da Reixela está inserida numa área de rica biodiversidade, com vegetação autóctone que inclui carvalhos.\\
+		No âmbito de um projeto sobre chuva ácida, uma aluna mediu, a uma mesma temperatura, os valores de pH de duas amostras de água da chuva recolhidas de um carvalho:\\
+		\begin{itemize}
+			\item amostra da água que escorria pelo tronco, com pH = 4,30;
+			\item amostra da água que pingava das folhas, com pH = 5,80.
+		\end{itemize}
+	}
+	
+	\question[12] Determine a relação entre a concentração hidrogeniónica da água que escorreu pelo tronco do carvalho e a concentração hidrogeniónica da água que pingou das folhas. \\
+	Apresente todas as etapas de resolução.
+	\begin{solution}
+		\textcolor{white}{.}\\
+		\mybox{
+			Determinação das concentrações de \ce{H3O+} do tronco e folhas (5pt):\\
+			$[\ce{H3O+}]_\text{tronco} = 10^{-4,30} = \SI{5,0e-5}{\mole\per\cubic\deci\meter}$
+			$[\ce{H3O+}]_\text{folhas} = 10^{-5,80} = \SI{1,6e-6}{\mole\per\cubic\deci\meter}$
+			Determinação da razão entre as concentrações (5pt):\\
+			$\dfrac{[\ce{H3O+}]_\text{tronco}}{[\ce{H3O+}]_\text{folhas}} = \dfrac{\num{5,0e-5}}{\num{1,6e-6}} \approx 31$\\
+			Escreve a conclusão (2pt):\\
+			A concentração hidrogeniónica da água que escorreu pelo tronco do carvalho é cerca de 31 vezes superior à da água que pingou das folhas.\\
+		}
+		
+	\end{solution}
+	
+	\question Para confirmar o valor do pH da amostra de água da chuva recolhida junto às folhas do carvalho, titulou-se um volume de \SI{50,0}{\milli\liter} daquela amostra com uma solução aquosa de hidróxido de sódio, \ce{NaOH} (aq), de concentração \SI{1,00e-4}{\mole\per\cubic\deci\meter}.\\
+	
+	\begin{parts}
+		\part[12] Calcule o volume de titulante gasto até ao ponto de equivalência, admitindo que se confirmava o valor de pH da solução titulada.\\
+		Apresente todas as etapas de resolução.
+		
+		\begin{solution}
+			\textcolor{white}{.}\\
+			\mybox{
+				Determinação da quantidade de \ce{H3O+} (5pt):\\
+				$[\ce{H3O+}] = 10^(-\text{pH}) \Rightarrow [\ce{H3O+}] = 10^{-5,80} = \SI{1,6e-6}{\mole\per\cubic\deci\meter}$\\
+				$n_{\ce{H3O+}} = c \times V = \num{1,6e-6} \times 0,0500 = \SI{8,0e-8}{\mole}$\\
+				Determinação do volume de \ce{NaOH} (5pt):\\
+				De acordo com a equação química que traduz a reação de neutralização, o catião \ce{H3O+} e o anião \ce{OH-}, provenientes da dissociação completa da base NaOH, reagem na proporção de 1:1. Assim, \\
+				$n_{\ce{NaOH}} = n_{\ce{OH-}} = n_{\ce{H3O+}} \Leftrightarrow
+				V = \dfrac{n}{c} \Rightarrow V(\ce{NaOH}) = \dfrac{\num{8,0e-8}}{\num{1,00e-4}} \Leftrightarrow V(\ce{NaOH}) = \SI{8,0e-4}{\cubic\deci\meter} = \SI{0,80}{\milli\liter}$
+			}
+		\end{solution}
+		
+		\vspace{10pt}
+		\part[10] Durante a titulação, foi utilizado um agitador magnético de \SI{1,8}{\centi\meter} de comprimento, para misturar as soluções que se encontrava no Erlenmeyer.\\
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.3\textwidth]{agitador}
+		\end{figure}
+		
+		Supondo que o agitador executava 3 rotações por segundo, a velocidade na extremidade do agitador é dada por:\\
+		
+		\begin{multicols}{2}
+			\begin{randomizechoices}
+				\choice $v = 2 \pi \times 3 \times 1,8$ 
+				\choice  $v = \dfrac{3 \times 0,9}{\pi}$
+				\choice  $v = 2 \pi \times 3 \times 60 \times 1,8$
+				\correctchoice  $v = 2 \pi \times 3 \times 0,9$
+			\end{randomizechoices}
+		\end{multicols}
+		
+		\part[10] Nessa titulação cada gota de hidróxido de sódio eram largadas da bureta a uma altura de \SI{10}{\centi\meter} do titulado.\\
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.5\textwidth]{gota}
+		\end{figure}
+		
+		Desprezando a resistência do ar, o tempo que demorou a gota a chegar ao titulante foi de...\\
+		\begin{multicols}{4}
+			\begin{randomizechoices}
+				\choice \ldots \SI{1,42}{\second}.
+				\choice \ldots \SI{0,20}{\second}.
+				\choice \ldots \SI{0,01}{\second}.
+				\correctchoice \ldots \SI{0,14}{\second}.
+			\end{randomizechoices}
+		\end{multicols}
+	\end{parts}
+	
+	\vspace{10pt}
+	\question O dióxido de carbono atmosférico, \ce{CO2}, os óxidos de enxofre, \ce{SOx}, e os óxidos de nitrogénio, \ce{NOx}, são substâncias que contribuem para aumentar a acidez da água das chuvas.
+	
+	\begin{parts}
+		\part[10] Quando o \ce{CO2} atmosférico se dissolve na água da chuva, à temperatura de \SI{25}{\celsius}, ...\\
+		\begin{randomizechoices}
+			\choice \ldots forma-se um ácido forte, o ácido carbónico, \ce{H2CO3} (aq), que confere à água da chuva um pH inferior a 5,6.
+			\choice \ldots formam-se ácidos de força diferente, como o ácido carbónico, \ce{H2CO3} (aq), e o ácido sulfúrico, \ce{H2SO4} (aq), que conferem à água da chuva um pH de cerca de 5,6.
+			\choice \ldots formam-se apenas ácidos fortes, como o ácido sulfúrico, \ce{H2SO4} (aq), e o ácido nítrico, \ce{HNO3} (aq), que conferem à água da chuva um pH muito inferior a 5,6.
+			\correctchoice \ldots forma-se um ácido fraco, o ácido carbónico, \ce{H2CO3} (aq), que confere à água da chuva um pH de cerca de 5,6.
+		\end{randomizechoices}
+		\part[10] Ao reagir com o oxigénio atmosférico, o dióxido de enxofre, \ce{SO2}, transforma-se em trióxido de enxofre, \ce{SO3}. A variação do número de oxidação do enxofre (\ce{S}) na referida reação de formação do trióxido de enxofre é...
+		\begin{multicols}{4}
+			\begin{randomizechoices}
+				\choice \ldots -2.
+				\choice \ldots -4.
+				\choice \ldots +4.
+				\correctchoice \ldots +2.
+			\end{randomizechoices}
+		\end{multicols}
+	\end{parts}
+	
+	
+	\noindent\rule{\linewidth}{0.5pt}
+	\vspace{1pt}
+	\fullwidth{\Large \textbf{Grupo IV}}
+	\uplevel{
+		Considere que, nas margens do Rio Ovil, foram encontradas moedas de cobre (\ce{Cu}), ouro (\ce{Au}) e prata (\ce{Ag}).
+}
+	
+	\vspace{5pt}
+	\question[12] Considerando a série eletroquímica seguinte indique, justificando, qual das moedas terá sofrido corrosão em maior extensão.\\
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}[every node/.style={font=\sffamily\large}]
+			
+			% Linha horizontal com seta
+			\draw[-latex, thick] (0,0) -- (6,0);
+			
+			% Texto explicativo abaixo da seta
+			\node[below, text depth=0.5ex] at (3, -0.1) {Poder redutor crescente};
+			
+			% Elementos químicos acima da seta
+			\node at (1, 0.5) {Au};
+			\node (Ag) at (3, 0.5) {Ag};
+			\node at (5, 0.5) {Cu};
+			
+			% Linha ondulada vermelha abaixo do Ag (como no corretor ortográfico da imagem)
+			\draw[red, thick, decoration={snake, amplitude=0.3mm, segment length=1.2mm}, decorate] 
+			(2.75, 0.25) -- (3.25, 0.25);
+			
+		\end{tikzpicture}
+	\end{figure}
+	
+	\begin{solution}
+		\textcolor{white}{.}\\
+		\mybox{
+			Quanto maior for o poder redutor do metal, maior é a extensão da sua oxidação (corrosão).
+			O cobre tem maior poder redutor do que os restantes, então é o metal que vai oxidar mais.
+		}
+	\end{solution}
+	
+	\question[10] Se as moedas estivessem num recipiente de zinco, poderia ocorrer a seguinte reação com a prata:\\
+	
+	\begin{center}
+		\ce{Zn (s) + 2 Ag+(aq) -> Zn^2+ (aq) + 2 Ag (s)}
+	\end{center}
+	
+	A reação de oxidação-redução ocorre por transferência de \underline{\hspace{50pt}}, em que o zinco é o \underline{\hspace{50pt}} e a prata é o \underline{\hspace{50pt}}.
+	
+	\begin{multicols}{2}
+		\begin{randomizechoices}
+			\choice \ldots protões \ldots redutor \ldots oxidante.
+			\choice \ldots eletrões \ldots oxidante \ldots redutor.
+			\choice \ldots protões \ldots oxidante \ldots redutor.
+			\correctchoice \ldots eletrões \ldots redutor \ldots oxidante.
+		\end{randomizechoices}
+	\end{multicols}
+	
+
+			
+	\noindent\rule{\linewidth}{0.5pt}
+	\vspace{5pt}
+	\fullwidth{\Large \textbf{Grupo V}}
+	\uplevel{
+		A água da nascente do Agroal “brota de calcários do Jurássico Médio”, solos ricos em carbonato de cálcio, \ce{CaCO3}, sendo possível encontrar pequenos animais de concha no Rio Nabão. A preservação das conchas destes organismos, cujo principal componente é o carbonato de cálcio, depende do equilíbrio que se estabelece entre este sal sólido e os iões resultantes da sua dissolução em água. Esta reação pode ser traduzida por:\\
+		\begin{center}
+			\ce{CaCO3 (s) <=> Ca^2+ (aq) + CO3^2- (aq)}
+		\end{center}
+	}
+	
+		\vspace{5pt}
+		\question[12] Considere a reação anterior e as duas etapas sucessivas da ionização do ácido carbónico (ácido diprótico) em água, traduzidas por:
+		
+		\begin{itemize}
+			\item \ce{H2CO3 (aq) + H2O (l) <=> HCO3- (aq) + H3O+ (aq)}	\hspace{20pt}(1)
+			\item \ce{HCO3- (aq) + H2O (l) <=> CO3^2- (aq) + H3O+ (aq)}	\hspace{22pt}(2)
+		\end{itemize}
+		
+		Preveja, fundamentando, se a diminuição do pH da água do rio contribui para a preservação das conchas ou, pelo contrário, para a sua dissolução.\\
+		Escreva um texto estruturado, utilizando linguagem científica adequada.
+		
+		\begin{solution}
+			\textcolor{white}{.}\\
+			\mybox{
+				A diminuição do pH da água resulta de um aumento da concentração de \ce{H3O+} (aq).\\
+				De acordo com o Princípio de Le Châtelier, o aumento de \ce{H3O+} (aq) favorece o sentido inverso da reação (2), com consequente diminuição da concentração de iões carbonato, \ce{CO3^2-} (aq), na água.\\
+				A diminuição de \ce{CO3^2-} (aq) favorece, de acordo com o Princípio de Le Châtelier, a dissolução do carbonato de cálcio, \ce{CaCO3} (s).\\
+				Conclui-se que a diminuição do pH da água contribui para a dissolução das conchas dos pequenos animais de concha do Rio Nabão.\\
+				\begin{tabular}{|c|p{0.5\textwidth}|c|}
+					\hline
+					NÍVEIS & DESCRITORES DO NÍVEL DE DESEMPENHO & PONTUAÇÃO \\
+					\hline
+					4 & Na resposta, são apresentados os três tópicos de referência com organização coerente dos conteúdos e linguagem cientifica adequada. & 12 \\
+					\hline
+					3 & Na resposta, são apresentados os três tópicos de referência com falhas na organização dos conteúdos ou na utilização da linguagem cientifica. & 9 \\
+					\hline
+					2 & Na resposta, é apresentado apenas dois dos tópicos de referência com linguagem cientifica adequada. & 6 \\
+					\hline
+					1 & Na resposta, é apresentado apenas um dos tópicos de referência com falhas na utilização da linguagem cientifica. & 3 \\
+					\hline
+				\end{tabular}
+			}
+		\end{solution}
+		
+		\question[10] A constante de solubilidade, $K_s$, do \ce{CaCO3}, à temperatura de \SI{25}{\celsius}, é \num{4,96e-9}. Determine a solubilidade deste sal na água a \SI{25}{\celsius}, em \unit{\mole\per\cubic\deci\meter}.
+		
+		\begin{solution}
+			\textcolor{white}{.}\\
+			\mybox{
+				Dissolução \SI{1}{\mole} \ce{Ca2+}:\SI{1}{\mole} \ce{CO3^2-}\\
+				$K_s = [\ce{Ca^2+}][\ce{CO3^2-}] \Rightarrow K_s = s^2 \Leftrightarrow s = \sqrt{K_s} \Rightarrow s=\sqrt{\num{4,96e-9}} \Leftrightarrow s = \SI{7,04e-5}{\mole\per\cubic\deci\meter}$
+			}
+		\end{solution}
+		
+		\question[8] A água consegue dissolver, em extensão apreciável, um elevado número de substâncias. O cloreto de sódio, \ce{NaCl}, é exemplo de uma substância muito solúvel em água.\\
+		
+		Considere que a solubilidade do cloreto de sódio, \ce{NaCl}, em água a \SI{25}{\celsius}, é \SI{36,0}{\gram} de \ce{NaCl} por \SI{100}{\gram} de água, \ce{H2O}.\\
+		Adicionando \SI{90,0}{\gram} de \ce{NaCl}(s) a \SI{250}{\gram} de água, a \SI{25}{\celsius}, obtém-se uma solução \underline{\hspace{50pt}} naquele composto, \underline{\hspace{50pt}} sólido depositado no fundo do recipiente.
+		
+		\begin{multicols}{2}
+			\begin{randomizechoices}
+				\choice \ldots insaturada \ldots sem \ldots
+				\choice \ldots insaturada \ldots com \ldots
+				\choice \ldots saturada \ldots com \ldots
+				\correctchoice \ldots saturada \ldots sem \ldots
+			\end{randomizechoices}
+		\end{multicols}
+		
+		
+		\question[16] Um investigador prepara uma solução aquosa saturada de um sal pouco solúvel, XY, a \SI{25}{\celsius}, que se dissolve segundo o equilíbrio:\\
+		
+		\begin{center}
+			\ce{XY (s) <=> X+ (aq) + Y- (aq)}
+		\end{center}
+		
+		Para medir a concentração da solução, o investigador usa um feixe \textit{laser} que passa do ar para a superfície da solução com um ângulo de incidência de \SI{45,0}{\degree} e mede um ângulo de refração de \SI{32,0}{\degree}.\\
+		
+		Sabe-se que o índice de refração de uma	solução aquosa varia com a concentração total de iões segundo:
+		
+		\[
+		n_{\text{solução}} = n_{\text{água}} + k \cdot c_\text{total}
+		\]
+		
+		sendo $c$ a concentração total de iões em \unit{\mole\per\cubic\deci\meter}.
+		
+		Usando a lei de Snell-Descartes e a expressão acima, determine a solubilidade molar de XY e verifique se o resultado é consistente com o valor de $K_s$ fornecido.\\
+		Apresente todos os cálculos efetuados.
+		
+		Dados: 
+		\begin{itemize}
+			\item $K_s (XY, \SI{25}{\celsius}) = \num{7,50e-4}$
+			\item $n_\text{água} = 1,333$
+			\item $n_\text{ar} = 1,000$
+			\item $M(\ce{CaCO3}) = \SI{100,1}{\gram\per\mole}$
+			\item $k = \SI{2,50e-2}{\cubic\deci\meter\per\mole}$
+		\end{itemize}
+		
+		\begin{solution}
+			\textcolor{white}{.}\\
+			\mybox{
+				Passo 1 - Calcular o índice de refração da solução (Física) (4pt):\\
+				
+				$n_\text{ar} \sin \theta_1 = n_\text{sol} \sin \theta_2 \Leftrightarrow 
+				1,000 \times \sin(\SI{45,0}{\degree}) = n_\text{sol} \times \sin(\SI{32,0}{\degree}) \Leftrightarrow
+				n_\text{sol} = \dfrac{0,7071}{0,5299} \approx 1,3344$\\
+				
+				Passo 2 - Obter a concentração total da solução (ponte entre Física e Química) (4pt):\\
+				Isolando $c$ na expressão do índice de refração:\\
+				
+				$c = \dfrac{n_\text{sol} - n_\text{água}}{k} = \dfrac{1,3344 - 1,3330}{\num{2,50e-2}} = \SI{5,47e-2}{\mole\per\cubic\deci\meter}$\\
+				
+				Passo 3 - Obter o valor ad solubilidade (4pt):\\ 
+				Como \ce{XY <=> X+ + Y-}, têm-se $[\ce{X+}] = [\ce{Y-}] = s$ e $c_\text{total} = 2s$, logo:\\
+				
+				$s = \dfrac{c_\text{total}}{2} \Rightarrow s = \dfrac{\num{5,47e-2}}{2} \approx \SI{2,74e-2}{\mole\per\cubic\deci\meter}$
+				
+				Passo 4 - Verificação (4pt):\\
+				Pelo $K_s$, $s = \sqrt{K_s} \Rightarrow s = \sqrt{\num{7,50e-4}} \approx \SI{2,74e-2}{\mole\per\cubic\deci\meter}$. Os dois valores coincidem, confirmando a consistência entre a medida ótica e o equilíbrio de solubilidade.
+				
+			}
+		\end{solution}
+		
+		
+		
+		
+
+		
+		
+		
+	\end{questions}
+	
+	\vspace{3pt}
+	\center
+	FIM
+	
+	\vfill
+	\center
+	\pointtable[h]
+\end{document}
