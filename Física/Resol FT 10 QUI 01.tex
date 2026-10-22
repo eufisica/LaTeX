@@ -1,0 +1,1206 @@
+\documentclass[11pt,a4paper]{article}
+
+% =========================================================
+% PACOTES
+% =========================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese]{babel}
+\usepackage{lmodern}
+
+\usepackage[a4paper,
+top=1.8cm,
+bottom=1.8cm,
+left=1.8cm,
+right=1.8cm]{geometry}
+
+\usepackage{amsmath,amssymb}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{siunitx}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{float}
+
+\usepackage{tikz}
+\usetikzlibrary{
+	arrows.meta,
+	positioning,
+	calc,
+	decorations.pathmorphing,
+	shapes.geometric,
+	backgrounds
+}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{hyperref}
+
+% =========================================================
+% CORES
+% =========================================================
+\definecolor{eublue}{HTML}{124E78}
+\definecolor{eulightblue}{HTML}{D9EEF7}
+\definecolor{eudark}{HTML}{16324F}
+\definecolor{eugreen}{HTML}{3A7D44}
+\definecolor{eulightgreen}{HTML}{E4F2E7}
+\definecolor{euorange}{HTML}{E58E26}
+\definecolor{eulightorange}{HTML}{FCEBD8}
+\definecolor{eugray}{HTML}{F2F4F5}
+\definecolor{eured}{HTML}{B03A2E}
+\definecolor{eupurple}{HTML}{6C5B7B}
+
+% =========================================================
+% CONFIGURAÇÕES
+% =========================================================
+\sisetup{
+	output-decimal-marker={,},
+	per-mode=symbol
+}
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=eublue,
+	urlcolor=eublue
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+
+\renewcommand{\arraystretch}{1.35}
+
+% =========================================================
+% CABEÇALHO E RODAPÉ
+% =========================================================
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\textbf{\textcolor{eublue}{EUFISICA exercícios}}}
+\fancyhead[R]{\textcolor{eudark}{Estrutura Atómica e Nanotecnologia}}
+
+\fancyfoot[L]{Prof. José Gonçalves}
+\fancyfoot[C]{\texttt{EUFISICA}}
+\fancyfoot[R]{Página \thepage\ de \pageref{LastPage}}
+
+\renewcommand{\headrulewidth}{0.6pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% =========================================================
+% CAIXAS
+% =========================================================
+\newcounter{exercicio}
+
+\newenvironment{exercicio}[1]
+{
+	\refstepcounter{exercicio}
+	\begin{tcolorbox}[
+		enhanced,
+		breakable,
+		colback=white,
+		colframe=eublue,
+		boxrule=0.8pt,
+		arc=2mm,
+		left=3mm,
+		right=3mm,
+		top=2mm,
+		bottom=2mm,
+		title={
+			\textbf{Exercício \theexercicio}
+			\hspace{1mm}--\hspace{1mm}
+			#1
+		},
+		coltitle=white,
+		colbacktitle=eublue,
+		fonttitle=\bfseries
+		]
+	}
+	{
+	\end{tcolorbox}
+}
+
+\newtcolorbox{recorda}{
+	enhanced,
+	colback=eulightblue,
+	colframe=eublue,
+	title=\textbf{Recorda},
+	coltitle=eudark,
+	colbacktitle=eulightblue,
+	fonttitle=\bfseries,
+	arc=2mm
+}
+
+\newtcolorbox{stem}{
+	enhanced,
+	colback=eulightgreen,
+	colframe=eugreen,
+	title=\textbf{STEM | Ciência, Tecnologia e Mundo Real},
+	coltitle=eugreen,
+	colbacktitle=eulightgreen,
+	fonttitle=\bfseries,
+	arc=2mm
+}
+
+\newtcolorbox{desafio}{
+	enhanced,
+	colback=eulightorange,
+	colframe=euorange,
+	title=\textbf{Desafio},
+	coltitle=euorange,
+	colbacktitle=eulightorange,
+	fonttitle=\bfseries,
+	arc=2mm
+}
+
+\newtcolorbox{solucao}{
+	enhanced,
+	colback=eulightgreen!40,
+	colframe=eugreen,
+	title=\textbf{Proposta de Resolução},
+	coltitle=eugreen,
+	colbacktitle=eulightgreen,
+	fonttitle=\bfseries\small,
+	arc=2mm,
+	top=3pt,
+	bottom=3pt,
+	left=5pt,
+	right=5pt
+}
+
+% =========================================================
+% DOCUMENTO
+% =========================================================
+\begin{document}
+	
+	% =========================================================
+	% TÍTULO
+	% =========================================================
+	
+	\begin{tcolorbox}[
+		enhanced,
+		colback=eudark,
+		colframe=eudark,
+		arc=3mm,
+		boxrule=0pt,
+		left=5mm,
+		right=5mm,
+		top=5mm,
+		bottom=5mm
+		]
+		\begin{center}
+			
+			{\Huge\bfseries\color{white} EUFISICA exercícios}
+			
+			\vspace{2mm}
+			
+			{\Large\bfseries\color{white}
+				Estrutura Atómica e Nanotecnologia --- Solucionário}
+			
+			\vspace{3mm}
+			
+			{\large\color{eulightblue}
+				Número atómico • Número de massa • Massa atómica relativa}
+			
+			{\large\color{eulightblue}
+				Protões • Neutrões • Eletrões • Nanotecnologia}
+			
+			\vspace{3mm}
+			
+			{\color{white}\textbf{Prof. José Gonçalves}}
+			
+		\end{center}
+	\end{tcolorbox}
+	
+	\vspace{3mm}
+	
+	\begin{tabularx}{\textwidth}{|X|X|X|}
+		\hline
+		\textbf{Nome:} Solucionário Completo & \textbf{Turma:} 10.º / 11.º Ano & \textbf{Data:} 2026/2027 \\[2mm]
+		\hline
+	\end{tabularx}
+	
+	\vspace{5mm}
+	
+	% =========================================================
+	% OBJETIVOS
+	% =========================================================
+	
+	\begin{tcolorbox}[
+		colback=eugray,
+		colframe=eudark,
+		title=\textbf{Objetivos de aprendizagem}
+		]
+		No final desta ficha deverás ser capaz de:
+		
+		\begin{itemize}[leftmargin=6mm,itemsep=1mm]
+			\item distinguir \textbf{número atómico} de \textbf{número de massa};
+			\item determinar o número de \textbf{protões, neutrões e eletrões};
+			\item interpretar corretamente a representação simbólica de um átomo ou ião;
+			\item calcular a \textbf{massa atómica relativa} a partir das abundâncias isotópicas;
+			\item relacionar a escala nanométrica com aplicações atuais da \textbf{nanotecnologia};
+			\item compreender a importância da relação entre \textbf{área superficial e volume} à escala nano.
+		\end{itemize}
+	\end{tcolorbox}
+	
+	% =========================================================
+	% SECÇÃO 1
+	% =========================================================
+	
+	\section*{\textcolor{eublue}{1. Número atómico e número de massa}}
+	
+	\begin{recorda}
+		
+		Um átomo pode representar-se simbolicamente por:
+		
+		\[
+		{}^{A}_{Z}\mathrm{X}
+		\]
+		
+		onde:
+		
+		\[
+		\boxed{Z = \text{número atómico}}
+		\]
+		
+		\[
+		\boxed{A = \text{número de massa}}
+		\]
+		
+		O número atómico, \(Z\), corresponde ao número de \textbf{protões} do núcleo.
+		
+		O número de massa, \(A\), corresponde à soma do número de \textbf{protões} com o número de \textbf{neutrões}:
+		
+		\[
+		\boxed{A=Z+N}
+		\]
+		
+		sendo \(N\) o número de neutrões.
+		
+		Consequentemente,
+		
+		\[
+		\boxed{N=A-Z}
+		\]
+		
+	\end{recorda}
+	
+	% ---------------------------------------------------------
+	% IMAGEM REPRESENTAÇÃO DO NÚCLIDO
+	% ---------------------------------------------------------
+	
+	\begin{figure}[H]
+		\centering
+		
+		\begin{tikzpicture}[scale=1.15]
+			
+			\node[font=\fontsize{42}{42}\selectfont\bfseries,text=eudark]
+			(X) at (0,0) {X};
+			
+			\node[font=\Large\bfseries,text=eublue]
+			at (-0.85,0.65) {\(A\)};
+			
+			\node[font=\Large\bfseries,text=eugreen]
+			at (-0.85,-0.55) {\(Z\)};
+			
+			\draw[-{Latex[length=3mm]},thick,eublue]
+			(-1.25,1.4) -- (-0.9,0.85);
+			
+			\node[anchor=east,text=eublue,font=\bfseries]
+			at (-1.3,1.4) {Número de massa};
+			
+			\draw[-{Latex[length=3mm]},thick,eugreen]
+			(-1.25,-1.25) -- (-0.9,-0.7);
+			
+			\node[anchor=east,text=eugreen,font=\bfseries]
+			at (-1.3,-1.25) {Número atómico};
+			
+			\draw[-{Latex[length=3mm]},thick,eudark]
+			(2.6,0) -- (0.65,0);
+			
+			\node[anchor=west,text=eudark,font=\bfseries]
+			at (2.7,0) {Símbolo químico};
+			
+		\end{tikzpicture}
+		
+		\caption{Representação simbólica geral de um nuclídeo.}
+	\end{figure}
+	
+	% =========================================================
+	
+	\begin{exercicio}{Identificar \(Z\), \(A\), protões e neutrões}
+		
+		Considera o átomo representado por:
+		
+		\[
+		{}^{23}_{11}\mathrm{Na}
+		\]
+		
+		Completa a tabela.
+		
+		\begin{solucao}
+			\begin{center}
+				\begin{tabular}{|l|c|}
+					\hline
+					\textbf{Grandeza} & \textbf{Valor} \\ \hline
+					Número atómico, \(Z\) & \textbf{11} \\ \hline
+					Número de massa, \(A\) & \textbf{23} \\ \hline
+					Número de protões (\(p^+\)) & \textbf{11} \\ \hline
+					Número de neutrões (\(N = A - Z = 23 - 11\)) & \textbf{12} \\ \hline
+					Número de eletrões (\(e^-\)), se o átomo for neutro & \textbf{11} \\ \hline
+				\end{tabular}
+			\end{center}
+		\end{solucao}
+		
+	\end{exercicio}
+	
+	% =========================================================
+	
+	\begin{exercicio}{Completar representações simbólicas}
+		
+		Completa a tabela.
+		
+		\begin{solucao}
+			\begin{center}
+				\small
+				\begin{tabular}{|c|c|c|c|c|c|}
+					\hline
+					\textbf{Espécie}
+					&
+					\(\mathbf{Z}\)
+					&
+					\(\mathbf{A}\)
+					&
+					\textbf{Protões (\(p^+\))}
+					&
+					\textbf{Neutrões (\(n^0\))}
+					&
+					\textbf{Eletrões (\(e^-\))}
+					\\ \hline
+					
+					\({}^{16}_{8}\mathrm{O}\)
+					& \textbf{8} & \textbf{16} & \textbf{8} & \textbf{8} & \textbf{8} \\[1mm] \hline
+					
+					\({}^{27}_{13}\mathrm{Al}\)
+					& \textbf{13} & \textbf{27} & \textbf{13} & \textbf{14} & \textbf{13} \\[1mm] \hline
+					
+					\({}^{40}_{20}\mathrm{Ca}\)
+					& \textbf{20} & \textbf{40} & \textbf{20} & \textbf{20} & \textbf{20} \\[1mm] \hline
+					
+					\({}^{35}_{17}\mathrm{Cl}\)
+					& \textbf{17} & \textbf{35} & \textbf{17} & \textbf{18} & \textbf{17} \\[1mm] \hline
+				\end{tabular}
+			\end{center}
+		\end{solucao}
+		
+	\end{exercicio}
+	
+	% =========================================================
+	
+	\begin{exercicio}{Descobrir o elemento}
+		
+		Um átomo possui:
+		\[
+		17\text{ protões} \qquad\text{e}\qquad 18\text{ neutrões}.
+		\]
+		
+		\begin{enumerate}[label=\alph*)]
+			\item Determina o número atómico.
+			\item Determina o número de massa.
+			\item Quantos eletrões possui, se for eletricamente neutro?
+			\item Sabendo que o elemento de número atómico 17 é o cloro, representa simbolicamente este átomo.
+		\end{enumerate}
+		
+		\begin{solucao}
+			\begin{enumerate}[label=\alph*)]
+				\item \(Z = \text{número de protões} = 17\).
+				\item \(A = Z + N = 17 + 18 = 35\).
+				\item Como é neutro, o número de eletrões é igual ao número de protões: \(n(e^-) = 17\).
+				\item \({}^{35}_{17}\mathrm{Cl}\).
+			\end{enumerate}
+		\end{solucao}
+		
+	\end{exercicio}
+	
+	% =========================================================
+	% SECÇÃO 2
+	% =========================================================
+	
+	\section*{\textcolor{eublue}{2. Protões, neutrões e eletrões}}
+	
+	\begin{recorda}
+		
+		\begin{center}
+			\begin{tabular}{cccc}
+				\toprule
+				\textbf{Partícula}
+				&
+				\textbf{Símbolo}
+				&
+				\textbf{Carga relativa}
+				&
+				\textbf{Localização}
+				\\
+				\midrule
+				Protão & \(p^+\) & \(+1\) & Núcleo \\
+				
+				Neutrão & \(n^0\) & \(0\) & Núcleo \\
+				
+				Eletrão & \(e^-\) & \(-1\) & Nuvem eletrónica \\
+				\bottomrule
+			\end{tabular}
+		\end{center}
+		
+		Num átomo eletricamente neutro:
+		
+		\[
+		\boxed{n(e^-)=n(p^+)=Z}
+		\]
+		
+	\end{recorda}
+	
+	% =========================================================
+	% MODELO DE ÁTOMO
+	% =========================================================
+	
+	\begin{figure}[H]
+		\centering
+		
+		\begin{tikzpicture}[scale=1.05]
+			
+			% órbitas
+			\draw[eublue!55,thick] (0,0) ellipse (3.3cm and 1.3cm);
+			\draw[eublue!55,thick,rotate=60] (0,0) ellipse (3.3cm and 1.3cm);
+			\draw[eublue!55,thick,rotate=-60] (0,0) ellipse (3.3cm and 1.3cm);
+			
+			% núcleo
+			\fill[eulightorange] (0,0) circle (0.9cm);
+			\draw[euorange,very thick] (0,0) circle (0.9cm);
+			
+			% nucleões
+			\fill[eured!75] (-0.28,0.25) circle (0.27);
+			\node[white,font=\scriptsize\bfseries] at (-0.28,0.25) {\(p^+\)};
+			
+			\fill[eugray] (0.3,0.28) circle (0.27);
+			\node[eudark,font=\scriptsize\bfseries] at (0.3,0.28) {\(n^0\)};
+			
+			\fill[eugray] (-0.25,-0.3) circle (0.27);
+			\node[eudark,font=\scriptsize\bfseries] at (-0.25,-0.3) {\(n^0\)};
+			
+			\fill[eured!75] (0.32,-0.28) circle (0.27);
+			\node[white,font=\scriptsize\bfseries] at (0.32,-0.28) {\(p^+\)};
+			
+			% eletrões
+			\fill[eublue] (3.3,0) circle (0.16);
+			\node[eublue,font=\bfseries] at (3.65,0.25) {\(e^-\)};
+			
+			\fill[eublue] (-1.65,2.48) circle (0.16);
+			\node[eublue,font=\bfseries] at (-2,2.75) {\(e^-\)};
+			
+			\fill[eublue] (-1.65,-2.48) circle (0.16);
+			\node[eublue,font=\bfseries] at (-2,-2.75) {\(e^-\)};
+			
+			% legendas
+			\draw[-{Latex},thick,eudark] (0.7,0.65) -- (2.0,1.8);
+			\node[anchor=west,font=\bfseries] at (2.05,1.85) {Núcleo};
+			
+			\draw[-{Latex},thick,eublue] (-3.8,1.2) -- (-2.7,0.85);
+			\node[anchor=east,font=\bfseries,text=eublue]
+			at (-3.85,1.2) {Nuvem eletrónica};
+			
+		\end{tikzpicture}
+		
+		\caption{Representação esquemática de um átomo. Não está à escala.}
+	\end{figure}
+	
+	% =========================================================
+	
+	\begin{exercicio}{Interpretar um modelo atómico}
+		
+		Observa a figura anterior.
+		
+		\begin{enumerate}[label=\alph*)]
+			\item Que partículas se encontram no núcleo?
+			\item Qual das partículas possui carga elétrica negativa?
+			\item Qual das partículas não possui carga elétrica?
+			\item A representação encontra-se à escala? Justifica.
+		\end{enumerate}
+		
+		\begin{solucao}
+			\begin{enumerate}[label=\alph*)]
+				\item No núcleo encontram-se os \textbf{protões} (\(p^+\)) e os \textbf{neutrões} (\(n^0\)).
+				\item O \textbf{eletrão} (\(e^-\)).
+				\item O \textbf{neutrão} (\(n^0\)).
+				\item \textbf{Não.} Se o núcleo estivesse desenhado à escala real com a nuvem eletrónica, seria cerca de \(10\,000\) a \(100\,000\) vezes menor do que o diâmetro do átomo (praticamente invisível nesta escala).
+			\end{enumerate}
+		\end{solucao}
+		
+	\end{exercicio}
+	
+	% =========================================================
+	
+	\begin{exercicio}{Átomos e iões}
+		
+		Completa a tabela seguinte.
+		
+		\begin{solucao}
+			\begin{center}
+				\small
+				\begin{tabular}{|c|c|c|c|c|c|c|}
+					\hline
+					\textbf{Espécie}
+					&
+					\(\mathbf{Z}\)
+					&
+					\(\mathbf{A}\)
+					&
+					\(\mathbf{p^+}\)
+					&
+					\(\mathbf{n^0}\)
+					&
+					\(\mathbf{e^-}\)
+					&
+					\textbf{Carga}
+					\\ \hline
+					
+					\({}^{23}_{11}\mathrm{Na}\)
+					& \textbf{11} & \textbf{23} & \textbf{11} & \textbf{12} & \textbf{11} & \(0\)
+					\\[1mm]\hline
+					
+					\({}^{23}_{11}\mathrm{Na}^{+}\)
+					& \textbf{11} & \textbf{23} & \textbf{11} & \textbf{12} & \textbf{10} & \textbf{\(+1\)}
+					\\[1mm]\hline
+					
+					\({}^{16}_{8}\mathrm{O}^{2-}\)
+					& \textbf{8} & \textbf{16} & \textbf{8} & \textbf{8} & \textbf{10} & \textbf{\(-2\)}
+					\\[1mm]\hline
+					
+					\({}^{27}_{13}\mathrm{Al}^{3+}\)
+					& \textbf{13} & \textbf{27} & \textbf{13} & \textbf{14} & \textbf{10} & \textbf{\(+3\)}
+					\\[1mm]\hline
+					
+					\({}^{35}_{17}\mathrm{Cl}^{-}\)
+					& \textbf{17} & \textbf{35} & \textbf{17} & \textbf{18} & \textbf{18} & \textbf{\(-1\)}
+					\\[1mm]\hline
+				\end{tabular}
+			\end{center}
+		\end{solucao}
+		
+	\end{exercicio}
+	
+	% =========================================================
+	
+	\begin{exercicio}{Pensar antes de calcular}
+		
+		Classifica cada afirmação como \textbf{Verdadeira (V)} ou \textbf{Falsa (F)}.
+		Corrige as afirmações falsas.
+		
+		\begin{enumerate}[label=\alph*)]
+			\item[\(\square\)] O número atómico corresponde ao número de neutrões.
+			\item[\(\square\)] O número de massa corresponde ao número total de protões e neutrões.
+			\item[\(\square\)] Todos os átomos de um mesmo elemento apresentam o mesmo número de protões.
+			\item[\(\square\)] Um átomo neutro apresenta igual número de protões e eletrões.
+			\item[\(\square\)] Dois isótopos de um mesmo elemento possuem diferente número atómico.
+			\item[\(\square\)] Quando um átomo perde um eletrão origina um ião positivo.
+		\end{enumerate}
+		
+		\begin{solucao}
+			\begin{enumerate}[label=\alph*)]
+				\item[\textbf{[F]}] \textbf{Falsa.} O número atómico (\(Z\)) corresponde ao número de \textbf{protões}.
+				\item[\textbf{[V]}] \textbf{Verdadeira.}
+				\item[\textbf{[V]}] \textbf{Verdadeira.}
+				\item[\textbf{[V]}] \textbf{Verdadeira.}
+				\item[\textbf{[F]}] \textbf{Falsa.} Dois isótopos do mesmo elemento possuem o \textbf{mesmo} número atómico (\(Z\)), mas diferente número de massa (\(A\)) e diferente número de neutrões.
+				\item[\textbf{[V]}] \textbf{Verdadeira.} (Ganha carga positiva global por perda de uma carga negativa).
+			\end{enumerate}
+		\end{solucao}
+		
+	\end{exercicio}
+	
+	% =========================================================
+	% SECÇÃO 3
+	% =========================================================
+	
+	\section*{\textcolor{eublue}{3. Massa atómica relativa}}
+	
+	\begin{recorda}
+		
+		A maioria dos elementos químicos existe na Natureza sob a forma de uma
+		\textbf{mistura de isótopos}.
+		
+		A massa atómica relativa de um elemento, \(A_r\), depende:
+		
+		\begin{itemize}
+			\item das massas dos seus isótopos;
+			\item das respetivas abundâncias relativas.
+		\end{itemize}
+		
+		Para dois isótopos:
+		
+		\[
+		\boxed{
+			A_r=
+			\frac{
+				m_1\times \%_1+
+				m_2\times \%_2
+			}{100}
+		}
+		\]
+		
+		A massa atómica relativa é uma \textbf{grandeza adimensional}, isto é,
+		não possui unidade.
+		
+	\end{recorda}
+	
+	% =========================================================
+	
+	\begin{exercicio}{Os isótopos do cloro}
+		
+		Na Natureza, o cloro é constituído principalmente por dois isótopos:
+		
+		\begin{center}
+			\begin{tabular}{ccc}
+				\toprule
+				\textbf{Isótopo}
+				&
+				\textbf{Massa isotópica}
+				&
+				\textbf{Abundância}
+				\\
+				\midrule
+				\({}^{35}\mathrm{Cl}\) & \(34,969\) & \(75,77\,\%\) \\
+				
+				\({}^{37}\mathrm{Cl}\) & \(36,966\) & \(24,23\,\%\) \\
+				\bottomrule
+			\end{tabular}
+		\end{center}
+		
+		O gráfico apresenta as abundâncias relativas.
+		
+		\begin{figure}[H]
+			\centering
+			
+			\begin{tikzpicture}
+				
+				\begin{axis}[
+					width=10.5cm,
+					height=6cm,
+					ybar,
+					ymin=0,
+					ymax=100,
+					ylabel={Abundância relativa (\%)},
+					xlabel={Isótopo},
+					symbolic x coords={Cl-35,Cl-37},
+					xtick=data,
+					bar width=25pt,
+					nodes near coords,
+					nodes near coords align={vertical},
+					axis line style={eudark},
+					tick label style={font=\small},
+					label style={font=\small\bfseries},
+					grid=major,
+					grid style={dashed,eugray}
+					]
+					
+					\addplot[
+					fill=eublue!70,
+					draw=eublue
+					]
+					coordinates {
+						(Cl-35,75.77)
+						(Cl-37,24.23)
+					};
+					
+				\end{axis}
+			\end{tikzpicture}
+			
+			\caption{Abundância relativa dos principais isótopos naturais do cloro.}
+		\end{figure}
+		
+		\begin{enumerate}[label=\alph*)]
+			\item Qual é o isótopo mais abundante?
+			\item Calcula a massa atómica relativa do cloro.
+			\item O resultado encontra-se mais próximo de 35 ou de 37? Explica porquê.
+		\end{enumerate}
+		
+		\begin{solucao}
+			\begin{enumerate}[label=\alph*)]
+				\item O isótopo mais abundante é o cloro-35 (\({}^{35}\mathrm{Cl}\)), com \(75{,}77\%\).
+				\item 
+				\[
+				A_r(\mathrm{Cl}) = \frac{34{,}969 \times 75{,}77 + 36{,}966 \times 24{,}23}{100} = \frac{2649{,}601 + 895{,}686}{100} = \frac{3545{,}287}{100} = \mathbf{35{,}45}
+				\]
+				\item Encontra-se mais próximo de \(35\) porque o isótopo \({}^{35}\mathrm{Cl}\) é muito mais abundante na Natureza (\(\approx 75,8\%\)) do que o isótopo \({}^{37}\mathrm{Cl}\) (\(\approx 24,2\%\)), pesando mais na média ponderada.
+			\end{enumerate}
+		\end{solucao}
+		
+	\end{exercicio}
+	
+	% =========================================================
+	
+	\begin{exercicio}{Massa atómica relativa do magnésio}
+		
+		Uma amostra natural de magnésio apresenta aproximadamente a seguinte
+		composição:
+		
+		\begin{center}
+			\begin{tabular}{ccc}
+				\toprule
+				\textbf{Isótopo} & \textbf{Massa aproximada} & \textbf{Abundância} \\
+				\midrule
+				\({}^{24}\mathrm{Mg}\) & 24 & \(78,99\,\%\)\\
+				\({}^{25}\mathrm{Mg}\) & 25 & \(10,00\,\%\)\\
+				\({}^{26}\mathrm{Mg}\) & 26 & \(11,01\,\%\)\\
+				\bottomrule
+			\end{tabular}
+		\end{center}
+		
+		\begin{enumerate}[label=\alph*)]
+			\item Calcula uma estimativa para \(A_r(\mathrm{Mg})\).
+			\item Explica por que razão a massa atómica relativa não é, em geral, um número inteiro.
+		\end{enumerate}
+		
+		\begin{solucao}
+			\begin{enumerate}[label=\alph*)]
+				\item 
+				\[
+				A_r(\mathrm{Mg}) = \frac{24 \times 78{,}99 + 25 \times 10{,}00 + 26 \times 11{,}01}{100} = \frac{1895{,}76 + 250{,}00 + 286{,}26}{100} = \mathbf{24{,}32}
+				\]
+				\item A massa atómica relativa não é um número inteiro porque resulta de uma média ponderada das massas isotópicas de uma mistura de vários isótopos existentes na Natureza nas suas respetivas proporções.
+			\end{enumerate}
+		\end{solucao}
+		
+	\end{exercicio}
+	
+	% =========================================================
+	
+	\begin{desafio}
+		
+		Um elemento fictício \(\mathrm{X}\) possui apenas dois isótopos:
+		
+		\[
+		{}^{10}\mathrm{X}
+		\qquad\text{e}\qquad
+		{}^{11}\mathrm{X}
+		\]
+		
+		Sabendo que \(A_r(\mathrm{X})=10,8\), determina a percentagem aproximada de cada isótopo na Natureza.
+		
+		\begin{solucao}
+			Considerando \(x\) como a percentagem de \({}^{10}\mathrm{X}\), a percentagem de \({}^{11}\mathrm{X}\) é \((100 - x)\):
+			\[
+			10,8 = \frac{10 \times x + 11 \times (100 - x)}{100} \implies 1080 = 10x + 1100 - 11x
+			\]
+			\[
+			1080 - 1100 = -x \implies -20 = -x \implies x = 20\%
+			\]
+			\textbf{Resposta:} A abundância do isótopo \({}^{10}\mathrm{X}\) é de \textbf{\(20\%\)} e a do isótopo \({}^{11}\mathrm{X}\) é de \textbf{\(80\%\)}.
+		\end{solucao}
+		
+	\end{desafio}
+	
+	% =========================================================
+	% NOVA PÁGINA
+	% =========================================================
+	
+	\newpage
+	
+	\section*{\textcolor{eugreen}{4. Nanotecnologia}}
+	
+	\begin{stem}
+		
+		O prefixo \textbf{nano} significa \(10^{-9}\).
+		
+		Assim,
+		
+		\[
+		\boxed{
+			1\,\mathrm{nm}=10^{-9}\,\mathrm{m}
+		}
+		\]
+		
+		Um nanómetro corresponde à milionésima parte de um milímetro.
+		
+		A \textbf{nanotecnologia} envolve a investigação e manipulação da matéria
+		a dimensões extremamente pequenas, geralmente da ordem de alguns
+		nanómetros até cerca de uma centena de nanómetros.
+		
+		Nesta escala, os materiais podem apresentar propriedades diferentes das
+		que possuem à escala macroscópica.
+		
+	\end{stem}
+	
+	% =========================================================
+	% ESCALA NANO
+	% =========================================================
+	
+	\begin{figure}[H]
+		\centering
+		
+		\begin{tikzpicture}[x=1.45cm,y=1cm]
+			
+			% linha
+			\draw[-{Latex[length=3mm]},very thick,eudark]
+			(0,0)--(8,0);
+			
+			% marcas
+			\foreach \x/\lab in {
+				0/{\(10^{-10}\)},
+				1.5/{\(10^{-9}\)},
+				3/{\(10^{-8}\)},
+				4.5/{\(10^{-7}\)},
+				6/{\(10^{-6}\)},
+				7.5/{\(10^{-5}\)}
+			}
+			{
+				\draw[thick] (\x,0.15)--(\x,-0.15);
+				\node[below] at (\x,-0.15) {\lab};
+			}
+			
+			\node[below=8mm,font=\small\bfseries]
+			at (3.75,0) {Dimensão aproximada / m};
+			
+			% objetos
+			\node[
+			draw=eupurple,
+			fill=eupurple!10,
+			rounded corners,
+			align=center
+			] at (0.2,1.0)
+			{Átomo\\\(\sim0,1\,\mathrm{nm}\)};
+			
+			\node[
+			draw=eugreen,
+			fill=eugreen!10,
+			rounded corners,
+			align=center
+			] at (2.3,1.5)
+			{Nanopartícula\\\(\sim10\,\mathrm{nm}\)};
+			
+			\node[
+			draw=eured,
+			fill=eured!10,
+			rounded corners,
+			align=center
+			] at (4.5,1.0)
+			{Vírus\\\(\sim100\,\mathrm{nm}\)};
+			
+			\node[
+			draw=euorange,
+			fill=euorange!10,
+			rounded corners,
+			align=center
+			] at (6.3,1.5)
+			{Bactéria\\\(\sim1\,\mathrm{\mu m}\)};
+			
+			\node[
+			draw=eublue,
+			fill=eublue!10,
+			rounded corners,
+			align=center
+			] at (7.6,1.0)
+			{Cabelo\\\(\sim50{-}100\,\mathrm{\mu m}\)};
+			
+		\end{tikzpicture}
+		
+		\caption{Comparação aproximada de diferentes escalas de dimensão.}
+	\end{figure}
+	
+	% =========================================================
+	
+	\begin{exercicio}{Da escala macroscópica à nanoescala}
+		
+		Completa as conversões.
+		
+		\begin{enumerate}[label=\alph*)]
+			\item \(1\,\mathrm{nm} = \dots\,\mathrm{m}\)
+			\item \(20\,\mathrm{nm} = \dots\,\mathrm{m}\)
+			\item \(5,0\times10^{-8}\,\mathrm{m} = \dots\,\mathrm{nm}\)
+			\item Uma nanopartícula possui um diâmetro de \(40\,\mathrm{nm}\). Quantas dessas partículas seriam necessárias para perfazer \(1\,\mathrm{\mu m}\)?
+		\end{enumerate}
+		
+		\begin{solucao}
+			\begin{enumerate}[label=\alph*)]
+				\item \(1\,\mathrm{nm} = \mathbf{10^{-9}}\,\mathrm{m}\)
+				\item \(20\,\mathrm{nm} = \mathbf{2,0 \times 10^{-8}}\,\mathrm{m}\)
+				\item \(5,0\times10^{-8}\,\mathrm{m} = \mathbf{50}\,\mathrm{nm}\)
+				\item Sabendo que \(1\,\mathrm{\mu m} = 1000\,\mathrm{nm}\):
+				\[
+				N = \frac{1000\,\mathrm{nm}}{40\,\mathrm{nm}} = \mathbf{25\text{ partículas}}
+				\]
+			\end{enumerate}
+		\end{solucao}
+		
+	\end{exercicio}
+	
+	% =========================================================
+	
+	\begin{exercicio}{Ordenar o mundo invisível}
+		
+		Considera os seguintes valores aproximados:
+		
+		\begin{center}
+			\begin{tabular}{lc}
+				\toprule
+				\textbf{Objeto} & \textbf{Dimensão aproximada}\\
+				\midrule
+				Átomo & \(0,1\,\mathrm{nm}\)\\
+				Nanopartícula de ouro & \(20\,\mathrm{nm}\)\\
+				Vírus & \(100\,\mathrm{nm}\)\\
+				Bactéria & \(2000\,\mathrm{nm}\)\\
+				Espessura de um cabelo & \(80000\,\mathrm{nm}\)\\
+				\bottomrule
+			\end{tabular}
+		\end{center}
+		
+		\begin{enumerate}[label=\alph*)]
+			\item Ordena os objetos por ordem crescente de dimensão.
+			\item Quantas vezes a espessura aproximada de um cabelo é superior ao diâmetro da nanopartícula de ouro?
+			\item Um vírus pode ser considerado uma nanopartícula apenas com base na sua dimensão? Discute brevemente.
+		\end{enumerate}
+		
+		\begin{solucao}
+			\begin{enumerate}[label=\alph*)]
+				\item Átomo (\(0,1\,\mathrm{nm}\)) < Nanopartícula de ouro (\(20\,\mathrm{nm}\)) < Vírus (\(100\,\mathrm{nm}\)) < Bactéria (\(2000\,\mathrm{nm}\)) < Espessura de um cabelo (\(80\,000\,\mathrm{nm}\)).
+				\item \(\frac{80\,000\,\mathrm{nm}}{20\,\mathrm{nm}} = \mathbf{4000\text{ vezes superior}}\).
+				\item \textbf{Sim}, sob o ponto de vista puramente dimensional, pois a sua dimensão (\(\sim 100\,\mathrm{nm}\)) situa-se na nanoescala (\(1\text{--}100\,\mathrm{nm}\)). No entanto, biologicamente é uma estrutura supramolecular complexa e não um material/nanopartícula sintética.
+			\end{enumerate}
+		\end{solucao}
+		
+	\end{exercicio}
+	
+	% =========================================================
+	% ÁREA/VOLUME
+	% =========================================================
+	
+	\begin{stem}
+		
+		Uma das razões pelas quais as nanopartículas são tão interessantes é a sua
+		elevada \textbf{relação entre área superficial e volume}.
+		
+		Para uma partícula esférica de diâmetro \(d\):
+		
+		\[
+		\frac{A}{V}=\frac{6}{d}
+		\]
+		
+		À medida que o tamanho da partícula diminui, a relação \(A/V\) aumenta.
+		
+		Isto significa que uma maior fração dos átomos se encontra próxima da
+		superfície, podendo tornar o material mais reativo.
+		
+	\end{stem}
+	
+	% =========================================================
+	% GRÁFICO A/V
+	% =========================================================
+	
+	\begin{figure}[H]
+		\centering
+		
+		\begin{tikzpicture}
+			
+			\begin{axis}[
+				width=11cm,
+				height=6.5cm,
+				xlabel={Diâmetro da partícula / nm},
+				ylabel={Relação \(A/V\) / \(\mathrm{nm^{-1}}\)},
+				xmin=0,
+				xmax=110,
+				ymin=0,
+				ymax=0.7,
+				grid=major,
+				grid style={dashed,eugray},
+				thick,
+				mark=*,
+				axis line style={eudark}
+				]
+				
+				\addplot[
+				very thick,
+				mark=*,
+				mark size=2.5pt
+				]
+				coordinates{
+					(10,0.60)
+					(20,0.30)
+					(30,0.20)
+					(40,0.15)
+					(50,0.12)
+					(75,0.08)
+					(100,0.06)
+				};
+				
+			\end{axis}
+			
+		\end{tikzpicture}
+		
+		\caption{Variação da relação área superficial/volume com o diâmetro de partículas esféricas.}
+	\end{figure}
+	
+	% =========================================================
+	
+	\begin{exercicio}{Interpretar o gráfico}
+		
+		Usando o gráfico anterior:
+		
+		\begin{enumerate}[label=\alph*)]
+			\item Indica aproximadamente \(A/V\) para uma partícula de \(20\,\mathrm{nm}\).
+			\item O que acontece à relação \(A/V\) quando o diâmetro aumenta?
+			\item Compara partículas de \(10\,\mathrm{nm}\) e \(100\,\mathrm{nm}\). Qual apresenta maior relação \(A/V\)?
+			\item Explica por que razão partículas muito pequenas podem ser particularmente interessantes em processos químicos.
+		\end{enumerate}
+		
+		\begin{solucao}
+			\begin{enumerate}[label=\alph*)]
+				\item Para \(d = 20\,\mathrm{nm}\), \(A/V \approx \mathbf{0{,}30\,\mathrm{nm^{-1}}}\).
+				\item À medida que o diâmetro aumenta, a relação área/volume \textbf{diminui}.
+				\item A partícula de \textbf{\(10\,\mathrm{nm}\)} (\(A/V = 0{,}60\,\mathrm{nm^{-1}}\)) apresenta uma relação \(A/V\) dez vezes maior do que a de \(100\,\mathrm{nm}\) (\(A/V = 0{,}06\,\mathrm{nm^{-1}}\)).
+				\item Partículas muito pequenas expõem uma enorme percentagem dos seus átomos à superfície, aumentando a área de contacto e a reatividade química, o que as torna excelentes catalisadores.
+			\end{enumerate}
+		\end{solucao}
+		
+	\end{exercicio}
+	
+	% =========================================================
+	% DESENHO DIVISÃO CUBO
+	% =========================================================
+	
+	\begin{exercicio}{Por que razão partículas menores têm mais superfície?}
+		
+		Imagina um cubo de material com aresta \(100\,\mathrm{nm}\). Este cubo é dividido em oito cubos iguais, cada um com aresta \(50\,\mathrm{nm}\).
+		
+		\begin{center}
+			\begin{tikzpicture}[scale=0.95]
+				% cubo grande
+				\draw[very thick,eublue,fill=eulightblue] (0,0) rectangle (2.5,2.5);
+				\node[below,font=\bfseries] at (1.25,-0.2) {1 partícula};
+				\node at (1.25,1.25) {\Large \(100\,\mathrm{nm}\)};
+				
+				% seta
+				\draw[-{Latex[length=4mm]},very thick,eudark] (3.0,1.25)--(4.3,1.25);
+				\node[above,font=\small\bfseries] at (3.65,1.35) {dividir};
+				
+				% 4 representadas
+				\foreach \x in {0,1}{
+					\foreach \y in {0,1}{
+						\draw[very thick, eugreen, fill=eulightgreen]
+						({4.8+1.25*\x},{1.25*\y}) rectangle ({6.05+1.25*\x},{1.25+1.25*\y});
+					}
+				}
+				\node[below,font=\bfseries] at (6.05,-0.2) {8 partículas};
+				\node at (6.05,1.25) {\Large \(50\,\mathrm{nm}\)};
+				\node[align=center,text=eudark,font=\small] at (6.05,3.25) {Representação simplificada\\da fragmentação};
+			\end{tikzpicture}
+		\end{center}
+		
+		\begin{enumerate}[label=\alph*)]
+			\item Calcula a área superficial do cubo inicial (\(A_{\text{cubo}}=6a^2\)).
+			\item Calcula a área superficial de um dos cubos de \(50\,\mathrm{nm}\).
+			\item Calcula a área superficial total dos oito cubos.
+			\item Compara a área superficial total antes e depois da divisão.
+			\item O volume total de material aumentou, diminuiu ou permaneceu constante?
+		\end{enumerate}
+		
+		\begin{solucao}
+			\begin{enumerate}[label=\alph*)]
+				\item \(A_{\text{inicial}} = 6 \times (100)^2 = 6 \times 10\,000 = \mathbf{60\,000\,\mathrm{nm^2}}\).
+				\item \(A_1 = 6 \times (50)^2 = 6 \times 2500 = \mathbf{15\,000\,\mathrm{nm^2}}\).
+				\item \(A_{\text{total}} = 8 \times 15\,000 = \mathbf{120\,000\,\mathrm{nm^2}}\).
+				\item A área superficial total \textbf{duplicou} (passou de \(60\,000\,\mathrm{nm^2}\) para \(120\,000\,\mathrm{nm^2}\)).
+				\item O volume total \textbf{permaneceu constante} (\(V = 100^3 = 8 \times 50^3 = 1\,000\,000\,\mathrm{nm^3}\)).
+			\end{enumerate}
+		\end{solucao}
+		
+	\end{exercicio}
+	
+	% =========================================================
+	
+	\begin{exercicio}{Nanotecnologia no quotidiano}
+		
+		Escolhe \textbf{duas} áreas de aplicação e descreve uma utilização da nanotecnologia em cada uma.
+		
+		\begin{solucao}
+			\textbf{Medicina:} Desenvolvimento de nanocarregadores para libertação controlada de fármacos (ex.: vetorização de medicamentos diretamente em células tumorais, reduzindo efeitos secundários). \\[1.5mm]
+			\textbf{Materiais / Revestimentos:} Produção de superfícies auto-limpantes e superhidrofóbicas baseadas em revestimentos nanométricos (efeito lótus).
+		\end{solucao}
+		
+	\end{exercicio}
+	
+	% =========================================================
+	
+	\begin{exercicio}{Ciência, tecnologia e pensamento crítico}
+		
+		Avalia criticamente a afirmação: \textit{``Este produto contém nanopartículas. Por isso, é necessariamente melhor do que qualquer produto convencional.''}
+		
+		\begin{solucao}
+			A afirmação é incorreta e constitui uma falácia. A palavra ``nano'' indica apenas uma escala de tamanho (\(10^{-9}\,\mathrm{m}\)) e não é garantia automática de qualidade, eficiência ou segurança. Embora as nanopartículas tragam novas propriedades úteis, a sua elevada reatividade também exige estudos rigorosos sobre potenciais riscos ambientais e de toxicidade para a saúde humana.
+		\end{solucao}
+		
+	\end{exercicio}
+	
+	% =========================================================
+	% QUESTÃO INTEGRADORA
+	% =========================================================
+	
+	\section*{\textcolor{euorange}{5. Desafio final}}
+	
+	\begin{desafio}
+		
+		Um investigador estuda nanopartículas constituídas pelo elemento cobre (\(Z=29\)). Considere um átomo do isótopo \({}^{63}_{29}\mathrm{Cu}\).
+		
+		\begin{enumerate}[label=\alph*)]
+			\item Indica o número de protões.
+			\item Determina o número de neutrões.
+			\item Indica o número de eletrões num átomo neutro.
+			\item Se esse átomo perder dois eletrões, quantos eletrões passa a possuir?
+			\item Qual será a carga do ião formado?
+			\item Uma nanopartícula de cobre possui um diâmetro aproximado de \(25\,\mathrm{nm}\). Expressa esse valor em metros.
+			\item Outra nanopartícula possui \(100\,\mathrm{nm}\) de diâmetro. Qual das duas deverá apresentar maior relação área superficial/volume? Justifica.
+			\item Explica como este exemplo estabelece uma ligação entre \textbf{estrutura atómica}, \textbf{materiais} e \textbf{nanotecnologia}.
+		\end{enumerate}
+		
+		\begin{solucao}
+			\begin{enumerate}[label=\alph*)]
+				\item \(n(p^+) = 29\).
+				\item \(N = A - Z = 63 - 29 = \mathbf{34\text{ neutrões}}\).
+				\item \(n(e^-) = 29\).
+				\item Passa a ter \(29 - 2 = \mathbf{27\text{ eletrões}}\).
+				\item Carga \textbf{\(+2\)} (forma o catião \(\mathrm{Cu}^{2+}\)).
+				\item \(25\,\mathrm{nm} = 25 \times 10^{-9}\,\mathrm{m} = \mathbf{2,5 \times 10^{-8}\,\mathrm{m}}\).
+				\item A nanopartícula de \textbf{\(25\,\mathrm{nm}\)}. Justificação: a relação área/volume é inversamente proporcional ao diâmetro (\(A/V = 6/d\)), logo quanto menor for a partícula, maior é a sua relação área/volume.
+				\item Os protões e eletrões determinam a identidade do elemento (cobre) e o seu comportamento químico; quando agrupados à escala nanométrica (\(25\,\mathrm{nm}\)), o elevado rácio de átomos de superfície altera substancialmente as propriedades físicas do material, permitindo o desenvolvimento de novas aplicações nanotecnológicas.
+			\end{enumerate}
+		\end{solucao}
+		
+	\end{desafio}
+	
+	\vfill
+	
+	\begin{center}
+		\begin{tikzpicture}
+			
+			\draw[eublue,very thick] (0,0) -- (13,0);
+			
+			\node[
+			text=eublue,
+			font=\Large\bfseries
+			] at (6.5,0.55)
+			{EUFISICA exercícios};
+			
+			\node[
+			text=eudark,
+			font=\small
+			] at (6.5,-0.45)
+			{Física e Química com contexto, ciência e tecnologia};
+			
+		\end{tikzpicture}
+	\end{center}
+	
+\end{document}

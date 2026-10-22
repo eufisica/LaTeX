@@ -1,0 +1,2685 @@
+\documentclass[11pt,a4paper]{article}
+
+% ============================================================
+% PACOTES
+% ============================================================
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese]{babel}
+\usepackage{lmodern}
+
+\usepackage[
+a4paper,
+top=1.8cm,
+bottom=1.8cm,
+left=1.8cm,
+right=1.8cm
+]{geometry}
+
+\usepackage{amsmath,amssymb}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{graphicx}
+
+% ------------------------------------------------------------
+% SIUNITX
+% ------------------------------------------------------------
+\usepackage{siunitx}
+\sisetup{output-decimal-marker={,}}
+
+% Fórmulas químicas
+\usepackage[version=4]{mhchem}
+
+% TikZ
+\usepackage{tikz}
+\usetikzlibrary{
+	arrows.meta,
+	positioning,
+	calc,
+	shapes.geometric
+}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% Caixas
+\usepackage[most]{tcolorbox}
+
+% Cabeçalhos
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+\usepackage{hyperref}
+
+% ============================================================
+% CORES
+% ============================================================
+
+\definecolor{eublue}{HTML}{145A86}
+\definecolor{eudark}{HTML}{17324D}
+\definecolor{eulightblue}{HTML}{E4F2FA}
+\definecolor{eugreen}{HTML}{3F7D58}
+\definecolor{eulightgreen}{HTML}{E8F4EC}
+\definecolor{euorange}{HTML}{E28A2B}
+\definecolor{eulightorange}{HTML}{FFF0DE}
+\definecolor{eured}{HTML}{B33A3A}
+\definecolor{eupurple}{HTML}{67518A}
+\definecolor{eugray}{HTML}{F2F4F6}
+
+% ============================================================
+% CONFIGURAÇÕES
+% ============================================================
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+
+\renewcommand{\arraystretch}{1.35}
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=eublue,
+	urlcolor=eublue
+}
+
+% ============================================================
+% CABEÇALHO E RODAPÉ
+% ============================================================
+
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{
+	\textbf{\textcolor{eublue}{EUFISICA exercícios}}
+}
+
+\fancyhead[R]{
+	\textcolor{eudark}{Resolução -- Física e Química A -- 10.º ano}
+}
+
+\fancyfoot[L]{Prof. José Gonçalves}
+\fancyfoot[C]{EUFISICA}
+\fancyfoot[R]{Página \thepage\ de \pageref{LastPage}}
+
+\renewcommand{\headrulewidth}{0.6pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% ============================================================
+% CAIXAS
+% ============================================================
+
+\newcounter{exercicio}
+
+\newenvironment{resolucao}[1]
+{
+	\refstepcounter{exercicio}
+	\begin{tcolorbox}[
+		enhanced,
+		breakable,
+		colback=white,
+		colframe=eublue,
+		boxrule=0.8pt,
+		arc=2mm,
+		left=3mm,
+		right=3mm,
+		top=2mm,
+		bottom=2mm,
+		title={
+			\textbf{Exercício \theexercicio}
+			\hspace{1mm}--\hspace{1mm}#1
+		},
+		coltitle=white,
+		colbacktitle=eublue,
+		fonttitle=\bfseries
+		]
+	}
+	{
+	\end{tcolorbox}
+}
+
+\newtcolorbox{resultado}{
+	enhanced,
+	colback=eulightgreen,
+	colframe=eugreen,
+	fontupper=\bfseries,
+	arc=2mm
+}
+
+\newtcolorbox{nota}{
+	enhanced,
+	breakable,
+	colback=eulightorange,
+	colframe=euorange,
+	title=\textbf{Nota},
+	fonttitle=\bfseries,
+	arc=2mm
+}
+
+\newtcolorbox{recorda}{
+	enhanced,
+	breakable,
+	colback=eulightblue,
+	colframe=eublue,
+	title=\textbf{Expressões úteis},
+	fonttitle=\bfseries,
+	arc=2mm
+}
+
+% ============================================================
+% DOCUMENTO
+% ============================================================
+
+\begin{document}
+	
+	% ============================================================
+	% TÍTULO
+	% ============================================================
+	
+	\begin{tcolorbox}[
+		enhanced,
+		colback=eudark,
+		colframe=eudark,
+		arc=3mm,
+		boxrule=0pt,
+		left=5mm,
+		right=5mm,
+		top=5mm,
+		bottom=5mm
+		]
+		
+		\begin{center}
+			
+			{\Huge\bfseries\color{white} EUFISICA exercícios}
+			
+			\vspace{2mm}
+			
+			{\Large\bfseries\color{white}
+				Resolução da Ficha de Trabalho}
+			
+			\vspace{2mm}
+			
+			{\large\color{eulightblue}
+				Quantidade de matéria • Espetros atómicos • Átomo de hidrogénio}
+			
+			{\large\color{eulightblue}
+				Energia dos eletrões • Espetro fotoeletrónico • Distribuição eletrónica}
+			
+			\vspace{4mm}
+			
+			{\large\color{white}\textbf{Física e Química A -- 10.º ano}}
+			
+			\vspace{2mm}
+			
+			{\color{white}\textbf{Prof. José Gonçalves}}
+			
+		\end{center}
+		
+	\end{tcolorbox}
+	
+	% ============================================================
+	% CONSTANTES
+	% ============================================================
+	
+	\begin{recorda}
+		
+		\[
+		N_A=\SI{6.022e23}{\per\mole}
+		\]
+		
+		\[
+		h=\SI{6.626e-34}{\joule\second}
+		\]
+		
+		\[
+		c=\SI{3.00e8}{\meter\per\second}
+		\]
+		
+		\[
+		1\,\mathrm{eV}
+		=
+		\SI{1.602e-19}{J}
+		\]
+		
+		\[
+		N=nN_A
+		\]
+		
+		\[
+		n=\frac{m}{M}
+		\]
+		
+		\[
+		E_{\text{fotão}}=h f
+		\]
+		
+		\[
+		c=\lambda f
+		\]
+		
+		\[
+		E_{\text{fotão}}
+		=
+		\frac{hc}{\lambda}
+		\]
+		
+		Para o átomo de hidrogénio:
+		
+		\[
+		\boxed{
+			E_n=-\frac{2,18\times10^{-18}}{n^2}\ \mathrm{J}
+		}
+		\]
+		
+		ou
+		
+		\[
+		\boxed{
+			E_n=-\frac{13,6}{n^2}\ \mathrm{eV}
+		}
+		\]
+		
+	\end{recorda}
+	
+	% ============================================================
+	% 1
+	% ============================================================
+	
+	\section*{\textcolor{eublue}{1. Quantidade de matéria e massa molar}}
+	
+	\begin{resolucao}{Quantidade de matéria}
+		
+		Utiliza-se:
+		
+		\[
+		N=nN_A
+		\]
+		
+		Assim:
+		
+		\[
+		N(1,00\,\mathrm{mol})
+		=
+		1,00\times6,022\times10^{23}
+		\]
+		
+		\[
+		N=6,022\times10^{23}
+		\]
+		
+		Para \(\SI{0.500}{mol}\):
+		
+		\[
+		N=
+		0,500\times6,022\times10^{23}
+		\]
+		
+		\[
+		N=3,011\times10^{23}
+		\]
+		
+		Para \(\SI{2.00}{mol}\):
+		
+		\[
+		N=
+		2,00\times6,022\times10^{23}
+		\]
+		
+		\[
+		N=1,2044\times10^{24}
+		\]
+		
+		Nos restantes casos:
+		
+		\[
+		n=\frac{N}{N_A}
+		\]
+		
+		\[
+		n=
+		\frac{3,011\times10^{23}}
+		{6,022\times10^{23}}
+		=
+		0,500\,\mathrm{mol}
+		\]
+		
+		e
+		
+		\[
+		n=
+		\frac{1,2044\times10^{24}}
+		{6,022\times10^{23}}
+		=
+		2,00\,\mathrm{mol}
+		\]
+		
+		\begin{center}
+			
+			\begin{tabular}{ccc}
+				\toprule
+				\textbf{Quantidade de matéria}
+				&
+				\textbf{Número de entidades}
+				&
+				\textbf{Entidade}
+				\\
+				\midrule
+				\(\SI{1.00}{mol}\)
+				&
+				\(6,022\times10^{23}\)
+				&
+				átomos
+				\\
+				
+				\(\SI{0.500}{mol}\)
+				&
+				\(3,011\times10^{23}\)
+				&
+				moléculas
+				\\
+				
+				\(\SI{2.00}{mol}\)
+				&
+				\(1,2044\times10^{24}\)
+				&
+				iões
+				\\
+				
+				\(\SI{0.500}{mol}\)
+				&
+				\(3,011\times10^{23}\)
+				&
+				moléculas
+				\\
+				
+				\(\SI{2.00}{mol}\)
+				&
+				\(1,2044\times10^{24}\)
+				&
+				átomos
+				\\
+				\bottomrule
+			\end{tabular}
+			
+		\end{center}
+		
+	\end{resolucao}
+	
+	% ============================================================
+	
+	\begin{resolucao}{Massa molar}
+		
+		\textbf{a) Água, \(\ce{H2O}\)}
+		
+		\[
+		M(\ce{H2O})
+		=
+		2M(\ce{H})+M(\ce{O})
+		\]
+		
+		\[
+		M(\ce{H2O})
+		=
+		2(1,01)+16,00
+		\]
+		
+		\[
+		\boxed{
+			M(\ce{H2O})=\SI{18.02}{g\per mol}
+		}
+		\]
+		
+		\vspace{2mm}
+		
+		\textbf{b) Dióxido de carbono, \(\ce{CO2}\)}
+		
+		\[
+		M(\ce{CO2})
+		=
+		12,01+2(16,00)
+		\]
+		
+		\[
+		\boxed{
+			M(\ce{CO2})=\SI{44.01}{g\per mol}
+		}
+		\]
+		
+		\vspace{2mm}
+		
+		\textbf{c) Amoníaco, \(\ce{NH3}\)}
+		
+		\[
+		M(\ce{NH3})
+		=
+		14,01+3(1,01)
+		\]
+		
+		\[
+		\boxed{
+			M(\ce{NH3})=\SI{17.03}{g\per mol}
+		}
+		\]
+		
+		\vspace{2mm}
+		
+		\textbf{d) Cloreto de sódio, \(\ce{NaCl}\)}
+		
+		\[
+		M(\ce{NaCl})
+		=
+		22,99+35,45
+		\]
+		
+		\[
+		\boxed{
+			M(\ce{NaCl})=\SI{58.44}{g\per mol}
+		}
+		\]
+		
+		\vspace{2mm}
+		
+		\textbf{e) Carbonato de cálcio, \(\ce{CaCO3}\)}
+		
+		\[
+		M(\ce{CaCO3})
+		=
+		40,08+12,01+3(16,00)
+		\]
+		
+		\[
+		\boxed{
+			M(\ce{CaCO3})=\SI{100.09}{g\per mol}
+		}
+		\]
+		
+		\vspace{2mm}
+		
+		\textbf{f) Sulfato de alumínio, \(\ce{Al2(SO4)3}\)}
+		
+		\[
+		M=
+		2(26,98)
+		+
+		3[32,06+4(16,00)]
+		\]
+		
+		\[
+		M=
+		53,96+3(96,06)
+		\]
+		
+		\[
+		\boxed{
+			M(\ce{Al2(SO4)3})
+			=
+			\SI{342.14}{g\per mol}
+		}
+		\]
+		
+	\end{resolucao}
+	
+	% ============================================================
+	
+	\begin{resolucao}{Da massa ao número de moléculas}
+		
+		Para a água:
+		
+		\[
+		M(\ce{H2O})=\SI{18.02}{g\per mol}
+		\]
+		
+		\textbf{a)}
+		
+		\[
+		\boxed{
+			M(\ce{H2O})=\SI{18.02}{g\per mol}
+		}
+		\]
+		
+		\textbf{b)}
+		
+		\[
+		n=\frac{m}{M}
+		\]
+		
+		\[
+		n=
+		\frac{18,0}{18,02}
+		\]
+		
+		\[
+		\boxed{
+			n\approx\SI{0.999}{mol}
+		}
+		\]
+		
+		ou, aproximadamente,
+		
+		\[
+		n\approx\SI{1.00}{mol}.
+		\]
+		
+		\textbf{c)}
+		
+		\[
+		N=nN_A
+		\]
+		
+		\[
+		N=
+		0,999\times6,022\times10^{23}
+		\]
+		
+		\[
+		\boxed{
+			N\approx6,02\times10^{23}
+			\text{ moléculas}
+		}
+		\]
+		
+		\textbf{d)}
+		
+		Cada molécula de água possui dois átomos de hidrogénio.
+		
+		Assim:
+		
+		\[
+		N(\ce{H})
+		=
+		2N(\ce{H2O})
+		\]
+		
+		\[
+		N(\ce{H})
+		=
+		2(6,02\times10^{23})
+		\]
+		
+		\[
+		\boxed{
+			N(\ce{H})
+			\approx1,20\times10^{24}
+			\text{ átomos}
+		}
+		\]
+		
+	\end{resolucao}
+	
+	% ============================================================
+	
+	\begin{resolucao}{Um composto do quotidiano}
+		
+		A cafeína apresenta fórmula:
+		
+		\[
+		\ce{C8H10N4O2}
+		\]
+		
+		\textbf{a) Massa molar}
+		
+		\[
+		M=
+		8(12,01)+10(1,01)+4(14,01)+2(16,00)
+		\]
+		
+		\[
+		M=
+		96,08+10,10+56,04+32,00
+		\]
+		
+		\[
+		\boxed{
+			M=\SI{194.22}{g\per mol}
+		}
+		\]
+		
+		\textbf{b) Quantidade de matéria}
+		
+		Primeiro:
+		
+		\[
+		\SI{80}{mg}
+		=
+		\SI{0.080}{g}
+		\]
+		
+		Logo,
+		
+		\[
+		n=
+		\frac{0,080}{194,22}
+		\]
+		
+		\[
+		\boxed{
+			n\approx4,12\times10^{-4}\,\mathrm{mol}
+		}
+		\]
+		
+		\textbf{c) Número de moléculas}
+		
+		\[
+		N=nN_A
+		\]
+		
+		\[
+		N=
+		4,12\times10^{-4}
+		\times6,022\times10^{23}
+		\]
+		
+		\[
+		\boxed{
+			N\approx2,48\times10^{20}
+			\text{ moléculas}
+		}
+		\]
+		
+	\end{resolucao}
+	
+	% ============================================================
+	% 2
+	% ============================================================
+	
+	\newpage
+	
+	\section*{\textcolor{eublue}{2. Espetros de emissão e de absorção}}
+	
+	\begin{resolucao}{Emissão ou absorção?}
+		
+		\begin{enumerate}[label=\alph*)]
+			
+			\item
+			
+			\[
+			E_4\rightarrow E_2
+			\]
+			
+			O eletrão passa de um nível de maior energia para um nível de menor
+			energia.
+			
+			\[
+			\boxed{\text{Emissão}}
+			\]
+			
+			\item
+			
+			\[
+			E_1\rightarrow E_3
+			\]
+			
+			O eletrão passa para um nível de maior energia.
+			
+			\[
+			\boxed{\text{Absorção}}
+			\]
+			
+			\item Uma risca luminosa sobre fundo escuro é característica de um:
+			
+			\[
+			\boxed{\text{espetro de emissão}}
+			\]
+			
+			\item Uma risca escura num espetro contínuo corresponde a:
+			
+			\[
+			\boxed{\text{absorção}}
+			\]
+			
+			\item O átomo recebe um fotão cuja energia corresponde à diferença
+			entre dois níveis, permitindo ao eletrão transitar para um nível superior.
+			
+			\[
+			\boxed{\text{Absorção}}
+			\]
+			
+		\end{enumerate}
+		
+	\end{resolucao}
+	
+	% ============================================================
+	
+	\begin{resolucao}{Identificação de elementos por espetroscopia}
+		
+		\textbf{a)}
+		
+		A amostra X apresenta linhas coincidentes com as linhas do hidrogénio:
+		
+		\[
+		410,\ 434,\ 486,\ 656\ \mathrm{nm}
+		\]
+		
+		e com linhas do sódio próximas de:
+		
+		\[
+		568\ \mathrm{nm}
+		\qquad\text{e}\qquad
+		589\ \mathrm{nm}.
+		\]
+		
+		Logo:
+		
+		\[
+		\boxed{
+			\text{A amostra contém hidrogénio e sódio.}
+		}
+		\]
+		
+		\textbf{b)}
+		
+		Cada elemento possui um conjunto próprio de níveis eletrónicos de
+		energia. As diferenças entre esses níveis também são características
+		do elemento.
+		
+		Como:
+		
+		\[
+		E_{\text{fotão}}
+		=
+		|\Delta E|
+		\]
+		
+		cada elemento origina um conjunto característico de comprimentos de
+		onda.
+		
+		Por isso, o espetro funciona como uma espécie de
+		\textbf{impressão digital do elemento}.
+		
+		\textbf{c)}
+		
+		Não se espera que dois elementos diferentes possuam espetros
+		completamente iguais.
+		
+		Podem existir algumas linhas com comprimentos de onda muito próximos,
+		mas o conjunto completo de linhas é característico de cada elemento.
+		
+	\end{resolucao}
+	
+	% ============================================================
+	% 3
+	% ============================================================
+	
+	\section*{\textcolor{eublue}{3. Energia dos fotões}}
+	
+	\begin{resolucao}{Energia de um fotão}
+		
+		Dado:
+		
+		\[
+		\lambda=\SI{500}{nm}
+		\]
+		
+		\textbf{a) Conversão para metros}
+		
+		\[
+		\SI{1}{\nano\meter} = \SI{1e-9}{\meter}
+		\]
+		
+		logo:
+		
+		\[
+		\SI{500}{\nano\meter}
+		=
+		\SI{500e-9}{\meter}
+		\]
+		
+		\[
+		\boxed{
+			\lambda=\SI{5.00e-7}{m}
+		}
+		\]
+		
+		\textbf{b) Frequência}
+		
+		\[
+		c=\lambda f
+		\]
+		
+		\[
+		f=\frac{c}{\lambda}
+		\]
+		
+		\[
+		\nu=
+		\frac{3,00\times10^8}
+		{5,00\times10^{-7}}
+		\]
+		
+		\[
+		\boxed{
+			\nu=\SI{6.00e14}{Hz}
+		}
+		\]
+		
+		\textbf{c) Energia de um fotão}
+		
+		\[
+		E=h f
+		\]
+		
+		\[
+		E=
+		6,626\times10^{-34}
+		\times6,00\times10^{14}
+		\]
+		
+		\[
+		\boxed{
+			E\approx\SI{3.98e-19}{J}
+		}
+		\]
+		
+		\textbf{d) Energia correspondente a um mol de fotões}
+		
+		\[
+		E_{\mathrm{mol}}
+		=
+		EN_A
+		\]
+		
+		\[
+		E_{\mathrm{mol}}
+		=
+		3,98\times10^{-19}
+		\times
+		6,022\times10^{23}
+		\]
+		
+		\[
+		E_{\mathrm{mol}}
+		\approx
+		\SI{2,39e5}{\joule\per\mole}
+		\]
+		
+		ou:
+		
+		\[
+		\boxed{
+			E_{\mathrm{mol}}
+			\approx
+			\SI{239}{kJ\per mol}
+		}
+		\]
+		
+	\end{resolucao}
+	
+	% ============================================================
+	
+	\begin{resolucao}{Comparar fotões}
+		
+		Como:
+		
+		\[
+		f=\frac{c}{\lambda}
+		\]
+		
+		quanto menor for \(\lambda\), maior será \(f\).
+		
+		Como:
+		
+		\[
+		E=hf
+		\]
+		
+		quanto maior for a frequência, \(f\), maior será a energia.
+		
+		Os comprimentos de onda são:
+		
+		\[
+		\lambda_A=\SI{400}{nm}
+		\]
+		
+		\[
+		\lambda_B=\SI{550}{nm}
+		\]
+		
+		\[
+		\lambda_C=\SI{650}{nm}
+		\]
+		
+		\textbf{a)}
+		
+		O menor comprimento de onda é o de A.
+		
+		\[
+		\boxed{\text{A possui maior frequência.}}
+		\]
+		
+		\textbf{b)}
+		
+		C apresenta o maior comprimento de onda.
+		
+		\[
+		\boxed{\text{C possui menor energia.}}
+		\]
+		
+		\textbf{c)}
+		
+		Por ordem crescente de energia:
+		
+		\[
+		\boxed{
+			C<B<A
+		}
+		\]
+		
+		\textbf{d)}
+		
+		Pode justificar-se diretamente por:
+		
+		\[
+		\boxed{
+			E=\frac{hc}{\lambda}
+		}
+		\]
+		
+		Logo, a energia é inversamente proporcional ao comprimento de onda.
+		
+	\end{resolucao}
+	
+	% ============================================================
+	% 4 HIDROGÉNIO
+	% ============================================================
+	
+	\newpage
+	
+	\section*{\textcolor{eublue}{4. Espetro e níveis de energia do átomo de hidrogénio}}
+	
+	\begin{resolucao}{Energia dos níveis do hidrogénio}
+		
+		Utiliza-se:
+		
+		\[
+		E_n=
+		-\frac{2,18\times10^{-18}}{n^2}\ \mathrm{J}
+		\]
+		
+		\textbf{a) Para \(n=1\)}
+		
+		\[
+		E_1=
+		-\frac{2,18\times10^{-18}}{1^2}
+		\]
+		
+		\[
+		\boxed{
+			E_1=\SI{-2,18e-18}{\joule}
+		}
+		\]
+		
+		\textbf{b) Para \(n=2\)}
+		
+		\[
+		E_2=
+		-\frac{2,18\times10^{-18}}{2^2}
+		\]
+		
+		\[
+		E_2=
+		-\frac{2,18\times10^{-18}}{4}
+		\]
+		
+		\[
+		\boxed{
+			E_2=\SI{-5,45e-19}{\joule}
+		}
+		\]
+		
+		\textbf{c) Para \(n=3\)}
+		
+		\[
+		E_3=
+		-\frac{2,18\times10^{-18}}{9}
+		\]
+		
+		\[
+		\boxed{
+			E_3\approx\SI{-2,42e-19}{\joule}
+		}
+		\]
+		
+		\textbf{d) Para \(n=4\)}
+		
+		\[
+		E_4=
+		-\frac{2,18\times10^{-18}}{16}
+		\]
+		
+		\[
+		\boxed{
+			E_4\approx\SI{-1,36e-19}{\joule}
+		}
+		\]
+		
+		Verifica-se que, à medida que \(n\) aumenta, a energia aproxima-se de
+		zero.
+		
+	\end{resolucao}
+	
+	% ============================================================
+	
+	\begin{resolucao}{Transição eletrónica \(n=4\rightarrow n=2\)}
+		
+		\textbf{a)}
+		
+		\[
+		E_4=
+		-\frac{2,18\times10^{-18}}{16}
+		\]
+		
+		\[
+		\boxed{
+			E_4=\SI{-1,36e-19}{\joule}
+		}
+		\]
+		
+		\textbf{b)}
+		
+		\[
+		E_2=
+		-\frac{2,18\times10^{-18}}{4}
+		\]
+		
+		\[
+		\boxed{
+			E_2=\SI{-5,45e-19}{\joule}
+		}
+		\]
+		
+		\textbf{c) Variação de energia}
+		
+		\[
+		\Delta E=E_f-E_i
+		\]
+		
+		\[
+		\Delta E
+		=
+		E_2-E_4
+		\]
+		
+		\[
+		\Delta E
+		=
+		-5,45\times10^{-19}
+		-
+		(-1,36\times10^{-19})
+		\]
+		
+		\[
+		\boxed{
+			\Delta E\approx\SI{-4,09e-19}{\joule}
+		}
+		\]
+		
+		\textbf{d)}
+		
+		Como:
+		
+		\[
+		\Delta E<0
+		\]
+		
+		o átomo perdeu energia.
+		
+		\[
+		\boxed{\text{Ocorre emissão de um fotão.}}
+		\]
+		
+		\textbf{e)}
+		
+		\[
+		E_{\text{fotão}}=|\Delta E|
+		\]
+		
+		\[
+		\boxed{
+			E_{\text{fotão}}
+			=
+			\SI{4,09e-19}{\joule}
+		}
+		\]
+		
+		\textbf{f) Frequência}
+		
+		\[
+		E=hf
+		\]
+		
+		\[
+		f=\frac{E}{h}
+		\]
+		
+		\[
+		f=
+		\frac{4,09\times10^{-19}}
+		{6,626\times10^{-34}}
+		\]
+		
+		\[
+		\boxed{
+			f\approx\SI{6,17e14}{\hertz}
+		}
+		\]
+		
+		\textbf{g) Comprimento de onda}
+		
+		\[
+		\lambda=\frac{c}{\nu}
+		\]
+		
+		\[
+		\lambda=
+		\frac{3,00\times10^8}
+		{6,17\times10^{14}}
+		\]
+		
+		\[
+		\lambda\approx\SI{4,86e-7}{\meter}
+		\]
+		
+		\[
+		\boxed{
+			\lambda\approx\SI{486}{nm}
+		}
+		\]
+		
+		\textbf{h)}
+		
+		Este comprimento de onda pertence à região:
+		
+		\[
+		\boxed{\text{visível, na região azul--verde}}
+		\]
+		
+		Esta linha corresponde à linha \(H_\beta\) da série de Balmer.
+		
+	\end{resolucao}
+	
+	% ============================================================
+	
+	\begin{resolucao}{Outra risca do hidrogénio}
+		
+		Transição:
+		
+		\[
+		n=3\rightarrow n=2
+		\]
+		
+		\[
+		E_3=
+		\SI{-2,42e-19}{J}
+		\]
+		
+		\[
+		E_2=
+		\SI{-5,45e-19}{J}
+		\]
+		
+		\textbf{a)}
+		
+		A transição deve ser representada por uma seta descendente de
+		\(n=3\) para \(n=2\).
+		
+		\textbf{b)}
+		
+		\[
+		\Delta E
+		=
+		E_2-E_3
+		\]
+		
+		\[
+		\Delta E=
+		-5,45\times10^{-19}
+		-
+		(-2,42\times10^{-19})
+		\]
+		
+		\[
+		\boxed{
+			\Delta E\approx\SI{-3,03e-19}{\joule}
+		}
+		\]
+		
+		\textbf{c)}
+		
+		\[
+		E_{\text{fotão}}
+		=
+		|\Delta E|
+		\]
+		
+		\[
+		\boxed{
+			E_{\text{fotão}}
+			=
+			\SI{3,03e-19}{\joule}
+		}
+		\]
+		
+		\textbf{d)}
+		
+		\[
+		\lambda
+		=
+		\frac{hc}{E}
+		\]
+		
+		\[
+		\lambda
+		=
+		\frac{
+			6,626\times10^{-34}
+			\times3,00\times10^8
+		}{
+			3,03\times10^{-19}
+		}
+		\]
+		
+		\[
+		\lambda
+		\approx\SI{6,57e-7}{\meter}
+		\]
+		
+		\[
+		\boxed{
+			\lambda\approx\SI{657}{nm}
+		}
+		\]
+		
+		Com valores mais precisos para os níveis obtém-se aproximadamente:
+		
+		\[
+		\boxed{
+			\lambda\approx\SI{656}{nm}
+		}
+		\]
+		
+		\textbf{e)}
+		
+		Este valor coincide com a risca vermelha do espetro do hidrogénio,
+		próxima de:
+		
+		\[
+		\boxed{
+			\SI{656.3}{nm}
+		}
+		\]
+		
+	\end{resolucao}
+	
+	% ============================================================
+	
+	\begin{resolucao}{Absorção de radiação}
+		
+		Transição:
+		
+		\[
+		n=1\rightarrow n=3
+		\]
+		
+		\textbf{a)}
+		
+		\[
+		\boxed{
+			E_1=\SI{-2,18e-18}{\joule}
+		}
+		\]
+		
+		\textbf{b)}
+		
+		\[
+		E_3=
+		-\frac{2,18\times10^{-18}}{9}
+		\]
+		
+		\[
+		\boxed{
+			E_3=\SI{-2,42e-19}{\joule}
+		}
+		\]
+		
+		\textbf{c)}
+		
+		\[
+		\Delta E
+		=
+		E_3-E_1
+		\]
+		
+		\[
+		\Delta E
+		=
+		-2,42\times10^{-19}
+		-
+		(-2,18\times10^{-18})
+		\]
+		
+		\[
+		\boxed{
+			\Delta E
+			\approx
+			\SI{1,94e-18}{\joule}
+		}
+		\]
+		
+		Portanto:
+		
+		\[
+		\boxed{
+			E_{\text{fotão,min}}
+			\approx
+			\SI{1,94e-18}{\joule}
+		}
+		\]
+		
+		\textbf{d)}
+		
+		\[
+		f=\frac{E}{h}
+		\]
+		
+		\[
+		f=
+		\frac{1,94\times10^{-18}}
+		{6,626\times10^{-34}}
+		\]
+		
+		\[
+		\boxed{
+			f\approx\SI{2,92e15}{\hertz}
+		}
+		\]
+		
+		\textbf{e)}
+		
+		Os níveis de energia no átomo estão quantizados.
+		
+		Para ocorrer a transição \(n=1\rightarrow n=3\), o fotão deve fornecer
+		uma energia igual à diferença:
+		
+		\[
+		E_3-E_1.
+		\]
+		
+		Um fotão de energia inferior não fornece a energia necessária para essa
+		transição.
+		
+	\end{resolucao}
+	
+	% ============================================================
+	% DESAFIO HIDROGÉNIO
+	% ============================================================
+	
+	\begin{tcolorbox}[
+		enhanced,
+		breakable,
+		colback=eulightorange,
+		colframe=euorange,
+		title=\textbf{Resolução do desafio -- Ionização a partir de \(n=2\)},
+		fonttitle=\bfseries
+		]
+		
+		O eletrão encontra-se inicialmente em:
+		
+		\[
+		n=2
+		\]
+		
+		com energia:
+		
+		\[
+		E_2=\SI{-5,45e-19}{\joule}
+		\]
+		
+		Um eletrão completamente separado do átomo possui:
+		
+		\[
+		E_\infty=0.
+		\]
+		
+		Assim:
+		
+		\[
+		\Delta E
+		=
+		E_\infty-E_2
+		\]
+		
+		\[
+		\Delta E
+		=
+		0-(-5,45\times10^{-19})
+		\]
+		
+		\[
+		\boxed{
+			E_{\text{ionização}}
+			=
+			\SI{5,45e-19}{\joule}
+		}
+		\]
+		
+		\textbf{a) Em joule por eletrão}
+		
+		\[
+		\boxed{
+			\SI{5,45e-19}{\joule}
+		}
+		\]
+		
+		\textbf{b) Em eletrão-volt}
+		
+		\[
+		E=
+		\frac{5,45\times10^{-19}}
+		{1,602\times10^{-19}}
+		\]
+		
+		\[
+		\boxed{
+			E\approx\SI{3,40}{\electronvolt}
+		}
+		\]
+		
+		\textbf{c) Em \(\si{\kilo\joule\per mol}\)}
+		
+		\[
+		E_{\mathrm{mol}}
+		=
+		5,45\times10^{-19}
+		\times6,022\times10^{23}
+		\]
+		
+		\[
+		E_{\mathrm{mol}}
+		=
+		\SI{3,28e5}{\joule\per\mole}
+		\]
+		
+		\[
+		\boxed{
+			E_{\mathrm{mol}}
+			\approx
+			\SI{328}{kJ\per mol}
+		}
+		\]
+		
+	\end{tcolorbox}
+	
+	% ============================================================
+	% FOTOELETRÓNICO
+	% ============================================================
+	
+	\newpage
+	
+	\section*{\textcolor{eublue}{5. Energias de remoção e espetro fotoeletrónico}}
+	
+	\begin{resolucao}{Energia de remoção}
+		
+		Tem-se:
+		
+		\[
+		E_{\text{fotão}}
+		=
+		E_{\text{remoção}}
+		+
+		E_c
+		\]
+		
+		Portanto:
+		
+		\[
+		E_{\text{remoção}}
+		=
+		E_{\text{fotão}}-E_c
+		\]
+		
+		\[
+		E_{\text{remoção}}
+		=
+		2,40\times10^{-17}
+		-
+		7,0\times10^{-18}
+		\]
+		
+		\[
+		\boxed{
+			E_{\text{remoção}}
+			=
+			\SI{1,70e-17}{\joule}
+		}
+		\]
+		
+		\textbf{b) Conversão para eV}
+		
+		\[
+		E=
+		\frac{1,70\times10^{-17}}
+		{1,602\times10^{-19}}
+		\]
+		
+		\[
+		\boxed{
+			E_{\text{remoção}}
+			\approx\SI{106}{\electronvolt}
+		}
+		\]
+		
+		\textbf{c) Energia por mole}
+		
+		\[
+		E_{\mathrm{mol}}
+		=
+		1,70\times10^{-17}
+		\times
+		6,022\times10^{23}
+		\]
+		
+		\[
+		E_{\mathrm{mol}}
+		=
+		\SI{1,024e7}{\joule\per\mole}
+		\]
+		
+		\[
+		\boxed{
+			E_{\mathrm{mol}}
+			\approx
+			\SI{1,02e4}{\kilo\joule\per\mole}
+		}
+		\]
+		
+	\end{resolucao}
+	
+	% ============================================================
+	
+	\begin{resolucao}{Interpretar um espetro fotoeletrónico}
+		
+		A distribuição eletrónica indicada é:
+		
+		\[
+		1s^2\,2s^2\,2p^6\,3s^1
+		\]
+		
+		\textbf{a)}
+		
+		Existem quatro subníveis ocupados:
+		
+		\[
+		\boxed{
+			1s,\quad2s,\quad2p,\quad3s
+		}
+		\]
+		
+		\textbf{b)}
+		
+		Os eletrões \(1s\) encontram-se mais próximos do núcleo e estão mais
+		fortemente ligados.
+		
+		\[
+		\boxed{1s}
+		\]
+		
+		é o subnível de maior energia de remoção.
+		
+		\textbf{c)}
+		
+		Os eletrões \(3s\) são os mais externos.
+		
+		\[
+		\boxed{3s}
+		\]
+		
+		apresenta os eletrões mais facilmente removíveis.
+		
+		\textbf{d)}
+		
+		O subnível \(2p\) possui:
+		
+		\[
+		6\text{ eletrões}
+		\]
+		
+		enquanto \(2s\) possui:
+		
+		\[
+		2\text{ eletrões}.
+		\]
+		
+		Por isso, a intensidade relativa do pico \(2p\) é aproximadamente três
+		vezes maior.
+		
+		\textbf{e)}
+		
+		Número total de eletrões:
+		
+		\[
+		2+2+6+1=11
+		\]
+		
+		\[
+		\boxed{11\text{ eletrões}}
+		\]
+		
+		\textbf{f)}
+		
+		Um átomo neutro com 11 eletrões apresenta:
+		
+		\[
+		Z=11
+		\]
+		
+		e corresponde ao:
+		
+		\[
+		\boxed{\ce{Na}}
+		\]
+		
+		sódio.
+		
+	\end{resolucao}
+	
+	% ============================================================
+	
+	\begin{resolucao}{Energias de ionização sucessivas}
+		
+		Os valores são:
+		
+		\[
+		738,\quad1451,\quad7733,\quad10543,\quad13630
+		\]
+		
+		em \(\si{\kilo\joule\per mol}\).
+		
+		\textbf{a)}
+		
+		O maior aumento ocorre entre a segunda e a terceira energias:
+		
+		\[
+		1451\rightarrow7733
+		\]
+		
+		\[
+		\boxed{\text{entre a remoção do 2.º e do 3.º eletrão}}
+		\]
+		
+		\textbf{b)}
+		
+		Os dois primeiros eletrões são relativamente mais fáceis de remover.
+		
+		O terceiro eletrão já pertence a uma camada interna.
+		
+		Logo:
+		
+		\[
+		\boxed{
+			\text{o magnésio possui dois eletrões de valência}
+		}
+		\]
+		
+		\textbf{c)}
+		
+		Como:
+		
+		\[
+		Z(\ce{Mg})=12
+		\]
+		
+		a distribuição eletrónica é:
+		
+		\[
+		\boxed{
+			1s^2\,2s^2\,2p^6\,3s^2
+		}
+		\]
+		
+		\textbf{d)}
+		
+		Ao perder os dois eletrões \(3s\):
+		
+		\[
+		\ce{Mg -> Mg^{2+} + 2e-}
+		\]
+		
+		o magnésio adquire:
+		
+		\[
+		1s^2\,2s^2\,2p^6.
+		\]
+		
+		Esta configuração corresponde a uma camada de valência completa.
+		
+		A remoção de um terceiro eletrão exigiria muito mais energia, pois teria
+		de ser removido um eletrão da camada \(n=2\).
+		
+	\end{resolucao}
+	
+	% ============================================================
+	% DISTRIBUIÇÃO ELETRÓNICA
+	% ============================================================
+	
+	\section*{\textcolor{eublue}{6. Distribuição eletrónica}}
+	
+	\begin{resolucao}{Escrever distribuições eletrónicas}
+		
+		\begin{center}
+			
+			\begin{tabular}{ccl}
+				\toprule
+				\textbf{Elemento}
+				&
+				\(\boldsymbol{Z}\)
+				&
+				\textbf{Distribuição eletrónica}
+				\\
+				\midrule
+				
+				\ce{C}
+				&
+				6
+				&
+				\(1s^2\,2s^2\,2p^2\)
+				\\[2mm]
+				
+				\ce{O}
+				&
+				8
+				&
+				\(1s^2\,2s^2\,2p^4\)
+				\\[2mm]
+				
+				\ce{Ne}
+				&
+				10
+				&
+				\(1s^2\,2s^2\,2p^6\)
+				\\[2mm]
+				
+				\ce{Na}
+				&
+				11
+				&
+				\(1s^2\,2s^2\,2p^6\,3s^1\)
+				\\[2mm]
+				
+				\ce{Mg}
+				&
+				12
+				&
+				\(1s^2\,2s^2\,2p^6\,3s^2\)
+				\\[2mm]
+				
+				\ce{Al}
+				&
+				13
+				&
+				\(1s^2\,2s^2\,2p^6\,3s^2\,3p^1\)
+				\\[2mm]
+				
+				\ce{Cl}
+				&
+				17
+				&
+				\(1s^2\,2s^2\,2p^6\,3s^2\,3p^5\)
+				\\[2mm]
+				
+				\ce{Ca}
+				&
+				20
+				&
+				\(1s^2\,2s^2\,2p^6\,3s^2\,3p^6\,4s^2\)
+				\\
+				
+				\bottomrule
+			\end{tabular}
+			
+		\end{center}
+		
+	\end{resolucao}
+	
+	% ============================================================
+	
+	\begin{resolucao}{Diagramas de orbitais}
+		
+		\textbf{a) Carbono}
+		
+		\[
+		1s^2\,2s^2\,2p^2
+		\]
+		
+		Segundo a regra de Hund, os dois eletrões \(2p\) ocupam inicialmente
+		orbitais diferentes.
+		
+		\begin{center}
+			
+			\begin{tikzpicture}[scale=0.9]
+				
+				\node at (-0.6,0.5) {\(1s\)};
+				\draw (0,0) rectangle (1,1);
+				
+				\draw[-{Latex},thick,eublue]
+				(0.30,0.15)--(0.30,0.85);
+				
+				\draw[{Latex}-,thick,eured]
+				(0.70,0.15)--(0.70,0.85);
+				
+				\node at (1.8,0.5) {\(2s\)};
+				\draw (2.4,0) rectangle (3.4,1);
+				
+				\draw[-{Latex},thick,eublue]
+				(2.70,0.15)--(2.70,0.85);
+				
+				\draw[{Latex}-,thick,eured]
+				(3.10,0.15)--(3.10,0.85);
+				
+				\node at (4.2,0.5) {\(2p\)};
+				
+				\foreach \x in {4.8,5.8,6.8}{
+					\draw (\x,0) rectangle ({\x+1},1);
+				}
+				
+				\draw[-{Latex},thick,eublue]
+				(5.10,0.15)--(5.10,0.85);
+				
+				\draw[-{Latex},thick,eublue]
+				(6.10,0.15)--(6.10,0.85);
+				
+			\end{tikzpicture}
+			
+		\end{center}
+		
+		Assim:
+		
+		\[
+		\boxed{
+			2p:
+			\quad
+			[\uparrow]\,
+			[\uparrow]\,
+			[\ ]
+		}
+		\]
+		
+		\vspace{4mm}
+		
+		\textbf{b) Oxigénio}
+		
+		\[
+		1s^2\,2s^2\,2p^4
+		\]
+		
+		Os três primeiros eletrões \(2p\) ocupam os três orbitais separadamente.
+		O quarto eletrão emparelha num deles.
+		
+		\begin{center}
+			
+			\begin{tikzpicture}[scale=0.9]
+				
+				\node at (-0.6,0.5) {\(1s\)};
+				\draw (0,0) rectangle (1,1);
+				
+				\draw[-{Latex},thick,eublue]
+				(0.30,0.15)--(0.30,0.85);
+				
+				\draw[{Latex}-,thick,eured]
+				(0.70,0.15)--(0.70,0.85);
+				
+				\node at (1.8,0.5) {\(2s\)};
+				\draw (2.4,0) rectangle (3.4,1);
+				
+				\draw[-{Latex},thick,eublue]
+				(2.70,0.15)--(2.70,0.85);
+				
+				\draw[{Latex}-,thick,eured]
+				(3.10,0.15)--(3.10,0.85);
+				
+				\node at (4.2,0.5) {\(2p\)};
+				
+				\foreach \x in {4.8,5.8,6.8}{
+					\draw (\x,0) rectangle ({\x+1},1);
+				}
+				
+				% primeiro orbital: par
+				\draw[-{Latex},thick,eublue]
+				(5.08,0.15)--(5.08,0.85);
+				
+				\draw[{Latex}-,thick,eured]
+				(5.48,0.15)--(5.48,0.85);
+				
+				% restantes
+				\draw[-{Latex},thick,eublue]
+				(6.10,0.15)--(6.10,0.85);
+				
+				\draw[-{Latex},thick,eublue]
+				(7.10,0.15)--(7.10,0.85);
+				
+			\end{tikzpicture}
+			
+		\end{center}
+		
+		Assim:
+		
+		\[
+		\boxed{
+			2p:
+			\quad
+			[\uparrow\downarrow]\,
+			[\uparrow]\,
+			[\uparrow]
+		}
+		\]
+		
+	\end{resolucao}
+	
+	% ============================================================
+	
+	\begin{resolucao}{Detetar erros}
+		
+		Foram apresentadas:
+		
+		\[
+		A:\quad1s^2\,2s^2\,2p^7
+		\]
+		
+		\[
+		B:\quad1s^2\,2s^2\,2p^6\,3s^3
+		\]
+		
+		\[
+		C:\quad1s^2\,2s^2\,2p^6\,3s^2\,3p^5
+		\]
+		
+		\textbf{a)}
+		
+		São impossíveis:
+		
+		\[
+		\boxed{A\text{ e }B}
+		\]
+		
+		\textbf{b)}
+		
+		Um subnível \(p\) contém três orbitais e pode possuir, no máximo:
+		
+		\[
+		3\times2=6
+		\]
+		
+		eletrões.
+		
+		Assim:
+		
+		\[
+		2p^7
+		\]
+		
+		é impossível.
+		
+		Um subnível \(s\) possui apenas um orbital e pode conter, no máximo:
+		
+		\[
+		2
+		\]
+		
+		eletrões.
+		
+		Assim:
+		
+		\[
+		3s^3
+		\]
+		
+		é impossível.
+		
+		\textbf{c)}
+		
+		Na distribuição C:
+		
+		\[
+		2+2+6+2+5=17
+		\]
+		
+		Portanto:
+		
+		\[
+		Z=17
+		\]
+		
+		e o elemento é:
+		
+		\[
+		\boxed{\ce{Cl}}
+		\]
+		
+		\textbf{d)}
+		
+		A camada de valência é:
+		
+		\[
+		3s^2\,3p^5
+		\]
+		
+		Logo:
+		
+		\[
+		2+5=7
+		\]
+		
+		\[
+		\boxed{7\text{ eletrões de valência}}
+		\]
+		
+	\end{resolucao}
+	
+	% ============================================================
+	
+	\begin{resolucao}{Distribuição eletrónica de iões}
+		
+		\textbf{a) \(\ce{Na+}\)}
+		
+		O sódio neutro possui 11 eletrões:
+		
+		\[
+		\ce{Na}:
+		1s^2\,2s^2\,2p^6\,3s^1
+		\]
+		
+		Ao perder um eletrão:
+		
+		\[
+		\boxed{
+			\ce{Na+}:
+			1s^2\,2s^2\,2p^6
+		}
+		\]
+		
+		Possui 10 eletrões.
+		
+		\vspace{3mm}
+		
+		\textbf{b) \(\ce{Mg^{2+}}\)}
+		
+		O magnésio possui:
+		
+		\[
+		1s^2\,2s^2\,2p^6\,3s^2
+		\]
+		
+		Perdendo dois eletrões:
+		
+		\[
+		\boxed{
+			\ce{Mg^{2+}}:
+			1s^2\,2s^2\,2p^6
+		}
+		\]
+		
+		Possui 10 eletrões.
+		
+		\vspace{3mm}
+		
+		\textbf{c) \(\ce{Cl-}\)}
+		
+		O cloro neutro possui:
+		
+		\[
+		1s^2\,2s^2\,2p^6\,3s^2\,3p^5
+		\]
+		
+		Ao receber um eletrão:
+		
+		\[
+		\boxed{
+			\ce{Cl-}:
+			1s^2\,2s^2\,2p^6\,3s^2\,3p^6
+		}
+		\]
+		
+		Possui 18 eletrões.
+		
+		\vspace{3mm}
+		
+		\textbf{d) \(\ce{O^{2-}}\)}
+		
+		O oxigénio neutro possui:
+		
+		\[
+		1s^2\,2s^2\,2p^4
+		\]
+		
+		Ao receber dois eletrões:
+		
+		\[
+		\boxed{
+			\ce{O^{2-}}:
+			1s^2\,2s^2\,2p^6
+		}
+		\]
+		
+		Possui 10 eletrões.
+		
+		\vspace{3mm}
+		
+		\textbf{e)}
+		
+		Na formulação original da ficha, \textbf{as quatro espécies não possuem
+			a mesma distribuição eletrónica}.
+		
+		As espécies:
+		
+		\[
+		\boxed{
+			\ce{Na+},\quad
+			\ce{Mg^{2+}},\quad
+			\ce{O^{2-}}
+		}
+		\]
+		
+		possuem 10 eletrões e são isoeletrónicas com o néon:
+		
+		\[
+		1s^2\,2s^2\,2p^6.
+		\]
+		
+		Por outro lado:
+		
+		\[
+		\boxed{\ce{Cl-}}
+		\]
+		
+		possui 18 eletrões e é isoeletrónico com o árgon:
+		
+		\[
+		1s^2\,2s^2\,2p^6\,3s^2\,3p^6.
+		\]
+		
+		\begin{nota}
+			
+			Se se pretender que todas as espécies do exercício sejam isoeletrónicas
+			com o néon, pode substituir-se \(\ce{Cl-}\), por exemplo, por
+			\(\ce{F-}\).
+			
+			Nesse caso:
+			
+			\[
+			\ce{F-}:
+			1s^2\,2s^2\,2p^6
+			\]
+			
+			e todas as espécies apresentariam 10 eletrões.
+			
+		\end{nota}
+		
+	\end{resolucao}
+	
+	% ============================================================
+	% PROBLEMA INTEGRADOR
+	% ============================================================
+	
+	\newpage
+	
+	\section*{\textcolor{euorange}{7. Problema integrador}}
+	
+	\begin{tcolorbox}[
+		enhanced,
+		breakable,
+		colback=eulightorange,
+		colframe=euorange,
+		title=\textbf{Resolução},
+		fonttitle=\bfseries
+		]
+		
+		Dados:
+		
+		\[
+		\lambda=\SI{486}{nm}
+		=
+		\SI{4,86e-7}{\meter}
+		\]
+		
+		\[
+		m(\ce{H})=\SI{2.00}{mg}
+		=
+		\SI{2.00e-3}{g}
+		\]
+		
+		\[
+		M(\ce{H})=\SI{1.008}{g\per mol}
+		\]
+		
+		\textbf{a) Frequência}
+		
+		\[
+		f=\frac{c}{\lambda}
+		\]
+		
+		\[
+		f=
+		\frac{3,00\times10^8}
+		{4,86\times10^{-7}}
+		\]
+		
+		\[
+		\boxed{
+			f\approx\SI{6,17e14}{\hertz}
+		}
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{b) Energia de um fotão}
+		
+		\[
+		E=hf
+		\]
+		
+		\[
+		E=
+		6,626\times10^{-34}
+		\times
+		6,17\times10^{14}
+		\]
+		
+		\[
+		\boxed{
+			E\approx\SI{4,09e-19}{\joule}
+		}
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{c) Energia no nível \(n=4\)}
+		
+		\[
+		E_4=
+		-\frac{2,18\times10^{-18}}{4^2}
+		\]
+		
+		\[
+		\boxed{
+			E_4\approx\SI{-1,36e-19}{\joule}
+		}
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{d) Energia no nível \(n=2\)}
+		
+		\[
+		E_2=
+		-\frac{2,18\times10^{-18}}{2^2}
+		\]
+		
+		\[
+		\boxed{
+			E_2=\SI{-5,45e-19}{\joule}
+		}
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{e) Variação de energia}
+		
+		\[
+		\Delta E=E_2-E_4
+		\]
+		
+		\[
+		\Delta E
+		=
+		-5,45\times10^{-19}
+		-
+		(-1,36\times10^{-19})
+		\]
+		
+		\[
+		\boxed{
+			\Delta E\approx\SI{-4,09e-19}{\joule}
+		}
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{f)}
+		
+		O módulo da variação da energia é:
+		
+		\[
+		|\Delta E|
+		=
+		\SI{4,09e-19}{\joule}
+		\]
+		
+		e a energia do fotão calculada anteriormente é:
+		
+		\[
+		E_{\text{fotão}}
+		=
+		\SI{4,09e-19}{\joule}.
+		\]
+		
+		Logo:
+		
+		\[
+		\boxed{
+			E_{\text{fotão}}
+			=
+			|\Delta E|
+		}
+		\]
+		
+		dentro do arredondamento utilizado.
+		
+		\vspace{3mm}
+		
+		\textbf{g)}
+		
+		Na transição:
+		
+		\[
+		n=4\rightarrow n=2
+		\]
+		
+		o átomo perde energia.
+		
+		Essa energia é transferida para o fotão emitido.
+		
+		Por conservação da energia:
+		
+		\[
+		\boxed{
+			E_{\text{fotão}}
+			=
+			|\Delta E_{\text{átomo}}|
+		}
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{h) Quantidade de matéria}
+		
+		\[
+		n=\frac{m}{M}
+		\]
+		
+		\[
+		n=
+		\frac{2,00\times10^{-3}}
+		{1,008}
+		\]
+		
+		\[
+		\boxed{
+			n\approx\SI{1,98e-3}{\mole}
+		}
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{i) Número de átomos}
+		
+		\[
+		N=nN_A
+		\]
+		
+		\[
+		N=
+		1,98\times10^{-3}
+		\times
+		6,022\times10^{23}
+		\]
+		
+		\[
+		\boxed{
+			N\approx1,19\times10^{21}
+			\text{ átomos}
+		}
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{j) Energia total emitida}
+		
+		No modelo idealizado, cada átomo emite um fotão.
+		
+		Assim:
+		
+		\[
+		E_{\text{total}}
+		=
+		NE_{\text{fotão}}
+		\]
+		
+		\[
+		E_{\text{total}}
+		=
+		1,19\times10^{21}
+		\times
+		4,09\times10^{-19}
+		\]
+		
+		\[
+		E_{\text{total}}
+		\approx
+		\SI{4,89e2}{\joule}
+		\]
+		
+		\[
+		\boxed{
+			E_{\text{total}}
+			\approx
+			\SI{489}{J}
+		}
+		\]
+		
+		Este valor corresponde ao modelo idealizado proposto no enunciado,
+		no qual todos os átomos realizariam exatamente uma transição
+		\(n=4\rightarrow n=2\).
+		
+	\end{tcolorbox}
+	
+	% ============================================================
+	% ASTRONOMIA
+	% ============================================================
+	
+	\section*{\textcolor{eugreen}{8. Ciência no mundo real}}
+	
+	\begin{resolucao}{Interpretar o espetro de uma estrela}
+		
+		No espetro da estrela foram identificadas linhas em:
+		
+		\[
+		410\,\mathrm{nm},
+		\quad
+		434\,\mathrm{nm},
+		\quad
+		486\,\mathrm{nm},
+		\quad
+		656\,\mathrm{nm}.
+		\]
+		
+		\textbf{a)}
+		
+		Estes valores coincidem aproximadamente com linhas características do
+		espetro do átomo de hidrogénio na série de Balmer.
+		
+		\textbf{b)}
+		
+		Pode concluir-se que:
+		
+		\[
+		\boxed{
+			\text{existe hidrogénio na região da estrela responsável pela absorção}
+		}
+		\]
+		
+		\textbf{c)}
+		
+		Os átomos de hidrogénio absorvem determinados comprimentos de onda,
+		associados às diferenças entre os seus níveis eletrónicos de energia.
+		
+		Essas linhas ficam registadas na luz recebida da estrela.
+		
+		Assim, analisando a luz com um espetroscópio e comparando o padrão
+		observado com espetros obtidos em laboratório, é possível identificar
+		o hidrogénio sem recolher diretamente uma amostra da estrela.
+		
+	\end{resolucao}
+	
+	% ============================================================
+	% SÍNTESE
+	% ============================================================
+	
+	\section*{\textcolor{eublue}{9. Síntese das ideias fundamentais}}
+	
+	\begin{tcolorbox}[
+		colback=eugray,
+		colframe=eudark,
+		breakable
+		]
+		
+		\textbf{Quantidade de matéria}
+		
+		\[
+		n=\frac{m}{M}
+		\qquad
+		N=nN_A
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{Energia da radiação}
+		
+		\[
+		E=hf
+		\]
+		
+		\[
+		c=\lambda f
+		\]
+		
+		\[
+		E=\frac{hc}{\lambda}
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{Átomo de hidrogénio}
+		
+		\[
+		E_n=
+		-\frac{2,18\times10^{-18}}{n^2}
+		\ \mathrm{J}
+		\]
+		
+		\[
+		\Delta E=E_f-E_i
+		\]
+		
+		Se:
+		
+		\[
+		\Delta E<0
+		\]
+		
+		ocorre emissão.
+		
+		Se:
+		
+		\[
+		\Delta E>0
+		\]
+		
+		ocorre absorção.
+		
+		Em qualquer transição radiativa:
+		
+		\[
+		E_{\text{fotão}}
+		=
+		|\Delta E|
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{Espetros}
+		
+		Cada elemento possui um conjunto característico de níveis eletrónicos
+		e, consequentemente, um espetro característico.
+		
+		\vspace{3mm}
+		
+		\textbf{Espetro fotoeletrónico}
+		
+		A energia de remoção permite obter informação sobre a forma como os
+		eletrões estão distribuídos pelos diferentes níveis e subníveis.
+		
+		\[
+		E_{\text{fotão}}
+		=
+		E_{\text{remoção}}
+		+
+		E_c
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{Distribuição eletrónica}
+		
+		O preenchimento dos orbitais obedece ao:
+		
+		\begin{itemize}
+			\item princípio da energia mínima;
+			\item princípio da exclusão de Pauli;
+			\item regra de Hund.
+		\end{itemize}
+		
+	\end{tcolorbox}
+	
+	\vfill
+	
+	% ============================================================
+	% RODAPÉ VISUAL
+	% ============================================================
+	
+	\begin{center}
+		
+		\begin{tikzpicture}
+			
+			\draw[eublue,very thick]
+			(0,0)--(13,0);
+			
+			\node[
+			text=eublue,
+			font=\Large\bfseries
+			]
+			at (6.5,0.55)
+			{EUFISICA exercícios};
+			
+			\node[
+			text=eudark,
+			font=\small
+			]
+			at (6.5,-0.45)
+			{Resolução -- Física e Química A -- 10.º ano};
+			
+			\node[
+			text=eudark,
+			font=\small
+			]
+			at (6.5,-0.85)
+			{Prof. José Gonçalves};
+			
+		\end{tikzpicture}
+		
+	\end{center}
+	
+\end{document}

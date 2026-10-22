@@ -1,0 +1,3255 @@
+\documentclass[11pt,a4paper]{article}
+
+% ============================================================
+% FICHA DE TRABALHO — LEI DA GRAVITAÇÃO UNIVERSAL
+% EUFISICA — Prof. José Gonçalves
+% ============================================================
+
+% ------------------------------------------------------------
+% CODIFICAÇÃO E IDIOMA
+% ------------------------------------------------------------
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese]{babel}
+\usepackage{lmodern}
+
+% ------------------------------------------------------------
+% MATEMÁTICA E UNIDADES
+% ------------------------------------------------------------
+
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{siunitx}
+
+\sisetup{
+	output-decimal-marker={,},
+	per-mode=symbol,
+	exponent-product=\cdot
+}
+
+% ------------------------------------------------------------
+% PÁGINA E TABELAS
+% ------------------------------------------------------------
+
+\usepackage{geometry}
+
+\geometry{
+	top=1.6cm,
+	bottom=1.7cm,
+	left=1.7cm,
+	right=1.7cm
+}
+
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{float}
+\usepackage{enumitem}
+
+% ------------------------------------------------------------
+% GRÁFICOS E TIKZ
+% ------------------------------------------------------------
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+
+\pgfplotsset{compat=1.18}
+
+\usetikzlibrary{
+	arrows.meta,
+	positioning,
+	calc,
+	patterns,
+	decorations.pathreplacing,
+	shapes.geometric
+}
+
+% ------------------------------------------------------------
+% ASPETO GRÁFICO
+% ------------------------------------------------------------
+
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{titlesec}
+
+% ------------------------------------------------------------
+% CORES EUFISICA
+% ------------------------------------------------------------
+
+\definecolor{eufblue}{RGB}{23,86,145}
+\definecolor{euflight}{RGB}{232,243,252}
+\definecolor{eufdark}{RGB}{25,49,73}
+\definecolor{euforange}{RGB}{230,137,47}
+\definecolor{eufgreen}{RGB}{55,137,91}
+\definecolor{eufred}{RGB}{190,60,55}
+\definecolor{eufpurple}{RGB}{104,78,145}
+\definecolor{softgray}{RGB}{246,247,249}
+
+% ------------------------------------------------------------
+% MOSTRAR / OCULTAR SOLUÇÕES
+% ------------------------------------------------------------
+
+\newif\ifsolucoes
+
+% Para obter a versão do professor:
+\solucoestrue
+
+% Para obter apenas a ficha dos alunos, substituir por:
+% \solucoesfalse
+
+% ------------------------------------------------------------
+% CABEÇALHO
+% ------------------------------------------------------------
+
+\pagestyle{fancy}
+\fancyhf{}
+
+\lhead{\textbf{\textcolor{eufblue}{EUFISICA}}}
+\rhead{\textbf{Física e Química A -- 11.º ano}}
+
+\cfoot{
+	\small
+	Prof. José Gonçalves
+	\hfill
+	Página \thepage\ de \pageref{LastPage}
+}
+
+\setlength{\headheight}{14pt}
+
+% ------------------------------------------------------------
+% FORMATAÇÃO
+% ------------------------------------------------------------
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+
+\setlist[enumerate]{
+	itemsep=5pt,
+	topsep=4pt
+}
+
+\titleformat{\section}
+{\large\bfseries\color{eufblue}}
+{\thesection.}
+{0.5em}
+{}
+
+% ------------------------------------------------------------
+% CAIXAS
+% ------------------------------------------------------------
+
+\newtcolorbox{objetivos}{
+	colback=euflight,
+	colframe=eufblue,
+	boxrule=0.9pt,
+	arc=2mm,
+	title=\textbf{Objetivos de aprendizagem},
+	fonttitle=\bfseries
+}
+
+\newtcolorbox{recorda}{
+	colback=softgray,
+	colframe=eufdark,
+	boxrule=0.7pt,
+	arc=2mm,
+	title=\textbf{Recorda},
+	fonttitle=\bfseries
+}
+
+\newtcolorbox{dados}{
+	colback=eufgreen!5,
+	colframe=eufgreen,
+	boxrule=0.8pt,
+	arc=2mm,
+	title=\textbf{Dados e constantes},
+	fonttitle=\bfseries
+}
+
+\newtcolorbox{atencao}{
+	colback=euforange!8,
+	colframe=euforange,
+	boxrule=0.8pt,
+	arc=2mm,
+	title=\textbf{Atenção},
+	fonttitle=\bfseries
+}
+
+\newtcolorbox{stembox}{
+	colback=eufpurple!5,
+	colframe=eufpurple,
+	boxrule=0.8pt,
+	arc=2mm,
+	title=\textbf{Desafio STEM},
+	fonttitle=\bfseries
+}
+
+\newtcolorbox{solucaobox}[1][]{
+	colback=eufgreen!4,
+	colframe=eufgreen!80!black,
+	boxrule=0.7pt,
+	arc=2mm,
+	title=\textbf{#1},
+	fonttitle=\bfseries
+}
+
+\newcommand{\resposta}[1][1]{
+	\vspace{#1cm}
+}
+
+% ============================================================
+% DOCUMENTO
+% ============================================================
+
+\begin{document}
+	
+	% ============================================================
+	% CAPA DA FICHA
+	% ============================================================
+	
+	\begin{center}
+		
+		{\Huge\bfseries\textcolor{eufblue}{EUFISICA}}
+		
+		\vspace{1mm}
+		
+		{\Large\bfseries Ficha de Trabalho}
+		
+		\vspace{1mm}
+		
+		{\LARGE\bfseries Lei da Gravitação Universal}
+		
+		\vspace{2mm}
+		
+		{\large Física e Química A -- 11.º ano}
+		
+		\vspace{2mm}
+		
+		{\small Prof. José Gonçalves}
+		
+	\end{center}
+	
+	\vspace{2mm}
+	
+	\begin{tabularx}{\textwidth}{|X|X|}
+		\hline
+		\textbf{Nome:} & \textbf{N.º:} \\[0.45cm]
+		\hline
+		\textbf{Turma:} & \textbf{Data:} \\[0.45cm]
+		\hline
+	\end{tabularx}
+	
+	\vspace{4mm}
+	
+	% ============================================================
+	% OBJETIVOS
+	% ============================================================
+	
+	\begin{objetivos}
+		
+		No final desta ficha deverás ser capaz de:
+		
+		\begin{itemize}
+			
+			\item interpretar a Lei da Gravitação Universal de Newton;
+			
+			\item calcular a intensidade da força gravítica entre dois corpos;
+			
+			\item identificar a direção e o sentido das forças gravíticas;
+			
+			\item relacionar a força gravítica com as massas dos corpos e com a
+			distância entre eles;
+			
+			\item relacionar a força gravítica com o peso de um corpo;
+			
+			\item calcular a aceleração gravítica à superfície de um planeta e a
+			diferentes altitudes;
+			
+			\item interpretar gráficos associados à dependência
+			$F_g\propto 1/r^2$;
+			
+			\item utilizar conhecimentos de massa volúmica, quantidade de matéria,
+			massa molar e energia adquiridos no 10.º ano;
+			
+			\item aplicar a gravitação a situações relacionadas com planetas,
+			satélites, asteroides e exploração espacial.
+			
+		\end{itemize}
+		
+	\end{objetivos}
+	
+	% ============================================================
+	% DADOS
+	% ============================================================
+	
+	\begin{dados}
+		
+		Sempre que necessário, utiliza:
+		
+		\[
+		G=
+		\SI{6.67430e-11}
+		{\newton\metre\squared\per\kilogram\squared}
+		\]
+		
+		\[
+		M_T=\SI{5.972e24}{\kilogram}
+		\]
+		
+		\[
+		R_T=\SI{6.371e6}{\metre}
+		\]
+		
+		\[
+		M_L=\SI{7.342e22}{\kilogram}
+		\]
+		
+		\[
+		d_{T-L}=\SI{3.844e8}{\metre}
+		\]
+		
+		\[
+		N_A=\SI{6.022e23}{\per\mole}
+		\]
+		
+		Considera, quando adequado,
+		
+		\[
+		g\simeq\SI{9.8}{\metre\per\second\squared}.
+		\]
+		
+	\end{dados}
+	
+	% ============================================================
+	\section{Gravitação: uma interação universal}
+	% ============================================================
+	
+	Lê o texto seguinte.
+	
+	\begin{tcolorbox}[
+		colback=euflight,
+		colframe=eufblue
+		]
+		
+		Newton propôs que a interação que faz uma maçã cair para a superfície
+		da Terra é da mesma natureza que a interação que mantém a Lua em órbita
+		da Terra e os planetas em órbita do Sol.
+		
+		A gravitação é uma interação universal: quaisquer dois corpos com massa
+		atraem-se mutuamente. A intensidade dessa interação depende das massas
+		dos corpos e da distância que separa os seus centros.
+		
+		Mesmo quando um astronauta parece ``flutuar'' numa estação espacial,
+		a atração gravítica da Terra continua a atuar. A sensação de ausência de
+		peso resulta do estado de queda livre contínua da estação e dos seus
+		ocupantes em torno da Terra.
+		
+	\end{tcolorbox}
+	
+	\begin{enumerate}[label=\textbf{\arabic*.}]
+		
+		\item Explica o significado da expressão
+		\textit{``a gravitação é uma interação universal''}.
+		
+		\resposta[0.9]
+		
+		\item A força gravítica só existe entre astros?
+		
+		Justifica.
+		
+		\resposta[0.9]
+		
+		\item Explica por que razão não é correto afirmar que um astronauta em
+		órbita está numa região onde não existe gravidade.
+		
+		\resposta[1.0]
+		
+		\item Indica dois fatores dos quais depende a intensidade da interação
+		gravítica.
+		
+		\resposta[0.7]
+		
+	\end{enumerate}
+	
+	% ============================================================
+	\section{A Lei da Gravitação Universal}
+	% ============================================================
+	
+	\begin{recorda}
+		
+		A intensidade da força gravítica entre dois corpos de massas $m_1$ e
+		$m_2$, cujos centros se encontram separados por uma distância $r$, é:
+		
+		\[
+		\boxed{
+			F_g=
+			G\frac{m_1m_2}{r^2}
+		}
+		\]
+		
+		A força gravítica:
+		
+		\begin{itemize}
+			
+			\item tem a direção da reta que une os centros dos dois corpos;
+			
+			\item é sempre atrativa;
+			
+			\item constitui um par ação--reação;
+			
+			\item apresenta a mesma intensidade em ambos os corpos.
+			
+		\end{itemize}
+		
+	\end{recorda}
+	
+	Observa a representação seguinte.
+	
+	\begin{figure}[H]
+		
+		\centering
+		
+		\begin{tikzpicture}[>=Stealth,scale=1.05]
+			
+			% Terra
+			\shade[
+			ball color=eufblue!70
+			]
+			(-4,0) circle (1.25);
+			
+			\node[white,font=\bfseries] at (-4,0) {Terra};
+			
+			% Lua
+			\shade[
+			ball color=gray!60
+			]
+			(4,0) circle (0.65);
+			
+			\node[font=\small] at (4,0) {Lua};
+			
+			% centros
+			\fill (-4,0) circle (0.05);
+			\fill (4,0) circle (0.05);
+			
+			% distância
+			\draw[
+			<->,
+			thick
+			]
+			(-4,-1.7) -- (4,-1.7);
+			
+			\node[
+			fill=white,
+			inner sep=2pt
+			]
+			at (0,-1.7)
+			{$r$};
+			
+			% forças
+			\draw[
+			->,
+			very thick,
+			eufred
+			]
+			(-2.7,0.4) -- (-0.5,0.4);
+			
+			\node[
+			above,
+			text=eufred
+			]
+			at (-1.6,0.4)
+			{$\vec F_{L\rightarrow T}$};
+			
+			\draw[
+			->,
+			very thick,
+			eufgreen!70!black
+			]
+			(3.3,0.4) -- (1.1,0.4);
+			
+			\node[
+			above,
+			text=eufgreen!70!black
+			]
+			at (2.2,0.4)
+			{$\vec F_{T\rightarrow L}$};
+			
+		\end{tikzpicture}
+		
+		\caption{Interação gravítica entre a Terra e a Lua.}
+		
+	\end{figure}
+	
+	\begin{enumerate}[label=\textbf{\arabic*.},resume]
+		
+		\item Indica a direção da força gravítica exercida pela Terra sobre a Lua.
+		
+		\resposta[0.6]
+		
+		\item Indica o sentido da força gravítica exercida pela Terra sobre a Lua.
+		
+		\resposta[0.6]
+		
+		\item A Terra tem uma massa muito superior à da Lua.
+		
+		Será a força exercida pela Terra sobre a Lua maior do que a força
+		exercida pela Lua sobre a Terra?
+		
+		Justifica.
+		
+		\resposta[1.0]
+		
+		\item Representa, através de vetores, as duas forças gravíticas na
+		figura seguinte.
+		
+		\begin{center}
+			
+			\begin{tikzpicture}[>=Stealth]
+				
+				\shade[ball color=euforange!75]
+				(-3,0) circle (0.8);
+				
+				\shade[ball color=eufblue!65]
+				(3,0) circle (1.1);
+				
+				\node at (-3,-1.2) {$m_1$};
+				\node at (3,-1.5) {$m_2$};
+				
+				\draw[dashed]
+				(-3,0)--(3,0);
+				
+			\end{tikzpicture}
+			
+		\end{center}
+		
+	\end{enumerate}
+	
+	% ============================================================
+	\section{Do peso à Lei da Gravitação Universal}
+	% ============================================================
+	
+	Uma pessoa de massa \SI{65}{\kilogram} encontra-se à superfície da Terra.
+	
+	Considera que a distância entre a pessoa e o centro da Terra é
+	aproximadamente igual ao raio terrestre.
+	
+	\begin{enumerate}[label=\textbf{\arabic*.},resume]
+		
+		\item Utilizando a Lei da Gravitação Universal, calcula a intensidade da
+		força gravítica exercida pela Terra sobre a pessoa.
+		
+		\resposta[1.5]
+		
+		\item Calcula o valor da aceleração gravítica à superfície da Terra a partir
+		da expressão
+		
+		\[
+		g=\frac{F_g}{m}.
+		\]
+		
+		\resposta[1.2]
+		
+		\item Calcula o peso da pessoa utilizando
+		
+		\[
+		P=mg,
+		\]
+		
+		com $g=\SI{9.8}{\metre\per\second\squared}$.
+		
+		\resposta[0.9]
+		
+		\item Compara os resultados das questões 9 e 11.
+		
+		O que podes concluir?
+		
+		\resposta[1.0]
+		
+		\item Mostra que, junto à superfície da Terra,
+		
+		\[
+		\boxed{
+			g=
+			G\frac{M_T}{R_T^2}
+		}
+		\]
+		
+		\resposta[1.2]
+		
+	\end{enumerate}
+	
+	% ============================================================
+	\section{A interação Terra--Lua}
+	% ============================================================
+	
+	Considera os dados fornecidos no início da ficha.
+	
+	\begin{enumerate}[label=\textbf{\arabic*.},resume]
+		
+		\item Calcula a intensidade da força gravítica exercida pela Terra sobre
+		a Lua.
+		
+		\resposta[1.5]
+		
+		\item Qual é a intensidade da força exercida pela Lua sobre a Terra?
+		
+		Justifica.
+		
+		\resposta[0.8]
+		
+		\item Imagina que a distância entre a Terra e a Lua duplicava, mantendo-se
+		as massas constantes.
+		
+		Qual seria a nova intensidade da força gravítica?
+		
+		\resposta[1.0]
+		
+		\item Se a massa da Lua fosse metade da atual, mantendo-se todas as outras
+		grandezas constantes, qual seria a intensidade da força gravítica?
+		
+		\resposta[1.0]
+		
+		\item Completa:
+		
+		\[
+		F_g\propto \underline{\hspace{2cm}}
+		\]
+		
+		relativamente às massas e
+		
+		\[
+		F_g\propto \underline{\hspace{2cm}}
+		\]
+		
+		relativamente à distância.
+		
+	\end{enumerate}
+	
+	% ============================================================
+	\section{Como varia a força com a distância?}
+	% ============================================================
+	
+	Para dois corpos de massas constantes, considera $F_0$ a força gravítica
+	quando a distância entre os seus centros é $r_0$.
+	
+	O gráfico seguinte representa a razão $F_g/F_0$ em função de $r/r_0$.
+	
+	\begin{figure}[H]
+		
+		\centering
+		
+		\begin{tikzpicture}
+			
+			\begin{axis}[
+				width=12cm,
+				height=7cm,
+				axis lines=left,
+				xlabel={$r/r_0$},
+				ylabel={$F_g/F_0$},
+				xmin=0.8,
+				xmax=4.1,
+				ymin=0,
+				ymax=1.1,
+				xtick={1,1.5,2,2.5,3,3.5,4},
+				ytick={0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1},
+				grid=both,
+				major grid style={gray!30}
+				]
+				
+				\addplot[
+				domain=1:4,
+				samples=150,
+				very thick,
+				eufblue
+				]
+				{1/(x^2)};
+				
+			\end{axis}
+			
+		\end{tikzpicture}
+		
+		\caption{Dependência da força gravítica com a distância.}
+		
+	\end{figure}
+	
+	\begin{enumerate}[label=\textbf{\arabic*.},resume]
+		
+		\item Quando a distância duplica, que fração do valor inicial assume
+		a força gravítica?
+		
+		\resposta[0.6]
+		
+		\item E quando a distância triplica?
+		
+		\resposta[0.6]
+		
+		\item Se a distância passar de $r_0$ para $4r_0$, qual será a razão
+		$F_g/F_0$?
+		
+		\resposta[0.7]
+		
+		\item Completa a tabela.
+		
+		\begin{table}[H]
+			
+			\centering
+			
+			\renewcommand{\arraystretch}{1.4}
+			
+			\begin{tabular}{c|ccccc}
+				
+				\toprule
+				
+				$r/r_0$
+				&
+				1,0
+				&
+				1,5
+				&
+				2,0
+				&
+				2,5
+				&
+				3,0
+				
+				\\
+				
+				\midrule
+				
+				$F_g/F_0$
+				&
+				1,000
+				&
+				&
+				&
+				&
+				\\
+				
+				\bottomrule
+				
+			\end{tabular}
+			
+		\end{table}
+		
+		\item Utiliza os valores obtidos para representar os pontos no gráfico
+		seguinte.
+		
+		\begin{center}
+			
+			\begin{tikzpicture}
+				
+				\begin{axis}[
+					width=12cm,
+					height=7cm,
+					axis lines=left,
+					xlabel={$r/r_0$},
+					ylabel={$F_g/F_0$},
+					xmin=0,
+					xmax=3.5,
+					ymin=0,
+					ymax=1.1,
+					xtick={0,0.5,1,1.5,2,2.5,3,3.5},
+					ytick={0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1},
+					grid=both,
+					major grid style={gray!30}
+					]
+					
+				\end{axis}
+				
+			\end{tikzpicture}
+			
+		\end{center}
+		
+		\item Explica por que razão o gráfico não é uma reta.
+		
+		\resposta[0.9]
+		
+	\end{enumerate}
+	
+	% ============================================================
+	\section{Um satélite em órbita terrestre}
+	% ============================================================
+	
+	Um satélite de massa
+	
+	\[
+	m=\SI{1200}{\kilogram}
+	\]
+	
+	encontra-se numa órbita circular a uma altitude de
+	
+	\[
+	h=\SI{400}{\kilo\metre}
+	\]
+	
+	acima da superfície terrestre.
+	
+	\begin{center}
+		
+		\begin{tikzpicture}[scale=0.95]
+			
+			\shade[
+			ball color=eufblue!70
+			]
+			(0,0) circle (1.5);
+			
+			\node[
+			white,
+			font=\bfseries
+			]
+			at (0,0)
+			{Terra};
+			
+			\draw[
+			dashed,
+			eufdark
+			]
+			(0,0) circle (3.2);
+			
+			\filldraw[
+			fill=euforange,
+			draw=euforange!70!black
+			]
+			(3.2,0) circle (0.18);
+			
+			\node[
+			right
+			]
+			at (3.4,0)
+			{satélite};
+			
+			\draw[
+			->,
+			very thick,
+			eufred
+			]
+			(3.1,0.2)--(1.7,0.2);
+			
+			\node[
+			above
+			]
+			at (2.35,0.2)
+			{$\vec F_g$};
+			
+			\draw[
+			<->,
+			thick
+			]
+			(0,-0.4)--(3.2,-0.4);
+			
+			\node[
+			fill=white,
+			inner sep=2pt
+			]
+			at (1.6,-0.4)
+			{$r=R_T+h$};
+			
+		\end{tikzpicture}
+		
+	\end{center}
+	
+	\begin{enumerate}[label=\textbf{\arabic*.},resume]
+		
+		\item Calcula a distância do satélite ao centro da Terra.
+		
+		\resposta[0.8]
+		
+		\item Calcula a intensidade da força gravítica exercida pela Terra sobre
+		o satélite.
+		
+		\resposta[1.3]
+		
+		\item Calcula a aceleração gravítica à altitude do satélite.
+		
+		\resposta[1.2]
+		
+		\item Compara esse valor com o valor da aceleração gravítica à superfície
+		da Terra.
+		
+		\resposta[1.0]
+		
+		\item Um aluno afirma:
+		
+		\begin{quote}
+			``A \SI{400}{\kilo\metre} de altitude praticamente já não existe
+			gravidade.''
+		\end{quote}
+		
+		Comenta a afirmação utilizando os cálculos efetuados.
+		
+		\resposta[1.1]
+		
+	\end{enumerate}
+	
+	% ============================================================
+	\section{Determinar a massa de um planeta}
+	% ============================================================
+	
+	À superfície de Marte, a aceleração gravítica é aproximadamente
+	
+	\[
+	g_M=\SI{3.71}{\metre\per\second\squared}.
+	\]
+	
+	O raio médio de Marte é
+	
+	\[
+	R_M=\SI{3.39e6}{\metre}.
+	\]
+	
+	\begin{enumerate}[label=\textbf{\arabic*.},resume]
+		
+		\item Partindo de
+		
+		\[
+		g=
+		G\frac{M}{R^2},
+		\]
+		
+		deduz uma expressão para determinar a massa $M$ de um planeta.
+		
+		\resposta[0.8]
+		
+		\item Calcula a massa de Marte.
+		
+		\resposta[1.3]
+		
+		\item Determina o peso que um astronauta de massa \SI{70}{\kilogram}
+		teria à superfície de Marte.
+		
+		\resposta[0.9]
+		
+		\item A massa do astronauta seria diferente da sua massa na Terra?
+		
+		Explica.
+		
+		\resposta[0.8]
+		
+	\end{enumerate}
+	
+	% ============================================================
+	\section{Aceleração gravítica e altitude}
+	% ============================================================
+	
+	A aceleração gravítica a uma distância $r$ do centro da Terra é
+	
+	\[
+	g(r)=G\frac{M_T}{r^2}.
+	\]
+	
+	\begin{enumerate}[label=\textbf{\arabic*.},resume]
+		
+		\item A que distância do centro da Terra a aceleração gravítica será
+		igual a um quarto do seu valor à superfície?
+		
+		\resposta[1.3]
+		
+		\item Qual será, nesse caso, a altitude relativamente à superfície da Terra?
+		
+		\resposta[1.0]
+		
+		\item Se a distância ao centro da Terra triplicar relativamente ao raio
+		terrestre, qual será aproximadamente o valor de $g$?
+		
+		\resposta[1.0]
+		
+	\end{enumerate}
+	
+	% ============================================================
+	\section{Ligação ao 10.º ano -- massa volúmica de um asteroide}
+	% ============================================================
+	
+	Um pequeno asteroide pode ser aproximadamente modelado como uma esfera
+	de raio
+	
+	\[
+	R_A=\SI{250}{\metre}.
+	\]
+	
+	Admite que é constituído essencialmente por material rochoso e metálico,
+	com massa volúmica média
+	
+	\[
+	\rho=\SI{7800}{\kilogram\per\metre\cubed}.
+	\]
+	
+	Recorda que:
+	
+	\[
+	\rho=\frac{m}{V}
+	\]
+	
+	e que o volume de uma esfera é
+	
+	\[
+	V=\frac{4}{3}\pi R^3.
+	\]
+	
+	Uma sonda de massa \SI{1000}{\kilogram} encontra-se a uma distância de
+	\SI{1000}{\metre} do centro do asteroide.
+	
+	\begin{center}
+		
+		\begin{tikzpicture}[>=Stealth]
+			
+			\shade[
+			ball color=gray!65
+			]
+			(-3,0) circle (1.1);
+			
+			\node at (-3,-1.5)
+			{Asteroide};
+			
+			\filldraw[
+			fill=euforange,
+			draw=euforange!70!black
+			]
+			(3,0) rectangle +(0.45,0.28);
+			
+			\node at (3.25,-0.55)
+			{sonda};
+			
+			\draw[
+			<->,
+			thick
+			]
+			(-3,-2)--(3.25,-2);
+			
+			\node[
+			fill=white
+			]
+			at (0.1,-2)
+			{\SI{1000}{m}};
+			
+			\draw[
+			->,
+			very thick,
+			eufred
+			]
+			(3,0.2)--(1.5,0.2);
+			
+			\node[
+			above
+			]
+			at (2.2,0.2)
+			{$\vec F_g$};
+			
+		\end{tikzpicture}
+		
+	\end{center}
+	
+	\begin{enumerate}[label=\textbf{\arabic*.},resume]
+		
+		\item Calcula o volume aproximado do asteroide.
+		
+		\resposta[1.0]
+		
+		\item Utilizando a massa volúmica, calcula a massa aproximada do asteroide.
+		
+		\resposta[1.2]
+		
+		\item Calcula a intensidade da força gravítica exercida pelo asteroide
+		sobre a sonda.
+		
+		\resposta[1.3]
+		
+		\item Compara a força calculada com o peso da mesma sonda à superfície
+		da Terra.
+		
+		\resposta[1.0]
+		
+		\item Explica por que razão um corpo relativamente grande pode apresentar
+		uma atração gravítica muito inferior à da Terra.
+		
+		\resposta[1.0]
+		
+	\end{enumerate}
+	
+	% ============================================================
+	\section{Ligação à Química do 10.º ano -- quantidade de matéria}
+	% ============================================================
+	
+	Considera duas amostras de carbono puro, cada uma contendo
+	
+	\[
+	n=\SI{2.00}{\mole}
+	\]
+	
+	de átomos de carbono.
+	
+	Admite, num modelo muito simplificado, que as duas amostras podem ser
+	tratadas como massas puntiformes separadas por
+	
+	\[
+	r=\SI{0.10}{\metre}.
+	\]
+	
+	Utiliza
+	
+	\[
+	M(C)=\SI{12.0}{\gram\per\mole}.
+	\]
+	
+	\begin{enumerate}[label=\textbf{\arabic*.},resume]
+		
+		\item Calcula a massa de cada amostra através da relação
+		
+		\[
+		m=nM.
+		\]
+		
+		Apresenta o resultado em quilogramas.
+		
+		\resposta[1.0]
+		
+		\item Calcula o número de átomos existente em cada amostra.
+		
+		\resposta[0.9]
+		
+		\item Calcula a intensidade da força gravítica entre as duas amostras.
+		
+		\resposta[1.3]
+		
+		\item Explica por que razão a interação gravítica entre objetos de pequena
+		massa é geralmente impercetível em laboratório.
+		
+		\resposta[1.0]
+		
+		\item Se cada amostra tivesse o dobro da quantidade de matéria, mantendo-se
+		a distância, por que fator seria multiplicada a força gravítica?
+		
+		Justifica.
+		
+		\resposta[0.9]
+		
+	\end{enumerate}
+	
+	% ============================================================
+	\section{Uma ``Super-Terra''}
+	% ============================================================
+	
+	Foi descoberto um planeta hipotético cuja massa é cinco vezes a massa
+	da Terra e cujo raio é $1,6$ vezes o raio terrestre:
+	
+	\[
+	M_P=5M_T
+	\]
+	
+	e
+	
+	\[
+	R_P=1{,}6R_T.
+	\]
+	
+	\begin{enumerate}[label=\textbf{\arabic*.},resume]
+		
+		\item Sem substituir inicialmente os valores de $G$, $M_T$ e $R_T$,
+		mostra que:
+		
+		\[
+		\frac{g_P}{g_T}
+		=
+		\frac{5}{(1{,}6)^2}.
+		\]
+		
+		\resposta[1.1]
+		
+		\item Calcula a aceleração gravítica aproximada à superfície desse planeta.
+		
+		\resposta[1.0]
+		
+		\item Determina o peso de uma pessoa de massa \SI{70}{\kilogram}
+		nesse planeta.
+		
+		\resposta[0.9]
+		
+		\item A massa da pessoa altera-se quando viaja da Terra para o planeta?
+		
+		\resposta[0.7]
+		
+		\item O facto de o planeta ter cinco vezes a massa da Terra significa que
+		a aceleração gravítica à sua superfície também é cinco vezes superior?
+		
+		Justifica.
+		
+		\resposta[1.0]
+		
+	\end{enumerate}
+	
+	% ============================================================
+	\section{Tratamento de dados e representação gráfica}
+	% ============================================================
+	
+	Num modelo laboratorial idealizado, consideram-se duas massas de
+	
+	\[
+	m_1=m_2=\SI{1000}{\kilogram}.
+	\]
+	
+	A força gravítica é calculada para várias distâncias.
+	
+	Completa a tabela seguinte.
+	
+	\begin{table}[H]
+		
+		\centering
+		
+		\renewcommand{\arraystretch}{1.45}
+		
+		\begin{tabular}{c|c|c}
+			
+			\toprule
+			
+			$r$/m
+			&
+			$1/r^2$/m$^{-2}$
+			&
+			$F_g$/N
+			
+			\\
+			
+			\midrule
+			
+			1,0 & & \\
+			
+			1,5 & & \\
+			
+			2,0 & & \\
+			
+			2,5 & & \\
+			
+			3,0 & & \\
+			
+			\bottomrule
+			
+		\end{tabular}
+		
+	\end{table}
+	
+	\begin{enumerate}[label=\textbf{\arabic*.},resume]
+		
+		\item Calcula os valores em falta na tabela.
+		
+		\resposta[1.8]
+		
+		\item Representa aproximadamente $F_g$ em função de $r$.
+		
+		\begin{center}
+			
+			\begin{tikzpicture}
+				
+				\begin{axis}[
+					width=12cm,
+					height=6.5cm,
+					axis lines=left,
+					xlabel={$r$/m},
+					ylabel={$F_g$/N},
+					xmin=0,
+					xmax=3.5,
+					ymin=0,
+					ymax=0.000075,
+					xtick={0,0.5,1,1.5,2,2.5,3,3.5},
+					scaled y ticks=base 10:5,
+					grid=both,
+					major grid style={gray!30}
+					]
+					
+				\end{axis}
+				
+			\end{tikzpicture}
+			
+		\end{center}
+		
+		\item O gráfico $F_g=f(r)$ deverá ser uma reta?
+		
+		Justifica.
+		
+		\resposta[0.8]
+		
+		\item Se representasses $F_g$ em função de $1/r^2$, que tipo de gráfico
+		esperarias obter?
+		
+		\resposta[0.8]
+		
+		\item Determina o declive teórico desse gráfico $F_g=f(1/r^2)$.
+		
+		\resposta[1.0]
+		
+	\end{enumerate}
+	
+	% ============================================================
+	\section{Desafio STEM -- um satélite em órbita circular}
+	% ============================================================
+	
+	\begin{stembox}
+		
+		Um satélite de massa \SI{1200}{\kilogram} descreve uma órbita circular
+		a \SI{400}{\kilo\metre} de altitude.
+		
+		Num movimento circular uniforme, a resultante das forças tem intensidade
+		
+		\[
+		F_R=m\frac{v^2}{r}.
+		\]
+		
+		No caso do satélite, admite que a força gravítica é a força resultante.
+		
+	\end{stembox}
+	
+	\begin{enumerate}[label=\textbf{\arabic*.},resume]
+		
+		\item Igualando
+		
+		\[
+		G\frac{M_Tm}{r^2}
+		=
+		m\frac{v^2}{r},
+		\]
+		
+		mostra que a velocidade orbital é dada por
+		
+		\[
+		\boxed{
+			v=
+			\sqrt{\frac{GM_T}{r}}
+		}.
+		\]
+		
+		\resposta[1.1]
+		
+		\item Calcula a velocidade orbital do satélite.
+		
+		\resposta[1.2]
+		
+		\item Utilizando
+		
+		\[
+		T=\frac{2\pi r}{v},
+		\]
+		
+		determina o período orbital.
+		
+		Apresenta o resultado em minutos.
+		
+		\resposta[1.2]
+		
+		\item Recordando do 10.º ano que
+		
+		\[
+		E_c=\frac{1}{2}mv^2,
+		\]
+		
+		calcula a energia cinética do satélite.
+		
+		\resposta[1.2]
+		
+		\item Explica por que razão a massa do satélite não aparece na expressão
+		final da velocidade orbital.
+		
+		\resposta[1.0]
+		
+	\end{enumerate}
+	
+	% ============================================================
+	\section{Escolha múltipla}
+	% ============================================================
+	
+	\begin{enumerate}[label=\textbf{\arabic*.},resume]
+		
+		\item Se uma das massas duplicar e a distância se mantiver, a força
+		gravítica:
+		
+		\begin{enumerate}[label=\Alph*.]
+			
+			\item reduz-se a metade;
+			
+			\item duplica;
+			
+			\item quadruplica;
+			
+			\item não se altera.
+			
+		\end{enumerate}
+		
+		\item Se as duas massas duplicarem e a distância se mantiver, a força
+		gravítica:
+		
+		\begin{enumerate}[label=\Alph*.]
+			
+			\item duplica;
+			
+			\item quadruplica;
+			
+			\item reduz-se a metade;
+			
+			\item aumenta oito vezes.
+			
+		\end{enumerate}
+		
+		\item Se a distância entre dois corpos triplicar, a força gravítica passa
+		a:
+		
+		\begin{enumerate}[label=\Alph*.]
+			
+			\item $3F$;
+			
+			\item $F/3$;
+			
+			\item $F/6$;
+			
+			\item $F/9$.
+			
+		\end{enumerate}
+		
+		\item As forças gravíticas exercidas mutuamente por dois corpos apresentam:
+		
+		\begin{enumerate}[label=\Alph*.]
+			
+			\item intensidades diferentes porque as massas são diferentes;
+			
+			\item a mesma direção, o mesmo sentido e diferentes intensidades;
+			
+			\item a mesma intensidade e sentidos opostos;
+			
+			\item intensidades e direções diferentes.
+			
+		\end{enumerate}
+		
+		\item Um astronauta vai da Terra para a Lua.
+		
+		Qual das seguintes grandezas permanece constante?
+		
+		\begin{enumerate}[label=\Alph*.]
+			
+			\item peso;
+			
+			\item força gravítica;
+			
+			\item massa;
+			
+			\item aceleração gravítica.
+			
+		\end{enumerate}
+		
+		\item A aceleração gravítica criada por um planeta à distância $r$ do seu
+		centro:
+		
+		\begin{enumerate}[label=\Alph*.]
+			
+			\item depende da massa do corpo colocado nesse ponto;
+			
+			\item aumenta proporcionalmente a $r^2$;
+			
+			\item é dada por $GM/r^2$;
+			
+			\item é sempre igual a \SI{9.8}{\metre\per\second\squared}.
+			
+		\end{enumerate}
+		
+	\end{enumerate}
+	
+	% ============================================================
+	\section{Problema final de síntese}
+	% ============================================================
+	
+	Um planeta esférico apresenta:
+	
+	\[
+	M=\SI{8.0e23}{\kilogram}
+	\]
+	
+	e
+	
+	\[
+	R=\SI{4.0e6}{\metre}.
+	\]
+	
+	Uma sonda de massa \SI{500}{\kilogram} encontra-se inicialmente à
+	superfície do planeta.
+	
+	Posteriormente, sobe até uma altitude igual ao raio do planeta.
+	
+	\begin{enumerate}[label=\textbf{\arabic*.},resume]
+		
+		\item Calcula a aceleração gravítica à superfície do planeta.
+		
+		\resposta[1.2]
+		
+		\item Calcula o peso da sonda à superfície.
+		
+		\resposta[0.9]
+		
+		\item Quando a altitude é igual ao raio do planeta, qual é a distância da
+		sonda ao centro do planeta?
+		
+		\resposta[0.7]
+		
+		\item Calcula a aceleração gravítica nessa altitude.
+		
+		\resposta[1.1]
+		
+		\item Calcula a força gravítica exercida sobre a sonda nessa posição.
+		
+		\resposta[1.0]
+		
+		\item Determina a razão
+		
+		\[
+		\frac{F_{\text{altitude}}}
+		{F_{\text{superfície}}}.
+		\]
+		
+		\resposta[0.9]
+		
+		\item Explica o resultado da questão anterior utilizando a dependência da
+		força gravítica com a distância.
+		
+		\resposta[1.1]
+		
+	\end{enumerate}
+	
+	% ============================================================
+	% SOLUÇÕES
+	% ============================================================
+	
+	\ifsolucoes
+	
+	\clearpage
+	
+	\begin{center}
+		
+		{\Huge\bfseries\textcolor{eufgreen!70!black}{Resolução}}
+		
+		\vspace{2mm}
+		
+		{\large Lei da Gravitação Universal}
+		
+		\vspace{1mm}
+		
+		{\small EUFISICA -- Prof. José Gonçalves}
+		
+	\end{center}
+	
+	\vspace{4mm}
+	
+	% ============================================================
+	\section*{Resolução 1 -- Gravitação universal}
+	% ============================================================
+	
+	\begin{solucaobox}[Questões 1--4]
+		
+		\textbf{1.}
+		
+		A gravitação é considerada universal porque quaisquer dois corpos que
+		tenham massa exercem forças gravíticas um sobre o outro.
+		
+		\vspace{2mm}
+		
+		\textbf{2.}
+		
+		Não. Todos os corpos com massa interagem graviticamente.
+		
+		A força é muito mais evidente entre astros porque estes apresentam massas
+		muito elevadas.
+		
+		\vspace{2mm}
+		
+		\textbf{3.}
+		
+		Um astronauta em órbita continua sujeito à força gravítica terrestre.
+		
+		A estação espacial e o astronauta encontram-se em queda livre em torno da
+		Terra, o que origina a sensação aparente de ausência de peso.
+		
+		\vspace{2mm}
+		
+		\textbf{4.}
+		
+		A intensidade da força gravítica depende:
+		
+		\begin{itemize}
+			
+			\item das massas dos dois corpos;
+			
+			\item da distância entre os respetivos centros.
+			
+		\end{itemize}
+		
+	\end{solucaobox}
+	
+	% ============================================================
+	\section*{Resolução 2 -- Direção, sentido e par ação--reação}
+	% ============================================================
+	
+	\begin{solucaobox}[Questões 5--8]
+		
+		\textbf{5.}
+		
+		A direção é a da reta que une os centros da Terra e da Lua.
+		
+		\vspace{2mm}
+		
+		\textbf{6.}
+		
+		A força exercida pela Terra sobre a Lua aponta da Lua para o centro da
+		Terra.
+		
+		\vspace{2mm}
+		
+		\textbf{7.}
+		
+		Não.
+		
+		De acordo com a terceira lei de Newton,
+		
+		\[
+		\left|
+		\vec F_{T\rightarrow L}
+		\right|
+		=
+		\left|
+		\vec F_{L\rightarrow T}
+		\right|.
+		\]
+		
+		As forças apresentam a mesma intensidade e sentidos opostos.
+		
+		\vspace{2mm}
+		
+		\textbf{8.}
+		
+		Os dois vetores devem:
+		
+		\begin{itemize}
+			
+			\item estar sobre a linha que une os centros;
+			
+			\item apontar um para o outro;
+			
+			\item apresentar o mesmo comprimento, representando igual intensidade.
+			
+		\end{itemize}
+		
+	\end{solucaobox}
+	
+	% ============================================================
+	\section*{Resolução 3 -- Peso e gravitação}
+	% ============================================================
+	
+	\begin{solucaobox}[Questões 9--13]
+		
+		\textbf{9.}
+		
+		\[
+		F_g=
+		G\frac{M_Tm}{R_T^2}
+		\]
+		
+		\[
+		F_g=
+		\frac{
+			(6{,}67430\times10^{-11})
+			(5{,}972\times10^{24})
+			(65)
+		}{
+			(6{,}371\times10^6)^2
+		}
+		\]
+		
+		\[
+		\boxed{
+			F_g\approx\SI{6.38e2}{N}
+		}
+		\]
+		
+		ou aproximadamente
+		
+		\[
+		\boxed{
+			F_g\approx\SI{638}{N}
+		}
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{10.}
+		
+		\[
+		g=\frac{F_g}{m}
+		\]
+		
+		\[
+		g=
+		\frac{638}{65}
+		\]
+		
+		\[
+		\boxed{
+			g\approx\SI{9.82}{m.s^{-2}}
+		}
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{11.}
+		
+		\[
+		P=mg
+		\]
+		
+		\[
+		P=65\times9{,}8
+		\]
+		
+		\[
+		\boxed{
+			P\approx\SI{637}{N}
+		}
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{12.}
+		
+		Os valores são praticamente iguais.
+		
+		A pequena diferença resulta das aproximações utilizadas.
+		
+		Conclui-se que o peso de um corpo junto à superfície terrestre corresponde
+		à força gravítica exercida pela Terra sobre o corpo.
+		
+		\vspace{3mm}
+		
+		\textbf{13.}
+		
+		Da Lei da Gravitação Universal,
+		
+		\[
+		F_g=
+		G\frac{M_Tm}{R_T^2}.
+		\]
+		
+		Como
+		
+		\[
+		F_g=mg,
+		\]
+		
+		então
+		
+		\[
+		mg=
+		G\frac{M_Tm}{R_T^2}.
+		\]
+		
+		Cancelando $m$:
+		
+		\[
+		\boxed{
+			g=
+			G\frac{M_T}{R_T^2}
+		}.
+		\]
+		
+		Isto mostra também que, desprezando a resistência do ar, a aceleração
+		gravítica não depende da massa do corpo em queda.
+		
+	\end{solucaobox}
+	
+	% ============================================================
+	\section*{Resolução 4 -- Terra e Lua}
+	% ============================================================
+	
+	\begin{solucaobox}[Questões 14--18]
+		
+		\textbf{14.}
+		
+		\[
+		F_g=
+		G\frac{M_TM_L}{r^2}
+		\]
+		
+		\[
+		F_g=
+		\frac{
+			(6{,}67430\times10^{-11})
+			(5{,}972\times10^{24})
+			(7{,}342\times10^{22})
+		}{
+			(3{,}844\times10^8)^2
+		}
+		\]
+		
+		\[
+		\boxed{
+			F_g\approx\SI{1.98e20}{N}
+		}
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{15.}
+		
+		A intensidade da força da Lua sobre a Terra é também
+		
+		\[
+		\boxed{
+			\SI{1.98e20}{N}
+		}
+		\]
+		
+		pela terceira lei de Newton.
+		
+		\vspace{3mm}
+		
+		\textbf{16.}
+		
+		Se a distância duplicar:
+		
+		\[
+		F'_g=
+		\frac{F_g}{2^2}
+		=
+		\frac{F_g}{4}.
+		\]
+		
+		Logo,
+		
+		\[
+		F'_g=
+		\frac{1{,}98\times10^{20}}{4}
+		\]
+		
+		\[
+		\boxed{
+			F'_g\approx\SI{4.95e19}{N}
+		}
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{17.}
+		
+		Como
+		
+		\[
+		F_g\propto M_L,
+		\]
+		
+		reduzir a massa da Lua para metade reduz a força para metade:
+		
+		\[
+		F'_g=
+		\frac{1{,}98\times10^{20}}{2}
+		\]
+		
+		\[
+		\boxed{
+			F'_g\approx\SI{9.90e19}{N}
+		}
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{18.}
+		
+		\[
+		\boxed{
+			F_g\propto m_1m_2
+		}
+		\]
+		
+		e
+		
+		\[
+		\boxed{
+			F_g\propto\frac{1}{r^2}.
+		}
+		\]
+		
+	\end{solucaobox}
+	
+	% ============================================================
+	\section*{Resolução 5 -- Dependência com a distância}
+	% ============================================================
+	
+	\begin{solucaobox}[Questões 19--24]
+		
+		Como
+		
+		\[
+		\frac{F_g}{F_0}
+		=
+		\frac{r_0^2}{r^2},
+		\]
+		
+		tem-se:
+		
+		\vspace{2mm}
+		
+		\textbf{19.}
+		
+		Para
+		
+		\[
+		r=2r_0,
+		\]
+		
+		\[
+		\frac{F_g}{F_0}
+		=
+		\frac{1}{4}.
+		\]
+		
+		\vspace{2mm}
+		
+		\textbf{20.}
+		
+		Para
+		
+		\[
+		r=3r_0,
+		\]
+		
+		\[
+		\boxed{
+			\frac{F_g}{F_0}
+			=
+			\frac{1}{9}
+		}
+		\]
+		
+		\vspace{2mm}
+		
+		\textbf{21.}
+		
+		Para
+		
+		\[
+		r=4r_0,
+		\]
+		
+		\[
+		\boxed{
+			\frac{F_g}{F_0}
+			=
+			\frac{1}{16}
+			=
+			0{,}0625
+		}
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{22.}
+		
+		\[
+		\begin{array}{c|ccccc}
+			r/r_0 & 1{,}0 & 1{,}5 & 2{,}0 & 2{,}5 & 3{,}0\\
+			\hline
+			F_g/F_0 &
+			1{,}000 &
+			0{,}444 &
+			0{,}250 &
+			0{,}160 &
+			0{,}111
+		\end{array}
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{23.}
+		
+		Os pontos devem localizar-se aproximadamente nas coordenadas
+		
+		\[
+		(1;1),
+		\quad
+		(1{,}5;0{,}444),
+		\quad
+		(2;0{,}25),
+		\]
+		
+		\[
+		(2{,}5;0{,}16),
+		\quad
+		(3;0{,}111).
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{24.}
+		
+		O gráfico não é uma reta porque a força não é inversamente proporcional
+		a $r$, mas ao quadrado da distância:
+		
+		\[
+		F_g\propto\frac{1}{r^2}.
+		\]
+		
+	\end{solucaobox}
+	
+	% ============================================================
+	\section*{Resolução 6 -- Satélite a 400 km}
+	% ============================================================
+	
+	\begin{solucaobox}[Questões 25--29]
+		
+		\textbf{25.}
+		
+		Primeiro:
+		
+		\[
+		h=\SI{400}{km}
+		=
+		\SI{4.00e5}{m}.
+		\]
+		
+		Logo,
+		
+		\[
+		r=R_T+h
+		\]
+		
+		\[
+		r=
+		6{,}371\times10^6
+		+
+		4{,}00\times10^5
+		\]
+		
+		\[
+		\boxed{
+			r=
+			\SI{6.771e6}{m}
+		}
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{26.}
+		
+		\[
+		F_g=
+		G\frac{M_Tm}{r^2}
+		\]
+		
+		\[
+		F_g=
+		\frac{
+			(6{,}67430\times10^{-11})
+			(5{,}972\times10^{24})
+			(1200)
+		}{
+			(6{,}771\times10^6)^2
+		}
+		\]
+		
+		\[
+		\boxed{
+			F_g\approx\SI{1.04e4}{N}
+		}
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{27.}
+		
+		\[
+		g=
+		\frac{F_g}{m}
+		\]
+		
+		\[
+		g=
+		\frac{1{,}043\times10^4}{1200}
+		\]
+		
+		\[
+		\boxed{
+			g\approx\SI{8.69}{m.s^{-2}}
+		}
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{28.}
+		
+		À superfície:
+		
+		\[
+		g_T\approx\SI{9.82}{m.s^{-2}}.
+		\]
+		
+		Assim,
+		
+		\[
+		\frac{g_{400}}{g_T}
+		=
+		\frac{8{,}69}{9{,}82}
+		\approx0{,}885.
+		\]
+		
+		Portanto, a \SI{400}{km} de altitude, $g$ ainda corresponde a cerca de
+		
+		\[
+		\boxed{88{,}5\%}
+		\]
+		
+		do valor à superfície.
+		
+		\vspace{3mm}
+		
+		\textbf{29.}
+		
+		A afirmação é falsa.
+		
+		A aceleração gravítica ainda é aproximadamente
+		
+		\[
+		\SI{8.69}{m.s^{-2}},
+		\]
+		
+		um valor bastante próximo do valor à superfície.
+		
+		A sensação de ausência de peso numa estação espacial deve-se à queda
+		livre orbital e não à ausência de gravidade.
+		
+	\end{solucaobox}
+	
+	% ============================================================
+	\section*{Resolução 7 -- Massa de Marte}
+	% ============================================================
+	
+	\begin{solucaobox}[Questões 30--33]
+		
+		\textbf{30.}
+		
+		\[
+		g=
+		G\frac{M}{R^2}
+		\]
+		
+		Logo,
+		
+		\[
+		\boxed{
+			M=
+			\frac{gR^2}{G}
+		}
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{31.}
+		
+		\[
+		M=
+		\frac{
+			3{,}71(3{,}39\times10^6)^2
+		}{
+			6{,}67430\times10^{-11}
+		}
+		\]
+		
+		\[
+		\boxed{
+			M_M\approx\SI{6.39e23}{kg}
+		}
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{32.}
+		
+		\[
+		P=mg
+		\]
+		
+		\[
+		P=70\times3{,}71
+		\]
+		
+		\[
+		\boxed{
+			P\approx\SI{260}{N}
+		}
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{33.}
+		
+		Não.
+		
+		A massa é uma propriedade do corpo e mantém-se aproximadamente constante.
+		
+		O peso altera-se porque depende da aceleração gravítica local.
+		
+	\end{solucaobox}
+	
+	% ============================================================
+	\section*{Resolução 8 -- Gravidade e altitude}
+	% ============================================================
+	
+	\begin{solucaobox}[Questões 34--36]
+		
+		\textbf{34.}
+		
+		À superfície:
+		
+		\[
+		g_T=
+		G\frac{M_T}{R_T^2}.
+		\]
+		
+		Pretende-se:
+		
+		\[
+		g'=\frac{g_T}{4}.
+		\]
+		
+		Assim,
+		
+		\[
+		G\frac{M_T}{r^2}
+		=
+		\frac14
+		G\frac{M_T}{R_T^2}.
+		\]
+		
+		Cancelando os fatores comuns:
+		
+		\[
+		\frac1{r^2}
+		=
+		\frac1{4R_T^2}.
+		\]
+		
+		Logo,
+		
+		\[
+		\boxed{
+			r=2R_T
+		}
+		\]
+		
+		ou
+		
+		\[
+		r=
+		2(6{,}371\times10^6)
+		\]
+		
+		\[
+		\boxed{
+			r=
+			\SI{1.2742e7}{m}
+		}
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{35.}
+		
+		Como
+		
+		\[
+		h=r-R_T,
+		\]
+		
+		\[
+		h=2R_T-R_T=R_T.
+		\]
+		
+		Portanto,
+		
+		\[
+		\boxed{
+			h\approx\SI{6.371e6}{m}
+			=
+			\SI{6371}{km}
+		}
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{36.}
+		
+		Se
+		
+		\[
+		r=3R_T,
+		\]
+		
+		então
+		
+		\[
+		g=
+		\frac{g_T}{3^2}
+		=
+		\frac{9{,}8}{9}.
+		\]
+		
+		\[
+		\boxed{
+			g\approx\SI{1.09}{m.s^{-2}}
+		}
+		\]
+		
+	\end{solucaobox}
+	
+	% ============================================================
+	\section*{Resolução 9 -- Asteroide e massa volúmica}
+	% ============================================================
+	
+	\begin{solucaobox}[Questões 37--41]
+		
+		\textbf{37.}
+		
+		\[
+		V=
+		\frac43\pi R^3
+		\]
+		
+		\[
+		V=
+		\frac43\pi(250)^3
+		\]
+		
+		\[
+		\boxed{
+			V\approx\SI{6.54e7}{m^3}
+		}
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{38.}
+		
+		Da definição de massa volúmica:
+		
+		\[
+		\rho=\frac{m}{V}
+		\]
+		
+		logo,
+		
+		\[
+		m=\rho V.
+		\]
+		
+		\[
+		m=
+		7800\times6{,}54\times10^7
+		\]
+		
+		\[
+		\boxed{
+			m_A\approx\SI{5.11e11}{kg}
+		}
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{39.}
+		
+		\[
+		F_g=
+		G\frac{m_Am_s}{r^2}
+		\]
+		
+		\[
+		F_g=
+		\frac{
+			(6{,}67430\times10^{-11})
+			(5{,}11\times10^{11})
+			(1000)
+		}{
+			(1000)^2
+		}
+		\]
+		
+		\[
+		\boxed{
+			F_g\approx\SI{3.41e-2}{N}
+		}
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{40.}
+		
+		Na Terra:
+		
+		\[
+		P=mg
+		\]
+		
+		\[
+		P=1000\times9{,}8
+		\]
+		
+		\[
+		P=
+		\SI{9.8e3}{N}.
+		\]
+		
+		Comparando:
+		
+		\[
+		\frac{9{,}8\times10^3}
+		{3{,}41\times10^{-2}}
+		\approx
+		2{,}9\times10^5.
+		\]
+		
+		Assim, o peso da sonda na Terra seria centenas de milhares de vezes
+		superior à força gravítica exercida pelo asteroide na posição considerada.
+		
+		\vspace{3mm}
+		
+		\textbf{41.}
+		
+		Embora o asteroide pareça grande à escala humana, a sua massa é muito
+		inferior à massa da Terra.
+		
+		Como
+		
+		\[
+		F_g\propto M,
+		\]
+		
+		a pequena massa do asteroide produz uma interação gravítica muito menos
+		intensa.
+		
+	\end{solucaobox}
+	
+	% ============================================================
+	\section*{Resolução 10 -- Quantidade de matéria}
+	% ============================================================
+	
+	\begin{solucaobox}[Questões 42--46]
+		
+		\textbf{42.}
+		
+		\[
+		m=nM
+		\]
+		
+		\[
+		m=
+		2{,}00\times
+		\SI{12.0}{g.mol^{-1}}
+		\]
+		
+		\[
+		m=\SI{24.0}{g}.
+		\]
+		
+		Em quilogramas:
+		
+		\[
+		\boxed{
+			m=\SI{2.40e-2}{kg}
+		}
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{43.}
+		
+		\[
+		N=nN_A
+		\]
+		
+		\[
+		N=
+		2{,}00
+		\times
+		6{,}022\times10^{23}
+		\]
+		
+		\[
+		\boxed{
+			N=
+			1{,}2044\times10^{24}
+			\text{ átomos}
+		}
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{44.}
+		
+		\[
+		F_g=
+		G\frac{m^2}{r^2}
+		\]
+		
+		\[
+		F_g=
+		\frac{
+			(6{,}67430\times10^{-11})
+			(2{,}40\times10^{-2})^2
+		}{
+			(0{,}10)^2
+		}
+		\]
+		
+		\[
+		\boxed{
+			F_g\approx\SI{3.84e-12}{N}
+		}
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{45.}
+		
+		O valor obtido é extremamente pequeno.
+		
+		A constante gravítica $G$ é muito pequena e as massas de objetos
+		laboratoriais são muito inferiores às massas astronómicas.
+		
+		Por isso, outras interações e forças presentes no laboratório dominam
+		facilmente a interação gravítica.
+		
+		\vspace{3mm}
+		
+		\textbf{46.}
+		
+		Duplicar a quantidade de matéria duplica a massa de cada amostra.
+		
+		Assim:
+		
+		\[
+		F'_g=
+		G\frac{(2m)(2m)}{r^2}
+		=
+		4F_g.
+		\]
+		
+		Logo, a força seria
+		
+		\[
+		\boxed{4}
+		\]
+		
+		vezes maior.
+		
+	\end{solucaobox}
+	
+	% ============================================================
+	\section*{Resolução 11 -- Super-Terra}
+	% ============================================================
+	
+	\begin{solucaobox}[Questões 47--51]
+		
+		\textbf{47.}
+		
+		Para a Terra:
+		
+		\[
+		g_T=
+		G\frac{M_T}{R_T^2}.
+		\]
+		
+		Para o planeta:
+		
+		\[
+		g_P=
+		G\frac{5M_T}{(1{,}6R_T)^2}.
+		\]
+		
+		Dividindo:
+		
+		\[
+		\frac{g_P}{g_T}
+		=
+		\frac{
+			G\dfrac{5M_T}{(1{,}6R_T)^2}
+		}{
+			G\dfrac{M_T}{R_T^2}
+		}
+		\]
+		
+		\[
+		\boxed{
+			\frac{g_P}{g_T}
+			=
+			\frac{5}{(1{,}6)^2}
+		}
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{48.}
+		
+		\[
+		\frac{g_P}{g_T}
+		=
+		\frac{5}{2{,}56}
+		\approx1{,}953.
+		\]
+		
+		Logo,
+		
+		\[
+		g_P
+		\approx
+		1{,}953\times9{,}82
+		\]
+		
+		\[
+		\boxed{
+			g_P\approx\SI{19.2}{m.s^{-2}}
+		}
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{49.}
+		
+		\[
+		P=mg
+		\]
+		
+		\[
+		P=
+		70\times19{,}2
+		\]
+		
+		\[
+		\boxed{
+			P\approx\SI{1.34e3}{N}
+		}
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{50.}
+		
+		Não.
+		
+		A massa da pessoa mantém-se em
+		
+		\[
+		\boxed{
+			\SI{70}{kg}
+		}.
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{51.}
+		
+		Não.
+		
+		O planeta possui uma massa cinco vezes superior, mas possui também um
+		raio superior.
+		
+		Como
+		
+		\[
+		g=
+		\frac{GM}{R^2},
+		\]
+		
+		o aumento do raio reduz a aceleração gravítica à superfície.
+		
+		Por isso, $g$ é apenas aproximadamente $1{,}95$ vezes maior que na Terra.
+		
+	\end{solucaobox}
+	
+	% ============================================================
+	\section*{Resolução 12 -- Tratamento de dados}
+	% ============================================================
+	
+	\begin{solucaobox}[Questões 52--56]
+		
+		Como
+		
+		\[
+		m_1=m_2=\SI{1000}{kg},
+		\]
+		
+		\[
+		F_g=
+		G\frac{10^6}{r^2}.
+		\]
+		
+		Assim:
+		
+		\[
+		Gm_1m_2
+		=
+		6{,}67430\times10^{-5}.
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{52.}
+		
+		\[
+		\begin{array}{c|c|c}
+			r/\mathrm{m}
+			&
+			1/r^2\ /\mathrm{m^{-2}}
+			&
+			F_g/\mathrm{N}
+			\\
+			\hline
+			1{,}0 & 1{,}000 & 6{,}67\times10^{-5}\\
+			1{,}5 & 0{,}444 & 2{,}97\times10^{-5}\\
+			2{,}0 & 0{,}250 & 1{,}67\times10^{-5}\\
+			2{,}5 & 0{,}160 & 1{,}07\times10^{-5}\\
+			3{,}0 & 0{,}111 & 7{,}42\times10^{-6}
+		\end{array}
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{53.}
+		
+		O gráfico $F_g=f(r)$ apresenta uma curva decrescente semelhante à
+		representada anteriormente na ficha.
+		
+		\vspace{3mm}
+		
+		\textbf{54.}
+		
+		Não.
+		
+		A força não varia linearmente com a distância:
+		
+		\[
+		F_g\propto\frac1{r^2}.
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{55.}
+		
+		Definindo
+		
+		\[
+		x=\frac1{r^2},
+		\]
+		
+		tem-se
+		
+		\[
+		F_g=
+		Gm_1m_2x.
+		\]
+		
+		Portanto, o gráfico
+		
+		\[
+		F_g=f\left(\frac1{r^2}\right)
+		\]
+		
+		é uma reta que passa pela origem.
+		
+		\vspace{3mm}
+		
+		\textbf{56.}
+		
+		O declive é:
+		
+		\[
+		k=Gm_1m_2.
+		\]
+		
+		Logo,
+		
+		\[
+		k=
+		(6{,}67430\times10^{-11})
+		(1000)(1000)
+		\]
+		
+		\[
+		\boxed{
+			k=
+			6{,}67430\times10^{-5}
+		}
+		\]
+		
+		em unidades compatíveis com o gráfico.
+		
+	\end{solucaobox}
+	
+	% ============================================================
+	\section*{Resolução 13 -- Órbita circular}
+	% ============================================================
+	
+	\begin{solucaobox}[Questões 57--61]
+		
+		\textbf{57.}
+		
+		Para uma órbita circular:
+		
+		\[
+		F_g=F_R.
+		\]
+		
+		Então,
+		
+		\[
+		G\frac{M_Tm}{r^2}
+		=
+		m\frac{v^2}{r}.
+		\]
+		
+		Cancelando $m$:
+		
+		\[
+		G\frac{M_T}{r^2}
+		=
+		\frac{v^2}{r}.
+		\]
+		
+		Multiplicando por $r$:
+		
+		\[
+		\frac{GM_T}{r}
+		=
+		v^2.
+		\]
+		
+		Logo,
+		
+		\[
+		\boxed{
+			v=
+			\sqrt{\frac{GM_T}{r}}
+		}
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{58.}
+		
+		Com
+		
+		\[
+		r=\SI{6.771e6}{m},
+		\]
+		
+		\[
+		v=
+		\sqrt{
+			\frac{
+				(6{,}67430\times10^{-11})
+				(5{,}972\times10^{24})
+			}{
+				6{,}771\times10^6
+			}
+		}.
+		\]
+		
+		\[
+		\boxed{
+			v\approx\SI{7.67e3}{m.s^{-1}}
+		}
+		\]
+		
+		ou
+		
+		\[
+		\boxed{
+			v\approx\SI{7.67}{km.s^{-1}}
+		}
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{59.}
+		
+		\[
+		T=
+		\frac{2\pi r}{v}
+		\]
+		
+		\[
+		T=
+		\frac{
+			2\pi(6{,}771\times10^6)
+		}{
+			7{,}672\times10^3
+		}
+		\]
+		
+		\[
+		T\approx\SI{5.54e3}{s}.
+		\]
+		
+		Em minutos:
+		
+		\[
+		T=
+		\frac{5545}{60}
+		\]
+		
+		\[
+		\boxed{
+			T\approx\SI{92.4}{min}
+		}
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{60.}
+		
+		\[
+		E_c=
+		\frac12mv^2
+		\]
+		
+		\[
+		E_c=
+		\frac12
+		(1200)
+		(7{,}672\times10^3)^2
+		\]
+		
+		\[
+		\boxed{
+			E_c\approx\SI{3.53e10}{J}
+		}
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{61.}
+		
+		A massa do satélite aparece tanto na força gravítica como na expressão
+		da força resultante centrípeta.
+		
+		Ao igualar:
+		
+		\[
+		G\frac{M_Tm}{r^2}
+		=
+		m\frac{v^2}{r},
+		\]
+		
+		a massa $m$ cancela-se.
+		
+		Por isso, para uma mesma órbita, a velocidade orbital não depende da
+		massa do satélite.
+		
+	\end{solucaobox}
+	
+	% ============================================================
+	\section*{Resolução 14 -- Escolha múltipla}
+	% ============================================================
+	
+	\begin{solucaobox}[Questões 62--67]
+		
+		\textbf{62.} B
+		
+		\[
+		F_g\propto m_1m_2.
+		\]
+		
+		Duplicar uma massa duplica a força.
+		
+		\vspace{2mm}
+		
+		\textbf{63.} B
+		
+		\[
+		(2m_1)(2m_2)=4m_1m_2.
+		\]
+		
+		\vspace{2mm}
+		
+		\textbf{64.} D
+		
+		\[
+		F'_g=
+		\frac{F_g}{3^2}
+		=
+		\frac{F_g}{9}.
+		\]
+		
+		\vspace{2mm}
+		
+		\textbf{65.} C
+		
+		As forças de interação têm a mesma intensidade e sentidos opostos.
+		
+		\vspace{2mm}
+		
+		\textbf{66.} C
+		
+		A massa do astronauta mantém-se.
+		
+		\vspace{2mm}
+		
+		\textbf{67.} C
+		
+		\[
+		\boxed{
+			g=
+			\frac{GM}{r^2}
+		}
+		\]
+		
+	\end{solucaobox}
+	
+	% ============================================================
+	\section*{Resolução 15 -- Problema final}
+	% ============================================================
+	
+	\begin{solucaobox}[Questões 68--74]
+		
+		Dados:
+		
+		\[
+		M=\SI{8.0e23}{kg}
+		\]
+		
+		\[
+		R=\SI{4.0e6}{m}
+		\]
+		
+		\[
+		m=\SI{500}{kg}.
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{68.}
+		
+		\[
+		g=
+		G\frac{M}{R^2}
+		\]
+		
+		\[
+		g=
+		\frac{
+			(6{,}67430\times10^{-11})
+			(8{,}0\times10^{23})
+		}{
+			(4{,}0\times10^6)^2
+		}
+		\]
+		
+		\[
+		g=
+		\frac{
+			5{,}33944\times10^{13}
+		}{
+			1{,}6\times10^{13}
+		}
+		\]
+		
+		\[
+		\boxed{
+			g\approx\SI{3.34}{m.s^{-2}}
+		}
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{69.}
+		
+		\[
+		P=mg
+		\]
+		
+		\[
+		P=
+		500\times3{,}34
+		\]
+		
+		\[
+		\boxed{
+			P\approx\SI{1.67e3}{N}
+		}
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{70.}
+		
+		Se
+		
+		\[
+		h=R,
+		\]
+		
+		então
+		
+		\[
+		r=R+h=2R.
+		\]
+		
+		Logo,
+		
+		\[
+		\boxed{
+			r=\SI{8.0e6}{m}
+		}
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{71.}
+		
+		Como a distância ao centro duplicou:
+		
+		\[
+		g'=
+		\frac{g}{2^2}
+		=
+		\frac{3{,}34}{4}.
+		\]
+		
+		\[
+		\boxed{
+			g'\approx\SI{0.834}{m.s^{-2}}
+		}
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{72.}
+		
+		\[
+		F'_g=mg'
+		\]
+		
+		\[
+		F'_g=
+		500\times0{,}834
+		\]
+		
+		\[
+		\boxed{
+			F'_g\approx\SI{417}{N}
+		}
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{73.}
+		
+		\[
+		\frac{
+			F_{\text{altitude}}
+		}{
+			F_{\text{superfície}}
+		}
+		=
+		\frac{417}{1670}
+		\]
+		
+		\[
+		\boxed{
+			\frac{
+				F_{\text{altitude}}
+			}{
+				F_{\text{superfície}}
+			}
+			\approx0{,}25
+		}
+		\]
+		
+		\vspace{3mm}
+		
+		\textbf{74.}
+		
+		Ao subir para uma altitude igual ao raio do planeta, a distância ao centro
+		passa de $R$ para $2R$.
+		
+		Como
+		
+		\[
+		F_g\propto\frac1{r^2},
+		\]
+		
+		então
+		
+		\[
+		\frac{F'_g}{F_g}
+		=
+		\frac{R^2}{(2R)^2}
+		=
+		\frac14.
+		\]
+		
+		Assim, a força gravítica reduz-se para um quarto do valor à superfície.
+		
+	\end{solucaobox}
+	
+	% ============================================================
+	% FECHO
+	% ============================================================
+	
+	\clearpage
+	
+	\begin{center}
+		
+		\begin{tikzpicture}
+			
+			\node[
+			rounded corners=3mm,
+			draw=eufblue,
+			line width=1pt,
+			fill=euflight,
+			inner xsep=10mm,
+			inner ysep=5mm
+			]
+			{
+				
+				\begin{minipage}{0.84\textwidth}
+					
+					\centering
+					
+					{\Large\bfseries\textcolor{eufblue}{EUFISICA}}
+					
+					\vspace{2mm}
+					
+					\textbf{Lei da Gravitação Universal}
+					
+					\vspace{2mm}
+					
+					\small
+					
+					Massa $\bullet$
+					Distância $\bullet$
+					Força $\bullet$
+					Campo gravítico $\bullet$
+					Órbitas $\bullet$
+					Exploração espacial
+					
+					\vspace{2mm}
+					
+					\textit{
+						A mesma lei física que explica a queda de um corpo
+						permite compreender o movimento de luas, planetas e satélites.
+					}
+					
+					\vspace{2mm}
+					
+					\textbf{Prof. José Gonçalves}
+					
+				\end{minipage}
+				
+			};
+			
+		\end{tikzpicture}
+		
+	\end{center}
+	
+	\fi
+	
+\end{document}

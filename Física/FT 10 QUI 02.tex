@@ -1,0 +1,2347 @@
+\documentclass[11pt,a4paper]{article}
+
+% ============================================================
+% PACOTES
+% ============================================================
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese]{babel}
+\usepackage{lmodern}
+
+\usepackage[
+a4paper,
+top=1.8cm,
+bottom=1.8cm,
+left=1.8cm,
+right=1.8cm
+]{geometry}
+
+\usepackage{amsmath,amssymb}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{graphicx}
+
+% ------------------------------------------------------------
+% SIUNITX - conforme solicitado
+% ------------------------------------------------------------
+\usepackage{siunitx}
+\sisetup{output-decimal-marker={,}}
+
+% Fórmulas químicas
+\usepackage[version=4]{mhchem}
+
+% TikZ e gráficos
+\usepackage{tikz}
+\usetikzlibrary{
+	arrows.meta,
+	positioning,
+	calc,
+	shapes.geometric,
+	decorations.pathmorphing,
+	backgrounds
+}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% Caixas
+\usepackage[most]{tcolorbox}
+
+% Cabeçalhos
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+\usepackage{hyperref}
+
+% ============================================================
+% CORES
+% ============================================================
+
+\definecolor{eublue}{HTML}{145A86}
+\definecolor{eudark}{HTML}{17324D}
+\definecolor{eulightblue}{HTML}{E4F2FA}
+\definecolor{eugreen}{HTML}{3F7D58}
+\definecolor{eulightgreen}{HTML}{E8F4EC}
+\definecolor{euorange}{HTML}{E28A2B}
+\definecolor{eulightorange}{HTML}{FFF0DE}
+\definecolor{eured}{HTML}{B33A3A}
+\definecolor{eupurple}{HTML}{67518A}
+\definecolor{eugray}{HTML}{F2F4F6}
+\definecolor{euyellow}{HTML}{F2C94C}
+
+% ============================================================
+% CONFIGURAÇÕES GERAIS
+% ============================================================
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+
+\renewcommand{\arraystretch}{1.35}
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=eublue,
+	urlcolor=eublue
+}
+
+% ============================================================
+% CABEÇALHO E RODAPÉ
+% ============================================================
+
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{
+	\textbf{\textcolor{eublue}{EUFISICA exercícios}}
+}
+
+\fancyhead[R]{
+	\textcolor{eudark}{Física e Química A -- 10.º ano}
+}
+
+\fancyfoot[L]{Prof. José Gonçalves}
+\fancyfoot[C]{EUFISICA}
+\fancyfoot[R]{Página \thepage\ de \pageref{LastPage}}
+
+\renewcommand{\headrulewidth}{0.6pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% ============================================================
+% CAIXAS
+% ============================================================
+
+\newcounter{exercicio}
+
+\newenvironment{exercicio}[1]
+{
+	\refstepcounter{exercicio}
+	\begin{tcolorbox}[
+		enhanced,
+		breakable,
+		colback=white,
+		colframe=eublue,
+		boxrule=0.8pt,
+		arc=2mm,
+		left=3mm,
+		right=3mm,
+		top=2mm,
+		bottom=2mm,
+		title={
+			\textbf{Exercício \theexercicio}
+			\hspace{1mm}--\hspace{1mm}#1
+		},
+		coltitle=white,
+		colbacktitle=eublue,
+		fonttitle=\bfseries
+		]
+	}
+	{
+	\end{tcolorbox}
+}
+
+\newtcolorbox{recorda}{
+	enhanced,
+	breakable,
+	colback=eulightblue,
+	colframe=eublue,
+	title=\textbf{Recorda},
+	coltitle=eudark,
+	colbacktitle=eulightblue,
+	fonttitle=\bfseries,
+	arc=2mm
+}
+
+\newtcolorbox{dados}{
+	enhanced,
+	breakable,
+	colback=eugray,
+	colframe=eudark,
+	title=\textbf{Dados},
+	fonttitle=\bfseries,
+	arc=2mm
+}
+
+\newtcolorbox{stem}{
+	enhanced,
+	breakable,
+	colback=eulightgreen,
+	colframe=eugreen,
+	title=\textbf{STEM | Ciência, Tecnologia e Mundo Real},
+	coltitle=eugreen,
+	colbacktitle=eulightgreen,
+	fonttitle=\bfseries,
+	arc=2mm
+}
+
+\newtcolorbox{desafio}{
+	enhanced,
+	breakable,
+	colback=eulightorange,
+	colframe=euorange,
+	title=\textbf{Desafio},
+	coltitle=euorange,
+	colbacktitle=eulightorange,
+	fonttitle=\bfseries,
+	arc=2mm
+}
+
+% ============================================================
+% LINHAS DE RESPOSTA
+% ============================================================
+
+\newcommand{\linha}{
+	\vspace{3mm}
+	\noindent\makebox[\linewidth]{\dotfill}
+}
+
+\newcommand{\linhas}[1]{
+	\par
+	\foreach \i in {1,...,#1}{
+		\vspace{3.5mm}
+		\noindent\makebox[\linewidth]{\dotfill}\par
+	}
+}
+
+% ============================================================
+% DOCUMENTO
+% ============================================================
+
+\begin{document}
+	
+	% ============================================================
+	% CAPA / CABEÇALHO DA FICHA
+	% ============================================================
+	
+	\begin{tcolorbox}[
+		enhanced,
+		colback=eudark,
+		colframe=eudark,
+		arc=3mm,
+		boxrule=0pt,
+		left=5mm,
+		right=5mm,
+		top=5mm,
+		bottom=5mm
+		]
+		
+		\begin{center}
+			
+			{\Huge\bfseries\color{white} EUFISICA exercícios}
+			
+			\vspace{2mm}
+			
+			{\Large\bfseries\color{white}
+				Estrutura eletrónica dos átomos}
+			
+			\vspace{2mm}
+			
+			{\large\color{eulightblue}
+				Quantidade de matéria • Massa molar • Espetros atómicos}
+			
+			{\large\color{eulightblue}
+				Átomo de hidrogénio • Energia dos eletrões • Distribuição eletrónica}
+			
+			\vspace{4mm}
+			
+			{\large\color{white}\textbf{Física e Química A -- 10.º ano}}
+			
+			\vspace{2mm}
+			
+			{\color{white}\textbf{Prof. José Gonçalves}}
+			
+		\end{center}
+		
+	\end{tcolorbox}
+	
+	\vspace{3mm}
+	
+	\begin{tabularx}{\textwidth}{|X|X|X|}
+		\hline
+		\textbf{Nome:} &
+		\textbf{Turma:} &
+		\textbf{Data:} \\[6mm]
+		\hline
+	\end{tabularx}
+	
+	\vspace{5mm}
+	
+	% ============================================================
+	% OBJETIVOS
+	% ============================================================
+	
+	\begin{tcolorbox}[
+		colback=eugray,
+		colframe=eudark,
+		title=\textbf{Objetivos de aprendizagem}
+		]
+		
+		No final desta ficha deverás ser capaz de:
+		
+		\begin{itemize}[leftmargin=6mm,itemsep=1mm]
+			
+			\item relacionar massa, quantidade de matéria e massa molar;
+			
+			\item determinar o número de entidades presentes numa determinada
+			quantidade de matéria;
+			
+			\item interpretar espetros de emissão e de absorção;
+			
+			\item relacionar a energia de um fotão com a frequência e o comprimento
+			de onda da radiação;
+			
+			\item interpretar o espetro do átomo de hidrogénio com base em
+			transições eletrónicas;
+			
+			\item determinar a energia de diferentes níveis do átomo de hidrogénio;
+			
+			\item interpretar energias de remoção eletrónica e espetros
+			fotoeletrónicos;
+			
+			\item escrever distribuições eletrónicas de átomos e iões;
+			
+			\item aplicar os princípios de Aufbau, Pauli e Hund.
+			
+		\end{itemize}
+		
+	\end{tcolorbox}
+	
+	% ============================================================
+	% DADOS
+	% ============================================================
+	
+	\begin{dados}
+		
+		Sempre que necessário, utiliza:
+		
+		\[
+		N_A=\SI{6.022e23}{\per\mole}
+		\]
+		
+		\[
+		h=\SI{6.626e-34}{\joule\second}
+		\]
+		
+		\[
+		c=\SI{3.00e8}{\meter\per\second}
+		\]
+		
+		\[
+		1\ \mathrm{eV}
+		=
+		\SI{1.602e-19}{\joule}
+		\]
+		
+		\[
+		E_{\text{fotão}}=h\nu
+		\]
+		
+		\[
+		c=\lambda\nu
+		\]
+		
+		logo,
+		
+		\[
+		\boxed{
+			E_{\text{fotão}}
+			=
+			\frac{hc}{\lambda}
+		}
+		\]
+		
+	\end{dados}
+	
+	% ============================================================
+	% PARTE 1
+	% ============================================================
+	
+	\section*{\textcolor{eublue}{1. Quantidade de matéria e massa molar}}
+	
+	\begin{recorda}
+		
+		A \textbf{quantidade de matéria}, \(n\), exprime-se no SI em
+		\textbf{mol}.
+		
+		Um mol contém:
+		
+		\[
+		\boxed{
+			N_A=\SI{6.022e23}{entidades\per\mole}
+		}
+		\]
+		
+		A relação entre o número de entidades, \(N\), e a quantidade de matéria
+		é:
+		
+		\[
+		\boxed{
+			N=nN_A
+		}
+		\]
+		
+		A relação entre massa, \(m\), quantidade de matéria, \(n\), e massa
+		molar, \(M\), é:
+		
+		\[
+		\boxed{
+			n=\frac{m}{M}
+		}
+		\]
+		
+		ou
+		
+		\[
+		\boxed{
+			m=nM
+		}
+		\]
+		
+		A massa molar exprime-se normalmente em:
+		
+		\[
+		\si{\gram\per\mole}
+		\]
+		
+	\end{recorda}
+	
+	% ============================================================
+	% DIAGRAMA MOLE
+	% ============================================================
+	
+	\begin{figure}[H]
+		\centering
+		
+		\begin{tikzpicture}[
+			box/.style={
+				draw,
+				rounded corners,
+				minimum width=4.0cm,
+				minimum height=1.4cm,
+				align=center,
+				font=\bfseries
+			}
+			]
+			
+			\node[
+			box,
+			fill=eulightblue,
+			draw=eublue
+			] (massa) at (0,0)
+			{Massa\\\(m\)};
+			
+			\node[
+			box,
+			fill=eulightgreen,
+			draw=eugreen
+			] (mol) at (6,0)
+			{Quantidade de matéria\\\(n\)};
+			
+			\node[
+			box,
+			fill=eulightorange,
+			draw=euorange
+			] (part) at (12,0)
+			{Número de entidades\\\(N\)};
+			
+			\draw[
+			-{Latex[length=3mm]},
+			very thick,
+			eublue
+			]
+			(massa) -- node[above] {\(\div M\)} (mol);
+			
+			\draw[
+			-{Latex[length=3mm]},
+			very thick,
+			eugreen
+			]
+			(mol) -- node[above] {\(\times N_A\)} (part);
+			
+			\draw[
+			{Latex[length=3mm]}-,
+			very thick,
+			eublue
+			]
+			(massa) -- node[below] {\(\times M\)} (mol);
+			
+			\draw[
+			{Latex[length=3mm]}-,
+			very thick,
+			euorange
+			]
+			(mol) -- node[below] {\(\div N_A\)} (part);
+			
+		\end{tikzpicture}
+		
+		\caption{Relações entre massa, quantidade de matéria e número de entidades.}
+	\end{figure}
+	
+	% ============================================================
+	
+	\begin{exercicio}{Quantidade de matéria}
+		
+		Completa a tabela.
+		
+		\begin{center}
+			
+			\begin{tabular}{|c|c|c|}
+				\hline
+				
+				\textbf{Quantidade de matéria}
+				&
+				\textbf{Número de entidades}
+				&
+				\textbf{Tipo de entidade}
+				\\
+				\hline
+				
+				\(\SI{1.00}{mol}\)
+				&
+				&
+				átomos
+				\\[4mm]
+				\hline
+				
+				\(\SI{0.500}{mol}\)
+				&
+				&
+				moléculas
+				\\[4mm]
+				\hline
+				
+				\(\SI{2.00}{mol}\)
+				&
+				&
+				iões
+				\\[4mm]
+				\hline
+				
+				&
+				\(3.011\times10^{23}\)
+				&
+				moléculas
+				\\[4mm]
+				\hline
+				
+				&
+				\(1.2044\times10^{24}\)
+				&
+				átomos
+				\\[4mm]
+				\hline
+				
+			\end{tabular}
+			
+		\end{center}
+		
+	\end{exercicio}
+	
+	% ============================================================
+	
+	\begin{exercicio}{Massa molar}
+		
+		Considera as seguintes massas atómicas relativas:
+		
+		\begin{center}
+			
+			\begin{tabular}{cccccccccc}
+				\toprule
+				H & C & N & O & Na & Mg & Al & S & Cl & Ca\\
+				\midrule
+				1,008 & 12,01 & 14,01 & 16,00 & 22,99 &
+				24,31 & 26,98 & 32,06 & 35,45 & 40,08\\
+				\bottomrule
+			\end{tabular}
+			
+		\end{center}
+		
+		Determina a massa molar de:
+		
+		\begin{multicols}{2}
+			
+			\begin{enumerate}[label=\alph*)]
+				
+				\item \(\ce{H2O}\)
+				
+				\item \(\ce{CO2}\)
+				
+				\item \(\ce{NH3}\)
+				
+				\item \(\ce{NaCl}\)
+				
+				\item \(\ce{CaCO3}\)
+				
+				\item \(\ce{Al2(SO4)3}\)
+				
+			\end{enumerate}
+			
+		\end{multicols}
+		
+		\linhas{5}
+		
+	\end{exercicio}
+	
+	% ============================================================
+	
+	\begin{exercicio}{Da massa ao número de moléculas}
+		
+		Uma amostra contém \(\SI{18.0}{g}\) de água.
+		
+		\begin{enumerate}[label=\alph*)]
+			
+			\item Determina a massa molar da água.
+			
+			\linhas{1}
+			
+			\item Determina a quantidade de matéria existente na amostra.
+			
+			\linhas{2}
+			
+			\item Determina o número de moléculas de água.
+			
+			\linhas{2}
+			
+			\item Determina o número total de átomos de hidrogénio presentes
+			na amostra.
+			
+			\linhas{2}
+			
+		\end{enumerate}
+		
+	\end{exercicio}
+	
+	% ============================================================
+	
+	\begin{exercicio}{Um composto do quotidiano}
+		
+		A cafeína apresenta fórmula molecular:
+		
+		\[
+		\ce{C8H10N4O2}
+		\]
+		
+		\begin{enumerate}[label=\alph*)]
+			
+			\item Determina a massa molar da cafeína.
+			
+			\linhas{2}
+			
+			\item Uma bebida contém \(\SI{80}{mg}\) de cafeína.
+			Determina a quantidade de matéria de cafeína ingerida.
+			
+			\linhas{2}
+			
+			\item Determina o número aproximado de moléculas de cafeína
+			correspondente.
+			
+			\linhas{2}
+			
+		\end{enumerate}
+		
+	\end{exercicio}
+	
+	% ============================================================
+	% PARTE 2
+	% ============================================================
+	
+	\newpage
+	
+	\section*{\textcolor{eublue}{2. Espetros de emissão e de absorção}}
+	
+	\begin{recorda}
+		
+		Os átomos possuem níveis de energia eletrónica bem definidos.
+		
+		Quando um eletrão passa de um nível de energia mais elevado para um
+		nível de energia inferior, pode ocorrer a \textbf{emissão de um fotão}.
+		
+		Quando um átomo absorve um fotão com energia adequada, um eletrão pode
+		passar para um nível de energia superior.
+		
+		Assim:
+		
+		\begin{center}
+			\begin{tabular}{lll}
+				\toprule
+				& \textbf{Transição eletrónica} & \textbf{Fenómeno}\\
+				\midrule
+				Emissão &
+				\(E_{\text{superior}}\rightarrow E_{\text{inferior}}\)
+				&
+				Emissão de fotão
+				\\
+				
+				Absorção &
+				\(E_{\text{inferior}}\rightarrow E_{\text{superior}}\)
+				&
+				Absorção de fotão
+				\\
+				\bottomrule
+			\end{tabular}
+		\end{center}
+		
+		Cada elemento possui um conjunto característico de linhas espetrais,
+		funcionando como uma espécie de \textbf{impressão digital atómica}.
+		
+	\end{recorda}
+	
+	% ============================================================
+	% ESPECTRO EMISSÃO H
+	% ============================================================
+	
+	\begin{figure}[H]
+		\centering
+		
+		\begin{tikzpicture}[x=0.020cm,y=1cm]
+			
+			% Fundo
+			\fill[black]
+			(380,0) rectangle (700,1.3);
+			
+			% Linhas hidrogénio
+			\draw[violet,very thick]
+			(410.2,0)--(410.2,1.3);
+			
+			\draw[blue!70!violet,very thick]
+			(434.0,0)--(434.0,1.3);
+			
+			\draw[cyan!80!blue,very thick]
+			(486.1,0)--(486.1,1.3);
+			
+			\draw[red,very thick]
+			(656.3,0)--(656.3,1.3);
+			
+			% escala
+			\draw[->,thick]
+			(380,-0.25)--(710,-0.25);
+			
+			\foreach \x in {400,450,500,550,600,650,700}{
+				\draw (\x,-0.32)--(\x,-0.18);
+				\node[below,font=\scriptsize] at (\x,-0.32) {\x};
+			}
+			
+			\node at (540,-0.8)
+			{\small Comprimento de onda / nm};
+			
+		\end{tikzpicture}
+		
+		\caption{Representação simplificada de algumas riscas de emissão do
+			hidrogénio na região visível.}
+	\end{figure}
+	
+	% ============================================================
+	% ABSORÇÃO
+	% ============================================================
+	
+	\begin{figure}[H]
+		\centering
+		
+		\begin{tikzpicture}[x=0.020cm,y=1cm]
+			
+			\shade[
+			left color=violet!60,
+			right color=red!60
+			]
+			(380,0) rectangle (700,1.3);
+			
+			\draw[black,very thick]
+			(410.2,0)--(410.2,1.3);
+			
+			\draw[black,very thick]
+			(434.0,0)--(434.0,1.3);
+			
+			\draw[black,very thick]
+			(486.1,0)--(486.1,1.3);
+			
+			\draw[black,very thick]
+			(656.3,0)--(656.3,1.3);
+			
+			\draw[->,thick]
+			(380,-0.25)--(710,-0.25);
+			
+			\foreach \x in {400,450,500,550,600,650,700}{
+				\draw (\x,-0.32)--(\x,-0.18);
+				\node[below,font=\scriptsize] at (\x,-0.32) {\x};
+			}
+			
+			\node at (540,-0.8)
+			{\small Comprimento de onda / nm};
+			
+		\end{tikzpicture}
+		
+		\caption{Representação simplificada de um espetro de absorção.}
+	\end{figure}
+	
+	% ============================================================
+	
+	\begin{exercicio}{Emissão ou absorção?}
+		
+		Classifica cada situação como relacionada predominantemente com
+		\textbf{emissão} ou \textbf{absorção} de radiação.
+		
+		\begin{enumerate}[label=\alph*)]
+			
+			\item Um eletrão passa de um nível de energia \(E_4\) para \(E_2\).
+			
+			\linha
+			
+			\item Um eletrão passa de \(E_1\) para \(E_3\).
+			
+			\linha
+			
+			\item Observa-se uma linha luminosa sobre um fundo escuro.
+			
+			\linha
+			
+			\item Observa-se uma linha escura num espetro contínuo.
+			
+			\linha
+			
+			\item Um átomo recebe um fotão cuja energia coincide com a diferença
+			entre dois níveis eletrónicos.
+			
+			\linha
+			
+		\end{enumerate}
+		
+	\end{exercicio}
+	
+	% ============================================================
+	% COMPARAÇÃO ESPETROS
+	% ============================================================
+	
+	\begin{exercicio}{Identificação de elementos por espetroscopia}
+		
+		Os seguintes espetros são esquemáticos.
+		
+		\begin{center}
+			
+			\begin{tikzpicture}[x=0.016cm,y=1cm]
+				
+				% H
+				\node[anchor=east,font=\bfseries] at (370,3.6) {H};
+				
+				\fill[black] (380,3.2) rectangle (700,4.0);
+				
+				\foreach \x in {410,434,486,656}{
+					\draw[eublue!40!cyan,very thick]
+					(\x,3.2)--(\x,4.0);
+				}
+				
+				% Na
+				\node[anchor=east,font=\bfseries] at (370,2.4) {Na};
+				
+				\fill[black] (380,2.0) rectangle (700,2.8);
+				
+				\foreach \x in {568,589}{
+					\draw[euyellow,very thick]
+					(\x,2.0)--(\x,2.8);
+				}
+				
+				% He
+				\node[anchor=east,font=\bfseries] at (370,1.2) {He};
+				
+				\fill[black] (380,0.8) rectangle (700,1.6);
+				
+				\foreach \x in {447,502,588,668}{
+					\draw[euorange,very thick]
+					(\x,0.8)--(\x,1.6);
+				}
+				
+				% Amostra
+				\node[anchor=east,font=\bfseries] at (370,0) {X};
+				
+				\fill[black] (380,-0.4) rectangle (700,0.4);
+				
+				\foreach \x in {410,434,486,568,589,656}{
+					\draw[eugreen!60!yellow,very thick]
+					(\x,-0.4)--(\x,0.4);
+				}
+				
+				% escala
+				\draw[->]
+				(380,-0.8)--(710,-0.8);
+				
+				\foreach \x in {400,450,500,550,600,650,700}{
+					\draw (\x,-0.87)--(\x,-0.73);
+					\node[below,font=\scriptsize] at (\x,-0.87) {\x};
+				}
+				
+				\node at (540,-1.35)
+				{\small \(\lambda/\mathrm{nm}\)};
+				
+			\end{tikzpicture}
+			
+		\end{center}
+		
+		\begin{enumerate}[label=\alph*)]
+			
+			\item Que elementos químicos parecem estar presentes na amostra X?
+			
+			\linhas{2}
+			
+			\item Explica por que motivo as riscas espetrais permitem identificar
+			elementos químicos.
+			
+			\linhas{2}
+			
+			\item Poderia um espetro de emissão de dois elementos diferentes ser
+			completamente igual? Justifica.
+			
+			\linhas{2}
+			
+		\end{enumerate}
+		
+	\end{exercicio}
+	
+	% ============================================================
+	
+	\begin{stem}
+		
+		A análise dos espetros de absorção da luz proveniente das estrelas permite
+		identificar os elementos presentes nas suas atmosferas.
+		
+		Não é necessário recolher diretamente uma amostra da estrela:
+		a própria luz transporta informação sobre a matéria que a emitiu
+		ou atravessou.
+		
+		Esta técnica é fundamental em \textbf{Astronomia},
+		\textbf{Astrofísica} e \textbf{Química Analítica}.
+		
+	\end{stem}
+	
+	% ============================================================
+	% PARTE 3
+	% ============================================================
+	
+	\section*{\textcolor{eublue}{3. Energia dos fotões}}
+	
+	\begin{recorda}
+		
+		A energia de um fotão relaciona-se com a frequência pela expressão:
+		
+		\[
+		\boxed{
+			E=h\nu
+		}
+		\]
+		
+		Como:
+		
+		\[
+		c=\lambda\nu
+		\]
+		
+		então:
+		
+		\[
+		\boxed{
+			E=\frac{hc}{\lambda}
+		}
+		\]
+		
+		Consequentemente, quanto \textbf{menor} for o comprimento de onda,
+		\(\lambda\), \textbf{maior} é a energia do fotão.
+		
+	\end{recorda}
+	
+	% ============================================================
+	
+	\begin{exercicio}{Energia de um fotão}
+		
+		Considera uma radiação de comprimento de onda:
+		
+		\[
+		\lambda=\SI{500}{nm}
+		\]
+		
+		\begin{enumerate}[label=\alph*)]
+			
+			\item Converte o comprimento de onda para metros.
+			
+			\linhas{1}
+			
+			\item Determina a frequência da radiação.
+			
+			\linhas{2}
+			
+			\item Determina a energia de um fotão dessa radiação.
+			
+			\linhas{2}
+			
+			\item Determina a energia correspondente a um mol desses fotões,
+			em \(\si{\kilo\joule\per\mole}\).
+			
+			\linhas{3}
+			
+		\end{enumerate}
+		
+	\end{exercicio}
+	
+	% ============================================================
+	
+	\begin{exercicio}{Comparar fotões}
+		
+		Considera os fotões A, B e C.
+		
+		\begin{center}
+			
+			\begin{tabular}{ccc}
+				\toprule
+				\textbf{Fotão}
+				&
+				\(\boldsymbol{\lambda}\)
+				&
+				\textbf{Região aproximada}
+				\\
+				\midrule
+				
+				A & \(\SI{400}{nm}\) & violeta\\
+				
+				B & \(\SI{550}{nm}\) & verde\\
+				
+				C & \(\SI{650}{nm}\) & vermelha\\
+				
+				\bottomrule
+			\end{tabular}
+			
+		\end{center}
+		
+		\begin{enumerate}[label=\alph*)]
+			
+			\item Qual apresenta maior frequência?
+			
+			\linha
+			
+			\item Qual apresenta menor energia?
+			
+			\linha
+			
+			\item Ordena os fotões por ordem crescente de energia.
+			
+			\linha
+			
+			\item Justifica a tua resposta recorrendo a uma expressão matemática.
+			
+			\linhas{2}
+			
+		\end{enumerate}
+		
+	\end{exercicio}
+	
+	% ============================================================
+	% HIDROGÉNIO
+	% ============================================================
+	
+	\newpage
+	
+	\section*{\textcolor{eublue}{4. Espetro e níveis de energia do átomo de hidrogénio}}
+	
+	\begin{recorda}
+		
+		No modelo quântico mais simples do átomo de hidrogénio, a energia
+		associada ao nível de número quântico principal \(n\) pode ser determinada
+		por:
+		
+		\[
+		\boxed{
+			E_n=
+			-\frac{2,18\times10^{-18}}{n^2}
+			\quad \mathrm{J}
+		}
+		\]
+		
+		ou, utilizando eletrão-volt:
+		
+		\[
+		\boxed{
+			E_n=
+			-\frac{13,6}{n^2}
+			\quad \mathrm{eV}
+		}
+		\]
+		
+		onde:
+		
+		\[
+		n=1,2,3,\ldots
+		\]
+		
+		O sinal negativo significa que o eletrão se encontra ligado ao núcleo.
+		
+		Quando:
+		
+		\[
+		n\rightarrow\infty
+		\]
+		
+		tem-se:
+		
+		\[
+		E=0
+		\]
+		
+		correspondendo à separação completa entre o eletrão e o núcleo.
+		
+		Para uma transição:
+		
+		\[
+		\boxed{
+			\Delta E=E_f-E_i
+		}
+		\]
+		
+		onde \(E_i\) é a energia inicial e \(E_f\) a energia final.
+		
+		Para uma \textbf{absorção}:
+		
+		\[
+		\Delta E>0
+		\]
+		
+		Para uma \textbf{emissão}:
+		
+		\[
+		\Delta E<0
+		\]
+		
+		e a energia do fotão emitido é:
+		
+		\[
+		\boxed{
+			E_{\text{fotão}}=
+			|\Delta E|
+		}
+		\]
+		
+	\end{recorda}
+	
+	% ============================================================
+	% DIAGRAMA DE NÍVEIS
+	% ============================================================
+	
+	\begin{figure}[H]
+		\centering
+		
+		\begin{tikzpicture}[x=1cm,y=0.55cm]
+			
+			% eixo
+			\draw[-{Latex[length=3mm]},thick]
+			(0,-14.5)--(0,1.2);
+			
+			\node[rotate=90,font=\bfseries]
+			at (-0.7,-6.5)
+			{Energia / eV};
+			
+			% níveis
+			\draw[very thick,eudark]
+			(1,-13.6)--(7,-13.6);
+			\node[left] at (1,-13.6) {\(n=1\)};
+			\node[right] at (7,-13.6) {\(-13,6\)};
+			
+			\draw[very thick,eudark]
+			(1,-3.40)--(7,-3.40);
+			\node[left] at (1,-3.40) {\(n=2\)};
+			\node[right] at (7,-3.40) {\(-3,40\)};
+			
+			\draw[very thick,eudark]
+			(1,-1.51)--(7,-1.51);
+			\node[left] at (1,-1.51) {\(n=3\)};
+			\node[right] at (7,-1.51) {\(-1,51\)};
+			
+			\draw[very thick,eudark]
+			(1,-0.85)--(7,-0.85);
+			\node[left] at (1,-0.85) {\(n=4\)};
+			\node[right] at (7,-0.85) {\(-0,85\)};
+			
+			\draw[very thick,eudark]
+			(1,-0.54)--(7,-0.54);
+			\node[left] at (1,-0.54) {\(n=5\)};
+			\node[right] at (7,-0.54) {\(-0,54\)};
+			
+			\draw[dashed,very thick,eured]
+			(1,0)--(7,0);
+			
+			\node[left] at (1,0)
+			{\(n=\infty\)};
+			
+			\node[right,text=eured]
+			at (7,0)
+			{\(0\)};
+			
+			% transições
+			\draw[
+			-{Latex[length=3mm]},
+			very thick,
+			eublue
+			]
+			(2.5,-0.85)--(2.5,-3.40);
+			
+			\node[
+			right,
+			text=eublue
+			]
+			at (2.55,-2.1)
+			{\small emissão};
+			
+			\draw[
+			-{Latex[length=3mm]},
+			very thick,
+			eugreen
+			]
+			(5,-13.6)--(5,-3.40);
+			
+			\node[
+			right,
+			text=eugreen
+			]
+			at (5.05,-8.5)
+			{\small absorção};
+			
+		\end{tikzpicture}
+		
+		\caption{Níveis de energia do átomo de hidrogénio e exemplos de
+			transições eletrónicas.}
+	\end{figure}
+	
+	% ============================================================
+	
+	\begin{exercicio}{Energia dos níveis do hidrogénio}
+		
+		Utiliza:
+		
+		\[
+		E_n=
+		-\frac{2,18\times10^{-18}}{n^2}\ \mathrm{J}
+		\]
+		
+		Determina a energia correspondente a:
+		
+		\begin{enumerate}[label=\alph*)]
+			
+			\item \(n=1\)
+			
+			\linhas{2}
+			
+			\item \(n=2\)
+			
+			\linhas{2}
+			
+			\item \(n=3\)
+			
+			\linhas{2}
+			
+			\item \(n=4\)
+			
+			\linhas{2}
+			
+		\end{enumerate}
+		
+		Compara os valores obtidos com o diagrama de níveis de energia.
+		
+	\end{exercicio}
+	
+	% ============================================================
+	
+	\begin{exercicio}{Transição eletrónica no átomo de hidrogénio}
+		
+		Um eletrão do átomo de hidrogénio transita de:
+		
+		\[
+		n=4
+		\quad\longrightarrow\quad
+		n=2
+		\]
+		
+		\begin{enumerate}[label=\alph*)]
+			
+			\item Determina \(E_4\).
+			
+			\linhas{2}
+			
+			\item Determina \(E_2\).
+			
+			\linhas{2}
+			
+			\item Calcula:
+			
+			\[
+			\Delta E=E_f-E_i
+			\]
+			
+			\linhas{2}
+			
+			\item A transição corresponde a absorção ou emissão?
+			
+			\linha
+			
+			\item Determina a energia do fotão envolvido.
+			
+			\linhas{2}
+			
+			\item Determina a frequência do fotão.
+			
+			\linhas{2}
+			
+			\item Determina o comprimento de onda da radiação emitida.
+			
+			\linhas{3}
+			
+			\item Em que região do espetro eletromagnético se encontra esta
+			radiação?
+			
+			\linha
+			
+		\end{enumerate}
+		
+	\end{exercicio}
+	
+	% ============================================================
+	
+	\begin{exercicio}{Outra risca do hidrogénio}
+		
+		Um eletrão do átomo de hidrogénio passa de \(n=3\) para \(n=2\).
+		
+		\begin{enumerate}[label=\alph*)]
+			
+			\item Representa a transição no diagrama de níveis de energia.
+			
+			\item Calcula a variação de energia do átomo.
+			
+			\linhas{2}
+			
+			\item Determina a energia do fotão emitido.
+			
+			\linhas{2}
+			
+			\item Determina o comprimento de onda da radiação emitida.
+			
+			\linhas{3}
+			
+			\item Compara este valor com uma das riscas apresentadas anteriormente
+			no espetro de emissão do hidrogénio.
+			
+			\linhas{2}
+			
+		\end{enumerate}
+		
+	\end{exercicio}
+	
+	% ============================================================
+	
+	\begin{exercicio}{Absorção de radiação}
+		
+		Um átomo de hidrogénio encontra-se no estado fundamental.
+		
+		Um fotão provoca a transição:
+		
+		\[
+		n=1\rightarrow n=3
+		\]
+		
+		\begin{enumerate}[label=\alph*)]
+			
+			\item Determina a energia inicial do eletrão.
+			
+			\linhas{2}
+			
+			\item Determina a energia final.
+			
+			\linhas{2}
+			
+			\item Determina a energia mínima do fotão que poderá provocar esta
+			transição.
+			
+			\linhas{2}
+			
+			\item Determina a frequência desse fotão.
+			
+			\linhas{2}
+			
+			\item Explica por que motivo um fotão com energia inferior não consegue
+			provocar esta transição.
+			
+			\linhas{3}
+			
+		\end{enumerate}
+		
+	\end{exercicio}
+	
+	% ============================================================
+	
+	\begin{desafio}
+		
+		Um eletrão encontra-se inicialmente no nível \(n=2\) do átomo de
+		hidrogénio.
+		
+		Determina a energia mínima necessária para remover completamente esse
+		eletrão do átomo.
+		
+		Recorda que, para um eletrão livre:
+		
+		\[
+		n\rightarrow\infty
+		\qquad\Rightarrow\qquad
+		E=0
+		\]
+		
+		Apresenta o resultado:
+		
+		\begin{enumerate}[label=\alph*)]
+			
+			\item em joule por eletrão;
+			
+			\item em eletrão-volt por eletrão;
+			
+			\item em \(\si{\kilo\joule\per\mole}\).
+			
+		\end{enumerate}
+		
+		\linhas{5}
+		
+	\end{desafio}
+	
+	% ============================================================
+	% FOTOELETRÓNICO
+	% ============================================================
+	
+	\newpage
+	
+	\section*{\textcolor{eublue}{5. Energias de remoção eletrónica e espetro fotoeletrónico}}
+	
+	\begin{recorda}
+		
+		Na espetroscopia fotoeletrónica, uma radiação de energia conhecida incide
+		sobre os átomos e pode provocar a remoção de eletrões.
+		
+		Por conservação da energia:
+		
+		\[
+		E_{\text{fotão}}
+		=
+		E_{\text{remoção}}
+		+
+		E_{\text{cinética}}
+		\]
+		
+		Assim:
+		
+		\[
+		\boxed{
+			E_{\text{remoção}}
+			=
+			E_{\text{fotão}}
+			-
+			E_{\text{cinética}}
+		}
+		\]
+		
+		ou:
+		
+		\[
+		\boxed{
+			E_{\text{remoção}}
+			=
+			h\nu-E_c
+		}
+		\]
+		
+		Quanto mais fortemente ligado estiver um eletrão ao núcleo,
+		\textbf{maior será a energia necessária para o remover}.
+		
+		Num espetro fotoeletrónico:
+		
+		\begin{itemize}
+			
+			\item a posição dos picos relaciona-se com a energia de remoção;
+			
+			\item a intensidade ou área relativa dos picos relaciona-se com o número
+			de eletrões existentes em cada subnível;
+			
+			\item eletrões mais próximos do núcleo apresentam, geralmente,
+			maior energia de remoção.
+			
+		\end{itemize}
+		
+	\end{recorda}
+	
+	% ============================================================
+	
+	\begin{exercicio}{Energia de remoção}
+		
+		Um fotão com energia:
+		
+		\[
+		E_{\text{fotão}}
+		=
+		\SI{2.40e-17}{J}
+		\]
+		
+		remove um eletrão que adquire energia cinética:
+		
+		\[
+		E_c=
+		\SI{7.0e-18}{J}
+		\]
+		
+		\begin{enumerate}[label=\alph*)]
+			
+			\item Determina a energia de remoção do eletrão.
+			
+			\linhas{2}
+			
+			\item Converte esse valor em \(\mathrm{eV}\).
+			
+			\linhas{2}
+			
+			\item Determina a energia de remoção correspondente a um mol de
+			eletrões, em \(\si{\kilo\joule\per\mole}\).
+			
+			\linhas{3}
+			
+		\end{enumerate}
+		
+	\end{exercicio}
+	
+	% ============================================================
+	% ESPECTRO FOTOELETRÓNICO ESQUEMÁTICO
+	% ============================================================
+	
+	\begin{figure}[H]
+		\centering
+		
+		\begin{tikzpicture}[x=1.5cm,y=0.7cm]
+			
+			% Eixos
+			\draw[-{Latex[length=3mm]},thick]
+			(0,0)--(8.3,0);
+			
+			\draw[-{Latex[length=3mm]},thick]
+			(0,0)--(0,7.5);
+			
+			\node[rotate=90,font=\bfseries]
+			at (-0.65,3.7)
+			{Intensidade relativa};
+			
+			\node[font=\bfseries]
+			at (4.1,-1.0)
+			{Energia de remoção};
+			
+			\draw[
+			-{Latex[length=3mm]},
+			thick,
+			eured
+			]
+			(7,-0.55)--(1,-0.55);
+			
+			\node[
+			text=eured,
+			font=\small
+			]
+			at (4,-0.55)
+			{energia de remoção crescente};
+			
+			% picos Na 1s2 2s2 2p6 3s1
+			
+			% 1s
+			\draw[eublue,very thick]
+			(1.2,0)--(1.2,2);
+			
+			\node[above,font=\bfseries]
+			at (1.2,2)
+			{\(1s\)};
+			
+			% 2s
+			\draw[eublue,very thick]
+			(3.0,0)--(3.0,2);
+			
+			\node[above,font=\bfseries]
+			at (3.0,2)
+			{\(2s\)};
+			
+			% 2p
+			\draw[eublue,very thick]
+			(4.8,0)--(4.8,6);
+			
+			\node[above,font=\bfseries]
+			at (4.8,6)
+			{\(2p\)};
+			
+			% 3s
+			\draw[eublue,very thick]
+			(7.0,0)--(7.0,1);
+			
+			\node[above,font=\bfseries]
+			at (7.0,1)
+			{\(3s\)};
+			
+		\end{tikzpicture}
+		
+		\caption{Espetro fotoeletrónico esquemático de um átomo com distribuição
+			eletrónica \(1s^2\,2s^2\,2p^6\,3s^1\). As posições não estão à escala.}
+	\end{figure}
+	
+	% ============================================================
+	
+	\begin{exercicio}{Interpretar um espetro fotoeletrónico}
+		
+		Analisa o espetro anterior.
+		
+		\begin{enumerate}[label=\alph*)]
+			
+			\item Quantos subníveis ocupados são identificáveis?
+			
+			\linha
+			
+			\item Qual dos subníveis apresenta eletrões com maior energia de remoção?
+			
+			\linha
+			
+			\item Qual apresenta eletrões mais facilmente removíveis?
+			
+			\linha
+			
+			\item Por que motivo o pico correspondente ao subnível \(2p\) é maior
+			do que o correspondente ao subnível \(2s\)?
+			
+			\linhas{2}
+			
+			\item Quantos eletrões existem no átomo representado?
+			
+			\linha
+			
+			\item Identifica o elemento químico.
+			
+			\linha
+			
+		\end{enumerate}
+		
+	\end{exercicio}
+	
+	% ============================================================
+	
+	\begin{exercicio}{Energias de ionização sucessivas}
+		
+		Considere os seguintes valores aproximados relativos ao magnésio.
+		
+		\begin{center}
+			
+			\begin{tabular}{cc}
+				\toprule
+				
+				\textbf{Eletrão removido}
+				&
+				\textbf{Energia de ionização / \(\si{\kilo\joule\per\mole}\)}
+				\\
+				\midrule
+				
+				1.º & 738\\
+				
+				2.º & 1451\\
+				
+				3.º & 7733\\
+				
+				4.º & 10543\\
+				
+				5.º & 13630\\
+				
+				\bottomrule
+			\end{tabular}
+			
+		\end{center}
+		
+		\begin{enumerate}[label=\alph*)]
+			
+			\item Entre que remoções se observa o maior aumento de energia?
+			
+			\linha
+			
+			\item O que sugere esse aumento relativamente ao número de eletrões de
+			valência do magnésio?
+			
+			\linhas{2}
+			
+			\item Sabendo que \(Z(\ce{Mg})=12\), escreve a distribuição eletrónica
+			do magnésio.
+			
+			\linhas{2}
+			
+			\item Justifica a formação habitual do ião \(\ce{Mg^{2+}}\).
+			
+			\linhas{2}
+			
+		\end{enumerate}
+		
+	\end{exercicio}
+	
+	% ============================================================
+	% DISTRIBUIÇÕES
+	% ============================================================
+	
+	\section*{\textcolor{eublue}{6. Distribuição eletrónica}}
+	
+	\begin{recorda}
+		
+		O preenchimento dos orbitais obedece a vários princípios.
+		
+		\textbf{Princípio da energia mínima ou princípio de Aufbau}
+		
+		Os eletrões ocupam primeiro os orbitais de menor energia.
+		
+		\vspace{2mm}
+		
+		\textbf{Princípio de exclusão de Pauli}
+		
+		Cada orbital pode conter, no máximo, dois eletrões com spins opostos.
+		
+		\vspace{2mm}
+		
+		\textbf{Regra de Hund}
+		
+		Em orbitais de igual energia, os eletrões ocupam primeiro os orbitais
+		separadamente, com spins paralelos, antes de ocorrer emparelhamento.
+		
+		\vspace{2mm}
+		
+		A ordem de preenchimento utilizada para os primeiros elementos é:
+		
+		\[
+		\boxed{
+			1s
+			\rightarrow
+			2s
+			\rightarrow
+			2p
+			\rightarrow
+			3s
+			\rightarrow
+			3p
+			\rightarrow
+			4s
+		}
+		\]
+		
+	\end{recorda}
+	
+	% ============================================================
+	% DIAGRAMA ORBITAIS
+	% ============================================================
+	
+	\begin{figure}[H]
+		\centering
+		
+		\begin{tikzpicture}[x=1cm,y=1cm]
+			
+			\node[font=\bfseries] at (-1,4.8) {Energia};
+			
+			\draw[-{Latex[length=3mm]},thick]
+			(-1,0)--(-1,4.5);
+			
+			% 1s
+			\draw[eublue,thick]
+			(0,0.4) rectangle (0.8,1.0);
+			
+			\node[left] at (-0.1,0.7) {\(1s\)};
+			
+			% 2s
+			\draw[eublue,thick]
+			(0,1.5) rectangle (0.8,2.1);
+			
+			\node[left] at (-0.1,1.8) {\(2s\)};
+			
+			% 2p
+			\foreach \x in {0,1,2}{
+				\draw[eugreen,thick]
+				({1.5+0.9*\x},2.2)
+				rectangle
+				({2.2+0.9*\x},2.8);
+			}
+			
+			\node[left] at (1.35,2.5) {\(2p\)};
+			
+			% 3s
+			\draw[eublue,thick]
+			(0,3.0) rectangle (0.8,3.6);
+			
+			\node[left] at (-0.1,3.3) {\(3s\)};
+			
+			% 3p
+			\foreach \x in {0,1,2}{
+				\draw[eugreen,thick]
+				({1.5+0.9*\x},3.7)
+				rectangle
+				({2.2+0.9*\x},4.3);
+			}
+			
+			\node[left] at (1.35,4.0) {\(3p\)};
+			
+		\end{tikzpicture}
+		
+		\caption{Representação esquemática de orbitais \(s\) e \(p\).}
+	\end{figure}
+	
+	% ============================================================
+	
+	\begin{exercicio}{Escrever distribuições eletrónicas}
+		
+		Escreve a distribuição eletrónica, no estado fundamental, dos seguintes
+		átomos.
+		
+		\begin{center}
+			
+			\begin{tabular}{ccc}
+				\toprule
+				\textbf{Elemento} &
+				\(\boldsymbol{Z}\) &
+				\textbf{Distribuição eletrónica}
+				\\
+				\midrule
+				
+				\ce{C} & 6 & \\[4mm]
+				
+				\ce{O} & 8 & \\[4mm]
+				
+				\ce{Ne} & 10 & \\[4mm]
+				
+				\ce{Na} & 11 & \\[4mm]
+				
+				\ce{Mg} & 12 & \\[4mm]
+				
+				\ce{Al} & 13 & \\[4mm]
+				
+				\ce{Cl} & 17 & \\[4mm]
+				
+				\ce{Ca} & 20 & \\[4mm]
+				
+				\bottomrule
+			\end{tabular}
+			
+		\end{center}
+		
+	\end{exercicio}
+	
+	% ============================================================
+	
+	\begin{exercicio}{Diagramas de orbitais}
+		
+		Representa os eletrões nos diagramas de caixas respeitando os princípios
+		de Pauli e Hund.
+		
+		\subsection*{a) Carbono, \(Z=6\)}
+		
+		\[
+		1s^2\,2s^2\,2p^2
+		\]
+		
+		\begin{center}
+			
+			\begin{tikzpicture}[scale=0.9]
+				
+				\node at (-0.8,0.45) {\(1s\)};
+				
+				\draw (0,0) rectangle (1,0.9);
+				
+				\node at (1.7,0.45) {\(2s\)};
+				
+				\draw (2.5,0) rectangle (3.5,0.9);
+				
+				\node at (4.2,0.45) {\(2p\)};
+				
+				\foreach \x in {5,6,7}{
+					\draw (\x,0) rectangle ({\x+1},0.9);
+				}
+				
+			\end{tikzpicture}
+			
+		\end{center}
+		
+		\vspace{5mm}
+		
+		\subsection*{b) Oxigénio, \(Z=8\)}
+		
+		\[
+		1s^2\,2s^2\,2p^4
+		\]
+		
+		\begin{center}
+			
+			\begin{tikzpicture}[scale=0.9]
+				
+				\node at (-0.8,0.45) {\(1s\)};
+				
+				\draw (0,0) rectangle (1,0.9);
+				
+				\node at (1.7,0.45) {\(2s\)};
+				
+				\draw (2.5,0) rectangle (3.5,0.9);
+				
+				\node at (4.2,0.45) {\(2p\)};
+				
+				\foreach \x in {5,6,7}{
+					\draw (\x,0) rectangle ({\x+1},0.9);
+				}
+				
+			\end{tikzpicture}
+			
+		\end{center}
+		
+	\end{exercicio}
+	
+	% ============================================================
+	
+	\begin{exercicio}{Detetar erros}
+		
+		Um aluno escreveu as seguintes distribuições eletrónicas:
+		
+		\[
+		\text{A:}\qquad
+		1s^2\,2s^2\,2p^7
+		\]
+		
+		\[
+		\text{B:}\qquad
+		1s^2\,2s^2\,2p^6\,3s^3
+		\]
+		
+		\[
+		\text{C:}\qquad
+		1s^2\,2s^2\,2p^6\,3s^2\,3p^5
+		\]
+		
+		\begin{enumerate}[label=\alph*)]
+			
+			\item Qual ou quais das distribuições são impossíveis?
+			
+			\linhas{1}
+			
+			\item Indica a regra violada em cada caso impossível.
+			
+			\linhas{2}
+			
+			\item A distribuição C corresponde a que elemento químico?
+			
+			\linha
+			
+			\item Quantos eletrões de valência possui esse elemento?
+			
+			\linha
+			
+		\end{enumerate}
+		
+	\end{exercicio}
+	
+	% ============================================================
+	
+	\begin{exercicio}{Distribuição eletrónica de iões}
+		
+		Escreve a distribuição eletrónica das seguintes espécies.
+		
+		\begin{enumerate}[label=\alph*)]
+			
+			\item \(\ce{Na+}\)
+			
+			\[
+			Z(\ce{Na})=11
+			\]
+			
+			\linhas{1}
+			
+			\item \(\ce{Mg^{2+}}\)
+			
+			\[
+			Z(\ce{Mg})=12
+			\]
+			
+			\linhas{1}
+			
+			\item \(\ce{Cl-}\)
+			
+			\[
+			Z(\ce{Cl})=17
+			\]
+			
+			\linhas{1}
+			
+			\item \(\ce{O^{2-}}\)
+			
+			\[
+			Z(\ce{O})=8
+			\]
+			
+			\linhas{1}
+			
+			\item O que têm em comum as quatro distribuições eletrónicas obtidas?
+			
+			\linhas{2}
+			
+		\end{enumerate}
+		
+	\end{exercicio}
+	
+	% ============================================================
+	% QUESTÃO INTEGRADORA
+	% ============================================================
+	
+	\newpage
+	
+	\section*{\textcolor{euorange}{7. Problema integrador}}
+	
+	\begin{desafio}
+		
+		Uma equipa de investigação analisa a luz emitida por uma amostra de
+		hidrogénio excitado.
+		
+		Foi observada uma linha espetral com comprimento de onda próximo de:
+		
+		\[
+		\lambda=\SI{486}{nm}
+		\]
+		
+		Considere ainda que a amostra contém:
+		
+		\[
+		m=\SI{2.00}{mg}
+		\]
+		
+		de átomos de hidrogénio.
+		
+		Admite:
+		
+		\[
+		M(\ce{H})=\SI{1.008}{g\per\mole}
+		\]
+		
+		Responde às questões seguintes.
+		
+		\begin{enumerate}[label=\alph*)]
+			
+			\item Determina a frequência da radiação observada.
+			
+			\linhas{2}
+			
+			\item Determina a energia de um fotão dessa radiação.
+			
+			\linhas{2}
+			
+			\item No átomo de hidrogénio, a risca corresponde à transição:
+			
+			\[
+			n=4\rightarrow n=2
+			\]
+			
+			Determina \(E_4\).
+			
+			\linhas{2}
+			
+			\item Determina \(E_2\).
+			
+			\linhas{2}
+			
+			\item Determina a variação de energia do átomo.
+			
+			\linhas{2}
+			
+			\item Compara o módulo de \(\Delta E\) com a energia do fotão calculada
+			anteriormente.
+			
+			\linhas{2}
+			
+			\item Explica a relação física entre os dois valores.
+			
+			\linhas{3}
+			
+			\item Determina a quantidade de matéria de hidrogénio existente na
+			amostra.
+			
+			\linhas{2}
+			
+			\item Determina o número aproximado de átomos existentes na amostra.
+			
+			\linhas{2}
+			
+			\item Supondo, apenas como modelo idealizado, que cada átomo emitia um
+			fotão correspondente à transição \(n=4\rightarrow n=2\), determina a
+			energia total emitida.
+			
+			\linhas{3}
+			
+		\end{enumerate}
+		
+	\end{desafio}
+	
+	% ============================================================
+	% ASTRONOMIA
+	% ============================================================
+	
+	\section*{\textcolor{eugreen}{8. Ciência no mundo real}}
+	
+	\begin{stem}
+		
+		\textbf{Como sabemos de que são feitas as estrelas?}
+		
+		A luz proveniente de uma estrela contém uma enorme quantidade de
+		informação.
+		
+		Ao atravessar as regiões mais externas da estrela, determinados
+		comprimentos de onda são absorvidos pelos átomos presentes.
+		
+		Quando essa luz é analisada num espetroscópio, observam-se linhas escuras
+		características.
+		
+		Comparando essas linhas com os espetros medidos em laboratório, os
+		cientistas conseguem identificar elementos presentes nas estrelas,
+		mesmo quando se encontram a muitos anos-luz de distância.
+		
+		A espetroscopia permite ainda estudar:
+		
+		\begin{itemize}
+			
+			\item composição química;
+			
+			\item temperatura;
+			
+			\item movimento das estrelas;
+			
+			\item atmosferas planetárias;
+			
+			\item matéria interestelar.
+			
+		\end{itemize}
+		
+	\end{stem}
+	
+	% ============================================================
+	
+	\begin{exercicio}{Interpretar o espetro de uma estrela}
+		
+		Foram identificadas no espetro de absorção de uma estrela linhas próximas
+		dos seguintes comprimentos de onda:
+		
+		\[
+		410\,\mathrm{nm},
+		\qquad
+		434\,\mathrm{nm},
+		\qquad
+		486\,\mathrm{nm},
+		\qquad
+		656\,\mathrm{nm}.
+		\]
+		
+		\begin{enumerate}[label=\alph*)]
+			
+			\item Compara estes valores com o espetro do hidrogénio apresentado
+			na ficha.
+			
+			\item Que conclusão pode ser retirada?
+			
+			\linhas{2}
+			
+			\item Explica por que motivo não é necessário recolher fisicamente uma
+			amostra da estrela para identificar o hidrogénio.
+			
+			\linhas{3}
+			
+		\end{enumerate}
+		
+	\end{exercicio}
+	
+	% ============================================================
+	% SÍNTESE
+	% ============================================================
+	
+	\section*{\textcolor{eublue}{9. Síntese final}}
+	
+	Completa o mapa conceptual.
+	
+	\begin{center}
+		
+		\begin{tikzpicture}[
+			node distance=2.0cm and 2.2cm,
+			caixa/.style={
+				draw,
+				rounded corners,
+				minimum width=3.6cm,
+				minimum height=1.1cm,
+				align=center
+			}
+			]
+			
+			\node[
+			caixa,
+			fill=eulightblue
+			] (atom)
+			{\textbf{Átomo}};
+			
+			\node[
+			caixa,
+			fill=eulightgreen,
+			below left=of atom
+			] (config)
+			{Distribuição\\eletrónica};
+			
+			\node[
+			caixa,
+			fill=eulightorange,
+			below right=of atom
+			] (energy)
+			{Níveis de\\energia};
+			
+			\node[
+			caixa,
+			fill=eugray,
+			below=of config
+			] (pes)
+			{Espetro\\fotoeletrónico};
+			
+			\node[
+			caixa,
+			fill=eugray,
+			below=of energy
+			] (spectrum)
+			{Espetro de emissão\\ou absorção};
+			
+			\node[
+			caixa,
+			fill=eulightblue,
+			below=of spectrum
+			] (photon)
+			{Fotões\\\(E=h\nu\)};
+			
+			\draw[-{Latex},thick]
+			(atom)--(config);
+			
+			\draw[-{Latex},thick]
+			(atom)--(energy);
+			
+			\draw[-{Latex},thick]
+			(config)--(pes);
+			
+			\draw[-{Latex},thick]
+			(energy)--(spectrum);
+			
+			\draw[-{Latex},thick]
+			(spectrum)--(photon);
+			
+		\end{tikzpicture}
+		
+	\end{center}
+	
+	% ============================================================
+	% AUTOAVALIAÇÃO
+	% ============================================================
+	
+	\section*{\textcolor{eublue}{10. Autoavaliação}}
+	
+	\begin{center}
+		
+		\small
+		
+		\begin{tabularx}{\textwidth}{
+				>{\raggedright\arraybackslash}X
+				c c c
+			}
+			
+			\toprule
+			
+			&
+			\textbf{Tenho dúvidas}
+			&
+			\textbf{Estou a aprender}
+			&
+			\textbf{Consigo sozinho}
+			\\
+			
+			\midrule
+			
+			Relaciono \(m\), \(n\), \(M\) e \(N\).
+			&
+			\(\square\)&\(\square\)&\(\square\)
+			\\[3mm]
+			
+			Calculo massas molares.
+			&
+			\(\square\)&\(\square\)&\(\square\)
+			\\[3mm]
+			
+			Interpreto espetros de emissão e absorção.
+			&
+			\(\square\)&\(\square\)&\(\square\)
+			\\[3mm]
+			
+			Calculo a energia de um fotão.
+			&
+			\(\square\)&\(\square\)&\(\square\)
+			\\[3mm]
+			
+			Determino a energia de um nível do átomo de hidrogénio.
+			&
+			\(\square\)&\(\square\)&\(\square\)
+			\\[3mm]
+			
+			Relaciono \(\Delta E\) com emissão e absorção.
+			&
+			\(\square\)&\(\square\)&\(\square\)
+			\\[3mm]
+			
+			Interpreto um espetro fotoeletrónico.
+			&
+			\(\square\)&\(\square\)&\(\square\)
+			\\[3mm]
+			
+			Escrevo distribuições eletrónicas.
+			&
+			\(\square\)&\(\square\)&\(\square\)
+			\\
+			
+			\bottomrule
+			
+		\end{tabularx}
+		
+	\end{center}
+	
+	\vfill
+	
+	% ============================================================
+	% RODAPÉ VISUAL
+	% ============================================================
+	
+	\begin{center}
+		
+		\begin{tikzpicture}
+			
+			\draw[eublue,very thick]
+			(0,0)--(13,0);
+			
+			\node[
+			text=eublue,
+			font=\Large\bfseries
+			]
+			at (6.5,0.55)
+			{EUFISICA exercícios};
+			
+			\node[
+			text=eudark,
+			font=\small
+			]
+			at (6.5,-0.45)
+			{Compreender a Física e a Química para compreender o mundo};
+			
+			\node[
+			text=eudark,
+			font=\small
+			]
+			at (6.5,-0.85)
+			{Prof. José Gonçalves};
+			
+		\end{tikzpicture}
+		
+	\end{center}
+	
+\end{document}

@@ -1,0 +1,2074 @@
+\documentclass[11pt,a4paper]{article}
+
+% ============================================================
+% PACOTES
+% ============================================================
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese]{babel}
+\usepackage{lmodern}
+
+\usepackage{
+	amsmath,
+	amssymb,
+	mathtools
+}
+
+\usepackage{siunitx}
+\sisetup{
+	output-decimal-marker={,},
+	per-mode=symbol
+}
+
+\usepackage{geometry}
+\geometry{
+	top=1.65cm,
+	bottom=1.7cm,
+	left=1.7cm,
+	right=1.7cm
+}
+
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{multicol}
+\usepackage{enumitem}
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+
+\pgfplotsset{compat=1.18}
+
+\usetikzlibrary{
+	arrows.meta,
+	positioning,
+	calc,
+	patterns,
+	decorations.pathreplacing,
+	shapes.geometric
+}
+
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{titlesec}
+
+% ============================================================
+% CORES
+% ============================================================
+
+\definecolor{eufblue}{RGB}{25,88,145}
+\definecolor{euflight}{RGB}{232,243,252}
+\definecolor{eufdark}{RGB}{25,48,70}
+\definecolor{euforange}{RGB}{230,135,45}
+\definecolor{eufgreen}{RGB}{48,137,91}
+\definecolor{eufred}{RGB}{190,60,55}
+\definecolor{softgray}{RGB}{246,247,249}
+
+% ============================================================
+% CONFIGURAÇÃO
+% ============================================================
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+
+\setlist[enumerate]{
+	itemsep=5pt,
+	topsep=5pt
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+
+\lhead{\textbf{\textcolor{eufblue}{EUFISICA}}}
+\rhead{\textbf{Física e Química A -- 11.º ano}}
+
+\cfoot{
+	\small
+	Prof. José Gonçalves
+	\hfill
+	Página \thepage\ de \pageref{LastPage}
+}
+
+\setlength{\headheight}{14pt}
+
+\titleformat{\section}
+{\large\bfseries\color{eufblue}}
+{}
+{0pt}
+{}
+
+% ============================================================
+% CAIXAS
+% ============================================================
+
+\newtcolorbox{objetivos}{
+	colback=euflight,
+	colframe=eufblue,
+	boxrule=0.9pt,
+	arc=2mm,
+	title=\textbf{Objetivos de aprendizagem},
+	fonttitle=\bfseries
+}
+
+\newtcolorbox{recorda}{
+	colback=softgray,
+	colframe=eufdark,
+	boxrule=0.7pt,
+	arc=2mm,
+	title=\textbf{Recorda},
+	fonttitle=\bfseries
+}
+
+\newtcolorbox{atencao}{
+	colback=euforange!8,
+	colframe=euforange,
+	boxrule=0.8pt,
+	arc=2mm,
+	title=\textbf{Atenção},
+	fonttitle=\bfseries
+}
+
+\newtcolorbox{desafio}{
+	colback=eufgreen!6,
+	colframe=eufgreen,
+	boxrule=0.8pt,
+	arc=2mm,
+	title=\textbf{Desafio},
+	fonttitle=\bfseries
+}
+
+\newcommand{\resposta}[1][0.8]{
+	\vspace{#1cm}
+}
+
+% ============================================================
+% DOCUMENTO
+% ============================================================
+
+\begin{document}
+	
+	% ============================================================
+	% CABEÇALHO
+	% ============================================================
+	
+	\begin{center}
+		
+		{\Huge\bfseries\textcolor{eufblue}{EUFISICA}}
+		
+		\vspace{1mm}
+		
+		{\Large\bfseries Ficha de Trabalho}
+		
+		\vspace{1mm}
+		
+		{\LARGE\bfseries Cinemática}
+		
+		\vspace{1mm}
+		
+		{\large
+			Gráficos posição--tempo, velocidade--tempo e aceleração
+		}
+		
+		\vspace{2mm}
+		
+		{\small Prof. José Gonçalves}
+		
+	\end{center}
+	
+	\vspace{2mm}
+	
+	\begin{tabularx}{\textwidth}{|X|X|}
+		\hline
+		\textbf{Nome:} & \textbf{N.º:} \\[0.45cm]
+		\hline
+		\textbf{Turma:} & \textbf{Data:} \\[0.45cm]
+		\hline
+	\end{tabularx}
+	
+	\vspace{4mm}
+	
+	% ============================================================
+	
+	\begin{objetivos}
+		
+		No final desta ficha deverás ser capaz de:
+		
+		\begin{itemize}
+			
+			\item interpretar gráficos posição--tempo, velocidade--tempo e
+			aceleração--tempo;
+			
+			\item determinar a velocidade a partir do declive de um gráfico
+			posição--tempo;
+			
+			\item determinar a aceleração a partir do declive de um gráfico
+			velocidade--tempo;
+			
+			\item determinar deslocamentos através da área sob um gráfico
+			velocidade--tempo;
+			
+			\item distinguir velocidade de rapidez;
+			
+			\item reconhecer situações de movimento uniforme e movimento uniformemente
+			variado;
+			
+			\item interpretar o sinal das componentes escalares da velocidade e da
+			aceleração;
+			
+			\item representar vetorialmente a velocidade e a aceleração;
+			
+			\item identificar situações em que um corpo aumenta ou diminui a sua
+			rapidez.
+			
+		\end{itemize}
+		
+	\end{objetivos}
+	
+	% ============================================================
+	\section{1. Conceitos fundamentais}
+	% ============================================================
+	
+	\begin{recorda}
+		
+		Num movimento retilíneo, escolhendo um eixo $Ox$:
+		
+		\[
+		v_x=\frac{\Delta x}{\Delta t}
+		\]
+		
+		e a aceleração média é dada por
+		
+		\[
+		a_x=\frac{\Delta v_x}{\Delta t}.
+		\]
+		
+		Num movimento uniformemente variado:
+		
+		\[
+		v_x=v_{0x}+a_x t
+		\]
+		
+		e
+		
+		\[
+		x=x_0+v_{0x}t+\frac{1}{2}a_xt^2.
+		\]
+		
+		Num gráfico posição--tempo, o \textbf{declive da tangente} corresponde à
+		velocidade instantânea.
+		
+		Num gráfico velocidade--tempo:
+		
+		\begin{itemize}
+			\item o declive corresponde à aceleração;
+			\item a área algébrica entre o gráfico e o eixo do tempo corresponde
+			ao deslocamento.
+		\end{itemize}
+		
+	\end{recorda}
+	
+	% ============================================================
+	\section{2. Interpretação de um gráfico posição--tempo}
+	% ============================================================
+	
+	O gráfico representa o movimento retilíneo de um automóvel.
+	
+	\begin{figure}[H]
+		\centering
+		
+		\begin{tikzpicture}
+			
+			\begin{axis}[
+				width=13cm,
+				height=7cm,
+				axis lines=left,
+				xlabel={Tempo, $t$/s},
+				ylabel={Posição, $x$/m},
+				xmin=0,
+				xmax=14,
+				ymin=-25,
+				ymax=65,
+				xtick={0,2,4,6,8,10,12,14},
+				ytick={-20,0,20,40,60},
+				grid=both,
+				major grid style={gray!30},
+				]
+				
+				\addplot[
+				very thick,
+				eufblue
+				]
+				coordinates{
+					(0,0)
+					(4,40)
+					(7,40)
+					(11,-20)
+					(13,0)
+				};
+				
+				\addplot[
+				only marks,
+				mark=*,
+				mark size=2.5pt,
+				eufblue
+				]
+				coordinates{
+					(0,0)
+					(4,40)
+					(7,40)
+					(11,-20)
+					(13,0)
+				};
+				
+			\end{axis}
+			
+		\end{tikzpicture}
+		
+		\caption{Posição do automóvel em função do tempo.}
+		
+	\end{figure}
+	
+	\begin{enumerate}[label=\textbf{\arabic*.}]
+		
+		\item Indica a posição do automóvel nos instantes:
+		
+		\begin{enumerate}[label=\alph*)]
+			\item $t=0$;
+			\item $t=\SI{4}{s}$;
+			\item $t=\SI{7}{s}$;
+			\item $t=\SI{11}{s}$.
+		\end{enumerate}
+		
+		\resposta[0.8]
+		
+		\item Entre que instantes o automóvel esteve em repouso?
+		
+		\resposta[0.6]
+		
+		\item Em que intervalos de tempo o automóvel se deslocou no sentido positivo
+		do eixo $Ox$?
+		
+		\resposta[0.7]
+		
+		\item Em que intervalo de tempo se deslocou no sentido negativo do eixo
+		$Ox$?
+		
+		\resposta[0.7]
+		
+		\item Determina a componente escalar da velocidade entre
+		$t=0$ e $t=\SI{4}{s}$.
+		
+		\resposta[1.0]
+		
+		\item Determina a componente escalar da velocidade entre
+		$t=\SI{7}{s}$ e $t=\SI{11}{s}$.
+		
+		\resposta[1.0]
+		
+		\item Explica o significado físico do sinal negativo do resultado anterior.
+		
+		\resposta[1.0]
+		
+		\item Determina a velocidade entre $t=\SI{11}{s}$ e $t=\SI{13}{s}$.
+		
+		\resposta[1.0]
+		
+		\item Em qual dos intervalos o automóvel apresentou maior rapidez?
+		
+		Justifica quantitativamente.
+		
+		\resposta[1.2]
+		
+		\item Determina:
+		
+		\begin{enumerate}[label=\alph*)]
+			\item o deslocamento total;
+			\item a distância total percorrida.
+		\end{enumerate}
+		
+		\resposta[1.4]
+		
+		\item Explica por que razão o deslocamento e a distância percorrida não são
+		iguais neste movimento.
+		
+		\resposta[1.0]
+		
+	\end{enumerate}
+	
+	% ============================================================
+	\section{3. Declive e velocidade}
+	% ============================================================
+	
+	Três móveis, A, B e C, deslocam-se ao longo da mesma direção.
+	
+	\begin{figure}[H]
+		\centering
+		
+		\begin{tikzpicture}
+			
+			\begin{axis}[
+				width=12cm,
+				height=7cm,
+				axis lines=left,
+				xlabel={$t$/s},
+				ylabel={$x$/m},
+				xmin=0,
+				xmax=8,
+				ymin=-30,
+				ymax=70,
+				xtick={0,1,2,3,4,5,6,7,8},
+				ytick={-20,0,20,40,60},
+				grid=both,
+				major grid style={gray!30},
+				legend style={
+					at={(0.03,0.97)},
+					anchor=north west
+				}
+				]
+				
+				\addplot[very thick,eufblue]
+				coordinates{(0,0)(6,60)};
+				\addlegendentry{A}
+				
+				\addplot[very thick,euforange]
+				coordinates{(0,20)(6,50)};
+				\addlegendentry{B}
+				
+				\addplot[very thick,eufred]
+				coordinates{(0,40)(6,-20)};
+				\addlegendentry{C}
+				
+			\end{axis}
+			
+		\end{tikzpicture}
+		
+		\caption{Gráficos posição--tempo dos móveis A, B e C.}
+		
+	\end{figure}
+	
+	\begin{enumerate}[label=\textbf{\arabic*.},resume]
+		
+		\item Calcula a componente escalar da velocidade de cada móvel.
+		
+		\resposta[1.5]
+		
+		\item Qual dos móveis apresenta maior rapidez?
+		
+		\resposta[0.7]
+		
+		\item Qual dos móveis se desloca no sentido negativo do eixo $Ox$?
+		
+		\resposta[0.7]
+		
+		\item Explica a relação entre:
+		
+		\begin{enumerate}[label=\alph*)]
+			\item o sinal do declive e o sentido do movimento;
+			\item o valor absoluto do declive e a rapidez.
+		\end{enumerate}
+		
+		\resposta[1.3]
+		
+	\end{enumerate}
+	
+	% ============================================================
+	\section{4. Da posição à velocidade}
+	% ============================================================
+	
+	A posição de um carrinho é descrita pela expressão
+	
+	\[
+	x(t)=4+3t,
+	\]
+	
+	em unidades SI.
+	
+	\begin{enumerate}[label=\textbf{\arabic*.},resume]
+		
+		\item Qual é a posição inicial do carrinho?
+		
+		\resposta[0.5]
+		
+		\item Qual é a componente escalar da velocidade?
+		
+		\resposta[0.7]
+		
+		\item Em que posição se encontra o carrinho no instante
+		$t=\SI{8}{s}$?
+		
+		\resposta[0.9]
+		
+		\item Representa, no referencial seguinte, o respetivo gráfico posição--tempo
+		para $0\leq t\leq\SI{8}{s}$.
+		
+		\begin{center}
+			
+			\begin{tikzpicture}
+				
+				\begin{axis}[
+					width=12cm,
+					height=7cm,
+					axis lines=left,
+					xlabel={$t$/s},
+					ylabel={$x$/m},
+					xmin=0,
+					xmax=9,
+					ymin=0,
+					ymax=32,
+					xtick={0,1,2,3,4,5,6,7,8},
+					ytick={0,4,8,12,16,20,24,28,32},
+					grid=both,
+					major grid style={gray!30}
+					]
+					
+				\end{axis}
+				
+			\end{tikzpicture}
+			
+		\end{center}
+		
+		\item Representa qualitativamente o gráfico velocidade--tempo correspondente.
+		
+		\begin{center}
+			
+			\begin{tikzpicture}
+				
+				\begin{axis}[
+					width=12cm,
+					height=5cm,
+					axis lines=left,
+					xlabel={$t$/s},
+					ylabel={$v_x$/m\,s$^{-1}$},
+					xmin=0,
+					xmax=9,
+					ymin=-1,
+					ymax=5,
+					xtick={0,1,2,3,4,5,6,7,8},
+					ytick={-1,0,1,2,3,4,5},
+					grid=both,
+					major grid style={gray!30}
+					]
+					
+				\end{axis}
+				
+			\end{tikzpicture}
+			
+		\end{center}
+		
+	\end{enumerate}
+	
+	% ============================================================
+	\section{5. Gráfico velocidade--tempo}
+	% ============================================================
+	
+	O gráfico representa a componente escalar da velocidade de um automóvel.
+	
+	\begin{figure}[H]
+		\centering
+		
+		\begin{tikzpicture}
+			
+			\begin{axis}[
+				width=13cm,
+				height=7cm,
+				axis lines=middle,
+				xlabel={$t$/s},
+				ylabel={$v_x$/m\,s$^{-1}$},
+				xmin=0,
+				xmax=14,
+				ymin=-12,
+				ymax=22,
+				xtick={0,2,4,6,8,10,12,14},
+				ytick={-10,-5,0,5,10,15,20},
+				grid=both,
+				major grid style={gray!30}
+				]
+				
+				\addplot[
+				very thick,
+				eufblue
+				]
+				coordinates{
+					(0,0)
+					(4,20)
+					(7,20)
+					(11,0)
+					(13,-10)
+				};
+				
+				\addplot[
+				only marks,
+				mark=*,
+				mark size=2.5pt,
+				eufblue
+				]
+				coordinates{
+					(0,0)
+					(4,20)
+					(7,20)
+					(11,0)
+					(13,-10)
+				};
+				
+			\end{axis}
+			
+		\end{tikzpicture}
+		
+		\caption{Componente escalar da velocidade em função do tempo.}
+		
+	\end{figure}
+	
+	\begin{enumerate}[label=\textbf{\arabic*.},resume]
+		
+		\item Qual é a velocidade do automóvel no instante $t=\SI{4}{s}$?
+		
+		\resposta[0.5]
+		
+		\item Entre que instantes o movimento é uniforme?
+		
+		\resposta[0.7]
+		
+		\item Entre que instantes a rapidez está a aumentar?
+		
+		\resposta[0.8]
+		
+		\item Entre que instantes a rapidez está a diminuir?
+		
+		\resposta[0.8]
+		
+		\item Em que instante o automóvel inverte o sentido do movimento?
+		
+		\resposta[0.7]
+		
+		\item Determina a aceleração entre $0$ e \SI{4}{s}.
+		
+		\resposta[1.1]
+		
+		\item Determina a aceleração entre \SI{4}{s} e \SI{7}{s}.
+		
+		\resposta[0.9]
+		
+		\item Determina a aceleração entre \SI{7}{s} e \SI{11}{s}.
+		
+		\resposta[1.1]
+		
+		\item Determina a aceleração entre \SI{11}{s} e \SI{13}{s}.
+		
+		\resposta[1.0]
+		
+		\item Determina o deslocamento do automóvel entre:
+		
+		\begin{enumerate}[label=\alph*)]
+			
+			\item $0$ e \SI{4}{s};
+			
+			\item \SI{4}{s} e \SI{7}{s};
+			
+			\item \SI{7}{s} e \SI{11}{s};
+			
+			\item \SI{11}{s} e \SI{13}{s}.
+			
+		\end{enumerate}
+		
+		\resposta[2.0]
+		
+		\item Determina o deslocamento total entre $t=0$ e $t=\SI{13}{s}$.
+		
+		\resposta[1.0]
+		
+		\item Determina a distância total percorrida.
+		
+		\resposta[1.0]
+		
+	\end{enumerate}
+	
+	% ============================================================
+	\section{6. O significado da área num gráfico $v_x(t)$}
+	% ============================================================
+	
+	\begin{recorda}
+		
+		No gráfico velocidade--tempo,
+		
+		\[
+		\Delta x=\text{área algébrica entre a linha do gráfico e o eixo do tempo}.
+		\]
+		
+		Áreas localizadas acima do eixo do tempo correspondem a deslocamentos
+		positivos.
+		
+		Áreas abaixo do eixo do tempo correspondem a deslocamentos negativos.
+		
+	\end{recorda}
+	
+	Considere o gráfico seguinte.
+	
+	\begin{center}
+		
+		\begin{tikzpicture}
+			
+			\begin{axis}[
+				width=12cm,
+				height=6.5cm,
+				axis lines=middle,
+				xlabel={$t$/s},
+				ylabel={$v_x$/m\,s$^{-1}$},
+				xmin=0,
+				xmax=10,
+				ymin=-8,
+				ymax=12,
+				xtick={0,2,4,6,8,10},
+				ytick={-6,-4,-2,0,2,4,6,8,10},
+				grid=both,
+				major grid style={gray!30}
+				]
+				
+				\addplot[
+				very thick,
+				euforange
+				]
+				coordinates{
+					(0,10)
+					(4,10)
+					(6,0)
+					(8,-6)
+					(10,-6)
+				};
+				
+			\end{axis}
+			
+		\end{tikzpicture}
+		
+	\end{center}
+	
+	\begin{enumerate}[label=\textbf{\arabic*.},resume]
+		
+		\item Calcula o deslocamento entre $0$ e \SI{4}{s}.
+		
+		\resposta[0.9]
+		
+		\item Calcula o deslocamento entre \SI{4}{s} e \SI{6}{s}.
+		
+		\resposta[0.9]
+		
+		\item Calcula o deslocamento entre \SI{6}{s} e \SI{8}{s}.
+		
+		\resposta[0.9]
+		
+		\item Calcula o deslocamento entre \SI{8}{s} e \SI{10}{s}.
+		
+		\resposta[0.9]
+		
+		\item Determina o deslocamento total.
+		
+		\resposta[1.0]
+		
+		\item Determina a distância total percorrida.
+		
+		\resposta[1.0]
+		
+		\item Explica a diferença entre os resultados das duas questões anteriores.
+		
+		\resposta[1.0]
+		
+	\end{enumerate}
+	
+	% ============================================================
+	\section{7. Aceleração}
+	% ============================================================
+	
+	Um automóvel aumenta a sua velocidade de
+	\SI{8}{m.s^{-1}} para \SI{20}{m.s^{-1}} durante \SI{6}{s}.
+	
+	\begin{enumerate}[label=\textbf{\arabic*.},resume]
+		
+		\item Calcula a aceleração média.
+		
+		\resposta[1.0]
+		
+		\item Interpreta fisicamente o resultado obtido.
+		
+		\resposta[1.0]
+		
+		\item Admitindo aceleração constante, determina a velocidade do automóvel
+		\SI{3}{s} depois do início do intervalo considerado.
+		
+		\resposta[1.0]
+		
+	\end{enumerate}
+	
+	% ============================================================
+	\subsection*{7.1. Uma travagem}
+	% ============================================================
+	
+	Um automóvel desloca-se a \SI{25}{m.s^{-1}} quando o condutor inicia uma
+	travagem.
+	
+	Ao fim de \SI{5}{s}, o automóvel encontra-se em repouso.
+	
+	\begin{enumerate}[label=\textbf{\arabic*.},resume]
+		
+		\item Determina a aceleração média durante a travagem.
+		
+		\resposta[1.0]
+		
+		\item Por que razão a aceleração apresenta sinal negativo?
+		
+		\resposta[0.9]
+		
+		\item Admitindo aceleração constante, representa qualitativamente:
+		
+		\begin{enumerate}[label=\alph*)]
+			
+			\item o gráfico velocidade--tempo;
+			
+			\item o gráfico aceleração--tempo.
+			
+		\end{enumerate}
+		
+		\begin{center}
+			
+			\begin{minipage}{0.48\textwidth}
+				
+				\begin{tikzpicture}
+					
+					\begin{axis}[
+						width=\linewidth,
+						height=5.5cm,
+						axis lines=left,
+						xlabel={$t$},
+						ylabel={$v_x$},
+						xmin=0,
+						xmax=6,
+						ymin=0,
+						ymax=30,
+						grid=both,
+						major grid style={gray!30}
+						]
+						
+					\end{axis}
+					
+				\end{tikzpicture}
+				
+			\end{minipage}
+			\hfill
+			\begin{minipage}{0.48\textwidth}
+				
+				\begin{tikzpicture}
+					
+					\begin{axis}[
+						width=\linewidth,
+						height=5.5cm,
+						axis lines=middle,
+						xlabel={$t$},
+						ylabel={$a_x$},
+						xmin=0,
+						xmax=6,
+						ymin=-8,
+						ymax=4,
+						grid=both,
+						major grid style={gray!30}
+						]
+						
+					\end{axis}
+					
+				\end{tikzpicture}
+				
+			\end{minipage}
+			
+		\end{center}
+		
+		\item Determina a distância percorrida durante a travagem através da área do
+		gráfico velocidade--tempo.
+		
+		\resposta[1.2]
+		
+	\end{enumerate}
+	
+	% ============================================================
+	\section{8. Velocidade e aceleração como vetores}
+	% ============================================================
+	
+	\begin{recorda}
+		
+		A velocidade e a aceleração são \textbf{grandezas vetoriais}.
+		
+		Num movimento retilíneo:
+		
+		\begin{itemize}
+			
+			\item se $\vec{v}$ e $\vec{a}$ tiverem o mesmo sentido, a rapidez aumenta;
+			
+			\item se $\vec{v}$ e $\vec{a}$ tiverem sentidos opostos, a rapidez diminui.
+			
+		\end{itemize}
+		
+	\end{recorda}
+	
+	Analisa as quatro situações seguintes.
+	
+	% ------------------------------------------------------------
+	
+	\begin{center}
+		
+		\begin{tikzpicture}[>=Stealth]
+			
+			% A
+			\node[draw,rounded corners,minimum width=6.3cm,minimum height=2.5cm]
+			at (0,0) {};
+			
+			\node at (-2.5,0.85) {\textbf{Situação A}};
+			
+			\fill (-1.5,0) circle (0.12);
+			
+			\draw[->,very thick,eufblue]
+			(-1.5,0) -- (0.3,0)
+			node[midway,above] {$\vec v$};
+			
+			\draw[->,very thick,eufred]
+			(-1.5,-0.55) -- (-0.3,-0.55)
+			node[midway,below] {$\vec a$};
+			
+			% B
+			\node[draw,rounded corners,minimum width=6.3cm,minimum height=2.5cm]
+			at (7,0) {};
+			
+			\node at (4.5,0.85) {\textbf{Situação B}};
+			
+			\fill (5.5,0) circle (0.12);
+			
+			\draw[->,very thick,eufblue]
+			(5.5,0) -- (7.3,0)
+			node[midway,above] {$\vec v$};
+			
+			\draw[->,very thick,eufred]
+			(5.5,-0.55) -- (4.3,-0.55)
+			node[midway,below] {$\vec a$};
+			
+			% C
+			\node[draw,rounded corners,minimum width=6.3cm,minimum height=2.5cm]
+			at (0,-3.2) {};
+			
+			\node at (-2.5,-2.35) {\textbf{Situação C}};
+			
+			\fill (0.7,-3.2) circle (0.12);
+			
+			\draw[->,very thick,eufblue]
+			(0.7,-3.2) -- (-1.1,-3.2)
+			node[midway,above] {$\vec v$};
+			
+			\draw[->,very thick,eufred]
+			(0.7,-3.75) -- (-0.5,-3.75)
+			node[midway,below] {$\vec a$};
+			
+			% D
+			\node[draw,rounded corners,minimum width=6.3cm,minimum height=2.5cm]
+			at (7,-3.2) {};
+			
+			\node at (4.5,-2.35) {\textbf{Situação D}};
+			
+			\fill (7.8,-3.2) circle (0.12);
+			
+			\draw[->,very thick,eufblue]
+			(7.8,-3.2) -- (6.0,-3.2)
+			node[midway,above] {$\vec v$};
+			
+			\draw[->,very thick,eufred]
+			(7.8,-3.75) -- (9.0,-3.75)
+			node[midway,below] {$\vec a$};
+			
+		\end{tikzpicture}
+		
+	\end{center}
+	
+	\begin{enumerate}[label=\textbf{\arabic*.},resume]
+		
+		\item Em quais situações a rapidez está a aumentar?
+		
+		\resposta[0.7]
+		
+		\item Em quais situações a rapidez está a diminuir?
+		
+		\resposta[0.7]
+		
+		\item Na situação A, admitindo o eixo $Ox$ orientado para a direita, indica o
+		sinal de:
+		
+		\begin{enumerate}[label=\alph*)]
+			\item $v_x$;
+			\item $a_x$.
+		\end{enumerate}
+		
+		\resposta[0.7]
+		
+		\item Repete a questão anterior para as situações B, C e D.
+		
+		\resposta[1.2]
+		
+		\item Completa a tabela.
+		
+		\begin{center}
+			
+			\renewcommand{\arraystretch}{1.45}
+			
+			\begin{tabular}{c|c|c|c}
+				
+				\toprule
+				
+				\textbf{Situação} &
+				\textbf{Sinal de $v_x$} &
+				\textbf{Sinal de $a_x$} &
+				\textbf{Rapidez}
+				
+				\\
+				
+				\midrule
+				
+				A & & & \\[0.35cm]
+				
+				B & & & \\[0.35cm]
+				
+				C & & & \\[0.35cm]
+				
+				D & & & \\[0.35cm]
+				
+				\bottomrule
+				
+			\end{tabular}
+			
+		\end{center}
+		
+	\end{enumerate}
+	
+	% ============================================================
+	\section{9. Aceleração positiva nem sempre significa aumento da rapidez}
+	% ============================================================
+	
+	\begin{atencao}
+		
+		Uma aceleração positiva não significa necessariamente que o corpo esteja a
+		aumentar a sua rapidez.
+		
+		O efeito da aceleração depende simultaneamente dos sinais de $v_x$ e
+		$a_x$.
+		
+	\end{atencao}
+	
+	Considere quatro automóveis com os seguintes valores instantâneos.
+	
+	\begin{center}
+		
+		\renewcommand{\arraystretch}{1.35}
+		
+		\begin{tabular}{c|c|c}
+			
+			\toprule
+			
+			\textbf{Automóvel}
+			&
+			$v_x$/\si{m.s^{-1}}
+			&
+			$a_x$/\si{m.s^{-2}}
+			
+			\\
+			
+			\midrule
+			
+			A & $+12$ & $+3$\\
+			
+			B & $+12$ & $-3$\\
+			
+			C & $-12$ & $+3$\\
+			
+			D & $-12$ & $-3$\\
+			
+			\bottomrule
+			
+		\end{tabular}
+		
+	\end{center}
+	
+	\begin{enumerate}[label=\textbf{\arabic*.},resume]
+		
+		\item Em quais casos a rapidez está a aumentar?
+		
+		\resposta[0.7]
+		
+		\item Em quais casos a rapidez está a diminuir?
+		
+		\resposta[0.7]
+		
+		\item Indica o sentido do movimento de cada automóvel.
+		
+		\resposta[0.8]
+		
+		\item Explica por que razão o automóvel C diminui a rapidez apesar de
+		$a_x>0$.
+		
+		\resposta[1.0]
+		
+	\end{enumerate}
+	
+	% ============================================================
+	\section{10. Movimento uniformemente acelerado}
+	% ============================================================
+	
+	Um carrinho move-se numa trajetória retilínea segundo a equação:
+	
+	\[
+	x(t)=2+4t+t^2
+	\]
+	
+	em unidades SI.
+	
+	\begin{enumerate}[label=\textbf{\arabic*.},resume]
+		
+		\item Comparando com
+		
+		\[
+		x=x_0+v_{0x}t+\frac{1}{2}a_xt^2,
+		\]
+		
+		determina:
+		
+		\begin{enumerate}[label=\alph*)]
+			
+			\item $x_0$;
+			
+			\item $v_{0x}$;
+			
+			\item $a_x$.
+			
+		\end{enumerate}
+		
+		\resposta[1.2]
+		
+		\item Determina a posição do carrinho no instante $t=\SI{4}{s}$.
+		
+		\resposta[0.9]
+		
+		\item Determina a velocidade no instante $t=\SI{4}{s}$.
+		
+		\resposta[1.0]
+		
+		\item Determina o deslocamento entre $t=0$ e $t=\SI{4}{s}$.
+		
+		\resposta[1.0]
+		
+		\item Escreve a equação $v_x(t)$.
+		
+		\resposta[0.8]
+		
+		\item Representa qualitativamente os três gráficos $x(t)$, $v_x(t)$ e
+		$a_x(t)$.
+		
+		\begin{center}
+			
+			\begin{minipage}{0.32\textwidth}
+				
+				\centering
+				\textbf{$x(t)$}
+				
+				\begin{tikzpicture}
+					
+					\begin{axis}[
+						width=\linewidth,
+						height=5cm,
+						axis lines=left,
+						xlabel={$t$},
+						ylabel={$x$},
+						xmin=0,
+						xmax=5,
+						ymin=0,
+						ymax=45,
+						grid=both
+						]
+						
+					\end{axis}
+					
+				\end{tikzpicture}
+				
+			\end{minipage}
+			\hfill
+			\begin{minipage}{0.32\textwidth}
+				
+				\centering
+				\textbf{$v_x(t)$}
+				
+				\begin{tikzpicture}
+					
+					\begin{axis}[
+						width=\linewidth,
+						height=5cm,
+						axis lines=left,
+						xlabel={$t$},
+						ylabel={$v_x$},
+						xmin=0,
+						xmax=5,
+						ymin=0,
+						ymax=16,
+						grid=both
+						]
+						
+					\end{axis}
+					
+				\end{tikzpicture}
+				
+			\end{minipage}
+			\hfill
+			\begin{minipage}{0.32\textwidth}
+				
+				\centering
+				\textbf{$a_x(t)$}
+				
+				\begin{tikzpicture}
+					
+					\begin{axis}[
+						width=\linewidth,
+						height=5cm,
+						axis lines=left,
+						xlabel={$t$},
+						ylabel={$a_x$},
+						xmin=0,
+						xmax=5,
+						ymin=0,
+						ymax=4,
+						grid=both
+						]
+						
+					\end{axis}
+					
+				\end{tikzpicture}
+				
+			\end{minipage}
+			
+		\end{center}
+		
+	\end{enumerate}
+	
+	% ============================================================
+	\section{11. Relacionar os três gráficos}
+	% ============================================================
+	
+	Um corpo apresenta o seguinte gráfico velocidade--tempo.
+	
+	\begin{figure}[H]
+		\centering
+		
+		\begin{tikzpicture}
+			
+			\begin{axis}[
+				width=12cm,
+				height=6cm,
+				axis lines=middle,
+				xlabel={$t$/s},
+				ylabel={$v_x$/m\,s$^{-1}$},
+				xmin=0,
+				xmax=10,
+				ymin=-8,
+				ymax=14,
+				xtick={0,2,4,6,8,10},
+				ytick={-6,-4,-2,0,2,4,6,8,10,12},
+				grid=both,
+				major grid style={gray!30}
+				]
+				
+				\addplot[
+				very thick,
+				eufblue
+				]
+				coordinates{
+					(0,4)
+					(4,12)
+					(6,12)
+					(10,-4)
+				};
+				
+			\end{axis}
+			
+		\end{tikzpicture}
+		
+	\end{figure}
+	
+	\begin{enumerate}[label=\textbf{\arabic*.},resume]
+		
+		\item Determina a aceleração entre $0$ e \SI{4}{s}.
+		
+		\resposta[0.9]
+		
+		\item Qual é a aceleração entre \SI{4}{s} e \SI{6}{s}?
+		
+		\resposta[0.7]
+		
+		\item Determina a aceleração entre \SI{6}{s} e \SI{10}{s}.
+		
+		\resposta[0.9]
+		
+		\item Em que instante, entre \SI{6}{s} e \SI{10}{s}, o corpo fica
+		momentaneamente em repouso?
+		
+		\resposta[1.0]
+		
+		\item Em que intervalos:
+		
+		\begin{enumerate}[label=\alph*)]
+			
+			\item aumenta a rapidez;
+			
+			\item diminui a rapidez;
+			
+			\item apresenta rapidez constante?
+			
+		\end{enumerate}
+		
+		\resposta[1.4]
+		
+		\item Representa o gráfico aceleração--tempo correspondente.
+		
+		\begin{center}
+			
+			\begin{tikzpicture}
+				
+				\begin{axis}[
+					width=12cm,
+					height=6cm,
+					axis lines=middle,
+					xlabel={$t$/s},
+					ylabel={$a_x$/m\,s$^{-2}$},
+					xmin=0,
+					xmax=10,
+					ymin=-6,
+					ymax=4,
+					xtick={0,2,4,6,8,10},
+					grid=both,
+					major grid style={gray!30}
+					]
+					
+				\end{axis}
+				
+			\end{tikzpicture}
+			
+		\end{center}
+		
+	\end{enumerate}
+	
+	% ============================================================
+	\section{12. Da tabela para os gráficos}
+	% ============================================================
+	
+	Num laboratório foi registada a velocidade de um carrinho.
+	
+	\begin{center}
+		
+		\renewcommand{\arraystretch}{1.35}
+		
+		\begin{tabular}{c|ccccccc}
+			
+			\toprule
+			
+			$t$/s & 0 & 1 & 2 & 3 & 4 & 5 & 6\\
+			
+			\midrule
+			
+			$v_x$/\si{m.s^{-1}}
+			&
+			2 & 4 & 6 & 8 & 10 & 12 & 14
+			
+			\\
+			
+			\bottomrule
+			
+		\end{tabular}
+		
+	\end{center}
+	
+	\begin{enumerate}[label=\textbf{\arabic*.},resume]
+		
+		\item Representa o gráfico velocidade--tempo.
+		
+		\begin{center}
+			
+			\begin{tikzpicture}
+				
+				\begin{axis}[
+					width=12cm,
+					height=6cm,
+					axis lines=left,
+					xlabel={$t$/s},
+					ylabel={$v_x$/m\,s$^{-1}$},
+					xmin=0,
+					xmax=7,
+					ymin=0,
+					ymax=16,
+					xtick={0,1,2,3,4,5,6},
+					ytick={0,2,4,6,8,10,12,14,16},
+					grid=both,
+					major grid style={gray!30}
+					]
+					
+				\end{axis}
+				
+			\end{tikzpicture}
+			
+		\end{center}
+		
+		\item Determina a aceleração do carrinho.
+		
+		\resposta[1.0]
+		
+		\item Escreve a equação da velocidade em função do tempo.
+		
+		\resposta[0.9]
+		
+		\item Determina o deslocamento entre $t=0$ e $t=\SI{6}{s}$ utilizando a área
+		do gráfico.
+		
+		\resposta[1.3]
+		
+		\item Admitindo que $x_0=\SI{5}{m}$, determina a posição no instante
+		$t=\SI{6}{s}$.
+		
+		\resposta[1.0]
+		
+	\end{enumerate}
+	
+	% ============================================================
+	\section{13. Situação real -- partida de um automóvel}
+	% ============================================================
+	
+	\begin{tcolorbox}[
+		colback=euflight,
+		colframe=eufblue,
+		title=\textbf{Movimento num semáforo}
+		]
+		
+		Um automóvel encontra-se parado num semáforo. Quando a luz passa a verde,
+		inicia o movimento numa estrada retilínea.
+		
+		Durante os primeiros \SI{6}{s}, a sua aceleração é aproximadamente
+		constante e igual a \SI{2.5}{m.s^{-2}}.
+		
+		Depois mantém a velocidade atingida durante \SI{10}{s}.
+		
+		Finalmente, o condutor trava uniformemente durante \SI{5}{s}, até o
+		automóvel parar.
+		
+	\end{tcolorbox}
+	
+	\begin{enumerate}[label=\textbf{\arabic*.},resume]
+		
+		\item Qual é a velocidade ao fim dos primeiros \SI{6}{s}?
+		
+		\resposta[1.0]
+		
+		\item Representa qualitativamente o gráfico velocidade--tempo de todo o
+		movimento.
+		
+		\begin{center}
+			
+			\begin{tikzpicture}
+				
+				\begin{axis}[
+					width=13cm,
+					height=7cm,
+					axis lines=left,
+					xlabel={$t$/s},
+					ylabel={$v_x$/m\,s$^{-1}$},
+					xmin=0,
+					xmax=23,
+					ymin=0,
+					ymax=18,
+					xtick={0,2,4,6,8,10,12,14,16,18,20,21},
+					ytick={0,3,6,9,12,15,18},
+					grid=both,
+					major grid style={gray!30}
+					]
+					
+				\end{axis}
+				
+			\end{tikzpicture}
+			
+		\end{center}
+		
+		\item Determina a aceleração durante a travagem.
+		
+		\resposta[1.0]
+		
+		\item Determina a distância percorrida durante os primeiros \SI{6}{s}.
+		
+		\resposta[1.1]
+		
+		\item Determina a distância percorrida durante os \SI{10}{s} de movimento
+		uniforme.
+		
+		\resposta[1.1]
+		
+		\item Determina a distância percorrida durante a travagem.
+		
+		\resposta[1.1]
+		
+		\item Determina a distância total percorrida.
+		
+		\resposta[1.0]
+		
+		\item Calcula a velocidade média durante todo o percurso.
+		
+		\resposta[1.1]
+		
+	\end{enumerate}
+	
+	% ============================================================
+	\section{14. Problema de síntese}
+	% ============================================================
+	
+	\begin{desafio}
+		
+		Um móvel desloca-se numa trajetória retilínea.
+		
+		No instante $t=0$ encontra-se na posição $x_0=\SI{10}{m}$ e apresenta
+		velocidade
+		
+		\[
+		v_{0x}=-\SI{8}{m.s^{-1}}.
+		\]
+		
+		A aceleração é constante e igual a
+		
+		\[
+		a_x=+\SI{2}{m.s^{-2}}.
+		\]
+		
+	\end{desafio}
+	
+	\begin{enumerate}[label=\textbf{\arabic*.},resume]
+		
+		\item Representa os vetores velocidade e aceleração no instante inicial,
+		admitindo o eixo $Ox$ orientado para a direita.
+		
+		\begin{center}
+			
+			\begin{tikzpicture}[>=Stealth]
+				
+				\draw[->,thick] (-5,0)--(5,0)
+				node[right] {$+x$};
+				
+				\fill (0,0) circle (0.12);
+				
+				\node[below] at (0,-0.2) {móvel};
+				
+			\end{tikzpicture}
+			
+		\end{center}
+		
+		\item No instante inicial, a rapidez está a aumentar ou a diminuir?
+		
+		Justifica.
+		
+		\resposta[1.0]
+		
+		\item Escreve a equação da velocidade:
+		
+		\[
+		v_x(t)=\underline{\hspace{6cm}}
+		\]
+		
+		\item Em que instante o móvel fica momentaneamente em repouso?
+		
+		\resposta[1.0]
+		
+		\item Que alteração ocorre no sentido do movimento nesse instante?
+		
+		\resposta[0.9]
+		
+		\item Determina a posição nesse instante.
+		
+		\resposta[1.2]
+		
+		\item Escreve a equação da posição em função do tempo.
+		
+		\resposta[1.0]
+		
+		\item Determina a posição no instante $t=\SI{8}{s}$.
+		
+		\resposta[1.0]
+		
+		\item Determina o deslocamento entre $t=0$ e $t=\SI{8}{s}$.
+		
+		\resposta[1.0]
+		
+		\item Determina a distância total percorrida durante esses \SI{8}{s}.
+		
+		\resposta[1.3]
+		
+		\item Esboça o gráfico velocidade--tempo entre $0$ e \SI{8}{s}.
+		
+		\begin{center}
+			
+			\begin{tikzpicture}
+				
+				\begin{axis}[
+					width=12cm,
+					height=6cm,
+					axis lines=middle,
+					xlabel={$t$/s},
+					ylabel={$v_x$/m\,s$^{-1}$},
+					xmin=0,
+					xmax=9,
+					ymin=-10,
+					ymax=10,
+					xtick={0,1,2,3,4,5,6,7,8},
+					ytick={-10,-8,-6,-4,-2,0,2,4,6,8,10},
+					grid=both,
+					major grid style={gray!30}
+					]
+					
+				\end{axis}
+				
+			\end{tikzpicture}
+			
+		\end{center}
+		
+		\item Esboça o gráfico aceleração--tempo.
+		
+		\begin{center}
+			
+			\begin{tikzpicture}
+				
+				\begin{axis}[
+					width=12cm,
+					height=5.5cm,
+					axis lines=middle,
+					xlabel={$t$/s},
+					ylabel={$a_x$/m\,s$^{-2}$},
+					xmin=0,
+					xmax=9,
+					ymin=-3,
+					ymax=4,
+					xtick={0,1,2,3,4,5,6,7,8},
+					ytick={-3,-2,-1,0,1,2,3,4},
+					grid=both,
+					major grid style={gray!30}
+					]
+					
+				\end{axis}
+				
+			\end{tikzpicture}
+			
+		\end{center}
+		
+		\item Indica qualitativamente a forma do gráfico posição--tempo.
+		
+		É uma reta ou uma curva? Justifica.
+		
+		\resposta[1.1]
+		
+	\end{enumerate}
+	
+	% ============================================================
+	\section{15. Questões de escolha múltipla}
+	% ============================================================
+	
+	\begin{enumerate}[label=\textbf{\arabic*.},resume]
+		
+		\item Num gráfico posição--tempo, uma reta com declive negativo significa que
+		o corpo:
+		
+		\begin{enumerate}[label=\Alph*.]
+			
+			\item está necessariamente a diminuir a rapidez;
+			
+			\item está em repouso;
+			
+			\item desloca-se no sentido negativo do referencial;
+			
+			\item apresenta aceleração negativa.
+			
+		\end{enumerate}
+		
+		\item Num gráfico velocidade--tempo, uma linha horizontal acima do eixo do
+		tempo representa:
+		
+		\begin{enumerate}[label=\Alph*.]
+			
+			\item velocidade positiva constante;
+			
+			\item aceleração positiva constante;
+			
+			\item repouso;
+			
+			\item velocidade crescente.
+			
+		\end{enumerate}
+		
+		\item Se $v_x<0$ e $a_x>0$, então:
+		
+		\begin{enumerate}[label=\Alph*.]
+			
+			\item a rapidez aumenta sempre;
+			
+			\item a rapidez diminui enquanto o corpo mantiver $v_x<0$;
+			
+			\item o corpo está em repouso;
+			
+			\item a aceleração é nula.
+			
+		\end{enumerate}
+		
+		\item A área algébrica sob um gráfico velocidade--tempo corresponde:
+		
+		\begin{enumerate}[label=\Alph*.]
+			
+			\item à aceleração;
+			
+			\item à rapidez;
+			
+			\item ao deslocamento;
+			
+			\item à posição inicial.
+			
+		\end{enumerate}
+		
+		\item Um automóvel apresenta $v_x=+\SI{15}{m.s^{-1}}$ e
+		$a_x=-\SI{3}{m.s^{-2}}$.
+		
+		Nesse instante:
+		
+		\begin{enumerate}[label=\Alph*.]
+			
+			\item desloca-se no sentido positivo e aumenta a rapidez;
+			
+			\item desloca-se no sentido negativo e aumenta a rapidez;
+			
+			\item desloca-se no sentido positivo e diminui a rapidez;
+			
+			\item desloca-se no sentido negativo e diminui a rapidez.
+			
+		\end{enumerate}
+		
+	\end{enumerate}
+	
+	% ============================================================
+	\section{16. Verdadeiro ou falso}
+	% ============================================================
+	
+	Classifica cada afirmação como verdadeira (V) ou falsa (F).
+	Corrige as falsas.
+	
+	\begin{enumerate}[label=\textbf{\arabic*.},resume]
+		
+		\item[$\square$]
+		Num gráfico posição--tempo, a inclinação permite determinar a velocidade.
+		
+		\resposta[0.4]
+		
+		\item[$\square$]
+		Uma velocidade negativa significa obrigatoriamente que o corpo está a
+		abrandar.
+		
+		\resposta[0.5]
+		
+		\item[$\square$]
+		Uma aceleração nula implica velocidade constante.
+		
+		\resposta[0.5]
+		
+		\item[$\square$]
+		Uma aceleração negativa implica sempre diminuição da rapidez.
+		
+		\resposta[0.5]
+		
+		\item[$\square$]
+		Se velocidade e aceleração tiverem o mesmo sentido, a rapidez aumenta.
+		
+		\resposta[0.5]
+		
+		\item[$\square$]
+		A área sob um gráfico velocidade--tempo pode assumir um valor negativo.
+		
+		\resposta[0.5]
+		
+		\item[$\square$]
+		Num gráfico velocidade--tempo, uma reta inclinada corresponde a aceleração
+		não nula.
+		
+		\resposta[0.5]
+		
+	\end{enumerate}
+	
+	% ============================================================
+	\section{17. Desafio final -- identifica o movimento}
+	% ============================================================
+	
+	São apresentados quatro gráficos velocidade--tempo.
+	
+	\begin{center}
+		
+		\begin{tikzpicture}
+			
+			% gráfico A
+			\begin{axis}[
+				at={(0cm,6cm)},
+				anchor=south west,
+				width=6cm,
+				height=5cm,
+				axis lines=middle,
+				xmin=0,
+				xmax=5,
+				ymin=-1,
+				ymax=6,
+				xlabel={$t$},
+				ylabel={$v_x$},
+				title={A},
+				grid=both
+				]
+				\addplot[very thick,eufblue]
+				coordinates{(0,2)(5,2)};
+			\end{axis}
+			
+			% gráfico B
+			\begin{axis}[
+				at={(7cm,6cm)},
+				anchor=south west,
+				width=6cm,
+				height=5cm,
+				axis lines=middle,
+				xmin=0,
+				xmax=5,
+				ymin=-1,
+				ymax=6,
+				xlabel={$t$},
+				ylabel={$v_x$},
+				title={B},
+				grid=both
+				]
+				\addplot[very thick,eufgreen]
+				coordinates{(0,0)(5,5)};
+			\end{axis}
+			
+			% gráfico C
+			\begin{axis}[
+				at={(0cm,0cm)},
+				anchor=south west,
+				width=6cm,
+				height=5cm,
+				axis lines=middle,
+				xmin=0,
+				xmax=5,
+				ymin=-1,
+				ymax=6,
+				xlabel={$t$},
+				ylabel={$v_x$},
+				title={C},
+				grid=both
+				]
+				\addplot[very thick,euforange]
+				coordinates{(0,5)(5,0)};
+			\end{axis}
+			
+			% gráfico D
+			\begin{axis}[
+				at={(7cm,0cm)},
+				anchor=south west,
+				width=6cm,
+				height=5cm,
+				axis lines=middle,
+				xmin=0,
+				xmax=5,
+				ymin=-6,
+				ymax=2,
+				xlabel={$t$},
+				ylabel={$v_x$},
+				title={D},
+				grid=both
+				]
+				\addplot[very thick,eufred]
+				coordinates{(0,-1)(5,-5)};
+			\end{axis}
+			
+		\end{tikzpicture}
+		
+	\end{center}
+	
+	\vspace{3mm}
+	
+	Associa cada gráfico a uma das descrições seguintes.
+	
+	\begin{itemize}
+		
+		\item Movimento uniforme no sentido positivo.
+		
+		\item Movimento no sentido positivo com aumento da rapidez.
+		
+		\item Movimento no sentido positivo com diminuição da rapidez.
+		
+		\item Movimento no sentido negativo com aumento da rapidez.
+		
+	\end{itemize}
+	
+	\resposta[1.2]
+	
+	Explica, para cada gráfico, os sinais de $v_x$ e $a_x$.
+	
+	\resposta[1.5]
+	
+	% ============================================================
+	\section{18. Autoavaliação}
+	% ============================================================
+	
+	\begin{center}
+		
+		\renewcommand{\arraystretch}{1.45}
+		
+		\begin{tabularx}{\textwidth}{Xccc}
+			
+			\toprule
+			
+			\textbf{Consigo...}
+			&
+			\textbf{Sim}
+			&
+			\textbf{Com ajuda}
+			&
+			\textbf{Ainda não}
+			
+			\\
+			
+			\midrule
+			
+			Interpretar gráficos posição--tempo
+			&
+			$\square$
+			&
+			$\square$
+			&
+			$\square$
+			\\
+			
+			Calcular velocidades a partir de gráficos $x(t)$
+			&
+			$\square$
+			&
+			$\square$
+			&
+			$\square$
+			\\
+			
+			Interpretar gráficos velocidade--tempo
+			&
+			$\square$
+			&
+			$\square$
+			&
+			$\square$
+			\\
+			
+			Determinar deslocamentos através de áreas
+			&
+			$\square$
+			&
+			$\square$
+			&
+			$\square$
+			\\
+			
+			Calcular acelerações
+			&
+			$\square$
+			&
+			$\square$
+			&
+			$\square$
+			\\
+			
+			Relacionar os sinais de $v_x$ e $a_x$
+			&
+			$\square$
+			&
+			$\square$
+			&
+			$\square$
+			\\
+			
+			Representar vetores velocidade e aceleração
+			&
+			$\square$
+			&
+			$\square$
+			&
+			$\square$
+			\\
+			
+			Relacionar os gráficos $x(t)$, $v(t)$ e $a(t)$
+			&
+			$\square$
+			&
+			$\square$
+			&
+			$\square$
+			\\
+			
+			\bottomrule
+			
+		\end{tabularx}
+		
+	\end{center}
+	
+	\vfill
+	
+	% ============================================================
+	% RODAPÉ FINAL
+	% ============================================================
+	
+	\begin{center}
+		
+		\begin{tikzpicture}
+			
+			\node[
+			rounded corners=3mm,
+			draw=eufblue,
+			line width=1pt,
+			fill=euflight,
+			inner xsep=10mm,
+			inner ysep=4mm
+			]
+			{
+				\begin{minipage}{0.84\textwidth}
+					
+					\centering
+					
+					{\Large\bfseries\textcolor{eufblue}{EUFISICA}}
+					
+					\vspace{1mm}
+					
+					\small
+					
+					Posição $\bullet$
+					Velocidade $\bullet$
+					Aceleração $\bullet$
+					Gráficos $\bullet$
+					Vetores
+					
+					\vspace{1mm}
+					
+					\textit{
+						Compreender um movimento é conseguir contar a mesma história
+						através de equações, vetores e gráficos.
+					}
+					
+					\vspace{1mm}
+					
+					\textbf{Prof. José Gonçalves}
+					
+				\end{minipage}
+			};
+			
+		\end{tikzpicture}
+		
+	\end{center}
+	
+\end{document}

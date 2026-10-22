@@ -1,0 +1,2760 @@
+\documentclass[11pt,a4paper,openany]{book}
+
+% ============================================================
+% EUFISICA books — Laboratório de Física e Química A
+% Autor: José Gonçalves
+% Compilação recomendada: pdfLaTeX
+% ============================================================
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[portuguese]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[a4paper,margin=2.25cm,headheight=15pt]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{siunitx}
+\usepackage[version=4]{mhchem}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{booktabs,longtable,array,tabularx,multirow}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable,skins}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,patterns,decorations.pathmorphing,angles,quotes,shapes.geometric,babel}
+\usepackage{circuitikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{bookmark}
+
+\sisetup{
+  output-decimal-marker = {,},
+  group-separator = {\,},
+  per-mode = symbol,
+  inter-unit-product = \ensuremath{{}\cdot{}},
+  exponent-product = \ensuremath{{}\times{}}
+}
+
+% ---------- Cores ----------
+\definecolor{eublue}{HTML}{103B66}
+\definecolor{eucyan}{HTML}{16A6C9}
+\definecolor{euorange}{HTML}{F08A24}
+\definecolor{eugreen}{HTML}{2C8C62}
+\definecolor{eured}{HTML}{B83A3A}
+\definecolor{eugray}{HTML}{F3F5F7}
+\definecolor{eudark}{HTML}{15202B}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=eublue,
+  citecolor=eugreen,
+  urlcolor=eucyan,
+  pdftitle={Laboratório de Física e Química A — 10.º e 11.º anos},
+  pdfauthor={José Gonçalves},
+  pdfsubject={Atividades laboratoriais, exercícios e soluções — EUFISICA books}
+}
+
+% ---------- Cabeçalhos ----------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE]{\small\textsc{EUFISICA books}}
+\fancyhead[RO]{\small\nouppercase{\leftmark}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ---------- Títulos ----------
+\titleformat{\chapter}[display]
+  {\normalfont\bfseries\color{eublue}}
+  {\filleft\Large\chaptername\ \thechapter}
+  {0.8ex}
+  {\titlerule[1.2pt]\vspace{1ex}\Huge}
+\titleformat{\section}{\Large\bfseries\color{eublue}}{\thesection}{0.7em}{}
+\titleformat{\subsection}{\large\bfseries\color{eudark}}{\thesubsection}{0.7em}{}
+
+% ---------- Caixas ----------
+\newtcolorbox{objetivos}{
+  breakable, colback=eugray, colframe=eublue,
+  title=Objetivos, fonttitle=\bfseries
+}
+\newtcolorbox{seguranca}{
+  breakable, colback=eured!5, colframe=eured,
+  title=Segurança e boas práticas, fonttitle=\bfseries
+}
+\newtcolorbox{material}{
+  breakable, colback=eucyan!5, colframe=eucyan,
+  title=Material e equipamento, fonttitle=\bfseries
+}
+\newtcolorbox{metodo}{
+  breakable, colback=eugreen!5, colframe=eugreen,
+  title=Procedimento, fonttitle=\bfseries
+}
+\newtcolorbox{analise}{
+  breakable, colback=euorange!7, colframe=euorange,
+  title=Tratamento de dados e discussão, fonttitle=\bfseries
+}
+\newtcolorbox{nota}{
+  breakable, colback=eugray, colframe=eudark!65,
+  title=Nota, fonttitle=\bfseries
+}
+
+\newtcolorbox{exemploresolvido}[1][]{
+  breakable, enhanced, colback=white, colframe=eucyan,
+  borderline west={2.2pt}{0pt}{eucyan},
+  title={Exemplo resolvido\if\relax\detokenize{#1}\relax\else\ --- #1\fi},
+  fonttitle=\bfseries
+}
+\newtcolorbox{essencial}{
+  breakable, colback=eublue!4, colframe=eublue,
+  title=Ideia essencial, fonttitle=\bfseries
+}
+
+\newtcolorbox{questao}{
+  breakable, enhanced, colback=eucyan!4, colframe=eucyan!85!black,
+  title=Questão-problema, fonttitle=\bfseries
+}
+\newtcolorbox{fundamento}{
+  breakable, colback=eublue!3, colframe=eublue!75,
+  title=Fundamento científico, fonttitle=\bfseries
+}
+\newtcolorbox{variaveis}{
+  breakable, colback=euorange!5, colframe=euorange!85!black,
+  title=Variáveis e grandezas, fonttitle=\bfseries
+}
+\newtcolorbox{registo}{
+  breakable, colback=white, colframe=eudark!50,
+  title=Registo de dados, fonttitle=\bfseries
+}
+\newtcolorbox{erros}{
+  breakable, colback=eured!4, colframe=eured!75,
+  title={Fontes de erro, limitações e melhorias}, fonttitle=\bfseries
+}
+\newtcolorbox{prelab}{
+  breakable, colback=eugreen!5, colframe=eugreen!85!black,
+  title=Antes de ir para o laboratório, fonttitle=\bfseries
+}
+
+\newcounter{exercicio}[chapter]
+\renewcommand{\theexercicio}{\thechapter.\arabic{exercicio}}
+\newenvironment{exercicio}[1][]%
+{\refstepcounter{exercicio}%
+\begin{tcolorbox}[breakable,colback=white,colframe=eublue!70,
+ title={Exercício \theexercicio\if\relax\detokenize{#1}\relax\else\ --- #1\fi},fonttitle=\bfseries]}%
+{\end{tcolorbox}}
+
+\newcounter{desafio}
+\newenvironment{desafio}[1][]%
+{\refstepcounter{desafio}%
+\begin{tcolorbox}[breakable,colback=euorange!6,colframe=euorange,
+ title={Desafio integrador \arabic{desafio}\if\relax\detokenize{#1}\relax\else\ --- #1\fi},fonttitle=\bfseries]}%
+{\end{tcolorbox}}
+
+\newcommand{\resultado}[1]{\par\smallskip\noindent\textbf{Resultado esperado:} #1}
+\newcommand{\grau}[1]{\textbf{Nível:} #1}
+\newcommand{\LigAE}[1]{\textbf{Ligação às AE:} #1}
+
+% ============================================================
+\begin{document}
+% ============================================================
+
+% ---------- CAPA ----------
+\begin{titlepage}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[eublue] (current page.south west) rectangle (current page.north east);
+  \shade[top color=eucyan!60,bottom color=eublue]
+    (current page.south west) rectangle (current page.north east);
+
+  % órbitas / átomo
+  \begin{scope}[shift={([xshift=15.3cm,yshift=-4.8cm]current page.north west)}]
+    \draw[white!55,line width=1.2pt] (0,0) ellipse (4.3 and 1.25);
+    \draw[white!55,line width=1.2pt,rotate=60] (0,0) ellipse (4.3 and 1.25);
+    \draw[white!55,line width=1.2pt,rotate=-60] (0,0) ellipse (4.3 and 1.25);
+    \fill[euorange] (0,0) circle (0.42);
+    \fill[white] (4.1,0.22) circle (0.14);
+    \fill[white] (-1.85,3.36) circle (0.14);
+    \fill[white] (-2.1,-3.2) circle (0.14);
+  \end{scope}
+
+  % balão/erlenmeyer estilizado
+  \begin{scope}[shift={([xshift=15.5cm,yshift=5.6cm]current page.south west)},scale=0.82]
+    \draw[white,line width=2pt] (-0.55,4.6)--(-0.55,2.5)--(-2.3,-1.4)
+      .. controls (-2.7,-2.2) and (-1.8,-2.7) .. (0,-2.7)
+      .. controls (1.8,-2.7) and (2.7,-2.2) .. (2.3,-1.4)
+      --(0.55,2.5)--(0.55,4.6);
+    \draw[white,line width=2pt] (-0.8,4.6)--(0.8,4.6);
+    \fill[eucyan!45] (-2.0,-1.25) .. controls (-1.1,-0.7) and (1.1,-1.8) .. (2.0,-1.25)
+      --(2.25,-1.55) .. controls (1.7,-2.2) and (-1.7,-2.2) .. (-2.25,-1.55)--cycle;
+    \foreach \x/\y in {-1.2/-1.35,-.2/-1.7,.8/-1.25,1.3/-1.75}
+      \draw[white!80] (\x,\y) circle (0.11);
+  \end{scope}
+
+  % circuito / onda
+  \begin{scope}[shift={([xshift=9.5cm,yshift=4.5cm]current page.south west)},scale=0.92]
+    \draw[white!75,line width=1.5pt] (0,0)--(1.0,0)--(1.25,0.55)--(1.75,-0.55)--(2.25,0.55)--(2.75,-0.55)--(3.0,0)--(4.0,0);
+    \draw[white!75,line width=1.5pt] (4.0,0)--(4.0,1.8);
+    \draw[white!75,line width=1.5pt] (3.7,1.8)--(4.3,1.8);
+    \draw[white!75,line width=1.5pt] (3.85,2.15)--(4.15,2.15);
+    \draw[white!75,line width=1.5pt] (4.0,2.15)--(4.0,3.0)--(0,3.0)--(0,0);
+    \draw[euorange,line width=2pt,domain=0:4,samples=80] plot (\x,{4.1+0.45*sin(180*\x)});
+  \end{scope}
+
+  \node[anchor=north west,text=white,font=\sffamily\bfseries\Large]
+    at ([xshift=1.8cm,yshift=-1.7cm]current page.north west) {EUFISICA books};
+
+  \node[align=left,anchor=west,text=white,text width=16cm]
+    at ([xshift=1.8cm,yshift=-9.1cm]current page.north west)
+    {\sffamily\bfseries\fontsize{34}{39}\selectfont LABORATÓRIO\\[0.15cm]
+     DE FÍSICA E QUÍMICA A};
+  \node[align=left,anchor=west,text=white!90,text width=15.5cm]
+    at ([xshift=1.85cm,yshift=-12.6cm]current page.north west)
+    {\sffamily\Large 10.º e 11.º anos do Ensino Secundário\\[2mm]
+     Atividades experimentais, exercícios, desafios integradores e soluções};
+
+  \node[anchor=south west,text=white,font=\sffamily\bfseries\Large]
+    at ([xshift=1.8cm,yshift=1.7cm]current page.south west) {José Gonçalves};
+\end{tikzpicture}
+\end{titlepage}
+
+\frontmatter
+\chapter*{Apresentação}
+\addcontentsline{toc}{chapter}{Apresentação}
+Este livro foi concebido para apoiar o trabalho prático de \textbf{Física e Química A (FQ-A)} nos 10.º e 11.º anos do ensino secundário português. A organização privilegia a formulação de questões, o controlo de variáveis, a medição, o tratamento de dados, a análise de incertezas, a comunicação científica e a ligação entre modelos teóricos e observações experimentais.
+
+As atividades seguem os grandes domínios das \textit{Aprendizagens Essenciais}: no 10.º ano, \textit{Elementos químicos e sua organização}, \textit{Propriedades e transformações da matéria} e \textit{Energia e sua conservação}; no 11.º ano, \textit{Mecânica}, \textit{Ondas e eletromagnetismo}, \textit{Equilíbrio químico} e \textit{Reações em sistemas aquosos}. A sequência e a numeração ``AL10/AL11'' são uma organização editorial deste livro: as Aprendizagens Essenciais atuais definem competências e resultados de aprendizagem, não uma lista rígida e numerada de protocolos. Sempre que útil, retomam-se atividades tradicionais e recursos atuais da DGE, como a determinação da massa e do volume de uma gota de água. O livro não substitui os documentos oficiais nem as regras de segurança da escola; funciona como guia de estudo e de trabalho laboratorial.
+
+\begin{nota}
+As quantidades, concentrações e montagens aqui propostas são adequadas a contexto escolar, mas devem ser ajustadas pelo professor ao equipamento disponível, às fichas de dados de segurança dos reagentes e às normas internas do laboratório.
+\end{nota}
+
+\tableofcontents
+
+\mainmatter
+
+% ============================================================
+\part{Fundamentos do trabalho laboratorial}
+% ============================================================
+
+\chapter{Medir, investigar e comunicar}
+
+\section{Da questão-problema à conclusão}
+Uma investigação escolar robusta pode ser organizada em sete etapas: formular a questão-problema; identificar variáveis; propor uma hipótese; planear o procedimento; recolher dados; tratar e representar os resultados; concluir e avaliar limitações.
+
+\begin{objetivos}
+No final deste capítulo, o aluno deverá ser capaz de selecionar instrumentos de medição, registar valores com unidades e algarismos significativos adequados, distinguir precisão de exatidão, identificar variáveis e comunicar resultados em tabelas, gráficos e conclusões fundamentadas.
+\end{objetivos}
+
+\section{Grandezas, unidades e tipos de medição}
+Em laboratório, uma medição só fica completa quando inclui um valor numérico, uma unidade e informação suficiente sobre a qualidade da leitura. Sempre que possível, utiliza-se o Sistema Internacional de Unidades (SI), embora seja frequente recolher dados em unidades práticas, como mL, g, cm ou \si{\celsius}, convertendo apenas quando necessário.
+
+\subsection{Medição direta e medição indireta}
+Numa \textbf{medição direta}, o valor da grandeza é obtido diretamente da indicação de um instrumento. Exemplos: ler a massa numa balança, o comprimento numa régua ou a diferença de potencial num voltímetro.
+
+Numa \textbf{medição indireta}, o valor é calculado a partir de outras grandezas medidas. Exemplos:
+\[
+\rho=\frac{m}{V},\qquad v=\frac{\Delta x}{\Delta t},\qquad
+V_{\rm gota}=\frac{V_{100\,\rm gotas}}{100}.
+\]
+A distinção é importante porque a qualidade do resultado indireto depende da qualidade de todas as medições que entram no cálculo.
+
+\begin{exemploresolvido}[Direta ou indireta?]
+Uma balança indica \SI{52.20}{g} para um gobelé com água e \SI{42.36}{g} para o gobelé vazio. As duas leituras da balança são medições diretas. A massa da água,
+\[
+m_{\text{água}}=52,20-42,36=\SI{9.84}{g},
+\]
+é uma medição indireta, pois resulta de duas medições diretas.
+\end{exemploresolvido}
+
+\section{Algarismos significativos, arredondamento e notação científica}
+Os algarismos significativos comunicam a resolução efetiva de um resultado. Zeros à esquerda não são significativos; zeros entre algarismos não nulos são significativos; zeros finais podem ser significativos quando a escrita decimal os torna explícitos. Assim, \SI{0.00450}{m} tem três algarismos significativos e \SI{4.50e-3}{m} torna essa informação especialmente clara.
+
+\begin{essencial}
+\textbf{Regra prática para o livro:} não apresentar no resultado final mais casas decimais ou algarismos significativos do que os dados experimentais justificam. Efetua os cálculos com alguns algarismos de guarda e arredonda apenas no final.
+\end{essencial}
+
+Em adições e subtrações, a limitação está sobretudo na \textbf{casa decimal} dos termos. Em multiplicações e divisões, a limitação está sobretudo no \textbf{número de algarismos significativos}. Estas regras são aproximações úteis no ensino secundário e não substituem uma análise completa de incertezas.
+
+\begin{exemploresolvido}[Arredondar sem perder informação]
+Considere
+\[
+\rho=\frac{9,84\,\si{g}}{9,90\,\si{mL}}=0,993939\ldots\,\si{g.mL^{-1}}.
+\]
+Como os dados têm três algarismos significativos, apresenta-se
+\[
+\boxed{\rho=\SI{0.994}{g.mL^{-1}}}.
+\]
+Não é adequado escrever $0,993939\,\si{g.mL^{-1}}$, porque esses algarismos adicionais resultam apenas da calculadora.
+\end{exemploresolvido}
+
+\section{Planeamento: variáveis, repetição e controlo}
+Antes de montar o material, deve ficar claro \textbf{o que se altera}, \textbf{o que se mede} e \textbf{o que se mantém tão constante quanto possível}. Chama-se variável independente à grandeza deliberadamente alterada; variável dependente à resposta medida; e variáveis de controlo às condições que poderiam afetar o resultado e que se procuram manter constantes.
+
+A repetição de medições permite avaliar dispersão e detetar valores anómalos. Um resultado não deve ser eliminado apenas por ``parecer estranho'': é necessário procurar uma razão experimental plausível e registar a decisão. Sempre que possível, recolhem-se vários pontos ao longo de um intervalo, em vez de apenas dois, porque um conjunto de pontos permite testar melhor a forma da relação entre grandezas.
+
+
+\section{Medição, desvios, incerteza, precisão e exatidão}
+
+Medir uma grandeza não significa determinar um valor matematicamente exato. Qualquer medição é condicionada pelo instrumento, pelo método, pelo observador e pelas próprias condições experimentais. Por esse motivo, um resultado experimental deve ser entendido como uma \textbf{estimativa do valor da grandeza acompanhada por uma incerteza}.
+
+\begin{essencial}
+Uma forma simples de apresentar uma medição é
+\[
+x=(x_m\pm I_a)\,u,
+\]
+onde $x_m$ é o valor medido (ou o valor médio), $I_a$ é a incerteza absoluta e $u$ representa a unidade. A expressão indica um intervalo de valores compatíveis com a medição:
+\[
+x_m-I_a\leq x\leq x_m+I_a.
+\]
+A incerteza \textbf{não é um erro conhecido}: é uma estimativa da margem dentro da qual se considera plausível encontrar o valor da grandeza.
+\end{essencial}
+
+\subsection{Incerteza absoluta de leitura}
+
+A \textbf{incerteza absoluta de leitura}, que representaremos por $I_{a,\ell}$, está associada à leitura do instrumento. Quando o fabricante não fornece explicitamente uma tolerância ou incerteza, em contexto escolar usa-se frequentemente a seguinte regra operacional \cite{DGE10,DGEGTA5}:
+
+\begin{itemize}[leftmargin=1.2cm]
+\item \textbf{instrumento analógico:} toma-se, em geral, metade da menor divisão da escala;
+\item \textbf{instrumento digital:} toma-se, em geral, uma unidade do último algarismo apresentado no visor.
+\end{itemize}
+
+Isto significa que dois instrumentos que apresentam valores semelhantes podem não permitir uma medição com a mesma qualidade. A resolução da escala deve ser sempre observada antes de registar os dados.
+
+\begin{exemploresolvido}[Medição de um comprimento com uma régua]
+A menor divisão da régua é \SI{1}{mm}. Assim,
+\[
+I_{a,\ell}=\frac{1}{2}\times\SI{1}{mm}=\SI{0.5}{mm}=\SI{0.05}{cm}.
+\]
+Se a extremidade do objeto for estimada em \SI{6.84}{cm}, o resultado escreve-se
+\[
+\boxed{\ell=(6,84\pm0,05)\,\si{cm}}.
+\]
+Logo, o comprimento é considerado compatível com valores entre
+\[
+6,84-0,05=\SI{6.79}{cm}
+\qquad\text{e}\qquad
+6,84+0,05=\SI{6.89}{cm}.
+\]
+Na unidade SI, pode escrever-se
+\[
+\ell=(6,84\pm0,05)\times10^{-2}\,\si{m},
+\]
+ou, de forma equivalente,
+\[
+\ell=(0,0684\pm0,0005)\,\si{m}.
+\]
+\end{exemploresolvido}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[x=3.05cm,y=1cm,>=Latex]
+  % objeto
+  \fill[eucyan!32] (5.55,2.55) rectangle (6.84,3.35);
+  \draw[eucyan,thick] (5.55,2.55)--(7.25,2.55);
+
+  % escala entre 5,6 e 7,2 cm
+  \foreach \x in {5.6,5.7,...,7.2}{
+    \pgfmathtruncatemacro{\n}{round(10*\x)}
+    \ifnum\n=60
+      \draw[eucyan,very thick] (\x,2.55)--(\x,1.55);
+    \else\ifnum\n=65
+      \draw[eucyan,very thick] (\x,2.55)--(\x,1.72);
+    \else\ifnum\n=70
+      \draw[eucyan,very thick] (\x,2.55)--(\x,1.55);
+    \else
+      \draw[eucyan,thick] (\x,2.55)--(\x,1.85);
+    \fi\fi\fi
+  }
+  \node[eucyan,font=\Large\bfseries] at (6.0,1.18) {6};
+  \node[eucyan,font=\Large\bfseries] at (7.0,1.18) {7};
+  \node[eucyan,font=\large] at (7.25,0.83) {cm};
+
+  % leitura
+  \draw[eudark!55,dashed,thick] (6.84,3.45)--(6.84,0.38);
+  \node[font=\large] at (6.84,0.08) {6,84};
+
+  % intervalo de incerteza
+  \draw[euorange,very thick,<->] (6.79,-0.55)--(6.89,-0.55);
+  \draw[euorange,thick] (6.79,-0.42)--(6.79,-0.68);
+  \draw[euorange,thick] (6.89,-0.42)--(6.89,-0.68);
+  \node[below,align=center,text=euorange!90!black] at (6.84,-0.72)
+    {$6,79\leq \ell\leq6,89\;\si{cm}$};
+\end{tikzpicture}
+\caption{Leitura de um comprimento numa régua cuja menor divisão é \SI{1}{mm}. A linha tracejada indica a leitura estimada e a seta inferior representa o intervalo associado à incerteza de leitura.}
+\label{fig:regua-incerteza}
+\end{figure}
+
+\begin{nota}
+Ao apresentar um resultado na forma $x\pm I_a$, o valor da grandeza e a incerteza devem terminar, em regra, na \textbf{mesma casa decimal}. Por exemplo, $(6,84\pm0,05)\,\si{cm}$ é coerente; $(6,8427\pm0,05)\,\si{cm}$ transmite uma precisão aparente que o instrumento não justifica.
+\end{nota}
+
+\begin{exemploresolvido}[Medição com uma balança digital]
+Uma balança digital apresenta a massa \SI{18.42}{g}. Se o fabricante não indicar outra incerteza e o visor variar de \SI{0.01}{g} em \SI{0.01}{g}, considera-se, como aproximação escolar,
+\[
+I_{a,\ell}=\SI{0.01}{g}.
+\]
+Assim,
+\[
+\boxed{m=(18,42\pm0,01)\,\si{g}},
+\]
+correspondendo ao intervalo aproximado
+\[
+18,41\leq m\leq18,43\;\si{g}.
+\]
+\end{exemploresolvido}
+
+\subsection{Quando o resultado depende de duas leituras}
+
+Em muitas atividades laboratoriais, o resultado é obtido pela diferença entre duas leituras. É o que acontece, por exemplo, com o volume dispensado por uma bureta. Num tratamento escolar conservador, as incertezas absolutas das duas leituras podem ser adicionadas.
+
+\begin{exemploresolvido}[Volume dispensado por uma bureta]
+Uma bureta possui divisões de \SI{0.1}{mL}, pelo que cada leitura tem
+\[
+I_{a,\ell}=\SI{0.05}{mL}.
+\]
+Admita-se que a leitura inicial é \SI{1.60}{mL} e a leitura final é \SI{2.75}{mL}. O volume dispensado é
+\[
+V=2,75-1,60=\SI{1.15}{mL}.
+\]
+Como o resultado depende de duas leituras,
+\[
+I_a=0,05+0,05=\SI{0.10}{mL}.
+\]
+Portanto,
+\[
+V=(1,15\pm0,10)\,\si{mL}.
+\]
+Se se arredondar a incerteza a um algarismo significativo e o resultado para a mesma casa decimal, obtém-se
+\[
+\boxed{V=(1,2\pm0,1)\,\si{mL}}.
+\]
+Este tipo de raciocínio é particularmente importante em titulações. \cite{SPF2022}
+\end{exemploresolvido}
+
+\subsection{Medições repetidas: média e desvios}
+
+Quando se mede várias vezes a mesma grandeza, nas mesmas condições, os resultados raramente são todos iguais. As pequenas diferenças podem resultar da resolução do instrumento, do tempo de reação do observador, de variações experimentais ou de outros efeitos aleatórios.
+
+Para $n$ medições $x_1,x_2,\ldots,x_n$, o valor médio é
+\[
+\bar{x}=\frac{x_1+x_2+\cdots+x_n}{n}.
+\]
+
+O \textbf{desvio} de cada medição relativamente à média é
+\[
+\boxed{d_i=x_i-\bar{x}}.
+\]
+O desvio pode ser positivo ou negativo. O \textbf{desvio absoluto} é $|d_i|$ e indica apenas a distância de cada valor à média.
+
+\begin{exemploresolvido}[Determinação dos desvios]
+Foram efetuadas cinco medições do tempo de um movimento:
+\[
+0,448;\quad0,450;\quad0,452;\quad0,451;\quad0,449\;\si{s}.
+\]
+A média é
+\[
+\bar t=\frac{0,448+0,450+0,452+0,451+0,449}{5}
+      =\SI{0.450}{s}.
+\]
+Os desvios relativamente à média são:
+
+\begin{center}
+\begin{tabular}{@{}cccc@{}}
+\toprule
+$i$ & $t_i$/s & $d_i=t_i-\bar t$/s & $|d_i|$/s\\
+\midrule
+1 & 0,448 & $-0,002$ & 0,002\\
+2 & 0,450 & $0,000$  & 0,000\\
+3 & 0,452 & $+0,002$ & 0,002\\
+4 & 0,451 & $+0,001$ & 0,001\\
+5 & 0,449 & $-0,001$ & 0,001\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+O maior desvio absoluto é \SI{0.002}{s}.
+\end{exemploresolvido}
+
+\subsection{Incerteza absoluta de um conjunto de medições}
+
+Para um conjunto de medições repetidas, uma aproximação simples usada no ensino secundário consiste em tomar como \textbf{incerteza absoluta associada à dispersão} o maior dos desvios absolutos:
+\[
+\boxed{I_a=\max\left(|d_i|\right)}.
+\]
+Esta escolha dá uma estimativa simples da dispersão dos resultados em torno do valor médio. Na análise experimental real podem ser usados métodos estatísticos mais completos, como o desvio-padrão; neste livro, quando se utiliza a regra do maior desvio absoluto, isso será indicado explicitamente.
+
+No exemplo anterior,
+\[
+I_a=\SI{0.002}{s},
+\]
+e, portanto,
+\[
+\boxed{t=(0,450\pm0,002)\,\si{s}}.
+\]
+O intervalo associado ao resultado é, assim,
+\[
+0,448\leq t\leq0,452\;\si{s}.
+\]
+
+\begin{nota}
+É importante distinguir duas ideias: a \textbf{incerteza de leitura} caracteriza a limitação do instrumento; a \textbf{incerteza obtida a partir dos desvios} caracteriza a dispersão observada num conjunto de medições repetidas. Numa experiência concreta podem existir simultaneamente várias fontes de incerteza, pelo que não se deve atribuir ao resultado uma incerteza menor do que a resolução efetivamente permitida pelo método de medição.
+\end{nota}
+
+\subsection{Incerteza relativa}
+
+A mesma incerteza absoluta pode ser muito importante numa medição pequena e pouco importante numa medição grande. Por isso, é útil comparar a incerteza absoluta com o próprio valor medido. Define-se \textbf{incerteza relativa} por
+\[
+\boxed{I_r=\frac{I_a}{|x|}}.
+\]
+A incerteza relativa não tem unidade. Pode também ser expressa em percentagem:
+\[
+\boxed{I_r(\%)=\frac{I_a}{|x|}\times100}.
+\]
+
+\begin{exemploresolvido}[Incerteza relativa]
+Para o resultado
+\[
+t=(0,450\pm0,002)\,\si{s},
+\]
+tem-se
+\[
+I_r=\frac{0,002}{0,450}=4,44\times10^{-3}.
+\]
+Em percentagem,
+\[
+\boxed{I_r(\%)\approx0,44\%}.
+\]
+Isto significa que a incerteza absoluta representa cerca de $0,44\%$ do valor médio medido.
+\end{exemploresolvido}
+
+\subsection{Exatidão: erro relativo percentual}
+
+A \textbf{exatidão} descreve quão próximo está um resultado experimental de um valor de referência aceite. Para a avaliar quantitativamente pode calcular-se o \textbf{erro relativo percentual}:
+\[
+\boxed{\varepsilon_r(\%)=\frac{|x_{\mathrm{exp}}-x_{\mathrm{ref}}|}{|x_{\mathrm{ref}}|}\times100}.
+\]
+Quanto menor for o erro relativo percentual, maior é, em geral, a exatidão do resultado.
+
+\begin{exemploresolvido}[Avaliar a exatidão de uma determinação de $g$]
+Numa experiência de queda livre obteve-se
+\[
+g_{\mathrm{exp}}=\SI{9.72}{m.s^{-2}}.
+\]
+Considere-se, para comparação, o valor de referência
+\[
+g_{\mathrm{ref}}=\SI{9.81}{m.s^{-2}}.
+\]
+Então,
+\[
+\varepsilon_r(\%)=
+\frac{|9,72-9,81|}{9,81}\times100
+\approx0,92\%.
+\]
+Logo, o valor experimental difere do valor de referência em cerca de
+\[
+\boxed{0,92\%}.
+\]
+O resultado apresenta, portanto, boa exatidão para uma experiência escolar deste tipo.
+\end{exemploresolvido}
+
+\subsection{Precisão: desvio percentual}
+
+A \textbf{precisão} está relacionada com a proximidade entre resultados de medições repetidas. Quanto menor for a dispersão dos valores, maior é a precisão. Quando a incerteza absoluta é estimada pelo maior desvio absoluto, pode caracterizar-se a precisão através do \textbf{desvio percentual}:
+\[
+\boxed{D(\%)=\frac{I_a}{|\bar{x}|}\times100}.
+\]
+Neste contexto, o desvio percentual coincide numericamente com a incerteza relativa expressa em percentagem. A designação \emph{desvio percentual} enfatiza, porém, que se está a usar a dispersão das medições repetidas para avaliar a precisão.
+
+\begin{exemploresolvido}[Avaliar a precisão]
+Para as cinco medições do tempo já analisadas,
+\[
+\bar t=\SI{0.450}{s}
+\qquad\text{e}\qquad
+I_a=\SI{0.002}{s}.
+\]
+Assim,
+\[
+D(\%)=\frac{0,002}{0,450}\times100\approx0,44\%.
+\]
+O desvio percentual é pequeno, pelo que as medições apresentam boa precisão:
+\[
+\boxed{D\approx0,44\%}.
+\]
+\end{exemploresolvido}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[x=1cm,y=1cm]
+% painel precisão
+\node[font=\bfseries\large,text=eublue] at (3.0,4.35) {Precisão};
+\draw[->,thick] (0.4,2.0)--(5.7,2.0) node[right] {$x$};
+\draw[eudark!55,dashed] (3.0,1.3)--(3.0,3.4);
+\node[above,text=eudark!70] at (3.0,3.4) {$\bar x$};
+\foreach \x in {2.82,2.93,3.02,3.10,3.18}
+  \fill[eucyan] (\x,2.0) circle (2.2pt);
+\draw[euorange,thick,<->] (2.82,1.45)--(3.18,1.45);
+\node[below,text=euorange!90!black] at (3.0,1.38) {pequena dispersão};
+
+% painel exatidão
+\node[font=\bfseries\large,text=eublue] at (10.0,4.35) {Exatidão};
+\draw[->,thick] (7.0,2.0)--(12.7,2.0) node[right] {$x$};
+\draw[eugreen,dashed,very thick] (10.2,1.2)--(10.2,3.5);
+\node[above,text=eugreen!80!black] at (10.2,3.5) {$x_{\rm ref}$};
+\draw[eudark!55,dashed] (9.95,1.35)--(9.95,3.25);
+\node[above,text=eudark!70] at (9.95,3.25) {$\bar x$};
+\foreach \x in {9.72,9.88,9.94,10.02,10.19}
+  \fill[eucyan] (\x,2.0) circle (2.2pt);
+\draw[euorange,thick,<->] (9.95,1.42)--(10.2,1.42);
+\node[below,text=euorange!90!black] at (10.08,1.36) {pequeno erro};
+\end{tikzpicture}
+\caption{A precisão depende da dispersão entre medições repetidas; a exatidão depende da proximidade do resultado a um valor de referência. É possível obter resultados precisos mas pouco exatos, ou exatos mas pouco precisos.}
+\label{fig:precisao-exatidao}
+\end{figure}
+
+\begin{essencial}
+\textbf{Não confundir:}
+\begin{align*}
+\text{incerteza relativa} &:& I_r&=\frac{I_a}{|x|},\\[1mm]
+\text{desvio percentual (precisão)} &:& D(\%)&=\frac{I_a}{|\bar{x}|}\times100,\\[1mm]
+\text{erro relativo percentual (exatidão)} &:& \varepsilon_r(\%)&=\frac{|x_{\rm exp}-x_{\rm ref}|}{|x_{\rm ref}|}\times100.
+\end{align*}
+O \textbf{desvio percentual} compara a dispersão com o valor médio; o \textbf{erro relativo percentual} compara o resultado experimental com um valor de referência.
+\end{essencial}
+
+\subsection{Exercícios de consolidação}
+
+\begin{exercicio}[Régua e intervalo de medição]
+Uma régua tem como menor divisão \SI{1}{mm}. Um aluno mede o comprimento de uma placa e regista \SI{12.36}{cm}.
+\begin{enumerate}[label=\alph*)]
+\item Determina a incerteza absoluta de leitura em milímetros e em centímetros.
+\item Apresenta o resultado na forma $\ell=(\ell_m\pm I_{a,\ell})$.
+\item Indica o intervalo de valores compatíveis com a leitura.
+\item Escreve o resultado na unidade SI.
+\end{enumerate}
+\end{exercicio}
+
+\begin{exercicio}[Balança digital]
+Uma balança digital, sem indicação adicional do fabricante, apresenta a leitura \SI{42.73}{g}.
+\begin{enumerate}[label=\alph*)]
+\item Qual é a incerteza absoluta de leitura que se pode adotar em contexto escolar?
+\item Apresenta o resultado completo da medição.
+\item Calcula a incerteza relativa percentual.
+\end{enumerate}
+\end{exercicio}
+
+\begin{exercicio}[Média, desvios e incerteza absoluta]
+A massa de uma pequena peça foi medida cinco vezes, obtendo-se, em gramas,
+\[
+15,21;\quad15,23;\quad15,20;\quad15,22;\quad15,24.
+\]
+\begin{enumerate}[label=\alph*)]
+\item Calcula a massa média.
+\item Determina o desvio e o desvio absoluto de cada medição.
+\item Adotando o maior desvio absoluto como incerteza absoluta, apresenta o resultado final.
+\item Determina o desvio percentual e comenta a precisão.
+\end{enumerate}
+\end{exercicio}
+
+\begin{exercicio}[Exatidão de uma determinação experimental]
+Num estudo da densidade de um metal obteve-se $\rho_{\rm exp}=\SI{2.64}{g.cm^{-3}}$. O valor de referência é $\rho_{\rm ref}=\SI{2.70}{g.cm^{-3}}$.
+\begin{enumerate}[label=\alph*)]
+\item Calcula o erro absoluto relativamente ao valor de referência.
+\item Calcula o erro relativo percentual.
+\item Comenta a exatidão do resultado.
+\end{enumerate}
+\end{exercicio}
+
+\begin{exercicio}[Precisão versus exatidão]
+Dois grupos determinam experimentalmente uma grandeza cujo valor de referência é $50,0$ unidades.
+
+\smallskip
+\textbf{Grupo A:} $49,8$; $50,0$; $50,1$; $50,2$; $49,9$.\\
+\textbf{Grupo B:} $47,0$; $47,1$; $47,1$; $47,2$; $47,1$.
+\begin{enumerate}[label=\alph*)]
+\item Calcula a média de cada grupo.
+\item Determina o maior desvio absoluto e o desvio percentual de cada grupo.
+\item Calcula o erro relativo percentual de cada média relativamente ao valor de referência.
+\item Indica qual dos grupos obteve resultados mais precisos e qual obteve resultados mais exatos.
+\end{enumerate}
+\end{exercicio}
+
+\section{Gráficos experimentais e modelos}
+Um gráfico não serve apenas para ``mostrar dados'': permite testar relações entre grandezas, identificar tendências, estimar parâmetros físicos e reconhecer desvios ao modelo.
+
+\subsection{Escolher os eixos}
+Em regra, coloca-se a variável independente no eixo horizontal e a variável dependente no vertical. Cada eixo deve incluir a grandeza e a unidade. A escala deve ocupar uma fração significativa da área do gráfico e não é obrigatório começar em zero quando isso prejudica a leitura, desde que a escala fique inequívoca.
+
+\subsection{Declive e ordenada na origem}
+Num modelo linear,
+\[
+y=mx+b,
+\]
+o declive $m$ e a ordenada na origem $b$ devem ser interpretados fisicamente e ter unidades. Por exemplo, se
+\[
+\Delta E_c=F_{\rm res}d,
+\]
+o declive de $\Delta E_c$ em função de $d$ tem unidades $\si{J.m^{-1}}=\si{N}$ e representa uma força.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+ width=10cm,height=6.2cm,
+ xlabel={$x$},ylabel={$y$},
+ xmin=0,xmax=6,ymin=0,ymax=12,
+ grid=both,minor tick num=1]
+\addplot[only marks,mark=*] coordinates {(0.8,2.0)(1.6,3.4)(2.4,5.0)(3.2,6.2)(4.0,8.1)(5.0,9.7)};
+\addplot[domain=0:5.6,samples=2,thick] {1.75*x+0.7};
+\end{axis}
+\end{tikzpicture}
+\caption{Dados experimentais aproximadamente lineares e uma reta de ajuste. A reta não deve, em geral, ser obtida ligando os pontos sucessivamente.}
+\end{figure}
+
+\subsection{Linearização}
+Algumas relações não são lineares na forma original, mas podem transformar-se num gráfico linear. Em queda livre a partir do repouso,
+\[
+y=\frac12gt^2.
+\]
+Representar $y$ em função de $t$ produz uma curva; representar $y$ em função de $t^2$ deverá produzir uma reta, cujo declive vale $g/2$. A linearização ajuda a testar o modelo e a extrair um parâmetro físico.
+
+\subsection{Barras de erro e dispersão}
+Quando a incerteza é relevante e conhecida, podem representar-se barras de erro. Um modelo compatível com os dados não precisa de passar exatamente por todos os pontos: deve descrever a tendência dentro da dispersão experimental. Pontos sistematicamente acima ou abaixo da reta podem revelar uma variável não controlada ou um modelo incompleto.
+
+\begin{nota}
+O coeficiente de determinação $R^2$ pode ser útil como indicador de ajuste, mas não prova que o modelo físico esteja correto. Uma reta com $R^2$ elevado pode resultar de uma relação causal diferente ou de um intervalo de dados demasiado estreito. A interpretação física do declive, da ordenada na origem e dos resíduos continua a ser essencial.
+\end{nota}
+
+\section{Como escrever uma conclusão experimental}
+Uma boa conclusão responde diretamente à questão-problema e usa resultados concretos. Deve incluir: a tendência observada; o valor de um parâmetro quando aplicável; a comparação com uma previsão ou valor de referência; uma apreciação da precisão/exatidão; e as principais limitações do procedimento.
+
+\begin{essencial}
+Evita conclusões como ``a experiência correu bem''. Prefere formulações como: ``O gráfico de $y$ em função de $t^2$ foi aproximadamente linear e o declive conduziu a $g=\SI{9.74}{m.s^{-2}}$, com erro relativo percentual de $0,71\%$ face a \SI{9.81}{m.s^{-2}}. A principal limitação foi a resolução temporal do sistema de aquisição.''
+\end{essencial}
+
+\section{Estrutura sugerida para um relatório}
+\begin{enumerate}
+\item \textbf{Título e questão-problema.}
+\item \textbf{Objetivo e fundamento teórico:} apenas os conceitos necessários para interpretar a experiência.
+\item \textbf{Material e procedimento:} suficientemente claro para permitir reprodução, sem copiar mecanicamente um guião.
+\item \textbf{Resultados:} tabelas com unidades, incertezas e observações relevantes.
+\item \textbf{Tratamento de dados:} cálculos exemplificativos, gráficos e regressões.
+\item \textbf{Discussão:} interpretação, precisão, exatidão, erros e limitações.
+\item \textbf{Conclusão:} resposta curta e quantitativa à questão inicial.
+\end{enumerate}
+
+\section{Segurança}
+\begin{seguranca}
+Usar bata, óculos de proteção e calçado fechado quando indicado; prender cabelo comprido; nunca provar reagentes; não pipetar com a boca; manter chamas afastadas de substâncias inflamáveis; conhecer a localização do lava-olhos, extintor e saída; eliminar resíduos conforme indicação do professor; ler rótulos e fichas de segurança antes de utilizar reagentes.
+\end{seguranca}
+
+Antes de começar, identifica os perigos dos reagentes e do equipamento, distingue \textbf{perigo} de \textbf{risco} e pensa em medidas de controlo. Um reagente pode possuir um perigo intrínseco, mas o risco pode ser reduzido diminuindo a quantidade, a concentração, o tempo de exposição ou recorrendo a proteção e contenção adequadas.
+
+\begin{exercicio}[Instrumentos]
+Uma proveta tem divisões de \SI{1}{mL}; uma pipeta volumétrica mede \SI{10.00}{mL}; uma bureta tem divisões de \SI{0.1}{mL}. Para transferir exatamente \SI{10.00}{mL} de solução, qual é o instrumento mais adequado? Justifica.
+\end{exercicio}
+
+\begin{exercicio}[Tratamento de dados]
+Foram medidos os tempos de queda, em segundos: $0,452$; $0,447$; $0,455$; $0,451$; $0,449$. Calcula a média e a amplitude. Comenta a dispersão.
+\end{exercicio}
+
+% ============================================================
+\part{10.º ano}
+% ============================================================
+
+\chapter{Química — medir a matéria e compreender as transformações}
+
+\begin{essencial}
+As atividades deste capítulo articulam medição, quantidade de matéria, estrutura eletrónica, propriedades dos materiais, preparação de soluções e transformações fotoquímicas. A numeração usada neste livro é editorial. As atuais Aprendizagens Essenciais privilegiam as competências experimentais, não uma sequência rígida de protocolos. A atividade da gota de água é colocada em primeiro lugar por constituir uma introdução particularmente adequada à medição de massas e volumes e ser retomada em recursos recentes da DGE. \cite{DGE10portal,DGEGTA5}
+\end{essencial}
+
+\section{AL10-Q1 — Volume, massa e número de moléculas de uma gota de água}
+\LigAE{resolver experimentalmente problemas de medição de massas e volumes, selecionar instrumentos adequados e apresentar resultados atendendo à incerteza de leitura e ao número adequado de algarismos significativos.}
+
+\begin{questao}
+Como se pode determinar a massa e o volume de \emph{uma única gota} de água quando esses valores são demasiado pequenos para serem medidos diretamente com boa qualidade? Quantas moléculas de água existirão, aproximadamente, numa gota?
+\end{questao}
+
+\begin{fundamento}
+A massa e o volume de uma única gota são pequenos. Em vez de tentar medi-los diretamente, mede-se a massa e o volume de um número elevado de gotas, $N_g$, e divide-se pelo número de gotas. Esta estratégia constitui uma \textbf{medição indireta} e reduz a importância relativa da resolução dos instrumentos.
+
+Se $m_{N_g}$ e $V_{N_g}$ forem, respetivamente, a massa e o volume de $N_g$ gotas,
+\[
+ m_{\rm gota}=\frac{m_{N_g}}{N_g},
+ \qquad
+ V_{\rm gota}=\frac{V_{N_g}}{N_g}.
+\]
+A partir da massa de uma gota calcula-se a quantidade de matéria e o número de moléculas:
+\[
+ n=\frac{m_{\rm gota}}{M(\ce{H2O})},
+ \qquad
+ N=nN_A.
+\]
+É aconselhável trabalhar com pelo menos cerca de uma centena de gotas, mantendo o conta-gotas ou a torneira da bureta nas mesmas condições durante a contagem. \cite{DGEGTA5,ProgramaFQA}
+\end{fundamento}
+
+\begin{objetivos}
+\begin{itemize}
+\item Selecionar uma balança e um instrumento de volume adequados ao problema.
+\item Distinguir medições diretas de medições indiretas.
+\item Aplicar a incerteza de leitura da balança e da bureta.
+\item Determinar a massa média e o volume médio de uma gota de água.
+\item Estimar o número de moléculas de água existentes numa gota.
+\item Avaliar criticamente fontes de erro e a vantagem de usar muitas gotas.
+\end{itemize}
+\end{objetivos}
+
+\begin{material}
+Bureta de \SI{25}{mL} ou \SI{50}{mL}, suporte universal e garra, gobelé seco, balança digital, funil para encher a bureta, água, papel absorvente e termómetro (opcional).
+\end{material}
+
+\begin{seguranca}
+A água não apresenta perigos químicos relevantes, mas o material de vidro deve ser manuseado com cuidado. A bureta deve ficar firmemente presa ao suporte. Nunca colocar objetos molhados diretamente sobre a balança.
+\end{seguranca}
+
+\begin{prelab}
+Antes de iniciar, responde:
+\begin{enumerate}[label=\alph*)]
+\item Porque é preferível medir 100 ou 200 gotas em vez de uma única gota?
+\item A massa de 100 gotas é uma medição direta ou indireta? E a massa de uma gota?
+\item Numa bureta com divisões de \SI{0.1}{mL}, qual é a incerteza de cada leitura?
+\item Que grandezas adicionais são necessárias para calcular o número de moléculas por gota?
+\end{enumerate}
+\end{prelab}
+
+\begin{variaveis}
+\textbf{Grandezas medidas:} massa do recipiente vazio, massa do recipiente com as gotas, leitura inicial e final da bureta.\\
+\textbf{Grandezas calculadas:} massa total das gotas, volume total dispensado, massa e volume por gota, quantidade de matéria e número de moléculas.\\
+\textbf{Variáveis a controlar:} modo de formação das gotas, abertura da torneira/conta-gotas, recipiente, temperatura e número de gotas contado em cada ensaio.
+\end{variaveis}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=0.9]
+  % suporte
+  \draw[very thick] (-0.6,0)--(-0.6,6.5);
+  \draw[very thick] (-1.5,0)--(4.4,0);
+  \draw[thick] (-0.6,5.4)--(1.2,5.4);
+  \draw[thick] (0.9,1.5)--(0.9,6.0);
+  \draw[thick] (0.72,6.0) rectangle (1.08,6.35);
+  \foreach \y in {1.9,2.3,...,5.8} \draw[eucyan] (0.9,\y)--(1.12,\y);
+  \fill[eucyan!20] (0.74,3.1) rectangle (1.06,5.95);
+  \draw[thick] (0.82,1.5)--(0.98,1.5)--(0.9,0.95)--cycle;
+  \draw[thick] (0.55,2.0)--(1.25,2.0);
+  \draw[thick] (1.18,1.86)--(1.45,2.0)--(1.18,2.14);
+  % gota
+  \fill[eucyan!65] (0.9,0.68) .. controls (0.65,0.34) and (0.68,0.05) .. (0.9,-0.05)
+    .. controls (1.12,0.05) and (1.15,0.34) .. (0.9,0.68);
+  % gobele
+  \draw[thick] (0.1,-0.3)--(0.35,-2.0)--(2.05,-2.0)--(2.3,-0.3);
+  \fill[eucyan!15] (0.38,-1.15)--(0.5,-1.9)--(1.9,-1.9)--(2.02,-1.15)--cycle;
+  \node at (1.2,-2.35) {gobelé};
+  \node[anchor=west] at (1.55,4.5) {bureta};
+  % balança
+  \draw[rounded corners,thick] (4.0,-1.6) rectangle (7.8,0.8);
+  \draw[fill=eugray] (4.7,-0.9) rectangle (7.0,-0.35);
+  \node at (5.85,-0.62) {$m$};
+  \draw[thick] (5.0,0.8)--(5.15,1.7)--(6.65,1.7)--(6.8,0.8);
+  \node at (5.9,-2.0) {balança digital};
+  \draw[->,very thick,eublue] (2.6,-0.7)--(3.7,-0.7);
+  \node[above,align=center] at (3.15,-0.65) {determinar\\a massa};
+\end{tikzpicture}
+\caption{Montagem possível para medir o volume de muitas gotas com uma bureta e a massa dessas gotas com uma balança.}
+\label{fig:gota-agua}
+\end{figure}
+
+\begin{metodo}
+\begin{enumerate}
+\item Enche a bureta com água, elimina bolhas na extremidade e ajusta o nível. Regista a leitura inicial $V_i$ ao nível dos olhos.
+\item Determina a massa do gobelé seco, $m_0$.
+\item Faz escoar exatamente $N_g$ gotas para o gobelé, contando cuidadosamente. Usa, por exemplo, $N_g=100$ ou $200$.
+\item Regista a leitura final da bureta, $V_f$, e calcula o volume dispensado: $V_{N_g}=V_f-V_i$.
+\item Determina a massa do gobelé com as gotas, $m_1$, e calcula $m_{N_g}=m_1-m_0$.
+\item Calcula $V_{\rm gota}$ e $m_{\rm gota}$. Se houver tempo, repete o ensaio e compara os resultados.
+\item Calcula $n_{\rm gota}=m_{\rm gota}/M(\ce{H2O})$ e $N_{\text{moléculas}}=n_{\rm gota}N_A$.
+\end{enumerate}
+\end{metodo}
+
+\begin{registo}
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}l*{3}{>{\centering\arraybackslash}X}@{}}
+\toprule
+& Ensaio 1 & Ensaio 2 & Ensaio 3\\
+\midrule
+$N_g$ / gotas & & & \\
+$V_i$/mL & & & \\
+$V_f$/mL & & & \\
+$V_{N_g}$/mL & & & \\
+$m_0$/g & & & \\
+$m_1$/g & & & \\
+$m_{N_g}$/g & & & \\
+$V_{\rm gota}$/mL & & & \\
+$m_{\rm gota}$/g & & & \\
+$N_{\text{moléculas}}$/gota & & & \\
+\bottomrule
+\end{tabularx}
+\end{center}
+\end{registo}
+
+\begin{analise}
+Para uma bureta com divisões de \SI{0.1}{mL}, cada leitura tem, em regra escolar, $I_{a,\ell}=\SI{0.05}{mL}$. Como $V_{N_g}=V_f-V_i$, pode adotar-se a estimativa conservadora $I_a(V_{N_g})=\SI{0.10}{mL}$. Se $N_g$ for contado sem incerteza, a incerteza absoluta do volume de uma gota, pela mesma aproximação, é aproximadamente $I_a(V_{\rm gota})=I_a(V_{N_g})/N_g$.
+
+A grande vantagem de aumentar $N_g$ é visível na incerteza relativa. Por exemplo, se $V_{100}=\SI{5.00}{mL}$ com $I_a=\SI{0.10}{mL}$, a incerteza relativa é $2\%$. Se uma única gota tivesse cerca de \SI{0.05}{mL}, tentar lê-la diretamente numa bureta seria inadequado.
+\end{analise}
+
+\begin{erros}
+\begin{itemize}
+\item \textbf{Contagem incorreta de gotas:} afeta diretamente os valores por gota.
+\item \textbf{Tamanho não constante das gotas:} manter a mesma abertura e o mesmo dispositivo.
+\item \textbf{Leitura do menisco:} observar perpendicularmente à escala para reduzir paralaxe.
+\item \textbf{Gotas aderentes às paredes ou perda por salpicos:} altera massa e volume efetivamente recolhidos.
+\item \textbf{Evaporação:} normalmente pequena, mas pode afetar massas muito reduzidas se o processo for demorado.
+\end{itemize}
+\end{erros}
+
+\begin{exercicio}[Uma gota em números]
+Num ensaio com $N_g=200$ gotas, uma bureta de menor divisão \SI{0.1}{mL} passou de \SI{1.20}{mL} para \SI{11.10}{mL}. A massa do gobelé vazio era \SI{42.36}{g} e a massa do gobelé com as gotas era \SI{52.20}{g}.
+\begin{enumerate}[label=\alph*)]
+\item Determina o volume e a massa das 200 gotas.
+\item Determina o volume e a massa de uma gota.
+\item Calcula o número aproximado de moléculas numa gota, usando $M(\ce{H2O})=\SI{18.02}{g.mol^{-1}}$ e $N_A=6,022\times10^{23}\,\si{mol^{-1}}$.
+\item Estima a incerteza absoluta do volume total dispensado e do volume de uma gota.
+\item Explica por que razão o método seria pior se fossem utilizadas apenas 10 gotas.
+\end{enumerate}
+\end{exercicio}
+
+\section{AL10-Q2 — Testes de chama e identificação de iões metálicos}
+\LigAE{identificar experimentalmente elementos químicos em amostras desconhecidas de sais usando testes de chama e comunicar as conclusões.}
+
+\begin{questao}
+Será possível reconhecer a presença de certos elementos químicos pela cor emitida quando os seus átomos ou iões são excitados numa chama?
+\end{questao}
+
+\begin{fundamento}
+O aquecimento pode promover eletrões para estados de maior energia. Quando regressam a estados de menor energia, emitem fotões cujas energias satisfazem $\Delta E=hf$. Como os níveis de energia eletrónica são característicos de cada elemento, o conjunto de radiações emitidas funciona como uma assinatura espectral. O teste de chama é uma identificação qualitativa simples: não substitui técnicas espectroscópicas instrumentais e algumas cores podem sobrepor-se.
+\end{fundamento}
+
+\begin{objetivos}
+Observar cores características; construir uma tabela de padrões; identificar uma amostra desconhecida; relacionar cor, frequência, comprimento de onda e energia do fotão; reconhecer limitações do método.
+\end{objetivos}
+
+\begin{seguranca}
+Atividade sob supervisão do professor. Usar óculos e prender o cabelo. Manter materiais inflamáveis afastados da chama. Usar pequenas quantidades de sais/soluções e seguir as fichas de dados de segurança. Nunca aproximar o rosto da chama.
+\end{seguranca}
+
+\begin{material}
+Bico de Bunsen ou queimador escolar, ansa de nicrómio ou varetas apropriadas, soluções diluídas de sais selecionados pelo professor, amostra desconhecida, água destilada, recipientes pequenos e, se disponível, espectroscópio de mão ou rede de difração.
+\end{material}
+
+\begin{prelab}
+Prevê se dois sais do mesmo metal, mas com aniões diferentes, deverão produzir cores de chama semelhantes. Justifica com base na espécie responsável pela emissão.
+\end{prelab}
+
+\begin{metodo}
+Observa primeiro a chama sem amostra. Limpa a ansa pelo procedimento definido no laboratório. Testa as soluções-padrão uma de cada vez, registando cor, intensidade e persistência. Repete quando necessário. Por fim, testa a amostra desconhecida sem alterar as condições e compara-a com os padrões. Se houver espectroscópio, compara também o padrão de linhas.
+\end{metodo}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\draw[thick] (0,0) rectangle (1.2,2.1);
+\draw[thick] (0.25,2.1)--(0.4,2.8)--(0.8,2.8)--(0.95,2.1);
+\fill[euorange!70] (0.6,3.0) .. controls (0.05,3.9) and (0.35,4.8) .. (0.6,5.25)
+ .. controls (1.0,4.5) and (1.15,3.7) .. (0.6,3.0);
+\draw[very thick] (0.6,4.1)--(4.2,5.0);
+\draw (4.2,5.0) circle (0.16);
+\node[anchor=west] at (4.5,5.0) {ansa com amostra};
+\node at (0.6,-0.35) {queimador};
+\draw[->,eublue,thick] (5.1,3.8)--(7.0,3.8);
+\draw[eublue,thick] (7.2,2.8)--(7.2,4.8);
+\foreach \x/\h in {7.55/0.7,7.9/1.5,8.25/0.9,8.7/1.8,9.15/0.6}{\draw[eucyan,line width=2pt] (\x,2.8)--(\x,{2.8+\h});}
+\node at (8.35,2.35) {espetro de linhas};
+\end{tikzpicture}
+\caption{Do teste de chama à ideia de espectro de emissão.}
+\end{figure}
+
+\begin{registo}
+\begin{center}
+\begin{tabular}{@{}llll@{}}
+\toprule
+Amostra & Cor dominante & Persistência & Identificação/observações\\
+\midrule
+Padrão A & & &\\
+Padrão B & & &\\
+Padrão C & & &\\
+Desconhecida & & &\\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{registo}
+
+\begin{erros}
+Contaminação por sódio pode mascarar outras cores; a perceção da cor é subjetiva; concentrações muito diferentes alteram a intensidade; resíduos na ansa provocam falsos positivos. Repetir e comparar com padrões nas mesmas condições aumenta a confiança da identificação.
+\end{erros}
+
+\begin{exercicio}[Cor, frequência e energia]
+Uma linha amarela intensa do sódio tem $\lambda=\SI{589}{nm}$.
+\begin{enumerate}[label=\alph*)]
+\item Calcula a frequência da radiação.
+\item Calcula a energia de um fotão.
+\item Explica por que motivo a cor observada permite obter informação sobre a estrutura eletrónica do elemento.
+\item Indica uma limitação do teste de chama como método de identificação.
+\end{enumerate}
+Usa $c=3,00\times10^8\,\si{m.s^{-1}}$ e $h=6,626\times10^{-34}\,\si{J.s}$.
+\end{exercicio}
+
+\section{AL10-Q3 — Densidade relativa de metais por picnometria}
+\LigAE{determinar experimentalmente a densidade relativa de metais por picnometria, avaliando os procedimentos, interpretando e comunicando os resultados.}
+
+\begin{questao}
+Como determinar a densidade de uma pequena peça metálica irregular sem medir diretamente as suas dimensões geométricas?
+\end{questao}
+
+\begin{fundamento}
+A densidade é $\rho=m/V$. Num sólido irregular, o volume pode ser obtido pelo volume de água deslocado. O picnómetro permite comparar a massa do metal com a massa de igual volume de água. Se $m_M$ é a massa do metal e $m_{A,\rm deslocada}$ a massa de água que ocuparia o mesmo volume,
+\[
+ d_{M/A}=\frac{\rho_M}{\rho_A}=\frac{m_M}{m_{A,\rm deslocada}},
+ \qquad
+ \rho_M=d_{M/A}\rho_A.
+\]
+A temperatura deve ser registada porque a densidade da água varia ligeiramente com a temperatura.
+\end{fundamento}
+
+\begin{objetivos}
+Efetuar pesagens por diferença; usar corretamente um picnómetro; determinar densidade relativa; comparar com valores de referência e calcular erro relativo percentual; identificar fontes de erro sistemático.
+\end{objetivos}
+
+\begin{material}
+Picnómetro, balança digital, água destilada, amostra metálica limpa e seca, pinça, papel absorvente e termómetro.
+\end{material}
+
+\begin{variaveis}
+\textbf{Medidas essenciais:} massa do metal; massa do picnómetro cheio de água; massa do conjunto picnómetro + metal + água, seguindo o procedimento adotado.\\
+\textbf{Controlo:} temperatura, ausência de bolhas, enchimento até à marca/capilar e secagem exterior.
+\end{variaveis}
+
+\begin{metodo}
+\begin{enumerate}
+\item Mede a massa do metal seco, $m_M$.
+\item Enche o picnómetro com água, coloca a tampa e seca cuidadosamente o exterior. Determina $m_{P+A}$.
+\item Introduz o metal no picnómetro, elimina bolhas aderentes e repõe água até ao mesmo nível de referência. Determina $m_{P+M+A'}$.
+\item A massa de água deslocada pelo metal pode ser obtida por
+\[
+ m_{A,\rm deslocada}=m_{P+A}+m_M-m_{P+M+A'}.
+\]
+\item Calcula $d_{M/A}$ e, usando a densidade da água à temperatura do ensaio, estima $\rho_M$.
+\end{enumerate}
+\end{metodo}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=0.95]
+\foreach \x/\label in {0/{água},4/{metal + água}}{
+  \draw[thick] (\x,0) .. controls (\x-0.9,0.9) and (\x-1.0,2.6) .. (\x-0.45,3.5)
+  --(\x-0.25,4.6)--(\x+0.25,4.6)--(\x+0.45,3.5)
+  .. controls (\x+1.0,2.6) and (\x+0.9,0.9) .. (\x,0);
+  \fill[eucyan!18] (\x-0.75,0.75) .. controls (\x-0.75,1.8) and (\x-0.7,2.8) .. (\x-0.4,3.45)
+   --(\x+0.4,3.45) .. controls (\x+0.7,2.8) and (\x+0.75,1.8) .. (\x+0.75,0.75) --cycle;
+  \node at (\x,-0.45) {\label};
+}
+\fill[eudark!65] (4,1.35) circle (0.42);
+\node[anchor=west] at (5.2,2.3) {o nível final deve ser o mesmo};
+\draw[->] (5.0,2.2)--(4.45,3.45);
+\end{tikzpicture}
+\caption{Ideia da picnometria: comparar massas mantendo o mesmo volume de referência no picnómetro.}
+\end{figure}
+
+\begin{registo}
+\begin{center}
+\begin{tabular}{@{}lc@{}}
+\toprule
+Grandeza & Valor\\
+\midrule
+$m_M$/g &\\
+$m_{P+A}$/g &\\
+$m_{P+M+A'}$/g &\\
+$m_{A,\rm deslocada}$/g &\\
+$d_{M/A}$ &\\
+$\rho_M/(\si{g.cm^{-3}})$ &\\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{registo}
+
+\begin{erros}
+Bolhas de ar aderentes ao metal fazem o volume deslocado parecer maior; gotas no exterior aumentam a massa medida; metal molhado antes da pesagem altera $m_M$; uma temperatura mal controlada altera a densidade de referência da água. A presença de oxidação superficial pode ainda tornar o material diferente do metal puro usado na tabela.
+\end{erros}
+
+\begin{exercicio}[Identificar um metal]
+Num ensaio obtiveram-se $m_M=\SI{27.00}{g}$, $m_{P+A}=\SI{83.42}{g}$ e $m_{P+M+A'}=\SI{100.42}{g}$.
+\begin{enumerate}[label=\alph*)]
+\item Determina a massa de água deslocada.
+\item Calcula a densidade relativa do metal em relação à água.
+\item Admitindo $\rho_A=\SI{0.998}{g.cm^{-3}}$, calcula $\rho_M$.
+\item Compara com o valor de referência do alumínio, $\SI{2.70}{g.cm^{-3}}$, calculando o erro relativo percentual.
+\item Prevê o efeito de uma bolha de ar aderente ao metal no valor calculado da densidade.
+\end{enumerate}
+\end{exercicio}
+
+\section{AL10-Q4 — Preparação de soluções aquosas: soluto sólido e diluição}
+\LigAE{preparar soluções aquosas a partir de solutos sólidos e por diluição, avaliando procedimentos e comunicando resultados.}
+
+\begin{questao}
+Como preparar uma solução com concentração definida a partir de um sólido? E como obter uma solução menos concentrada a partir de uma solução-mãe?
+\end{questao}
+
+\begin{fundamento}
+Para preparar uma solução de concentração em quantidade de matéria $c$ e volume $V$ a partir de um soluto sólido,
+\[
+ n=cV,\qquad m=nM=cVM.
+\]
+Numa diluição, a quantidade de soluto transferida conserva-se:
+\[
+ c_iV_i=c_fV_f.
+\]
+A preparação rigorosa exige balão volumétrico, transferência quantitativa e leitura correta do menisco. A solução só fica homogénea depois de o balão ser tapado e invertido várias vezes.
+\end{fundamento}
+
+\begin{objetivos}
+Calcular massas e volumes de preparação; selecionar balão e pipeta volumétricos; executar transferência quantitativa; efetuar uma diluição; distinguir concentração da quantidade total de soluto.
+\end{objetivos}
+
+\begin{seguranca}
+Usar os equipamentos de proteção exigidos para o soluto selecionado. Nunca pipetar com a boca. Se a dissolução for exotérmica, deixar arrefecer a solução antes de perfazer o volume no balão volumétrico.
+\end{seguranca}
+
+\begin{material}
+Balança, espátula, vidro de relógio ou barco de pesagem, gobelé, vareta, funil, pisseta com água destilada, balão volumétrico, pipeta volumétrica e pompete. O professor selecionará um soluto escolar adequado.
+\end{material}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=0.9]
+% sólido e balança
+\draw[rounded corners,thick] (0,0) rectangle (3.0,1.7);
+\draw[fill=eugray] (0.55,0.35) rectangle (2.45,0.8);
+\node at (1.5,0.57) {$m$};
+\draw[thick] (0.8,1.7)--(1.1,2.25)--(1.9,2.25)--(2.2,1.7);
+\fill[eugreen!35] (1.15,2.02) ellipse (0.48 and 0.12);
+\node at (1.5,-0.35) {pesar};
+% seta
+\draw[->,very thick,eublue] (3.35,1.1)--(4.45,1.1);
+% gobele
+\draw[thick] (4.8,0.2)--(5.1,2.3)--(6.9,2.3)--(7.2,0.2);
+\fill[eucyan!18] (5.0,0.55)--(5.2,1.65)--(6.8,1.65)--(7.0,0.55)--cycle;
+\node at (6.0,-0.35) {dissolver};
+% seta
+\draw[->,very thick,eublue] (7.55,1.1)--(8.65,1.1);
+% balao
+\draw[thick] (10.0,0.05) circle (1.05);
+\draw[thick] (9.62,0.9)--(9.78,3.6)--(10.22,3.6)--(10.38,0.9);
+\draw[thick] (9.55,2.65)--(10.45,2.65);
+\fill[eucyan!18] (9.1,-0.1) arc (190:350:0.92) -- (10.8,0.15) arc (20:160:0.92) -- cycle;
+\node at (10.0,-1.45) {transferir e aferir};
+\end{tikzpicture}
+\caption{Etapas essenciais de uma preparação a partir de soluto sólido.}
+\end{figure}
+
+\begin{metodo}
+\textbf{A partir de sólido:} calcula a massa necessária; pesa-a; dissolve em pequena quantidade de água; transfere quantitativamente para o balão volumétrico, lavando gobelé, vareta e funil; adiciona água até perto da marca; ajusta gota a gota com o menisco tangente à marca; tapa e homogeneíza.
+
+\smallskip
+\textbf{Por diluição:} calcula $V_i$; condiciona a pipeta com a solução-mãe quando apropriado; transfere o volume calculado para o balão; adiciona água destilada; afere e homogeneíza.
+\end{metodo}
+
+\begin{erros}
+Perda de soluto na transferência produz concentração inferior à pretendida; aferir acima da marca aumenta o volume e diminui a concentração; dissolver um sólido exotérmico e aferir ainda quente introduz erro de volume; não homogeneizar cria gradientes temporários de concentração.
+\end{erros}
+
+\begin{exercicio}[Preparar e diluir]
+Pretende-se preparar \SI{250.0}{mL} de uma solução aquosa de \ce{NaCl} com $c=\SI{0.200}{mol.L^{-1}}$, usando $M(\ce{NaCl})=\SI{58.44}{g.mol^{-1}}$.
+\begin{enumerate}[label=\alph*)]
+\item Calcula a massa de \ce{NaCl} necessária.
+\item Indica o material volumétrico essencial para a preparação.
+\item A partir desta solução pretende-se preparar \SI{100.0}{mL} de solução \SI{0.0500}{mol.L^{-1}}. Calcula o volume da solução-mãe a pipetar.
+\item Explica o efeito de ultrapassar a marca do balão volumétrico na concentração final.
+\end{enumerate}
+\end{exercicio}
+
+\section{AL10-Q5 — Fotoquímica: efeito da luz sobre o cloreto de prata}
+\LigAE{investigar experimentalmente o efeito da luz sobre o cloreto de prata, avaliando procedimentos e comunicando resultados.}
+
+\begin{questao}
+A luz pode provocar uma transformação química observável num precipitado de cloreto de prata?
+\end{questao}
+
+\begin{fundamento}
+Ao misturar soluções que forneçam iões prata e cloreto forma-se o precipitado branco \ce{AgCl(s)}:
+\[
+\ce{Ag+(aq) + Cl-(aq) -> AgCl(s)}.
+\]
+A exposição à luz desencadeia processos fotoquímicos que conduzem ao escurecimento do sólido, associado à formação de prata metálica. A comparação entre uma amostra iluminada e uma amostra mantida no escuro funciona como controlo experimental.
+\end{fundamento}
+
+\begin{seguranca}
+Usar soluções muito diluídas e microescala. O nitrato de prata pode causar lesões oculares, manchar pele e tecidos e é perigoso para o ambiente aquático. Recolher todos os resíduos contendo prata em recipiente próprio; não os descarregar no lavatório.
+\end{seguranca}
+
+\begin{material}
+Soluções diluídas de \ce{AgNO3} e \ce{NaCl}, tubos de ensaio, suporte, pipetas Pasteur, folha de alumínio, cronómetro e fonte de luz apropriada.
+\end{material}
+
+\begin{variaveis}
+\textbf{Independente:} exposição/intensidade da luz.\\
+\textbf{Dependente:} grau ou rapidez de escurecimento.\\
+\textbf{Controladas:} volumes e concentrações, quantidade de precipitado, temperatura, tempo, geometria e distância à fonte.
+\end{variaveis}
+
+\begin{metodo}
+Prepara a mesma quantidade de precipitado em dois ou mais tubos. Protege completamente um deles com folha de alumínio e expõe outro à luz. Regista o aspeto inicial e, depois, a intervalos regulares. Se se compararem diferentes distâncias à fonte, altera apenas essa variável e mantém as restantes condições.
+\end{metodo}
+
+\begin{registo}
+\begin{center}
+\begin{tabular}{@{}llll@{}}
+\toprule
+Tempo & Tubo escuro & Tubo iluminado & Observações\\
+\midrule
+0 min & & &\\
+2 min & & &\\
+5 min & & &\\
+10 min & & &\\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{registo}
+
+\begin{exercicio}[Desenho experimental]
+Um grupo pretende testar se uma maior irradiância acelera o escurecimento de \ce{AgCl}.
+\begin{enumerate}[label=\alph*)]
+\item Formula uma hipótese testável.
+\item Identifica as variáveis independente, dependente e três variáveis de controlo.
+\item Explica a função de um tubo protegido da luz.
+\item Sugere uma forma semiquantitativa de tornar a observação de ``mais escuro'' menos subjetiva.
+\end{enumerate}
+\end{exercicio}
+
+% ------------------------------------------------------------
+\chapter{Física — energia, eletricidade e fenómenos térmicos}
+
+\begin{essencial}
+Neste capítulo a energia funciona como ideia unificadora. Em cada atividade é importante definir claramente o sistema, identificar transferências de energia, construir um modelo e confrontá-lo com os dados experimentais. As discrepâncias não devem ser escondidas: são parte da análise científica.
+\end{essencial}
+
+\section{AL10-F1 — Trabalho da força resultante e variação da energia cinética}
+\LigAE{estabelecer experimentalmente a relação entre a variação da energia cinética e a distância percorrida por um corpo sujeito a uma resultante aproximadamente constante, usando tratamento estatístico de dados.}
+
+\begin{questao}
+Quando a força resultante sobre um corpo é aproximadamente constante, como varia a energia cinética com a distância percorrida?
+\end{questao}
+
+\begin{fundamento}
+O teorema da energia cinética estabelece
+\[
+\Delta E_c=W_{\rm res}.
+\]
+Se a força resultante é constante, colinear com o deslocamento e de módulo $F_{\rm res}$,
+\[
+\Delta E_c=F_{\rm res}\,d.
+\]
+Assim, o gráfico de $\Delta E_c$ em função de $d$ deverá ser aproximadamente linear. O declive estima $F_{\rm res}$.
+\end{fundamento}
+
+\begin{material}
+Carrinho de baixo atrito, pista horizontal, roldana, fio, massas, balança, régua/fita métrica, célula fotoelétrica ou sensor de movimento e computador/interface quando disponível.
+\end{material}
+
+\begin{variaveis}
+\textbf{Independente:} distância percorrida até ao ponto de medição.\\
+\textbf{Dependente:} variação de energia cinética.\\
+\textbf{Controladas:} massa total do sistema, massa suspensa, inclinação da pista e posição inicial.
+\end{variaveis}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=Latex]
+\draw[thick] (-0.5,0)--(8.0,0);
+\draw[fill=eugray,thick] (1.0,0.12) rectangle (3.0,1.2);
+\draw (1.4,0.05) circle (0.22); \draw (2.6,0.05) circle (0.22);
+\draw[thick] (3.0,0.75)--(6.8,0.75);
+\draw[thick] (6.8,0.75) arc (90:-5:0.5);
+\draw[thick] (7.3,0.25)--(7.3,-1.55);
+\draw[fill=eugray,thick] (6.9,-2.2) rectangle (7.7,-1.55);
+\draw[->,very thick,eublue] (1.2,1.55)--(3.0,1.55) node[midway,above] {$\vec v$};
+\draw[<->,euorange,thick] (1.0,-0.5)--(5.6,-0.5) node[midway,below] {$d$};
+\node at (2.0,0.65) {$m_c$};
+\node at (7.3,-1.88) {$m_s$};
+\end{tikzpicture}
+\caption{Carrinho puxado por uma massa suspensa: uma montagem possível para obter uma resultante aproximadamente constante.}
+\end{figure}
+
+\begin{metodo}
+Determina as massas. Larga o sistema sempre da mesma posição, sem impulso. Mede a velocidade em várias posições $d$. Calcula $E_c=\tfrac12m_cv^2$ e $\Delta E_c$. Representa $\Delta E_c$ em função de $d$, ajusta uma reta e compara o declive com uma estimativa independente da força resultante. Repete alguns pontos para avaliar a dispersão.
+\end{metodo}
+
+\begin{registo}
+\begin{center}
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+$d$/m & $v/(\si{m.s^{-1}})$ & $v^2/(\si{m^2.s^{-2}})$ & $E_c$/J & $\Delta E_c$/J\\
+\midrule
+& & & &\\ & & & &\\ & & & &\\ & & & &\\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{registo}
+
+\begin{erros}
+Atrito, inércia e atrito da roldana, inclinação residual da pista e massa do fio tornam a força resultante diferente do modelo ideal. Uma boa conclusão deve indicar se o gráfico é linear dentro da dispersão e discutir o significado físico do declive.
+\end{erros}
+
+\begin{exercicio}[Do gráfico à força]
+Um carrinho de \SI{0.500}{kg}, inicialmente em repouso, apresenta os pares $(d,\Delta E_c)$: $(0,20;0,15)$, $(0,40;0,31)$, $(0,60;0,46)$ e $(0,80;0,62)$, em unidades SI.
+\begin{enumerate}[label=\alph*)]
+\item Estima o declive do gráfico $\Delta E_c(d)$ e interpreta-o.
+\item Calcula a velocidade do carrinho quando $d=\SI{0.80}{m}$.
+\item Se a força aplicada fosse \SI{0.85}{N}, estima a força resistiva média.
+\end{enumerate}
+\end{exercicio}
+
+\section{AL10-F2 — Queda e ressalto de uma bola}
+\LigAE{investigar experimentalmente a queda e o ressalto de uma bola com base em considerações energéticas, confrontando resultados com previsões do modelo.}
+
+\begin{questao}
+Que fração da energia mecânica associada à queda é recuperada no primeiro ressalto? Essa fração depende da altura de largada?
+\end{questao}
+
+\begin{fundamento}
+Se a bola é largada do repouso a uma altura $h_0$ e atinge uma altura máxima $h_1$ após o primeiro ressalto, as energias potenciais nos instantes de velocidade nula são $mgh_0$ e $mgh_1$. Uma medida simples da eficiência do ressalto é
+\[
+\eta=\frac{h_1}{h_0}\times100.
+\]
+A energia não recuperada como energia mecânica macroscópica é transformada, sobretudo, em energia interna, som e deformação.
+\end{fundamento}
+
+\begin{material}
+Bola, fita métrica, escala vertical, câmara de vídeo/smartphone com taxa de fotogramas conhecida ou sensor de movimento e suporte para manter a escala no plano do movimento.
+\end{material}
+
+\begin{variaveis}
+\textbf{Independente:} altura de largada, se se pretender estudar a sua influência.\\
+\textbf{Dependente:} altura de ressalto ou eficiência energética.\\
+\textbf{Controladas:} bola, superfície, forma de largada, posição da escala e método de leitura.
+\end{variaveis}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=Latex]
+\draw[thick] (-1,0)--(5,0);
+\draw[dashed] (0,0)--(0,5.5);
+\fill[eublue!60] (0,5) circle (0.23);
+\fill[eublue!60] (2.5,3.2) circle (0.23);
+\draw[->,thick] (0.45,4.7)--(0.45,0.5) node[midway,right] {queda};
+\draw[->,thick] (2.05,0.5)--(2.05,3.0) node[midway,left] {ressalto};
+\draw[<->] (-0.45,0)--(-0.45,5) node[midway,left] {$h_0$};
+\draw[<->] (3.0,0)--(3.0,3.2) node[midway,right] {$h_1$};
+\end{tikzpicture}
+\caption{Alturas de queda e de primeiro ressalto.}
+\end{figure}
+
+\begin{metodo}
+Escolhe quatro ou cinco alturas de largada. Para cada uma, larga a bola sem impulso e mede $h_1$ pelo vídeo ou sensor. Efetua pelo menos três repetições por altura e calcula a média. Representa $h_1$ em função de $h_0$; se a relação for aproximadamente linear e passar perto da origem, o declive corresponde aproximadamente a $\eta/100$.
+\end{metodo}
+
+\begin{erros}
+A maior fonte de incerteza costuma ser a determinação da altura máxima do ressalto. Paralaxe, baixa taxa de fotogramas, escala fora do plano do movimento e rotação da bola podem aumentar a dispersão. O solo deve ser o mesmo em todos os ensaios.
+\end{erros}
+
+\begin{exercicio}[Energia e coeficiente de restituição]
+Uma bola é largada de \SI{1.80}{m} e ressalta até \SI{1.15}{m}.
+\begin{enumerate}[label=\alph*)]
+\item Calcula a percentagem de energia mecânica recuperada.
+\item Calcula a percentagem de energia dissipada.
+\item Admitindo que a velocidade imediatamente antes e depois do impacto se relaciona por $e=v_{\text{após}}/v_{\text{antes}}$, mostra que $e\approx\sqrt{h_1/h_0}$ e calcula $e$.
+\end{enumerate}
+\end{exercicio}
+
+\section{AL10-F3 — Circuitos elétricos e características de uma pilha}
+\LigAE{montar circuitos em série e em paralelo, medir corrente e diferença de potencial e determinar experimentalmente as características de uma pilha.}
+
+\begin{questao}
+Como se mede corretamente a corrente e a diferença de potencial num circuito? Porque diminui a tensão nos terminais de uma pilha quando a corrente aumenta?
+\end{questao}
+
+\begin{fundamento}
+O amperímetro liga-se em série com o ramo em que se mede a corrente; o voltímetro liga-se em paralelo com o elemento cujos terminais se comparam. Para uma pilha real, um modelo simples é
+\[
+U=\mathcal{E}-rI,
+\]
+onde $\mathcal{E}$ é a força eletromotriz e $r$ a resistência interna. Num gráfico $U(I)$, a ordenada na origem estima $\mathcal{E}$ e o declive é $-r$.
+\end{fundamento}
+
+\begin{seguranca}
+Usar apenas pilhas/fontes de baixa tensão. Evitar curto-circuitos, que podem aquecer condutores e descarregar rapidamente a pilha. Desligar a fonte ao alterar as ligações e respeitar a gama máxima dos multímetros.
+\end{seguranca}
+
+\begin{material}
+Pilha, resistência variável ou conjunto de resistores, amperímetro/multímetro, voltímetro/multímetro, interruptor e fios de ligação.
+\end{material}
+
+\begin{figure}[H]
+\centering
+\begin{circuitikz}[american currents]
+\draw (0,0) to[battery1,l={$\mathcal{E},r$}] (0,3)
+      to[ammeter,l=$A$] (2,3)
+      to[vR,l=$R$] (5,3)
+      -- (5,0) -- (0,0);
+\draw (0.3,3) -- (0.3,4.3) to[voltmeter,l=$V$] (4.7,4.3) -- (4.7,3);
+\end{circuitikz}
+\caption{Circuito para obter pares $(I,U)$ da pilha sob diferentes cargas.}
+\end{figure}
+
+\begin{metodo}
+Monta o circuito com o interruptor aberto e confirma as ligações. Mede primeiro a tensão em circuito aberto. Fecha o circuito por períodos curtos e varia a carga, registando pares $(I,U)$. Constrói o gráfico $U(I)$ e efetua um ajuste linear. Determina $\mathcal{E}$ e $r$ e discute se o modelo é adequado em toda a gama usada.
+\end{metodo}
+
+\begin{registo}
+\begin{center}
+\begin{tabular}{@{}cccc@{}}
+\toprule
+Ensaio & $I$/A & $U$/V & $P=UI$/W\\
+\midrule
+1 & & &\\ 2 & & &\\ 3 & & &\\ 4 & & &\\ 5 & & &\\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{registo}
+
+\begin{erros}
+A pilha aquece e descarrega durante o ensaio; a resistência interna pode variar com a temperatura e o estado de carga. Não manter correntes elevadas por muito tempo. A resistência dos fios e dos aparelhos também influencia o circuito real.
+\end{erros}
+
+\begin{exercicio}[Característica de uma pilha]
+O ajuste experimental fornece, no SI,
+\[
+U=1,58-0,42I.
+\]
+\begin{enumerate}[label=\alph*)]
+\item Determina $\mathcal{E}$ e $r$.
+\item Calcula $U$ para $I=\SI{0.60}{A}$.
+\item Calcula a potência fornecida ao circuito externo nesse ponto e a potência dissipada internamente.
+\item Explica por que razão não se deve obter experimentalmente o ponto $I=\mathcal{E}/r$ ligando diretamente os terminais da pilha.
+\end{enumerate}
+\end{exercicio}
+
+\section{AL10-F4 — Capacidade térmica mássica de um material}
+\LigAE{determinar experimentalmente a capacidade térmica mássica de um material, avaliando procedimentos e resultados.}
+
+\begin{questao}
+Quanta energia é necessária para aumentar em \SI{1}{K} a temperatura de \SI{1}{kg} de um material?
+\end{questao}
+
+\begin{fundamento}
+Sem mudança de estado, a energia transferida por calor relaciona-se com a variação de temperatura por
+\[
+Q=mc\Delta T.
+\]
+Se um aquecedor elétrico transfere energia $E_{el}=UI\Delta t$, um modelo ideal fornece
+\[
+c\approx\frac{UI\Delta t}{m\Delta T}.
+\]
+Na prática, parte da energia aquece o recipiente e o sensor e outra parte é transferida para o ambiente.
+\end{fundamento}
+
+\begin{material}
+Bloco metálico com resistência de aquecimento ou calorímetro adequado, sensor de temperatura, balança, fonte de baixa tensão, amperímetro, voltímetro, cronómetro e material isolante.
+\end{material}
+
+\begin{variaveis}
+\textbf{Medidas:} $m$, $U$, $I$, $\Delta t$, $T_i$, $T_f$.\\
+\textbf{Controlar:} contacto térmico, isolamento, potência aproximadamente constante e intervalo de temperatura.
+\end{variaveis}
+
+\begin{metodo}
+Mede a massa do corpo. Introduz aquecedor e sensor garantindo bom contacto. Regista a temperatura inicial. Liga a fonte e mede $U$ e $I$ durante um tempo conhecido. Regista a temperatura em intervalos regulares. Calcula $c$ pelo balanço mais simples e discute a influência das perdas. Uma melhoria consiste em usar o declive inicial de $T(t)$, reduzindo a influência acumulada das perdas.
+\end{metodo}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\draw[fill=eugray,thick] (0,0) rectangle (4.5,3.2);
+\fill[euorange!25] (0.25,0.25) rectangle (4.25,2.95);
+\draw[very thick,eured] (1.3,0.45)--(1.3,2.8);
+\draw[very thick,eublue] (3.2,0.45)--(3.2,2.8);
+\node[rotate=90] at (1.0,1.6) {aquecedor};
+\node[rotate=90] at (3.5,1.6) {sensor};
+\draw[thick] (1.3,2.8)--(1.3,4.1)--(0.2,4.1);
+\draw[thick] (3.2,2.8)--(3.2,4.1)--(4.3,4.1);
+\node at (2.25,-0.4) {bloco metálico isolado};
+\end{tikzpicture}
+\caption{Esquema conceptual de aquecimento elétrico de um bloco.}
+\end{figure}
+
+\begin{erros}
+Perdas para o ambiente tendem a fazer a energia elétrica calculada ser maior do que a energia efetivamente absorvida pelo bloco, podendo sobrestimar $c$ no modelo mais simples. A energia absorvida pelo aquecedor e pelo sensor também deve ser reconhecida.
+\end{erros}
+
+\begin{exercicio}[Capacidade térmica mássica]
+Um bloco de massa \SI{0.250}{kg} é aquecido durante \SI{180}{s} com $U=\SI{6.00}{V}$ e $I=\SI{1.20}{A}$. A temperatura aumenta \SI{5.40}{K}.
+\begin{enumerate}[label=\alph*)]
+\item Calcula a energia elétrica fornecida.
+\item Estima $c$ supondo transferência integral para o bloco.
+\item Se apenas $90\%$ da energia elétrica tiver sido efetivamente absorvida pelo bloco, calcula uma estimativa corrigida de $c$.
+\item Indica uma alteração experimental que reduza as perdas térmicas.
+\end{enumerate}
+\end{exercicio}
+
+\section{AL10-F5 — Variação de entalpia mássica de fusão do gelo}
+\LigAE{determinar experimentalmente a variação de entalpia mássica de fusão do gelo, avaliando procedimentos e interpretando resultados.}
+
+\begin{questao}
+Que energia é necessária para fundir uma unidade de massa de gelo a aproximadamente \SI{0}{\celsius} sem variar a sua temperatura durante a mudança de estado?
+\end{questao}
+
+\begin{fundamento}
+Durante a fusão a aproximadamente \SI{0}{\celsius}, a energia absorvida pelo gelo é
+\[
+Q_{fus}=m_g\Delta h_{fus}.
+\]
+Num calorímetro, a energia perdida pela água inicialmente mais quente (e pelo calorímetro, se considerada) é igual, em módulo, à energia ganha pelo gelo para fundir e pela água resultante para aquecer até $T_f$.
+\end{fundamento}
+
+\begin{material}
+Calorímetro simples, água morna, gelo próximo de \SI{0}{\celsius}, balança, termómetro/sensor, pinça e papel absorvente.
+\end{material}
+
+\begin{metodo}
+Determina a massa de água no calorímetro e $T_i$. Seca superficialmente pequenos pedaços de gelo e determina a massa adicionada. Agita suavemente até fusão completa e equilíbrio térmico e regista $T_f$. Faz o balanço energético. Se a capacidade térmica do calorímetro for conhecida, inclui-a.
+\end{metodo}
+
+\begin{erros}
+Gelo abaixo de \SI{0}{\celsius} exige energia adicional para aquecer até à fusão; água líquida aderente ao gelo é contabilizada indevidamente como gelo; trocas com o ambiente e capacidade térmica do recipiente alteram o balanço. Secar o gelo rapidamente é importante.
+\end{erros}
+
+\begin{exercicio}[Balanço energético com gelo]
+Num sistema ideal, \SI{0.200}{kg} de água a \SI{30.0}{\celsius} recebe \SI{20.0}{g} de gelo a \SI{0}{\celsius}. A temperatura final é \SI{20.0}{\celsius}. Usa $c_{\text{água}}=\SI{4.18}{kJ.kg^{-1}.K^{-1}}$.
+\begin{enumerate}[label=\alph*)]
+\item Calcula a energia cedida pela água inicial.
+\item Calcula a energia usada para aquecer de \SI{0}{\celsius} a \SI{20}{\celsius} a água proveniente do gelo.
+\item Estima $\Delta h_{fus}$.
+\item Explica o efeito de adicionar gelo com água líquida aderente na estimativa de $\Delta h_{fus}$.
+\end{enumerate}
+\end{exercicio}
+
+\section{AL10-F6 — Painel fotovoltaico: irradiância, tensão e potência}
+\LigAE{investigar experimentalmente a influência da irradiância e da diferença de potencial na potência elétrica fornecida por um painel fotovoltaico.}
+
+\begin{questao}
+Para uma dada iluminação, existe uma carga elétrica para a qual o painel fornece potência máxima? Como muda essa potência quando muda a irradiância?
+\end{questao}
+
+\begin{fundamento}
+A potência elétrica entregue à carga é
+\[
+P=UI.
+\]
+A corrente e a tensão não são independentes: dependem da carga ligada e da irradiância. Por isso, constrói-se a característica $I(U)$ e, a partir dela, $P(U)$. O máximo de $P(U)$ define o ponto de potência máxima (PMP). A eficiência global pode ser estimada comparando a potência elétrica máxima com a potência radiante incidente no painel quando a irradiância e a área são conhecidas.
+\end{fundamento}
+
+\begin{material}
+Mini painel fotovoltaico, fonte luminosa segura, resistência variável ou caixa de resistências, amperímetro, voltímetro, régua e, se disponível, sensor de irradiância.
+\end{material}
+
+\begin{variaveis}
+Num primeiro estudo, a variável independente pode ser a resistência de carga (ou $U$), e a dependente $P$. Num segundo estudo, altera-se a irradiância mantendo geometria e temperatura tão constantes quanto possível.
+\end{variaveis}
+
+\begin{metodo}
+Para uma posição fixa da fonte, varia a carga e mede $(U,I)$. Calcula $P=UI$ e constrói $P(U)$. Repete para pelo menos outra irradiância, medida diretamente ou obtida alterando a distância de forma controlada. Compara os valores de potência máxima.
+\end{metodo}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=10cm,height=6cm,xlabel={$U$/V},ylabel={$P$/W},grid=major,xmin=0,xmax=6,ymin=0,ymax=2.6]
+\addplot[smooth,thick] coordinates {(0,0)(1,0.6)(2,1.25)(3,1.8)(4,2.15)(5,1.8)(5.6,0.6)};
+\addplot[only marks,mark=*] coordinates {(4,2.15)};
+\node at (axis cs:3.45,2.4) {PMP};
+\end{axis}
+\end{tikzpicture}
+\caption{Curva qualitativa potência--tensão de um painel fotovoltaico.}
+\end{figure}
+
+\begin{erros}
+A temperatura do painel aumenta durante a iluminação e pode alterar a característica elétrica; a irradiância pode não ser uniforme; medir distância sem controlar o alinhamento não garante, por si só, uma razão simples de irradiâncias. Repetir rapidamente e evitar aquecimento excessivo melhora a comparação.
+\end{erros}
+
+\begin{exercicio}[Potência, energia e eficiência]
+Um painel de área \SI{0.015}{m^2} recebe irradiância \SI{500}{W.m^{-2}}. No ponto de potência máxima mede-se $U=\SI{4.20}{V}$ e $I=\SI{0.85}{A}$.
+\begin{enumerate}[label=\alph*)]
+\item Calcula a potência elétrica máxima.
+\item Calcula a potência radiante incidente no painel.
+\item Estima a eficiência de conversão.
+\item Se o painel operar no PMP durante \SI{18}{min}, calcula a energia elétrica em joules e Wh.
+\end{enumerate}
+\end{exercicio}
+
+% ============================================================
+\part{11.º ano}
+% ============================================================
+
+\chapter{Física — mecânica}
+
+\section{AL11-F1 — Determinação experimental da aceleração da gravidade}
+\LigAE{determinar experimentalmente a aceleração da gravidade em queda livre e investigar se depende da massa dos corpos.}
+
+\begin{questao}
+A aceleração de um corpo em queda livre depende da sua massa? Como pode o valor de $g$ ser obtido a partir de medidas de posição e tempo?
+\end{questao}
+
+\begin{fundamento}
+Perto da superfície terrestre, desprezando a resistência do ar e escolhendo o eixo positivo no sentido da queda, para um corpo largado do repouso,
+\[
+y=\frac12gt^2.
+\]
+O gráfico de $y$ em função de $t^2$ deverá ser linear, com declive $g/2$. O método gráfico usa vários pontos e é geralmente mais robusto do que calcular $g$ a partir de um único par $(y,t)$.
+\end{fundamento}
+
+\begin{material}
+Esfera ou esfera metálica, mecanismo de largada, célula fotoelétrica/temporizador ou vídeo, régua/fita métrica e objetos de massas diferentes mas formas semelhantes para comparação qualitativa.
+\end{material}
+
+\begin{variaveis}
+\textbf{Independente:} altura de queda; num segundo estudo, massa do corpo.\\
+\textbf{Dependente:} tempo de queda ou aceleração calculada.\\
+\textbf{Controladas:} forma/tamanho quando se compara massa, posição de largada, método de deteção e condições do ar.
+\end{variaveis}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=Latex]
+\draw[thick] (0,0)--(0,5.2);
+\fill[eublue] (0.6,4.6) circle (0.22);
+\draw[dashed] (0.6,4.35)--(0.6,0.35);
+\draw[->,thick] (1.25,4.2)--(1.25,0.8) node[midway,right] {$\vec g$};
+\draw[thick] (-0.3,0.25)--(2.2,0.25);
+\draw[<->] (-0.55,0.25)--(-0.55,4.6) node[midway,left] {$y$};
+\end{tikzpicture}
+\caption{Queda vertical a partir do repouso.}
+\end{figure}
+
+\begin{metodo}
+Mede tempos para pelo menos cinco alturas e efetua repetições. Calcula $t^2$ e representa $y(t^2)$. Obtém o declive por ajuste linear e calcula $g=2m$. Compara com um valor de referência local/aproximado através do erro relativo percentual. Para estudar a massa, compara corpos de massa diferente mas forma semelhante, evitando confundir efeito da massa com efeito da resistência do ar.
+\end{metodo}
+
+\begin{registo}
+\begin{center}
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+$y$/m & $t_1$/s & $t_2$/s & $\bar t$/s & $\bar t^2/\si{s^2}$\\
+\midrule
+& & & &\\ & & & &\\ & & & &\\ & & & &\\ & & & &\\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{registo}
+
+\begin{erros}
+Tempo de reação manual é inadequado para quedas curtas. A altura deve ser definida entre pontos físicos coerentes do objeto/detetor. Resistência do ar, atraso do mecanismo de largada e enquadramento do vídeo podem introduzir desvios sistemáticos.
+\end{erros}
+
+\begin{exercicio}[Determinar $g$]
+Uma regressão de $y$ em função de $t^2$ fornece
+\[
+y=(4,87\,\si{m.s^{-2}})t^2+0,006\,\si{m}.
+\]
+\begin{enumerate}[label=\alph*)]
+\item Determina $g$.
+\item Calcula o erro relativo percentual face a $\SI{9.81}{m.s^{-2}}$.
+\item Interpreta fisicamente uma ordenada na origem pequena mas não nula.
+\item Explica por que razão deixar cair simultaneamente uma esfera metálica e uma folha de papel aberta não constitui um bom teste da dependência de $g$ com a massa.
+\end{enumerate}
+\end{exercicio}
+
+\section{AL11-F2 — Resultante nula e resultante não nula}
+\LigAE{investigar o movimento de um corpo sujeito a resultante nula e não nula, formulando hipóteses, interpretando dados e comunicando conclusões.}
+
+\begin{questao}
+Que assinatura deixa uma força resultante nula no gráfico $v(t)$? E uma resultante aproximadamente constante e não nula?
+\end{questao}
+
+\begin{fundamento}
+A Segunda Lei de Newton estabelece $\sum\vec F=m\vec a$. Se $\sum\vec F=0$, então $\vec a=0$ e a velocidade mantém-se constante. Se a resultante for constante e a massa também, a aceleração é constante e o gráfico $v(t)$ é aproximadamente linear, com declive $a$.
+\end{fundamento}
+
+\begin{material}
+Carrinho e pista de baixo atrito, sensor de movimento ou sistema de aquisição, fio/roldana/massa suspensa ou dinamómetro, balança e nível.
+\end{material}
+
+\begin{metodo}
+Numa primeira situação, ajusta a pista para minimizar a resultante horizontal e dá ao carrinho uma velocidade inicial; regista $v(t)$. Numa segunda situação, aplica uma força aproximadamente constante e regista novamente. Compara os declives e relaciona-os com $\sum F=ma$.
+\end{metodo}
+
+\begin{erros}
+Uma pista ligeiramente inclinada produz uma componente constante do peso; atrito e resistência do ar impedem uma resultante rigorosamente nula. Em vez de afirmar ``sem forças'', deve dizer-se ``resultante aproximadamente nula''.
+\end{erros}
+
+\begin{exercicio}[Força resistiva]
+Um carrinho de \SI{0.80}{kg} apresenta aceleração \SI{0.65}{m.s^{-2}} quando a força de tração é \SI{0.60}{N}.
+\begin{enumerate}[label=\alph*)]
+\item Determina a resultante horizontal.
+\item Estima a força resistiva média, admitindo que é oposta à tração.
+\item Se a tração fosse removida e a resistência desprezável, descreve o movimento previsto.
+\end{enumerate}
+\end{exercicio}
+
+\section{AL11-F3 — Relação entre velocidade e deslocamento num movimento uniformemente variado}
+\LigAE{relacionar experimentalmente velocidade e deslocamento, determinar aceleração e resultante das forças.}
+
+\begin{questao}
+Como obter a aceleração de um movimento uniformemente variado sem usar explicitamente o tempo em cada cálculo?
+\end{questao}
+
+\begin{fundamento}
+Para aceleração constante,
+\[
+v^2=v_0^2+2a\Delta x.
+\]
+Logo, o gráfico de $v^2$ em função de $\Delta x$ é linear, com declive $2a$ e ordenada na origem $v_0^2$. Esta linearização permite testar o modelo e determinar $a$.
+\end{fundamento}
+
+\begin{material}
+Carrinho e pista inclinável ou sistema carrinho--massa suspensa, sensores/células fotoelétricas, fita métrica e balança.
+\end{material}
+
+\begin{metodo}
+Define a posição inicial e mantém a configuração de forças constante. Mede a velocidade em várias posições. Calcula $v^2$ e representa-o em função de $\Delta x$. Determina $a$ a partir do declive e, conhecendo a massa, calcula a resultante $F_{\rm res}=ma$.
+\end{metodo}
+
+\begin{registo}
+\begin{center}
+\begin{tabular}{@{}cccc@{}}
+\toprule
+$\Delta x$/m & $v/(\si{m.s^{-1}})$ & $v^2/(\si{m^2.s^{-2}})$ & observações\\
+\midrule
+& & &\\ & & &\\ & & &\\ & & &\\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{registo}
+
+\begin{exercicio}[Interpretar um ajuste]
+Um ensaio fornece
+\[
+v^2=1,84\,\Delta x+0,25,
+\]
+no SI, para um carrinho de massa \SI{0.600}{kg}.
+\begin{enumerate}[label=\alph*)]
+\item Determina a aceleração.
+\item Determina a velocidade inicial.
+\item Calcula o módulo da resultante das forças.
+\item Indica uma razão experimental para os pontos não ficarem exatamente sobre a reta.
+\end{enumerate}
+\end{exercicio}
+
+% ------------------------------------------------------------
+\chapter{Física — ondas e eletromagnetismo}
+
+\section{AL11-F4 — Som: sinal elétrico, frequência e amplitude}
+\LigAE{concluir experimentalmente sobre características de sons a partir da observação de sinais elétricos provenientes de um microfone.}
+
+\begin{questao}
+Como se relacionam as características percebidas de um som com a forma do sinal elétrico obtido por um microfone?
+\end{questao}
+
+\begin{fundamento}
+Um microfone converte variações de pressão sonora num sinal elétrico. Num sinal aproximadamente sinusoidal, o período $T$ determina a frequência, $f=1/T$. A frequência relaciona-se principalmente com a altura do som; a amplitude do sinal, mantendo o sistema de aquisição e a distância, relaciona-se com a intensidade sonora, embora não de forma universalmente linear.
+\end{fundamento}
+
+\begin{material}
+Microfone, interface ou aplicação de osciloscópio, diapasões/gerador de tons/instrumentos musicais e computador ou smartphone.
+\end{material}
+
+\begin{metodo}
+Regista sinais de sons de frequências diferentes mantendo aproximadamente a amplitude. Depois, para uma frequência fixa, altera a intensidade e compara amplitudes. Mede o período usando vários ciclos para reduzir incerteza relativa. Se possível, usa análise espectral para comparar sons puros e complexos.
+\end{metodo}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=11cm,height=5.5cm,xlabel={$t$/ms},ylabel={sinal},xmin=0,xmax=10,ymin=-1.3,ymax=1.3,grid=major]
+\addplot[domain=0:10,samples=250,thick] {0.9*sin(360*0.5*x)};
+\draw[<->,euorange,thick] (axis cs:1,1.05)--(axis cs:3,1.05) node[midway,above] {$T$};
+\end{axis}
+\end{tikzpicture}
+\caption{Sinal harmónico idealizado: o período mede-se entre pontos equivalentes de ciclos sucessivos.}
+\end{figure}
+
+\begin{erros}
+Ruído ambiente, saturação do microfone, ganho automático do dispositivo e amostragem insuficiente podem distorcer amplitude e frequência. Para medir $T$, usar vários períodos e dividir o intervalo total pelo número de ciclos.
+\end{erros}
+
+\begin{exercicio}[Ler um oscilograma]
+Dez oscilações ocupam \SI{22.7}{ms}. A amplitude medida no ecrã é \SI{0.84}{V}.
+\begin{enumerate}[label=\alph*)]
+\item Determina o período médio e a frequência.
+\item Se um segundo som tiver o mesmo período e amplitude \SI{0.42}{V}, qual tem maior frequência? Qual produzirá maior amplitude no microfone, nas mesmas condições?
+\item Explica por que razão a amplitude em volts não pode ser convertida diretamente em intensidade sonora sem calibração do sistema.
+\end{enumerate}
+\end{exercicio}
+
+\section{AL11-F5 — Velocidade de propagação do som}
+\LigAE{determinar experimentalmente a velocidade de propagação de um sinal sonoro, identificar fontes de erro e propor melhorias.}
+
+\begin{questao}
+Como determinar a velocidade do som no ar a partir do atraso de chegada do mesmo sinal a dois sensores?
+\end{questao}
+
+\begin{fundamento}
+Se dois microfones estão separados de uma distância $d$ ao longo da direção de propagação e o mesmo pulso chega com atraso $\Delta t$,
+\[
+v=\frac{d}{\Delta t}.
+\]
+Um método mais robusto mede vários valores de $d$ e representa $d$ em função de $\Delta t$; o declive estima $v$.
+\end{fundamento}
+
+\begin{material}
+Dois microfones, interface de aquisição, fita métrica, fonte de som impulsivo e termómetro.
+\end{material}
+
+\begin{metodo}
+Alinha os microfones e mede a separação entre pontos equivalentes dos sensores. Produz um pulso próximo de um dos lados, regista os sinais e determina o atraso. Repete para várias distâncias e constrói o gráfico. Regista a temperatura do ar, pois a velocidade do som depende dela.
+\end{metodo}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=Latex]
+\fill[eudark] (0,1) circle (0.18); \node[below] at (0,0.75) {fonte};
+\draw[thick] (3,0.3) rectangle (3.35,1.7); \node[below] at (3.18,0.05) {$M_1$};
+\draw[thick] (7,0.3) rectangle (7.35,1.7); \node[below] at (7.18,0.05) {$M_2$};
+\draw[->,eublue,very thick] (0.3,1)--(6.7,1);
+\draw[<->,euorange,thick] (3.18,2.1)--(7.18,2.1) node[midway,above] {$d$};
+\end{tikzpicture}
+\caption{Medição do atraso do mesmo pulso em dois microfones separados por uma distância conhecida.}
+\end{figure}
+
+\begin{erros}
+Reflexões nas paredes podem criar ecos; medir distâncias pequenas produz atrasos comparáveis à resolução temporal; microfones e canais podem ter atrasos eletrónicos diferentes. Usar várias distâncias permite detetar uma ordenada na origem associada a atrasos instrumentais.
+\end{erros}
+
+\begin{exercicio}[Velocidade do som]
+Dois microfones separados por \SI{2.50}{m} registam um atraso de \SI{7.30}{ms}.
+\begin{enumerate}[label=\alph*)]
+\item Calcula a velocidade do som.
+\item Se a incerteza em $d$ for \SI{0.01}{m} e em $\Delta t$ for \SI{0.05}{ms}, qual das duas medições tem maior incerteza relativa?
+\item Explica por que razão aumentar a distância entre microfones, dentro dos limites da sala, pode melhorar a precisão relativa.
+\end{enumerate}
+\end{exercicio}
+
+\section{AL11-F6 — Linhas de campo elétrico e magnético}
+\LigAE{identificar as origens dos campos elétrico e magnético e caracterizá-los através de linhas de campo observadas experimentalmente.}
+
+\begin{questao}
+Como representar espacialmente a direção e o sentido de um campo que não é diretamente visível?
+\end{questao}
+
+\begin{fundamento}
+As linhas de campo são uma representação: a tangente à linha dá a direção do campo e a densidade de linhas sugere qualitativamente a intensidade. No campo elétrico, as linhas saem de cargas positivas e entram em negativas. Num campo magnético, formam linhas fechadas; no exterior de um íman, convenciona-se o sentido do polo norte para o sul.
+\end{fundamento}
+
+\begin{seguranca}
+Utilizar apenas dispositivos escolares apropriados para visualização de campo elétrico. Manter ímanes fortes afastados de cartões, dispositivos eletrónicos e pessoas com dispositivos médicos implantados, seguindo as orientações do laboratório.
+\end{seguranca}
+
+\begin{material}
+Ímanes, bússolas pequenas ou folha de visualização magnética; para campo elétrico, equipamento didático de baixa energia selecionado pelo professor.
+\end{material}
+
+\begin{metodo}
+Mapeia o campo magnético colocando uma bússola em diferentes pontos e desenhando a direção indicada. Repete para um par de ímanes. Se houver equipamento de campo elétrico, observa padrões entre elétrodos de diferentes geometrias. Compara o que é observável com as linhas idealizadas dos modelos.
+\end{metodo}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=Latex,scale=0.9]
+\fill[eured] (-2,0) circle (0.28) node[white] {$+$};
+\fill[eublue] (2,0) circle (0.28) node[white] {$-$};
+\foreach \y in {-1.6,-0.8,0,0.8,1.6}{
+  \draw[->,thick] (-1.65,0.15*\y) .. controls (-0.7,\y) and (0.7,\y) .. (1.65,0.15*\y);
+}
+\end{tikzpicture}
+\caption{Representação qualitativa de linhas de campo elétrico entre cargas opostas.}
+\end{figure}
+
+\begin{exercicio}[Campo e força]
+Uma carga de prova positiva $q=\SI{2.0}{nC}$ encontra-se num campo elétrico uniforme de módulo $E=\SI{3.0e4}{N.C^{-1}}$.
+\begin{enumerate}[label=\alph*)]
+\item Calcula o módulo da força elétrica.
+\item Indica a relação entre o sentido de $\vec F$ e o de $\vec E$.
+\item O que mudaria se a carga de prova fosse negativa com o mesmo módulo?
+\item Explica por que razão linhas de campo não são trajetórias obrigatórias de partículas.
+\end{enumerate}
+\end{exercicio}
+
+\section{AL11-F7 — Reflexão, refração, reflexão total e difração da luz}
+\LigAE{investigar experimentalmente reflexão, refração, reflexão total e difração, determinando índice de refração e comprimento de onda de um laser.}
+
+\begin{questao}
+Como se pode determinar o índice de refração de um material transparente e o comprimento de onda de um laser usando apenas medidas geométricas?
+\end{questao}
+
+\begin{fundamento}
+Na refração,
+\[
+n_1\sin\theta_1=n_2\sin\theta_2.
+\]
+Se a luz passa do ar para um material, um gráfico de $\sin\theta_1$ em função de $\sin\theta_2$ tem declive aproximadamente $n_2/n_1$. Na difração por rede,
+\[
+d\sin\theta=m\lambda,
+\]
+onde $d$ é a distância entre fendas sucessivas e $m$ a ordem do máximo.
+\end{fundamento}
+
+\begin{seguranca}
+Nunca olhar diretamente para um laser nem para reflexos especulares. Usar laser escolar de baixa potência, manter o feixe abaixo da linha dos olhos e terminar o feixe num anteparo não refletor.
+\end{seguranca}
+
+\begin{material}
+Laser escolar, bloco semicircular ou lâmina transparente, transferidor/disco ótico, régua, rede de difração de passo conhecido e anteparo.
+\end{material}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=Latex]
+\coordinate (A) at (-3,2.2); \coordinate (O) at (0,0); \coordinate (B) at (2.5,-1.2);\coordinate (Nup) at (0,2.5); \coordinate (Ndown) at (0,-2.5);
+\draw[thick] (-4,0)--(4,0);
+\draw[dashed] (0,-3)--(0,3) node[above]{normal};
+\draw[->,very thick,eublue] (A)--(O); \draw[->,very thick,eublue] (O)--(B);
+\draw pic[draw,->,"$\theta_1$",angle eccentricity=1.35] {angle=A--O--Nup};
+\draw pic[draw,->,"$\theta_2$",angle eccentricity=1.35] {angle=Ndown--O--B};
+\node at (-3.3,0.35) {$n_1$}; \node at (-3.3,-0.35) {$n_2$};
+\end{tikzpicture}
+\caption{Refração num dioptro plano. Os ângulos são sempre medidos relativamente à normal.}
+\end{figure}
+
+\begin{metodo}
+\textbf{Refração:} mede vários pares $(\theta_1,\theta_2)$, calcula os senos e usa um gráfico para obter o índice.\\
+\textbf{Reflexão total:} ilumina do meio mais refringente para o menos refringente e aumenta o ângulo de incidência até o raio refratado rasar a interface; estima o ângulo crítico.\\
+\textbf{Difração:} mede a distância $L$ rede--anteparo e o afastamento $y_m$ de máximos simétricos; determina $\theta$ por geometria e calcula $\lambda$.
+\end{metodo}
+
+\begin{erros}
+O centro geométrico do feixe tem largura finita; o alinhamento da normal e da rede é crítico; ângulos medidos a partir da superfície, em vez da normal, são um erro conceptual frequente. Na difração, usar máximos de ambos os lados e fazer a média reduz erro de alinhamento.
+\end{erros}
+
+\begin{exercicio}[Índice e comprimento de onda]
+\begin{enumerate}[label=\alph*)]
+\item Um raio passa do ar para um bloco. Para $\theta_1=40,0^\circ$ mede-se $\theta_2=25,0^\circ$. Estima o índice de refração.
+\item Uma rede tem $600$ linhas por milímetro. O primeiro máximo de um laser surge a $y=\SI{0.235}{m}$ do centro num anteparo a $L=\SI{0.600}{m}$ da rede. Calcula $\theta$ e estima $\lambda$.
+\item Indica duas formas de reduzir a incerteza na determinação de $\lambda$.
+\end{enumerate}
+\end{exercicio}
+
+% ------------------------------------------------------------
+\chapter{Química — reações, equilíbrio e sistemas aquosos}
+
+\section{AL11-Q1 — Rendimento de uma síntese e química verde}
+\LigAE{determinar experimentalmente o rendimento na síntese de um composto, avaliar resultados e comparar processos numa perspetiva de química verde.}
+
+\begin{questao}
+Porque é que a massa de produto isolado numa síntese real raramente coincide com a massa teórica prevista pela estequiometria?
+\end{questao}
+
+\begin{fundamento}
+O reagente limitante determina a quantidade teórica máxima de produto. O rendimento percentual é
+\[
+\eta=\frac{n_{\rm obtido}}{n_{\text{teórico}}}\times100
+\]
+ou, para um produto puro de massa molar fixa,
+\[
+\eta=\frac{m_{\rm obtido}}{m_{\text{teórico}}}\times100.
+\]
+Um rendimento baixo pode resultar de reação incompleta, reações secundárias ou perdas na separação. Um rendimento aparentemente superior a $100\%$ sugere produto húmido ou impuro, erro de tara ou cálculo incorreto.
+\end{fundamento}
+
+\begin{objetivos}
+Identificar o reagente limitante; calcular rendimento teórico; isolar e secar produto; calcular rendimento experimental; discutir pureza, perdas e princípios simples de química verde.
+\end{objetivos}
+
+\begin{seguranca}
+O professor deve escolher uma síntese compatível com o laboratório escolar e fornecer instruções específicas de segurança. Trabalhar em pequena escala reduz consumo, resíduos e risco.
+\end{seguranca}
+
+\begin{metodo}
+Executa a síntese indicada pelo professor, registando massas e volumes iniciais. Identifica o reagente limitante. Isola o produto por filtração, cristalização ou outro método adequado, lava quando indicado e seca até massa suficientemente estável. Calcula a massa teórica e o rendimento. Avalia também qualitativamente quantidade de resíduos, perigosidade dos reagentes, consumo de energia e possibilidade de recuperação de solventes.
+\end{metodo}
+
+\begin{erros}
+Produto húmido aumenta a massa aparente; transferência incompleta e perdas no filtro diminuem-na; reagente em excesso pode ficar retido no produto; secagem a temperatura demasiado elevada pode decompor o sólido.
+\end{erros}
+
+\begin{exercicio}[Rendimento e diagnóstico]
+Numa síntese, a massa teórica de produto puro é \SI{4.80}{g}. Após secagem obtêm-se \SI{4.06}{g}.
+\begin{enumerate}[label=\alph*)]
+\item Calcula o rendimento.
+\item Se outro grupo obtiver \SI{5.12}{g}, explica por que razão não se deve concluir que a reação teve rendimento real de $106,7\%$.
+\item Indica duas alterações que podem tornar uma síntese escolar mais alinhada com princípios de química verde sem alterar necessariamente a estequiometria.
+\end{enumerate}
+\end{exercicio}
+
+\section{AL11-Q2 — Perturbação do equilíbrio químico}
+\LigAE{investigar experimentalmente alterações de equilíbrios em sistemas aquosos por variação da concentração de reagentes e produtos.}
+
+\begin{questao}
+Como responde um sistema em equilíbrio quando se altera a concentração de uma das espécies participantes?
+\end{questao}
+
+\begin{fundamento}
+Para uma reação genérica $aA+bB\rightleftharpoons cC+dD$,
+\[
+Q_c=\frac{[C]^c[D]^d}{[A]^a[B]^b}.
+\]
+No equilíbrio, $Q_c=K_c$. Após uma perturbação instantânea de concentração, $Q_c$ muda; o sistema evolui espontaneamente no sentido que faz $Q_c$ aproximar-se novamente de $K_c$. O Princípio de Le Châtelier fornece a mesma previsão de forma qualitativa.
+\end{fundamento}
+
+\begin{material}
+Sistema aquoso colorido adequado selecionado pelo professor, tubos de ensaio, pipetas Pasteur e reagentes diluídos para aumentar/diminuir seletivamente concentrações.
+\end{material}
+
+\begin{metodo}
+Prepara uma amostra de referência e divide o sistema por tubos equivalentes. Em cada tubo, altera apenas uma condição de concentração. Regista imediatamente a mudança e o estado final. Formula a previsão antes de adicionar o reagente e compara-a com a observação.
+\end{metodo}
+
+\begin{registo}
+\begin{center}
+\begin{tabular}{@{}llll@{}}
+\toprule
+Perturbação & Previsão & Observação & Sentido de evolução\\
+\midrule
+Aumentar reagente & & &\\
+Aumentar produto & & &\\
+Remover espécie & & &\\
+Referência & --- & & ---\\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{registo}
+
+\begin{exercicio}[$Q_c$ e sentido de evolução]
+Para $\ce{A(aq) <=> B(aq)}$, $K_c=4,0$.
+\begin{enumerate}[label=\alph*)]
+\item Se $[A]=\SI{0.50}{mol.L^{-1}}$ e $[B]=\SI{1.00}{mol.L^{-1}}$, calcula $Q_c$ e prevê o sentido de evolução.
+\item No equilíbrio, o sistema é subitamente diluído para o dobro do volume. Nesta reação 1:1, mostra como ficam $Q_c$ e a previsão imediata.
+\item Explica por que razão um catalisador não altera o valor de $K_c$ nem a composição de equilíbrio.
+\end{enumerate}
+\end{exercicio}
+
+\section{AL11-Q3 — Titulação ácido--base}
+\LigAE{planear e realizar uma titulação ácido--base, interpretando neutralização e ponto de equivalência.}
+
+\begin{questao}
+Como determinar a concentração de uma solução ácida ou básica desconhecida a partir de uma solução de concentração conhecida?
+\end{questao}
+
+\begin{fundamento}
+Numa titulação, adiciona-se titulante de concentração conhecida até atingir o ponto de equivalência estequiométrica. Para a reação 1:1 entre um ácido monoprótico forte e uma base forte,
+\[
+n_A=n_B,\qquad c_AV_A=c_BV_B.
+\]
+O ponto final observado com um indicador deve ocorrer o mais próximo possível do ponto de equivalência. A escolha do indicador depende do intervalo de viragem e da curva de titulação.
+\end{fundamento}
+
+\begin{seguranca}
+Usar soluções diluídas, óculos e bata. Lavar salpicos com água abundante. A bureta deve estar fixa. Retirar o funil antes da titulação e verificar que a ponta da bureta está cheia, sem bolhas.
+\end{seguranca}
+
+\begin{material}
+Bureta, suporte e garra, pipeta volumétrica e pompete, erlenmeyer, solução titulante padronizada, solução problema, indicador adequado ou sensor de pH, água destilada.
+\end{material}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\draw[thick] (0,0)--(0,7);
+\draw[thick] (1.1,1.0)--(1.1,6.3); \draw[thick] (0.9,6.3) rectangle (1.3,6.7);
+\draw[thick] (1.0,1.0)--(1.2,1.0)--(1.1,0.35)--cycle;
+\draw[thick] (0.7,3.0)--(1.5,3.0); \draw[thick] (1.45,2.8)--(1.7,3.0)--(1.45,3.2);
+\draw[thick] (0.1,0)--(3.5,0);
+\draw[thick] (0.45,0)--(0.6,1.7)--(2.5,1.7)--(2.8,0)--cycle;
+\fill[eucyan!20] (0.62,0.1)--(0.75,1.2)--(2.35,1.2)--(2.65,0.1)--cycle;
+\node[anchor=west] at (1.7,4.5) {bureta}; \node[anchor=west] at (2.8,0.85) {erlenmeyer};
+\end{tikzpicture}
+\caption{Montagem simplificada de uma titulação ácido--base.}
+\end{figure}
+
+\begin{metodo}
+Condiciona e enche a bureta com titulante, elimina bolhas e regista $V_i$. Pipeta a alíquota da solução problema para o erlenmeyer e adiciona indicador. Titula agitando continuamente; perto do ponto final adiciona titulante gota a gota. Regista $V_f$ e calcula $V_t=V_f-V_i$. Faz um ensaio preliminar e depois repete até obter títulos concordantes segundo o critério definido pelo professor.
+\end{metodo}
+
+\begin{registo}
+\begin{center}
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+Ensaio & $V_i$/mL & $V_f$/mL & $V_t$/mL & usar?\\
+\midrule
+Preliminar & & & & não\\
+1 & & & &\\ 2 & & & &\\ 3 & & & &\\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{registo}
+
+\begin{erros}
+Ultrapassar o ponto final aumenta o volume de titulante e pode enviesar a concentração calculada. Uma bolha inicial na ponta da bureta faz parte do volume lido preencher a ponta em vez de chegar ao erlenmeyer. Enxaguar a pipeta volumétrica com água antes de medir a amostra dilui a solução transferida; condicioná-la com a própria solução reduz esse efeito.
+\end{erros}
+
+\begin{exercicio}[Concentração desconhecida e incerteza]
+Titularam-se \SI{20.00}{mL} de \ce{HCl} com \ce{NaOH} \SI{0.1000}{mol.L^{-1}}. Obtiveram-se títulos de \SI{18.55}{mL}, \SI{18.60}{mL} e \SI{18.65}{mL}.
+\begin{enumerate}[label=\alph*)]
+\item Calcula o título médio.
+\item Determina a concentração de \ce{HCl} usando a reação 1:1.
+\item Determina o maior desvio absoluto dos títulos e o desvio percentual.
+\item Explica o efeito de ultrapassar sistematicamente o ponto final na concentração calculada do ácido.
+\end{enumerate}
+\end{exercicio}
+
+\section{AL11-Q4 — Série eletroquímica experimental}
+\LigAE{organizar uma série eletroquímica a partir de reações entre metais e soluções aquosas contendo catiões de outros metais.}
+
+\begin{questao}
+Como ordenar metais pelo seu poder redutor usando apenas observações de reações espontâneas de deslocamento?
+\end{questao}
+
+\begin{fundamento}
+Se um metal $M_1$ reage espontaneamente com catiões $M_2^{n+}$, então $M_1$ é oxidado e atua como redutor, enquanto $M_2^{n+}$ é reduzido. Comparando vários pares é possível construir uma ordenação qualitativa do poder redutor dos metais estudados.
+\end{fundamento}
+
+\begin{seguranca}
+Usar microescala e soluções diluídas. Alguns sais metálicos são nocivos ou perigosos para o ambiente. Recolher todos os resíduos em recipiente adequado e seguir as fichas de segurança.
+\end{seguranca}
+
+\begin{material}
+Pequenas lâminas de metais selecionados (por exemplo, Zn, Fe, Cu, quando apropriado) e soluções diluídas contendo catiões de outros metais, placa de poços ou tubos, pinça e lixa fina.
+\end{material}
+
+\begin{metodo}
+Limpa a superfície dos metais. Coloca pequenas amostras em soluções de catiões diferentes. Observa deposição, alteração de cor e dissolução durante tempo comparável. Escreve semirreações para os casos positivos e usa os resultados para ordenar o poder redutor.
+\end{metodo}
+
+\begin{registo}
+\begin{center}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Metal $\backslash$ solução & $M_1^{n+}$ & $M_2^{n+}$ & $M_3^{n+}$\\
+\midrule
+$M_1$ & --- & &\\
+$M_2$ & & --- &\\
+$M_3$ & & & ---\\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{registo}
+
+\begin{erros}
+Camadas de óxido podem impedir contacto entre metal e solução; reações lentas podem ser interpretadas como inexistentes; uma deposição muito fina pode ser difícil de ver. Limpar superfícies e usar um tempo de observação consistente melhora a comparação.
+\end{erros}
+
+\begin{exercicio}[Redox e ordenação]
+Observa-se que Zn reage com \ce{Cu^{2+}}, Fe reage com \ce{Cu^{2+}}, mas Cu não reage com \ce{Zn^{2+}} nem com \ce{Fe^{2+}}; além disso, Zn reage com \ce{Fe^{2+}}.
+\begin{enumerate}[label=\alph*)]
+\item Ordena Zn, Fe e Cu por poder redutor decrescente.
+\item Para \ce{Zn(s) + Cu^{2+}(aq) -> Zn^{2+}(aq) + Cu(s)}, identifica espécie oxidada, reduzida, redutor e oxidante.
+\item Escreve as duas semirreações.
+\end{enumerate}
+\end{exercicio}
+
+\section{AL11-Q5 — Efeito da temperatura na solubilidade}
+\LigAE{investigar experimentalmente o efeito da temperatura na solubilidade de um soluto sólido em água, formulando hipóteses, controlando variáveis e avaliando resultados.}
+
+\begin{questao}
+A quantidade máxima de um soluto sólido que se dissolve numa dada massa de água depende da temperatura?
+\end{questao}
+
+\begin{fundamento}
+A solubilidade de um soluto pode exprimir-se, por exemplo, em massa de soluto por \SI{100}{g} de água numa temperatura especificada. Não se deve confundir solubilidade com rapidez de dissolução: agitar pode acelerar o processo, mas não altera necessariamente a solubilidade de equilíbrio.
+\end{fundamento}
+
+\begin{material}
+Soluto sólido apropriado selecionado pelo professor, água, balança, termómetro, banho-maria, gobelés, vareta e material de filtração/evaporação se o método escolhido o exigir.
+\end{material}
+
+\begin{variaveis}
+\textbf{Independente:} temperatura.\\
+\textbf{Dependente:} massa máxima dissolvida por massa fixa de água.\\
+\textbf{Controladas:} massa de água, soluto, tempo de equilíbrio, método de agitação e perdas por evaporação.
+\end{variaveis}
+
+\begin{metodo}
+Seleciona várias temperaturas. Para uma massa fixa de água, determina a massa de soluto correspondente à saturação pelo método definido pelo professor. Regista os valores e constrói uma curva de solubilidade $S(T)$. Não extrapoles muito para além do intervalo medido.
+\end{metodo}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=10cm,height=6cm,xlabel={$T/\,^{\circ}$C},ylabel={solubilidade / g por 100 g de água},xmin=0,xmax=80,ymin=0,ymax=80,grid=major]
+\addplot[thick,smooth] coordinates {(10,18)(20,24)(30,31)(40,39)(50,48)(60,59)(70,71)};
+\end{axis}
+\end{tikzpicture}
+\caption{Curva de solubilidade fictícia para treino de interpretação.}
+\end{figure}
+
+\begin{erros}
+Evaporação de água a temperaturas elevadas faz parecer que a solubilidade é maior; não atingir o equilíbrio pode subestimá-la; cristais aderentes às paredes ou material transferido incompletamente alteram massas.
+\end{erros}
+
+\begin{exercicio}[Cristalização por arrefecimento]
+Um sal tem solubilidade de \SI{60}{g} por \SI{100}{g} de água a \SI{60}{\celsius} e \SI{25}{g} por \SI{100}{g} de água a \SI{20}{\celsius}.
+\begin{enumerate}[label=\alph*)]
+\item Que massa máxima se dissolve em \SI{50}{g} de água a \SI{60}{\celsius}?
+\item Se essa solução saturada arrefecer até \SI{20}{\celsius} sem evaporação, que massa de sal cristaliza?
+\item Explica por que razão a agitação não deve ser interpretada como aumento de solubilidade.
+\end{enumerate}
+\end{exercicio}
+
+\section{AL11-Q6 — Precipitação, produto de solubilidade e efeito do ião comum}
+\LigAE{avaliar a formação de precipitados a partir de concentrações iónicas e produtos de solubilidade e interpretar o efeito do ião comum.}
+
+\begin{questao}
+Como prever, antes de misturar duas soluções, se se formará um precipitado?
+\end{questao}
+
+\begin{fundamento}
+Para $\ce{MX(s) <=> M+(aq) + X-(aq)}$,
+\[
+K_s=[\ce{M+}][\ce{X-}]
+\]
+no equilíbrio com sólido presente. Calcula-se o produto iónico $Q_s$ com as concentrações imediatamente após a mistura: se $Q_s<K_s$, não se prevê precipitação; se $Q_s=K_s$, a solução está saturada; se $Q_s>K_s$, prevê-se precipitação. A adição de um ião comum desloca o equilíbrio de dissolução no sentido de formar mais sólido e reduz a solubilidade molar do sal.
+\end{fundamento}
+
+\begin{seguranca}
+A experiência concreta deve ser realizada em microescala com sais selecionados pelo professor. Resíduos de metais devem ser recolhidos conforme as regras do laboratório.
+\end{seguranca}
+
+\begin{metodo}
+Mistura pequenos volumes de pares de soluções apropriadas. Antes de misturar, calcula as concentrações dos iões após a diluição de mistura e determina $Q_s$. Regista a previsão e só depois observa o resultado. Compara previsão e observação.
+\end{metodo}
+
+\begin{registo}
+\begin{center}
+\begin{tabular}{@{}llll@{}}
+\toprule
+Mistura & $Q_s$ & previsão & observação\\
+\midrule
+1 & & &\\ 2 & & &\\ 3 & & &\\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{registo}
+
+\begin{exercicio}[Vai precipitar?]
+Misturam-se volumes iguais de duas soluções. Após a mistura, obtém-se $[\ce{M+}]=2,0\times10^{-3}\,\si{mol.L^{-1}}$ e $[\ce{X-}]=3,0\times10^{-3}\,\si{mol.L^{-1}}$. Para \ce{MX}, $K_s=4,0\times10^{-6}$.
+\begin{enumerate}[label=\alph*)]
+\item Calcula $Q_s$ e prevê se ocorre precipitação.
+\item Explica qualitativamente como a adição de uma solução contendo mais \ce{X-} afeta a solubilidade de \ce{MX}.
+\item Indica por que razão se devem usar as concentrações \emph{após} a mistura e não as concentrações das soluções originais.
+\end{enumerate}
+\end{exercicio}
+
+% ============================================================
+\part{Desafios integradores de Física e Química}
+% ============================================================
+
+\chapter{Problemas de ligação entre áreas}
+Os desafios seguintes exigem mobilizar conhecimentos de diferentes capítulos. O objetivo não é introduzir matemática avançada, mas combinar ideias que normalmente aparecem separadas.
+
+\begin{desafio}[Painel solar, resistor e aquecimento de água]
+Um painel fotovoltaico fornece $U=6,0\,\si{V}$ e $I=0,45\,\si{A}$ a um resistor mergulhado num pequeno calorímetro. Durante \SI{12}{min}, apenas $70\%$ da energia elétrica é transferida para \SI{120}{g} de água.
+\begin{enumerate}[label=\alph*)]
+\item Calcula a potência elétrica fornecida pelo painel.
+\item Determina a energia útil transferida para a água.
+\item Estima a variação de temperatura, usando $c_{\text{água}}=4,18\,\si{kJ.kg^{-1}.K^{-1}}$.
+\item Indica duas razões experimentais para a eficiência ser inferior a $100\%$.
+\end{enumerate}
+\end{desafio}
+
+\begin{desafio}[Espectro de uma estrela e movimento orbital]
+Num espectro estelar observa-se uma linha em \SI{589}{nm}, compatível com sódio. Um pequeno satélite de investigação orbita um planeta com raio orbital $r=7,0\times10^6\,\si{m}$. A massa do planeta é $M=6,0\times10^{24}\,\si{kg}$.
+\begin{enumerate}[label=\alph*)]
+\item Calcula a energia de um fotão de \SI{589}{nm}.
+\item Explica por que a posição das linhas espectrais permite identificar elementos.
+\item Calcula a velocidade orbital usando $v=\sqrt{GM/r}$, com $G=6,67\times10^{-11}\,\si{N.m^2.kg^{-2}}$.
+\item Identifica a ligação entre as duas partes do problema: que informação química e física pode ser obtida remotamente sobre corpos astronómicos?
+\end{enumerate}
+\end{desafio}
+
+\begin{desafio}[Neutralização e aquecimento]
+Misturam-se \SI{50.0}{mL} de \ce{HCl} \SI{1.00}{mol.L^{-1}} com \SI{50.0}{mL} de \ce{NaOH} \SI{1.00}{mol.L^{-1}}. Admite densidade próxima de \SI{1.00}{g.mL^{-1}}, capacidade térmica mássica da solução igual à da água e sistema ideal. A entalpia molar de neutralização é aproximadamente \SI{-57.0}{kJ.mol^{-1}}.
+\begin{enumerate}[label=\alph*)]
+\item Calcula a quantidade de matéria neutralizada.
+\item Determina a energia libertada.
+\item Estima a subida de temperatura da mistura.
+\item Explica por que o valor real pode ser menor.
+\end{enumerate}
+\end{desafio}
+
+\begin{desafio}[Pilha real e energia dissipada]
+Uma pilha tem $\mathcal{E}=1,50\,\si{V}$ e resistência interna $r=0,30\,\si{\ohm}$. Liga-se a uma resistência externa $R=2,70\,\si{\ohm}$ durante \SI{5.0}{min}.
+\begin{enumerate}[label=\alph*)]
+\item Calcula a corrente do circuito.
+\item Determina a potência útil em $R$ e a potência dissipada internamente na pilha.
+\item Calcula a energia transformada em calor em $R$.
+\item Interpreta, em linguagem química e física, a sequência geral de transformações de energia desde os reagentes da pilha até ao aquecimento do resistor.
+\end{enumerate}
+\end{desafio}
+
+\begin{desafio}[Gelo, eletricidade e quantidade de matéria]
+Uma resistência de \SI{25}{W} fornece energia a \SI{75}{g} de gelo a \SI{0}{\celsius}. Admite que $80\%$ da energia elétrica é usada na fusão e que $\Delta h_{fus}=334\,\si{kJ.kg^{-1}}$.
+\begin{enumerate}[label=\alph*)]
+\item Calcula a energia necessária para fundir o gelo.
+\item Determina o tempo mínimo de funcionamento.
+\item Calcula a quantidade de matéria de água obtida, usando $M(\ce{H2O})=18,0\,\si{g.mol^{-1}}$.
+\end{enumerate}
+\end{desafio}
+
+\begin{desafio}[Luz, fotões e potência]
+Um laser escolar emite luz de \SI{650}{nm} com potência ótica de \SI{1.0}{mW}. Admite emissão contínua durante \SI{10}{s}.
+\begin{enumerate}[label=\alph*)]
+\item Calcula a energia de um fotão.
+\item Calcula a energia total emitida em \SI{10}{s}.
+\item Estima o número de fotões emitidos nesse intervalo.
+\item Explica por que a energia do fotão depende da cor, enquanto a potência depende também do número de fotões emitidos por unidade de tempo.
+\end{enumerate}
+\end{desafio}
+
+% ============================================================
+\part{Soluções}
+% ============================================================
+
+\chapter{Soluções dos exercícios}
+
+\section*{Capítulo 1}
+\textbf{Exercício 1.1.} a) Como a menor divisão é \SI{1}{mm},
+\[
+I_{a,\ell}=\frac{1}{2}\times1=\SI{0.5}{mm}=\SI{0.05}{cm}.
+\]
+b) $\ell=(12,36\pm0,05)\,\si{cm}$. c) $12,31\leq\ell\leq12,41\,\si{cm}$. d)
+\[
+\ell=(12,36\pm0,05)\times10^{-2}\,\si{m}
+=(0,1236\pm0,0005)\,\si{m}.
+\]
+
+\medskip
+\textbf{Exercício 1.2.} a) $I_{a,\ell}=\SI{0.01}{g}$. b) $m=(42,73\pm0,01)\,\si{g}$. c)
+\[
+I_r(\%)=\frac{0,01}{42,73}\times100\approx0,023\%.
+\]
+
+\medskip
+\textbf{Exercício 1.3.} a) $\bar m=\SI{15.22}{g}$. b) Desvios: $-0,01$; $+0,01$; $-0,02$; $0,00$; $+0,02\,\si{g}$. c) $I_a=\SI{0.02}{g}$ e $m=(15,22\pm0,02)\,\si{g}$. d)
+\[
+D(\%)=\frac{0,02}{15,22}\times100\approx0,13\%,
+\]
+o que indica elevada precisão entre as medições.
+
+\medskip
+\textbf{Exercício 1.4.} a) Erro absoluto: $\SI{0.06}{g.cm^{-3}}$. b)
+\[
+\varepsilon_r(\%)=\frac{0,06}{2,70}\times100\approx2,22\%.
+\]
+c) O valor experimental difere cerca de $2,2\%$ do valor de referência; a exatidão é razoável para uma determinação escolar, mas devem analisar-se fontes de erro sistemático.
+
+\medskip
+\textbf{Exercício 1.5.} a) $\bar x_A=50,0$ e $\bar x_B=47,1$. b) Grupo A: $I_a=0,2$ e $D_A=0,40\%$. Grupo B: $I_a=0,1$ e $D_B\approx0,21\%$. c) Erro relativo percentual das médias: $0\%$ para A e $5,8\%$ para B. d) B é ligeiramente mais preciso, mas A é muito mais exato; A apresenta simultaneamente boa precisão e exatidão.
+
+\medskip
+\textbf{Exercício 1.6.} A pipeta volumétrica de \SI{10.00}{mL} é a mais adequada para transferir exatamente esse volume, por ser calibrada para um volume fixo com menor incerteza do que uma proveta. A bureta é preferível quando se pretende medir volumes variáveis dispensados.
+
+\medskip
+\textbf{Exercício 1.7.} $\bar t=0,4508\,\si{s}\approx0,451\,\si{s}$ e amplitude $=0,455-0,447=0,008\,\si{s}$. A dispersão é pequena comparada com o valor médio.
+
+\section*{Capítulo 2 — Química, 10.º ano}
+
+\textbf{AL10-Q1 — questões pré-laboratoriais.} a) Muitas gotas aumentam o valor total medido e reduzem a importância relativa da resolução dos instrumentos. b) A massa das 100 gotas, lida na balança por diferença de pesagens, é obtida a partir de medições diretas; a massa de uma gota é indireta porque resulta de um quociente. c) Cada leitura da bureta tem $\SI{0.05}{mL}$ de incerteza de leitura. d) São necessárias a massa molar da água e a constante de Avogadro, além da massa de uma gota.
+
+\medskip
+\textbf{Exercício 2.1.} a)
+\[
+V_{200}=11,10-1,20=\SI{9.90}{mL},\qquad
+m_{200}=52,20-42,36=\SI{9.84}{g}.
+\]
+b)
+\[
+V_{\rm gota}=\frac{9,90}{200}=\SI{0.0495}{mL},\qquad
+m_{\rm gota}=\frac{9,84}{200}=\SI{0.0492}{g}.
+\]
+c)
+\[
+n=\frac{0,0492}{18,02}=2,73\times10^{-3}\,\si{mol},
+\]
+\[
+N=nN_A\approx(2,73\times10^{-3})(6,022\times10^{23})
+\approx1,64\times10^{21}\ \text{moléculas}.
+\]
+d) Cada leitura tem $\SI{0.05}{mL}$; para a diferença, $I_a(V_{200})\approx\SI{0.10}{mL}$. Assim,
+\[
+I_a(V_{\rm gota})\approx\frac{0,10}{200}=\SI{0.00050}{mL}.
+\]
+e) Com apenas 10 gotas, o volume total seria cerca de \SI{0.495}{mL}; a mesma incerteza de cerca de \SI{0.10}{mL} representaria aproximadamente $20\%$, muito maior do que no ensaio com 200 gotas.
+
+\medskip
+\textbf{AL10-Q2 — questão pré-laboratorial.} Dois sais que contenham o mesmo catião metálico tendem a originar a mesma assinatura de emissão dominante, porque a cor característica está associada sobretudo às transições eletrónicas da espécie metálica excitada; o anião pode, contudo, influenciar condições práticas de volatilização/intensidade.
+
+\medskip
+\textbf{Exercício 2.2.} a)
+\[
+f=\frac{c}{\lambda}=\frac{3,00\times10^8}{589\times10^{-9}}
+\approx5,09\times10^{14}\,\si{Hz}.
+\]
+b)
+\[
+E=hf\approx(6,626\times10^{-34})(5,09\times10^{14})
+\approx3,37\times10^{-19}\,\si{J}.
+\]
+c) Os níveis eletrónicos são quantizados; diferenças de energia características originam fotões com frequências/comprimentos de onda característicos. d) Limitações possíveis: sobreposição de cores, contaminação por sódio, subjetividade visual ou baixa sensibilidade para pequenas concentrações.
+
+\medskip
+\textbf{Exercício 2.3.} a)
+\[
+m_{A,\rm deslocada}=83,42+27,00-100,42=\SI{10.00}{g}.
+\]
+b)
+\[
+d_{M/A}=\frac{27,00}{10,00}=2,700.
+\]
+c)
+\[
+\rho_M=2,700\times0,998\approx\SI{2.69}{g.cm^{-3}}.
+\]
+d)
+\[
+\varepsilon_r(\%)=\frac{|2,6946-2,70|}{2,70}\times100\approx0,20\%.
+\]
+e) Uma bolha faz entrar menos água no picnómetro; o cálculo interpreta essa falta de água como maior volume deslocado, aumentando $m_{A,\rm deslocada}$ e conduzindo a uma densidade calculada demasiado baixa.
+
+\medskip
+\textbf{Exercício 2.4.} a)
+\[
+m=cVM=(0,200)(0,2500)(58,44)=\SI{2.922}{g}.
+\]
+b) Balança, material de dissolução/transferência e balão volumétrico de \SI{250.0}{mL}. c)
+\[
+V_i=\frac{c_fV_f}{c_i}=\frac{0,0500\times0,1000}{0,200}=0,0250\,\si{L}=\SI{25.0}{mL}.
+\]
+Deve usar-se, idealmente, uma pipeta volumétrica de \SI{25.0}{mL}. d) Ultrapassar a marca aumenta $V_f$ sem aumentar a quantidade de soluto, por isso a concentração final fica menor do que a pretendida.
+
+\medskip
+\textbf{Exercício 2.5.} a) Exemplo: ``mantendo todas as restantes condições, aumentar a irradiância aumenta a rapidez de escurecimento do \ce{AgCl}''. b) Independente: irradiância (ou distância controlada à fonte); dependente: grau/rapidez de escurecimento; controlos: massa/quantidade de precipitado, concentrações, tempo, temperatura, geometria dos tubos. c) O tubo protegido funciona como controlo negativo e permite atribuir a transformação observada à luz. d) Pode fotografar as amostras sob iluminação fixa e analisar um índice de intensidade/nível de cinzento, ou comparar com uma escala visual previamente definida.
+
+\section*{Capítulo 3 — Física, 10.º ano}
+
+\textbf{Exercício 3.1.} a) Usando os extremos,
+\[
+m\approx\frac{0,62-0,15}{0,80-0,20}=\SI{0.78}{N}.
+\]
+O declive representa a força resultante média, pois $\Delta E_c=F_{\rm res}d$. b)
+\[
+v=\sqrt{\frac{2E_c}{m_c}}=\sqrt{\frac{2(0,62)}{0,500}}
+\approx\SI{1.57}{m.s^{-1}}.
+\]
+c) $F_r\approx0,85-0,78=\SI{0.07}{N}$.
+
+\medskip
+\textbf{Exercício 3.2.} a)
+\[
+\eta=\frac{1,15}{1,80}\times100\approx63,9\%.
+\]
+b) $36,1\%$. c) Antes do impacto, $v_{\text{antes}}^2\approx2gh_0$; depois, $v_{\text{após}}^2\approx2gh_1$. Assim,
+\[
+e=\frac{v_{\text{após}}}{v_{\text{antes}}}\approx\sqrt{\frac{h_1}{h_0}}
+\approx0,799\approx0,80.
+\]
+
+\medskip
+\textbf{Exercício 3.3.} a) $\mathcal E=\SI{1.58}{V}$ e $r=\SI{0.42}{\ohm}$. b) $U=1,58-0,42(0,60)=\SI{1.33}{V}$. c)
+\[
+P_{ext}=UI\approx1,328\times0,60=\SI{0.797}{W},
+\qquad
+P_{int}=rI^2=0,42(0,60)^2=\SI{0.151}{W}.
+\]
+d) $I=\mathcal E/r$ corresponderia, neste modelo, a um curto-circuito; a corrente elevada pode aquecer a pilha e os fios, danificar o material e invalidar o próprio modelo.
+
+\medskip
+\textbf{Exercício 3.4.} a)
+\[
+E=UI\Delta t=6,00\times1,20\times180=\SI{1296}{J}.
+\]
+b)
+\[
+c=\frac{1296}{0,250\times5,40}=\SI{960}{J.kg^{-1}.K^{-1}}.
+\]
+c) $E_{bloco}=0,90\times1296=\SI{1166.4}{J}$, logo
+\[
+c\approx\SI{864}{J.kg^{-1}.K^{-1}}.
+\]
+d) Melhorar o isolamento, reduzir o tempo de exposição ao ambiente, usar tampa/isolante ou corrigir a capacidade térmica do recipiente.
+
+\medskip
+\textbf{Exercício 3.5.} a)
+\[
+Q_{ced}=0,200\times4,18\times(30-20)=\SI{8.36}{kJ}.
+\]
+b)
+\[
+Q_{aq}=0,0200\times4,18\times20=\SI{1.672}{kJ}.
+\]
+c) $Q_{fus}=8,36-1,672=\SI{6.688}{kJ}$ e
+\[
+\Delta h_{fus}=\frac{6,688}{0,0200}\approx\SI{334}{kJ.kg^{-1}}.
+\]
+d) Água líquida aderente é contabilizada como se fosse gelo; a massa de gelo efetiva é menor, pelo que a estimativa obtida para $\Delta h_{fus}$ tende a ficar demasiado baixa.
+
+\medskip
+\textbf{Exercício 3.6.} a)
+\[
+P_{el}=UI=4,20\times0,85=\SI{3.57}{W}.
+\]
+b)
+\[
+P_{rad}=EA=500\times0,015=\SI{7.50}{W}.
+\]
+c)
+\[
+\eta=\frac{3,57}{7,50}\times100\approx47,6\%.
+\]
+d) Em \SI{18}{min}, $E=3,57\times1080\approx\SI{3856}{J}$. Em Wh, $E=3,57\times0,300\approx\SI{1.07}{Wh}$.
+
+\section*{Capítulo 4 — Mecânica, 11.º ano}
+
+\textbf{Exercício 4.1.} a) $g=2\times4,87=\SI{9.74}{m.s^{-2}}$. b)
+\[
+\varepsilon_r(\%)=\frac{|9,74-9,81|}{9,81}\times100\approx0,71\%.
+\]
+c) Uma pequena ordenada na origem pode resultar de erro na definição da origem espacial, atraso temporal, dimensão finita do objeto ou pequeno desfasamento do mecanismo de largada. d) A folha aberta sofre resistência do ar muito mais importante em relação ao seu peso; a diferença observada mistura massa, forma e arrasto, não isolando a variável massa.
+
+\medskip
+\textbf{Exercício 4.2.} a) $F_{res}=ma=0,80\times0,65=\SI{0.52}{N}$. b) $F_r=0,60-0,52=\SI{0.08}{N}$. c) Sem tração e desprezando resistência, a resultante seria aproximadamente nula e o carrinho manteria velocidade constante.
+
+\medskip
+\textbf{Exercício 4.3.} a) $2a=1,84$, logo $a=\SI{0.92}{m.s^{-2}}$. b) $v_0^2=0,25$, logo $v_0=\SI{0.50}{m.s^{-1}}$. c) $F_{res}=0,600\times0,92=\SI{0.552}{N}$. d) Exemplos: atrito variável, incerteza dos sensores, pequena variação da inclinação, erros de posicionamento ou força não perfeitamente constante.
+
+\section*{Capítulo 5 — Ondas e eletromagnetismo, 11.º ano}
+
+\textbf{Exercício 5.1.} a)
+\[
+T=\frac{22,7\,\si{ms}}{10}=\SI{2.27}{ms},\qquad
+f=\frac1T\approx\SI{440}{Hz}.
+\]
+b) Têm a mesma frequência; o primeiro apresenta maior amplitude no sinal elétrico. c) A tensão depende da sensibilidade, ganho, distância e eletrónica do microfone; sem calibração não existe conversão universal de volts para intensidade sonora.
+
+\medskip
+\textbf{Exercício 5.2.} a)
+\[
+v=\frac{2,50}{7,30\times10^{-3}}\approx\SI{342}{m.s^{-1}}.
+\]
+b) $I_r(d)=0,01/2,50=0,40\%$; $I_r(\Delta t)=0,05/7,30\approx0,685\%$. O atraso temporal tem maior incerteza relativa. c) Maior separação aumenta $\Delta t$; mantendo semelhante a incerteza absoluta temporal, a incerteza relativa diminui.
+
+\medskip
+\textbf{Exercício 5.3.} a)
+\[
+F=qE=(2,0\times10^{-9})(3,0\times10^4)=\SI{6.0e-5}{N}.
+\]
+b) Para $q>0$, $\vec F$ tem o mesmo sentido de $\vec E$. c) Para carga negativa, o módulo seria igual mas o sentido seria oposto. d) As linhas representam a direção local do campo; a trajetória depende também da velocidade inicial, massa, outras forças e evolução temporal da partícula.
+
+\medskip
+\textbf{Exercício 5.4.} a)
+\[
+n=\frac{\sin40,0^\circ}{\sin25,0^\circ}\approx1,52.
+\]
+b) Para 600 linhas/mm,
+\[
+d=\frac{1\,\si{mm}}{600}=1,667\times10^{-6}\,\si{m}.
+\]
+\[
+\theta=\arctan\left(\frac{0,235}{0,600}\right)\approx21,4^\circ.
+\]
+Para $m=1$,
+\[
+\lambda=d\sin\theta\approx(1,667\times10^{-6})\sin21,4^\circ
+\approx6,08\times10^{-7}\,\si{m}\approx\SI{608}{nm}.
+\]
+c) Medir máximos simétricos e fazer a média; aumentar $L$; usar várias ordens quando visíveis; alinhar cuidadosamente a rede e o laser.
+
+\section*{Capítulo 6 — Química, 11.º ano}
+
+\textbf{Exercício 6.1.} a)
+\[
+\eta=\frac{4,06}{4,80}\times100\approx84,6\%.
+\]
+b) Uma massa superior à teórica indica, em geral, produto húmido/impuro, reagentes retidos, erro de tara ou erro de cálculo; rendimento químico real superior a $100\%$ não é uma interpretação física válida para o produto puro previsto. c) Exemplos: reduzir a escala, substituir reagentes/solventes por opções menos perigosas, baixar consumo energético, recuperar solvente, reduzir excesso de reagente e resíduos.
+
+\medskip
+\textbf{Exercício 6.2.} a)
+\[
+Q_c=\frac{[B]}{[A]}=\frac{1,00}{0,50}=2,0<K_c,
+\]
+logo a evolução é no sentido direto. b) Ao duplicar o volume, ambas as concentrações ficam reduzidas a metade e $Q_c=([B]/2)/([A]/2)=2,0$; a previsão imediata mantém-se. c) O catalisador acelera os sentidos direto e inverso, permitindo atingir o equilíbrio mais depressa, mas não altera $K_c$ nem a composição de equilíbrio a uma dada temperatura.
+
+\medskip
+\textbf{Exercício 6.3.} a) $\bar V=(18,55+18,60+18,65)/3=\SI{18.60}{mL}$. b)
+\[
+c_A=\frac{0,1000\times18,60}{20,00}=\SI{0.0930}{mol.L^{-1}}.
+\]
+c) Os desvios são $-0,05$, $0,00$ e $+0,05\,\si{mL}$; $I_a=\SI{0.05}{mL}$ e
+\[
+D(\%)=\frac{0,05}{18,60}\times100\approx0,27\%.
+\]
+d) Ultrapassar sistematicamente o ponto final aumenta $V_B$ e, pela relação estequiométrica usada, conduz a uma concentração calculada do ácido demasiado elevada.
+
+\medskip
+\textbf{Exercício 6.4.} a) Poder redutor: $\boxed{\mathrm{Zn>Fe>Cu}}$. b) Zn é oxidado e é o redutor; \ce{Cu^{2+}} é reduzido e é o oxidante. c)
+\[
+\ce{Zn(s) -> Zn^{2+}(aq) + 2e-},
+\qquad
+\ce{Cu^{2+}(aq) + 2e- -> Cu(s)}.
+\]
+
+\medskip
+\textbf{Exercício 6.5.} a) Para \SI{50}{g} de água, a \SI{60}{\celsius}, dissolve-se no máximo $60\times50/100=\SI{30}{g}$. b) A \SI{20}{\celsius} ficam dissolvidos $25\times50/100=\SI{12.5}{g}$; cristalizam $30-12,5=\SI{17.5}{g}$. c) A agitação aumenta a frequência de contacto e acelera a dissolução, mas a composição de equilíbrio saturado a uma dada temperatura é uma propriedade termodinâmica do sistema e não aumenta simplesmente por agitar.
+
+\medskip
+\textbf{Exercício 6.6.} a)
+\[
+Q_s=(2,0\times10^{-3})(3,0\times10^{-3})=6,0\times10^{-6}>K_s,
+\]
+logo prevê-se precipitação. b) Aumentar $[\ce{X-}]$ desloca o equilíbrio de dissolução no sentido do sólido; a solubilidade de \ce{MX} diminui. c) Ao misturar soluções, o volume total aumenta e as concentrações mudam imediatamente por diluição; é esse estado após mistura que determina $Q_s$.
+
+\chapter{Soluções dos desafios integradores}
+
+\textbf{Desafio 1.} a) $P=UI=6,0\times0,45=2,7\,\si{W}$. b) $E_{in}=2,7\times720=1944\,\si{J}$; $E_u=0,70\times1944\approx1361\,\si{J}$. c)
+\[
+\Delta T=\frac{1361}{0,120\times4180}\approx2,71\,\si{K}.
+\]
+d) Perdas por convecção/radiação/condução e aquecimento do recipiente/resistor/sensor.
+
+\medskip
+\textbf{Desafio 2.} a) $E=hc/\lambda\approx3,37\times10^{-19}\,\si{J}$. b) Os níveis eletrónicos quantizados originam transições com energias características; por isso os padrões espectrais funcionam como uma “assinatura” do elemento. c)
+\[
+v=\sqrt{\frac{6,67\times10^{-11}\times6,0\times10^{24}}{7,0\times10^6}}
+\approx7,56\times10^3\,\si{m.s^{-1}}.
+\]
+d) A espectroscopia fornece composição e propriedades da matéria; a mecânica orbital fornece massas, velocidades, órbitas e interações gravitacionais.
+
+\medskip
+\textbf{Desafio 3.} a) $n=1,00\times0,0500=0,0500\,\si{mol}$. b) $|Q|=0,0500\times57,0=2,85\,\si{kJ}$. c) Massa total aproximada: \SI{100}{g}=\SI{0.100}{kg}. Logo
+\[
+\Delta T=\frac{2850}{0,100\times4180}\approx6,82\,\si{K}.
+\]
+d) Há perdas térmicas, aquecimento do calorímetro e o modelo de capacidade térmica pode não ser perfeito.
+
+\medskip
+\textbf{Desafio 4.} Resistência total $R+r=3,00\,\si{\ohm}$, logo $I=1,50/3,00=0,50\,\si{A}$. $P_R=I^2R=0,25\times2,70=0,675\,\si{W}$. $P_r=I^2r=0,075\,\si{W}$. Em \SI{300}{s}, $E_R=0,675\times300=202,5\,\si{J}$. Quimicamente, reações redox na pilha convertem energia química em energia elétrica; fisicamente, a corrente transfere energia ao resistor, onde ocorre dissipação por efeito Joule.
+
+\medskip
+\textbf{Desafio 5.} a) $Q=0,075\times334=25,05\,\si{kJ}$. b) A energia elétrica necessária é $Q/0,80=31,31\,\si{kJ}$; $t=31310/25\approx1,25\times10^3\,\si{s}\approx20,9\,\si{min}$. c) $n=75/18,0\approx4,17\,\si{mol}$.
+
+\medskip
+\textbf{Desafio 6.} a)
+\[
+E_f=\frac{hc}{\lambda}=\frac{6,626\times10^{-34}\times3,00\times10^8}{650\times10^{-9}}
+\approx3,06\times10^{-19}\,\si{J}.
+\]
+b) $E=P\Delta t=1,0\times10^{-3}\times10=1,0\times10^{-2}\,\si{J}$. c) $N=E/E_f\approx3,27\times10^{16}$ fotões. d) A cor está associada à frequência/comprimento de onda e, portanto, à energia de cada fotão; a potência é energia por unidade de tempo e depende simultaneamente da energia por fotão e do fluxo de fotões.
+
+% ============================================================
+\backmatter
+\chapter{Formulário essencial}
+
+\begin{longtable}{@{}p{0.36\textwidth}p{0.56\textwidth}@{}}
+\toprule
+\textbf{Tema} & \textbf{Relações úteis} \\
+\midrule
+Quantidade de matéria & $n=m/M$, $N=nN_A$ \\
+Medições repetidas & $\bar{x}=\frac{1}{n}\sum x_i$, $d_i=x_i-\bar{x}$, $I_a=\max|d_i|$ \\
+Incerteza relativa & $I_r=I_a/|x|$; em percentagem, $I_r(\%)=(I_a/|x|)\times100$ \\
+Precisão & $D(\%)=(I_a/|\bar{x}|)\times100$ \\
+Exatidão & $\varepsilon_r(\%)=(|x_{\rm exp}-x_{\rm ref}|/|x_{\rm ref}|)\times100$ \\
+Densidade & $\rho=m/V$ \\
+Fotões & $c=\lambda f$, $E=hf$ \\
+Energia cinética & $E_c=\tfrac12mv^2$ \\
+Energia potencial gravítica & $E_{p,g}=mgh$ \\
+Trabalho de força constante & $W=Fd\cos\theta$ \\
+Potência & $P=E/\Delta t$, em circuitos $P=UI$ \\
+Pilha real & $U=\mathcal E-rI$ \\
+Calorimetria & $Q=mc\Delta T$ \\
+Mudança de fase & $Q=m\Delta h$ \\
+MUV & $v=v_0+at$, $v^2=v_0^2+2a\Delta x$ \\
+Queda livre & $y=\tfrac12gt^2$ (se $v_0=0$) \\
+Ondas & $v=\lambda f$, $f=1/T$ \\
+Refração & $n_1\sin\theta_1=n_2\sin\theta_2$ \\
+Difração & $d\sin\theta=m\lambda$ \\
+Rendimento & $\eta=\dfrac{\text{valor obtido}}{\text{valor teórico}}\times100$ \\
+Titulação 1:1 & $c_A V_A=c_B V_B$ no ponto de equivalência \\
+Equilíbrio & comparar $Q_c$ com $K_c$ \\
+Solubilidade & comparar $Q_s$ com $K_s$ \\
+\bottomrule
+\end{longtable}
+
+\chapter{Referências}
+\begin{thebibliography}{99}
+
+\bibitem{DGE10portal}
+Direção-Geral da Educação. (consulta em 2026). \textit{Currículo Nacional — Física e Química A, 10.º ano}. Ministério da Educação, Ciência e Inovação, Portugal.\\
+\url{https://curriculonacional.dge.mec.pt/organizacao-curricular/fisica-e-quimica-0}
+
+\bibitem{DGE11portal}
+Direção-Geral da Educação. (consulta em 2026). \textit{Currículo Nacional — Física e Química A, 11.º ano}. Ministério da Educação, Ciência e Inovação, Portugal.\\
+\url{https://curriculonacional.dge.mec.pt/organizacao-curricular/fisica-e-quimica}
+
+\bibitem{ProgramaFQA}
+Direção-Geral da Educação. (2014). \textit{Programa e Metas Curriculares de Física e Química A — 10.º e 11.º anos} (documento histórico, atualmente revogado; consultado para a designação tradicional de algumas atividades laboratoriais).\\
+\url{https://www.dge.mec.pt/sites/default/files/ficheiros/programa_fqa_10_11.pdf}
+
+\bibitem{DGE10}
+Direção-Geral da Educação. (2018). \textit{Aprendizagens Essenciais — Física e Química A, 10.º ano}. Ministério da Educação, Portugal.\\
+\url{https://www.dge.mec.pt/sites/default/files/Curriculo/Aprendizagens_Essenciais/10_fq_a.pdf}
+
+\bibitem{DGE11}
+Direção-Geral da Educação. (2018). \textit{Aprendizagens Essenciais — Física e Química A, 11.º ano}. Ministério da Educação, Portugal.\\
+\url{https://www.dge.mec.pt/sites/default/files/Curriculo/Aprendizagens_Essenciais/11_fq_a.pdf}
+
+\bibitem{DGEportal}
+Direção-Geral da Educação. \textit{Física e Química A — documentos curriculares de referência}.\\
+\url{https://www.dge.mec.pt/fisica-e-quimica-0}
+
+\bibitem{Perfil}
+Martins, G. O., Gomes, C. A. S., Brocardo, J. M. L., Pedroso, J. V., Carrillo, J. L. A., Silva, L. M. U., Encarnação, M. M. G. A., Horta, M. J. V. C., Calçada, M. T. C. S., Nery, R. F. V., \& Rodrigues, S. M. C. V. (2017). \textit{Perfil dos Alunos à Saída da Escolaridade Obrigatória}. Ministério da Educação/Direção-Geral da Educação.
+
+\bibitem{DGEGTA5}
+Direção-Geral da Educação. (2024). \textit{Física e Química A, 10.º ano — GTA 5: Medição de massas e volumes}. Estudo Autónomo, Ministério da Educação, Ciência e Inovação.\\
+\url{https://estudoautonomo.dge.mec.pt/sites/default/files/2024-12/GTA%205_Fisica%20e%20Quimica%20A.%C2%BA%20ano__Tema%201_Subtema%201_Massa%20e%20Tamanho%20dos%20%C3%81tomos.pdf}
+
+\bibitem{SPF2022}
+Sociedade Portuguesa de Física. (2022). \textit{Proposta de resolução da componente de Física da Prova de Exame Final Nacional de Física e Química A — 2.ª Fase, 2022}.\\
+\url{https://www.spf.pt/files/files/Proposta%20de%20resolu%C3%A7%C3%A3o%20da%20componente%20de%20F%C3%ADsica%20do%20Exame%20Nacional%20de%20F%C3%ADsica%20e%20Qu%C3%ADmica%20A_2.%C2%AA%20Fase_2022_29-jul.pdf}
+
+\bibitem{IUPAC}
+International Union of Pure and Applied Chemistry. \textit{Compendium of Chemical Terminology (the Gold Book)}.\\
+\url{https://goldbook.iupac.org/}
+
+\bibitem{BIPM}
+Bureau International des Poids et Mesures. (2019, atualizações posteriores). \textit{The International System of Units (SI Brochure)}.\\
+\url{https://www.bipm.org/en/publications/si-brochure}
+
+\bibitem{NIST}
+National Institute of Standards and Technology. \textit{Reference on Constants, Units, and Uncertainty}.\\
+\url{https://physics.nist.gov/cuu/}
+
+\end{thebibliography}
+
+\chapter*{Créditos editoriais}
+\addcontentsline{toc}{chapter}{Créditos editoriais}
+\textbf{Coleção:} EUFISICA books\\
+\textbf{Título:} Laboratório de Física e Química A — 10.º e 11.º anos\\
+\textbf{Autor:} José Gonçalves\\
+\textbf{Ilustrações:} esquemas originais em TikZ, CircuitikZ e PGFPlots integrados neste ficheiro LaTeX.\\
+\textbf{Edição:} 2026/2027.
+
+\end{document}

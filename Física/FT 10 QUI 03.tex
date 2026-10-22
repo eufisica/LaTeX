@@ -1,0 +1,3094 @@
+\documentclass[11pt,a4paper]{article}
+
+% ============================================================
+% PACOTES
+% ============================================================
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese]{babel}
+\usepackage{lmodern}
+
+\usepackage[
+a4paper,
+top=1.8cm,
+bottom=1.8cm,
+left=1.7cm,
+right=1.7cm
+]{geometry}
+
+\usepackage{amsmath,amssymb}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{graphicx}
+
+% ============================================================
+% SIUNITX -- conforme solicitado
+% ============================================================
+
+\usepackage{siunitx}
+\sisetup{output-decimal-marker={,}}
+
+% Fórmulas químicas
+\usepackage[version=4]{mhchem}
+
+% TikZ
+\usepackage{tikz}
+\usetikzlibrary{
+	arrows.meta,
+	positioning,
+	calc,
+	shapes.geometric,
+	decorations.pathmorphing,
+	backgrounds,
+	fit
+}
+
+% Gráficos
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% Caixas
+\usepackage[most]{tcolorbox}
+
+% Cabeçalhos
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+\usepackage{hyperref}
+
+% ============================================================
+% CORES
+% ============================================================
+
+\definecolor{eublue}{HTML}{145A86}
+\definecolor{eudark}{HTML}{17324D}
+\definecolor{eulightblue}{HTML}{E4F2FA}
+
+\definecolor{eugreen}{HTML}{3F7D58}
+\definecolor{eulightgreen}{HTML}{E8F4EC}
+
+\definecolor{euorange}{HTML}{E28A2B}
+\definecolor{eulightorange}{HTML}{FFF0DE}
+
+\definecolor{eured}{HTML}{B33A3A}
+\definecolor{eupurple}{HTML}{67518A}
+
+\definecolor{eugray}{HTML}{F1F3F5}
+\definecolor{euyellow}{HTML}{F3CF55}
+
+\definecolor{metalcolor}{HTML}{DDECF6}
+\definecolor{nonmetalcolor}{HTML}{E4F3E6}
+\definecolor{noblegascolor}{HTML}{F4E2F5}
+\definecolor{metalloidcolor}{HTML}{FFF0C9}
+
+% ============================================================
+% CONFIGURAÇÕES
+% ============================================================
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+
+\renewcommand{\arraystretch}{1.35}
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=eublue,
+	urlcolor=eublue
+}
+
+% ============================================================
+% CABEÇALHO E RODAPÉ
+% ============================================================
+
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{
+	\textbf{\textcolor{eublue}{EUFISICA exercícios}}
+}
+
+\fancyhead[R]{
+	\textcolor{eudark}{Física e Química A -- 10.º ano}
+}
+
+\fancyfoot[L]{Prof. José Gonçalves}
+\fancyfoot[C]{EUFISICA}
+\fancyfoot[R]{Página \thepage\ de \pageref{LastPage}}
+
+\renewcommand{\headrulewidth}{0.6pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% ============================================================
+% CAIXAS
+% ============================================================
+
+\newcounter{exercicio}
+
+\newenvironment{exercicio}[1]
+{
+	\refstepcounter{exercicio}
+	\begin{tcolorbox}[
+		enhanced,
+		breakable,
+		colback=white,
+		colframe=eublue,
+		boxrule=0.8pt,
+		arc=2mm,
+		left=3mm,
+		right=3mm,
+		top=2mm,
+		bottom=2mm,
+		title={
+			\textbf{Exercício \theexercicio}
+			\hspace{1mm}--\hspace{1mm}#1
+		},
+		coltitle=white,
+		colbacktitle=eublue,
+		fonttitle=\bfseries
+		]
+	}
+	{
+	\end{tcolorbox}
+}
+
+\newtcolorbox{recorda}{
+	enhanced,
+	breakable,
+	colback=eulightblue,
+	colframe=eublue,
+	title=\textbf{Recorda},
+	coltitle=eudark,
+	colbacktitle=eulightblue,
+	fonttitle=\bfseries,
+	arc=2mm
+}
+
+\newtcolorbox{dados}{
+	enhanced,
+	breakable,
+	colback=eugray,
+	colframe=eudark,
+	title=\textbf{Dados},
+	fonttitle=\bfseries,
+	arc=2mm
+}
+
+\newtcolorbox{stem}{
+	enhanced,
+	breakable,
+	colback=eulightgreen,
+	colframe=eugreen,
+	title=\textbf{STEM | Ciência, Tecnologia e Mundo Real},
+	coltitle=eugreen,
+	colbacktitle=eulightgreen,
+	fonttitle=\bfseries,
+	arc=2mm
+}
+
+\newtcolorbox{desafio}{
+	enhanced,
+	breakable,
+	colback=eulightorange,
+	colframe=euorange,
+	title=\textbf{Desafio},
+	coltitle=euorange,
+	colbacktitle=eulightorange,
+	fonttitle=\bfseries,
+	arc=2mm
+}
+
+% ============================================================
+% LINHAS DE RESPOSTA
+% ============================================================
+
+\newcommand{\linha}{
+	\vspace{3mm}
+	\noindent\makebox[\linewidth]{\dotfill}
+}
+
+\newcommand{\linhas}[1]{
+	\par
+	\foreach \i in {1,...,#1}{
+		\vspace{3.5mm}
+		\noindent\makebox[\linewidth]{\dotfill}\par
+	}
+}
+
+% ============================================================
+% ELEMENTO DA TABELA PERIÓDICA
+% ============================================================
+
+\tikzset{
+	elem/.style={
+		draw=eudark,
+		minimum width=0.68cm,
+		minimum height=0.72cm,
+		inner sep=1pt,
+		align=center,
+		font=\scriptsize
+	}
+}
+
+\newcommand{\Elemento}[5]{%
+	\node[
+	elem,
+	fill=#5
+	] at ({(#1-1)*0.72},{-(#2-1)*0.78})
+	{
+		{\tiny #3}\\[-1mm]
+		{\bfseries #4}
+	};
+}
+
+% ============================================================
+% DOCUMENTO
+% ============================================================
+
+\begin{document}
+	
+	% ============================================================
+	% TÍTULO
+	% ============================================================
+	
+	\begin{tcolorbox}[
+		enhanced,
+		colback=eudark,
+		colframe=eudark,
+		arc=3mm,
+		boxrule=0pt,
+		left=5mm,
+		right=5mm,
+		top=5mm,
+		bottom=5mm
+		]
+		
+		\begin{center}
+			
+			{\Huge\bfseries\color{white}
+				EUFISICA exercícios}
+			
+			\vspace{2mm}
+			
+			{\Large\bfseries\color{white}
+				Tabela Periódica e Estrutura Atómica}
+			
+			\vspace{2mm}
+			
+			{\large\color{eulightblue}
+				Organização • Propriedades periódicas • Distribuição eletrónica}
+			
+			{\large\color{eulightblue}
+				Espetros • Energia • Quantidade de matéria}
+			
+			\vspace{3mm}
+			
+			{\large\color{white}
+				\textbf{Física e Química A -- 10.º ano}}
+			
+			\vspace{2mm}
+			
+			{\color{white}
+				\textbf{Prof. José Gonçalves}}
+			
+		\end{center}
+		
+	\end{tcolorbox}
+	
+	\vspace{3mm}
+	
+	\begin{tabularx}{\textwidth}{|X|X|X|}
+		\hline
+		\textbf{Nome:}
+		&
+		\textbf{Turma:}
+		&
+		\textbf{Data:}
+		\\[6mm]
+		\hline
+	\end{tabularx}
+	
+	\vspace{5mm}
+	
+	% ============================================================
+	% OBJETIVOS
+	% ============================================================
+	
+	\begin{tcolorbox}[
+		colback=eugray,
+		colframe=eudark,
+		title=\textbf{Objetivos de aprendizagem}
+		]
+		
+		No final desta ficha deverás ser capaz de:
+		
+		\begin{itemize}[leftmargin=6mm,itemsep=1mm]
+			
+			\item compreender a organização da Tabela Periódica;
+			
+			\item relacionar número atómico, distribuição eletrónica,
+			período e grupo;
+			
+			\item identificar eletrões de valência;
+			
+			\item prever tendências do raio atómico e da energia de ionização;
+			
+			\item relacionar propriedades periódicas com a estrutura eletrónica;
+			
+			\item interpretar energias de remoção eletrónica e espetros
+			fotoeletrónicos;
+			
+			\item interpretar espetros de emissão e de absorção;
+			
+			\item calcular a energia de fotões e de níveis eletrónicos;
+			
+			\item relacionar massa, massa molar, quantidade de matéria
+			e número de entidades;
+			
+			\item integrar diferentes conhecimentos de estrutura atómica
+			na identificação de elementos químicos.
+			
+		\end{itemize}
+		
+	\end{tcolorbox}
+	
+	% ============================================================
+	% DADOS
+	% ============================================================
+	
+	\begin{dados}
+		
+		Sempre que necessário, utiliza:
+		
+		\[
+		N_A=\SI{6.022e23}{\per\mole}
+		\]
+		
+		\[
+		h=\SI{6.626e-34}{\joule\second}
+		\]
+		
+		\[
+		c=\SI{3.00e8}{\meter\per\second}
+		\]
+		
+		\[
+		1\,\mathrm{eV}
+		=
+		\SI{1.602e-19}{\joule}
+		\]
+		
+		\[
+		n=\frac{m}{M}
+		\]
+		
+		\[
+		N=nN_A
+		\]
+		
+		\[
+		E_{\text{fotão}}=h\nu
+		\]
+		
+		\[
+		c=\lambda\nu
+		\]
+		
+		\[
+		E_{\text{fotão}}
+		=
+		\frac{hc}{\lambda}
+		\]
+		
+		Para o átomo de hidrogénio:
+		
+		\[
+		\boxed{
+			E_n=
+			-\frac{2,18\times10^{-18}}{n^2}
+			\ \mathrm{J}
+		}
+		\]
+		
+		\[
+		\Delta E=E_f-E_i
+		\]
+		
+	\end{dados}
+	
+	% ============================================================
+	% 1. ORGANIZAÇÃO TP
+	% ============================================================
+	
+	\section*{\textcolor{eublue}{1. Organização da Tabela Periódica}}
+	
+	\begin{recorda}
+		
+		Os elementos químicos encontram-se organizados na Tabela Periódica
+		por ordem crescente de \textbf{número atómico}, \(Z\).
+		
+		\[
+		\boxed{
+			Z=\text{número de protões}
+		}
+		\]
+		
+		Num átomo neutro:
+		
+		\[
+		\boxed{
+			n(e^-)=Z
+		}
+		\]
+		
+		As linhas horizontais denominam-se \textbf{períodos}.
+		
+		As colunas verticais denominam-se \textbf{grupos}.
+		
+		Para os elementos representativos:
+		
+		\begin{itemize}
+			
+			\item o período relaciona-se com o maior valor do número quântico
+			principal \(n\) ocupado;
+			
+			\item elementos do mesmo grupo apresentam distribuições eletrónicas
+			de valência semelhantes;
+			
+			\item essa semelhança explica muitas das suas propriedades químicas.
+			
+		\end{itemize}
+		
+	\end{recorda}
+	
+	% ============================================================
+	% TABELA PERIÓDICA SIMPLIFICADA
+	% ============================================================
+	
+	\begin{figure}[H]
+		\centering
+		
+		\resizebox{\textwidth}{!}{
+			\begin{tikzpicture}
+				
+				% números dos grupos
+				\foreach \g in {1,...,18}{
+					\node[
+					font=\scriptsize\bfseries,
+					text=eudark
+					] at ({(\g-1)*0.72},0.72)
+					{\g};
+				}
+				
+				\node[
+				font=\scriptsize\bfseries,
+				rotate=90
+				] at (-1.0,-1.2)
+				{Período};
+				
+				% períodos
+				\foreach \p in {1,...,4}{
+					\node[
+					font=\scriptsize\bfseries
+					] at (-0.65,{-(\p-1)*0.78})
+					{\p};
+				}
+				
+				% período 1
+				\Elemento{1}{1}{1}{H}{nonmetalcolor}
+				\Elemento{18}{1}{2}{He}{noblegascolor}
+				
+				% período 2
+				\Elemento{1}{2}{3}{Li}{metalcolor}
+				\Elemento{2}{2}{4}{Be}{metalcolor}
+				\Elemento{13}{2}{5}{B}{metalloidcolor}
+				\Elemento{14}{2}{6}{C}{nonmetalcolor}
+				\Elemento{15}{2}{7}{N}{nonmetalcolor}
+				\Elemento{16}{2}{8}{O}{nonmetalcolor}
+				\Elemento{17}{2}{9}{F}{nonmetalcolor}
+				\Elemento{18}{2}{10}{Ne}{noblegascolor}
+				
+				% período 3
+				\Elemento{1}{3}{11}{Na}{metalcolor}
+				\Elemento{2}{3}{12}{Mg}{metalcolor}
+				\Elemento{13}{3}{13}{Al}{metalcolor}
+				\Elemento{14}{3}{14}{Si}{metalloidcolor}
+				\Elemento{15}{3}{15}{P}{nonmetalcolor}
+				\Elemento{16}{3}{16}{S}{nonmetalcolor}
+				\Elemento{17}{3}{17}{Cl}{nonmetalcolor}
+				\Elemento{18}{3}{18}{Ar}{noblegascolor}
+				
+				% período 4
+				\Elemento{1}{4}{19}{K}{metalcolor}
+				\Elemento{2}{4}{20}{Ca}{metalcolor}
+				
+				% legenda
+				\node[
+				draw=eudark,
+				fill=metalcolor,
+				minimum width=1.3cm,
+				minimum height=0.45cm
+				] at (2.0,-3.5) {};
+				
+				\node[
+				anchor=west,
+				font=\scriptsize
+				] at (2.75,-3.5) {metal};
+				
+				\node[
+				draw=eudark,
+				fill=metalloidcolor,
+				minimum width=1.3cm,
+				minimum height=0.45cm
+				] at (5.5,-3.5) {};
+				
+				\node[
+				anchor=west,
+				font=\scriptsize
+				] at (6.25,-3.5) {semimetal};
+				
+				\node[
+				draw=eudark,
+				fill=nonmetalcolor,
+				minimum width=1.3cm,
+				minimum height=0.45cm
+				] at (9.0,-3.5) {};
+				
+				\node[
+				anchor=west,
+				font=\scriptsize
+				] at (9.75,-3.5) {não metal};
+				
+				\node[
+				draw=eudark,
+				fill=noblegascolor,
+				minimum width=1.3cm,
+				minimum height=0.45cm
+				] at (12.7,-3.5) {};
+				
+				\node[
+				anchor=west,
+				font=\scriptsize
+				] at (13.45,-3.5) {gás nobre};
+				
+			\end{tikzpicture}
+		}
+		
+		\caption{Representação simplificada dos primeiros 20 elementos da Tabela
+			Periódica.}
+	\end{figure}
+	
+	% ============================================================
+	
+	\begin{exercicio}{Conhecer a Tabela Periódica}
+		
+		Utiliza a Tabela Periódica representada anteriormente.
+		
+		Completa:
+		
+		\begin{center}
+			
+			\small
+			
+			\begin{tabular}{|c|c|c|c|c|}
+				\hline
+				
+				\textbf{Elemento}
+				&
+				\(\boldsymbol{Z}\)
+				&
+				\textbf{Período}
+				&
+				\textbf{Grupo}
+				&
+				\textbf{Metal/não metal}
+				\\
+				\hline
+				
+				\ce{Na}
+				&
+				&
+				&
+				&
+				\\[4mm]
+				\hline
+				
+				\ce{Mg}
+				&
+				&
+				&
+				&
+				\\[4mm]
+				\hline
+				
+				\ce{O}
+				&
+				&
+				&
+				&
+				\\[4mm]
+				\hline
+				
+				\ce{Cl}
+				&
+				&
+				&
+				&
+				\\[4mm]
+				\hline
+				
+				\ce{Ne}
+				&
+				&
+				&
+				&
+				\\[4mm]
+				\hline
+				
+				\ce{Ca}
+				&
+				&
+				&
+				&
+				\\[4mm]
+				\hline
+				
+			\end{tabular}
+			
+		\end{center}
+		
+	\end{exercicio}
+	
+	% ============================================================
+	
+	\begin{exercicio}{A posição revela informação}
+		
+		Responde sem recorrer diretamente ao símbolo do elemento.
+		
+		\begin{enumerate}[label=\alph*)]
+			
+			\item Um elemento encontra-se no grupo 1 e período 3.
+			
+			Identifica-o.
+			
+			\linha
+			
+			\item Um elemento encontra-se no grupo 17 e período 2.
+			
+			Identifica-o.
+			
+			\linha
+			
+			\item Um elemento encontra-se no grupo 18 e período 3.
+			
+			Identifica-o.
+			
+			\linha
+			
+			\item Um elemento possui número atómico \(Z=12\).
+			
+			Indica:
+			
+			\begin{itemize}
+				\item símbolo;
+				\item período;
+				\item grupo.
+			\end{itemize}
+			
+			\linhas{2}
+			
+			\item Qual dos seguintes elementos pertence ao mesmo grupo do sódio?
+			
+			\[
+			\ce{Li},
+			\qquad
+			\ce{Mg},
+			\qquad
+			\ce{K},
+			\qquad
+			\ce{Cl}
+			\]
+			
+			\linha
+			
+		\end{enumerate}
+		
+	\end{exercicio}
+	
+	% ============================================================
+	% CONFIGURAÇÃO ELETRÓNICA
+	% ============================================================
+	
+	\section*{\textcolor{eublue}{2. Distribuição eletrónica e posição na Tabela Periódica}}
+	
+	\begin{recorda}
+		
+		Para os primeiros elementos, a ordem de preenchimento dos subníveis é:
+		
+		\[
+		1s
+		\rightarrow
+		2s
+		\rightarrow
+		2p
+		\rightarrow
+		3s
+		\rightarrow
+		3p
+		\rightarrow
+		4s
+		\]
+		
+		Por exemplo:
+		
+		\[
+		\ce{Na}:
+		\qquad
+		1s^2\,2s^2\,2p^6\,3s^1
+		\]
+		
+		O maior valor de \(n\) é 3.
+		
+		Logo, o sódio encontra-se no:
+		
+		\[
+		\boxed{\text{3.º período}}
+		\]
+		
+		A configuração de valência é:
+		
+		\[
+		3s^1
+		\]
+		
+		o que está de acordo com a sua posição no grupo 1.
+		
+	\end{recorda}
+	
+	% ============================================================
+	
+	\begin{exercicio}{Da configuração eletrónica à Tabela Periódica}
+		
+		Completa a tabela.
+		
+		\begin{center}
+			
+			\small
+			
+			\begin{tabular}{|l|c|c|c|c|}
+				\hline
+				
+				\textbf{Distribuição eletrónica}
+				&
+				\(\boldsymbol{Z}\)
+				&
+				\textbf{Elemento}
+				&
+				\textbf{Período}
+				&
+				\textbf{Grupo}
+				\\
+				\hline
+				
+				\(1s^2\,2s^1\)
+				&
+				&
+				&
+				&
+				\\[4mm]
+				\hline
+				
+				\(1s^2\,2s^2\,2p^4\)
+				&
+				&
+				&
+				&
+				\\[4mm]
+				\hline
+				
+				\(1s^2\,2s^2\,2p^6\,3s^1\)
+				&
+				&
+				&
+				&
+				\\[4mm]
+				\hline
+				
+				\(1s^2\,2s^2\,2p^6\,3s^2\)
+				&
+				&
+				&
+				&
+				\\[4mm]
+				\hline
+				
+				\(1s^2\,2s^2\,2p^6\,3s^2\,3p^5\)
+				&
+				&
+				&
+				&
+				\\[4mm]
+				\hline
+				
+				\(1s^2\,2s^2\,2p^6\,3s^2\,3p^6\)
+				&
+				&
+				&
+				&
+				\\[4mm]
+				\hline
+				
+			\end{tabular}
+			
+		\end{center}
+		
+	\end{exercicio}
+	
+	% ============================================================
+	
+	\begin{exercicio}{Eletrões de valência}
+		
+		Completa.
+		
+		\begin{center}
+			
+			\begin{tabular}{|c|c|c|c|}
+				\hline
+				
+				\textbf{Elemento}
+				&
+				\textbf{Configuração de valência}
+				&
+				\textbf{Eletrões de valência}
+				&
+				\textbf{Grupo}
+				\\
+				\hline
+				
+				\ce{Li}
+				&
+				&
+				&
+				\\[4mm]
+				\hline
+				
+				\ce{Mg}
+				&
+				&
+				&
+				\\[4mm]
+				\hline
+				
+				\ce{Al}
+				&
+				&
+				&
+				\\[4mm]
+				\hline
+				
+				\ce{O}
+				&
+				&
+				&
+				\\[4mm]
+				\hline
+				
+				\ce{Cl}
+				&
+				&
+				&
+				\\[4mm]
+				\hline
+				
+				\ce{Ne}
+				&
+				&
+				&
+				\\[4mm]
+				\hline
+				
+			\end{tabular}
+			
+		\end{center}
+		
+		Que relação identificas entre o número de eletrões de valência e o grupo
+		nos elementos representativos?
+		
+		\linhas{3}
+		
+	\end{exercicio}
+	
+	% ============================================================
+	% ORBITAIS
+	% ============================================================
+	
+	\begin{exercicio}{Do diagrama de orbitais ao elemento}
+		
+		Considera o seguinte diagrama de orbitais.
+		
+		\begin{center}
+			
+			\begin{tikzpicture}[scale=0.9]
+				
+				% 1s
+				\node at (-0.5,0.45) {\(1s\)};
+				\draw (0,0) rectangle (0.9,0.9);
+				\draw[-{Latex},thick,eublue]
+				(0.25,0.15)--(0.25,0.75);
+				\draw[{Latex}-,thick,eured]
+				(0.65,0.15)--(0.65,0.75);
+				
+				% 2s
+				\node at (1.45,0.45) {\(2s\)};
+				\draw (1.9,0) rectangle (2.8,0.9);
+				\draw[-{Latex},thick,eublue]
+				(2.15,0.15)--(2.15,0.75);
+				\draw[{Latex}-,thick,eured]
+				(2.55,0.15)--(2.55,0.75);
+				
+				% 2p
+				\node at (3.4,0.45) {\(2p\)};
+				
+				\foreach \x in {3.9,4.8,5.7}{
+					\draw (\x,0) rectangle ({\x+0.9},0.9);
+					
+					\draw[-{Latex},thick,eublue]
+					({\x+0.25},0.15)--({\x+0.25},0.75);
+					
+					\draw[{Latex}-,thick,eured]
+					({\x+0.65},0.15)--({\x+0.65},0.75);
+				}
+				
+				% 3s
+				\node at (7.1,0.45) {\(3s\)};
+				\draw (7.6,0) rectangle (8.5,0.9);
+				
+				\draw[-{Latex},thick,eublue]
+				(7.85,0.15)--(7.85,0.75);
+				
+				\draw[{Latex}-,thick,eured]
+				(8.25,0.15)--(8.25,0.75);
+				
+			\end{tikzpicture}
+			
+		\end{center}
+		
+		\begin{enumerate}[label=\alph*)]
+			
+			\item Quantos eletrões apresenta o átomo?
+			
+			\linha
+			
+			\item Qual é o seu número atómico?
+			
+			\linha
+			
+			\item Escreve a distribuição eletrónica.
+			
+			\linhas{1}
+			
+			\item Identifica o elemento.
+			
+			\linha
+			
+			\item Indica o período.
+			
+			\linha
+			
+			\item Indica o grupo.
+			
+			\linha
+			
+			\item Quantos eletrões de valência possui?
+			
+			\linha
+			
+			\item Prevê o ião monoatómico mais provável que este elemento poderá
+			formar.
+			
+			\linhas{2}
+			
+		\end{enumerate}
+		
+	\end{exercicio}
+	
+	% ============================================================
+	% IÕES E PERIODICIDADE
+	% ============================================================
+	
+	\begin{exercicio}{Átomos e iões}
+		
+		Completa a tabela.
+		
+		\begin{center}
+			
+			\small
+			
+			\begin{tabular}{|c|c|c|c|c|}
+				\hline
+				
+				\textbf{Espécie}
+				&
+				\textbf{N.º eletrões}
+				&
+				\textbf{Distribuição eletrónica}
+				&
+				\textbf{Período do átomo}
+				&
+				\textbf{Grupo}
+				\\
+				\hline
+				
+				\(\ce{Na}\)
+				&
+				&
+				&
+				&
+				\\[4mm]
+				\hline
+				
+				\(\ce{Na+}\)
+				&
+				&
+				&
+				&
+				\\[4mm]
+				\hline
+				
+				\(\ce{Mg^{2+}}\)
+				&
+				&
+				&
+				&
+				\\[4mm]
+				\hline
+				
+				\(\ce{O^{2-}}\)
+				&
+				&
+				&
+				&
+				\\[4mm]
+				\hline
+				
+				\(\ce{Cl-}\)
+				&
+				&
+				&
+				&
+				\\[4mm]
+				\hline
+				
+			\end{tabular}
+			
+		\end{center}
+		
+		\begin{enumerate}[label=\alph*)]
+			
+			\item Quais das espécies são isoeletrónicas?
+			
+			\linhas{2}
+			
+			\item Explica por que motivo a posição de um elemento na Tabela Periódica
+			é determinada pelo átomo neutro e não pelo ião formado.
+			
+			\linhas{3}
+			
+		\end{enumerate}
+		
+	\end{exercicio}
+	
+	% ============================================================
+	% 3. PROPRIEDADES PERIÓDICAS
+	% ============================================================
+	
+	\newpage
+	
+	\section*{\textcolor{eublue}{3. Propriedades periódicas}}
+	
+	\begin{recorda}
+		
+		Ao longo de um período, o número de protões aumenta.
+		
+		Os eletrões adicionados encontram-se aproximadamente na mesma camada
+		eletrónica principal.
+		
+		De forma geral:
+		
+		\[
+		\boxed{
+			\text{ao longo de um período, o raio atómico diminui}
+		}
+		\]
+		
+		e:
+		
+		\[
+		\boxed{
+			\text{a energia de ionização tende a aumentar}
+		}
+		\]
+		
+		Ao descer num grupo, aumenta o número de camadas eletrónicas ocupadas.
+		
+		Assim, de forma geral:
+		
+		\[
+		\boxed{
+			\text{o raio atómico aumenta ao descer num grupo}
+		}
+		\]
+		
+		e:
+		
+		\[
+		\boxed{
+			\text{a primeira energia de ionização diminui}
+		}
+		\]
+		
+	\end{recorda}
+	
+	% ============================================================
+	% TENDÊNCIAS
+	% ============================================================
+	
+	\begin{figure}[H]
+		\centering
+		
+		\begin{tikzpicture}[scale=0.88]
+			
+			% grelha estilizada
+			\foreach \x in {0,...,5}{
+				\foreach \y in {0,...,3}{
+					\draw[eudark!50]
+					(\x,\y) rectangle +(0.75,0.6);
+				}
+			}
+			
+			\node[
+			font=\bfseries,
+			text=eublue
+			] at (1.8,3.3)
+			{Raio atómico aumenta};
+			
+			\draw[
+			-{Latex[length=4mm]},
+			ultra thick,
+			eublue
+			]
+			(4.2,2.8)--(0.2,2.8);
+			
+			\draw[
+			-{Latex[length=4mm]},
+			ultra thick,
+			eublue
+			]
+			(-0.45,3.0)--(-0.45,0.1);
+			
+			\node[
+			font=\bfseries,
+			text=eured
+			] at (3.2,-1.0)
+			{Energia de ionização aumenta};
+			
+			\draw[
+			-{Latex[length=4mm]},
+			ultra thick,
+			eured
+			]
+			(0.3,-0.45)--(4.5,-0.45);
+			
+			\draw[
+			-{Latex[length=4mm]},
+			ultra thick,
+			eured
+			]
+			(5.0,0.1)--(5.0,2.9);
+			
+		\end{tikzpicture}
+		
+		\caption{Tendências gerais do raio atómico e da primeira energia de
+			ionização na Tabela Periódica.}
+	\end{figure}
+	
+	% ============================================================
+	
+	\begin{exercicio}{Comparar raios atómicos}
+		
+		Sem consultar valores tabelados, indica em cada par o átomo que,
+		em geral, deverá apresentar maior raio atómico.
+		
+		Justifica com base na posição na Tabela Periódica.
+		
+		\begin{enumerate}[label=\alph*)]
+			
+			\item \(\ce{Li}\) ou \(\ce{Na}\)
+			
+			\linhas{2}
+			
+			\item \(\ce{Na}\) ou \(\ce{Cl}\)
+			
+			\linhas{2}
+			
+			\item \(\ce{Mg}\) ou \(\ce{Ca}\)
+			
+			\linhas{2}
+			
+			\item \(\ce{O}\) ou \(\ce{F}\)
+			
+			\linhas{2}
+			
+			\item Ordena por ordem crescente de raio atómico:
+			
+			\[
+			\ce{Na},
+			\qquad
+			\ce{Mg},
+			\qquad
+			\ce{Al},
+			\qquad
+			\ce{Cl}
+			\]
+			
+			\linhas{2}
+			
+		\end{enumerate}
+		
+	\end{exercicio}
+	
+	% ============================================================
+	% GRÁFICO ENERGIA IONIZAÇÃO PERÍODO 3
+	% ============================================================
+	
+	\begin{figure}[H]
+		\centering
+		
+		\begin{tikzpicture}
+			
+			\begin{axis}[
+				width=13cm,
+				height=7cm,
+				xlabel={Elemento},
+				ylabel={Primeira energia de ionização / \(\mathrm{kJ\,mol^{-1}}\)},
+				symbolic x coords={Na,Mg,Al,Si,P,S,Cl,Ar},
+				xtick=data,
+				ymin=0,
+				ymax=1700,
+				grid=major,
+				grid style={dashed,eugray},
+				mark=*,
+				mark size=2.5pt,
+				thick,
+				axis line style={eudark},
+				label style={font=\small\bfseries}
+				]
+				
+				\addplot[
+				very thick,
+				mark=*
+				]
+				coordinates{
+					(Na,496)
+					(Mg,738)
+					(Al,578)
+					(Si,787)
+					(P,1012)
+					(S,1000)
+					(Cl,1251)
+					(Ar,1521)
+				};
+				
+			\end{axis}
+			
+		\end{tikzpicture}
+		
+		\caption{Primeira energia de ionização dos elementos do 3.º período.}
+	\end{figure}
+	
+	% ============================================================
+	
+	\begin{exercicio}{Interpretar uma propriedade periódica}
+		
+		Analisa o gráfico anterior.
+		
+		\begin{enumerate}[label=\alph*)]
+			
+			\item Descreve a tendência geral da primeira energia de ionização ao
+			longo do 3.º período.
+			
+			\linhas{2}
+			
+			\item Qual dos elementos representados apresenta a menor primeira energia
+			de ionização?
+			
+			\linha
+			
+			\item Qual apresenta a maior?
+			
+			\linha
+			
+			\item Explica a tendência geral observada tendo em conta:
+			
+			\begin{itemize}
+				\item o aumento da carga nuclear;
+				\item a distância dos eletrões de valência ao núcleo.
+			\end{itemize}
+			
+			\linhas{4}
+			
+			\item Verifica-se uma diminuição entre Mg e Al.
+			
+			Observa:
+			
+			\[
+			\ce{Mg}:
+			1s^2\,2s^2\,2p^6\,3s^2
+			\]
+			
+			\[
+			\ce{Al}:
+			1s^2\,2s^2\,2p^6\,3s^2\,3p^1
+			\]
+			
+			Usa as distribuições eletrónicas para propor uma explicação para a
+			diferença observada.
+			
+			\linhas{4}
+			
+			\item Existe também uma pequena diminuição de P para S.
+			
+			Compara:
+			
+			\[
+			\ce{P}:3p^3
+			\]
+			
+			e
+			
+			\[
+			\ce{S}:3p^4.
+			\]
+			
+			Relaciona a diferença com o emparelhamento de eletrões nos orbitais
+			\(p\).
+			
+			\linhas{4}
+			
+		\end{enumerate}
+		
+	\end{exercicio}
+	
+	% ============================================================
+	% GRUPO 1
+	% ============================================================
+	
+	\begin{figure}[H]
+		\centering
+		
+		\begin{tikzpicture}
+			
+			\begin{axis}[
+				width=11cm,
+				height=6.5cm,
+				ybar,
+				bar width=18pt,
+				ylabel={1.ª energia de ionização / \(\mathrm{kJ\,mol^{-1}}\)},
+				xlabel={Elemento do grupo 1},
+				symbolic x coords={Li,Na,K,Rb,Cs},
+				xtick=data,
+				ymin=0,
+				ymax=600,
+				grid=major,
+				grid style={dashed,eugray},
+				nodes near coords,
+				axis line style={eudark}
+				]
+				
+				\addplot[
+				fill=eublue!60,
+				draw=eublue
+				]
+				coordinates{
+					(Li,520)
+					(Na,496)
+					(K,419)
+					(Rb,403)
+					(Cs,376)
+				};
+				
+			\end{axis}
+			
+		\end{tikzpicture}
+		
+		\caption{Primeira energia de ionização de alguns elementos do grupo 1.}
+	\end{figure}
+	
+	% ============================================================
+	
+	\begin{exercicio}{Descer num grupo}
+		
+		Analisa o gráfico anterior.
+		
+		\begin{enumerate}[label=\alph*)]
+			
+			\item Qual é a tendência da primeira energia de ionização ao descer no
+			grupo 1?
+			
+			\linhas{2}
+			
+			\item Como varia o raio atómico no mesmo sentido?
+			
+			\linhas{2}
+			
+			\item Explica por que motivo o eletrão de valência do césio é, em geral,
+			mais fácil de remover do que o eletrão de valência do lítio.
+			
+			\linhas{4}
+			
+			\item Qual dos elementos representados esperarias que formasse mais
+			facilmente um ião \(+1\)?
+			
+			Justifica.
+			
+			\linhas{3}
+			
+		\end{enumerate}
+		
+	\end{exercicio}
+	
+	% ============================================================
+	% 4. NÚMERO ATÓMICO / MASSA ATÓMICA
+	% ============================================================
+	
+	\section*{\textcolor{eublue}{4. Número atómico, isótopos e massa atómica relativa}}
+	
+	\begin{recorda}
+		
+		Isótopos são átomos do mesmo elemento que possuem:
+		
+		\[
+		\boxed{
+			\text{o mesmo número de protões}
+		}
+		\]
+		
+		mas diferente número de neutrões.
+		
+		Por isso, apresentam o mesmo \(Z\), mas diferente \(A\).
+		
+		A massa atómica relativa de um elemento é uma média ponderada das
+		massas dos seus isótopos naturais.
+		
+	\end{recorda}
+	
+	% ============================================================
+	
+	\begin{exercicio}{O cloro na Tabela Periódica}
+		
+		O cloro natural pode ser aproximado por uma mistura de:
+		
+		\begin{center}
+			
+			\begin{tabular}{ccc}
+				\toprule
+				\textbf{Isótopo}
+				&
+				\textbf{Massa isotópica}
+				&
+				\textbf{Abundância}
+				\\
+				\midrule
+				
+				\({}^{35}\ce{Cl}\)
+				&
+				34,969
+				&
+				\(75,77\,\%\)
+				\\
+				
+				\({}^{37}\ce{Cl}\)
+				&
+				36,966
+				&
+				\(24,23\,\%\)
+				\\
+				
+				\bottomrule
+			\end{tabular}
+			
+		\end{center}
+		
+		\begin{enumerate}[label=\alph*)]
+			
+			\item Quantos protões possui cada isótopo?
+			
+			\linha
+			
+			\item Quantos neutrões possui aproximadamente
+			\({}^{35}_{17}\ce{Cl}\)?
+			
+			\linha
+			
+			\item E \({}^{37}_{17}\ce{Cl}\)?
+			
+			\linha
+			
+			\item Calcula a massa atómica relativa do cloro.
+			
+			\linhas{3}
+			
+			\item Compara o resultado com o valor indicado habitualmente na Tabela
+			Periódica.
+			
+			\linhas{2}
+			
+			\item Explica por que motivo os dois isótopos ocupam a mesma posição na
+			Tabela Periódica.
+			
+			\linhas{3}
+			
+		\end{enumerate}
+		
+	\end{exercicio}
+	
+	% ============================================================
+	% 5. QUANTIDADE DE MATÉRIA
+	% ============================================================
+	
+	\section*{\textcolor{eublue}{5. Tabela Periódica, massa molar e quantidade de matéria}}
+	
+	\begin{recorda}
+		
+		A massa molar de uma substância pode ser determinada utilizando as
+		massas atómicas relativas dos elementos que a constituem.
+		
+		\[
+		\boxed{
+			n=\frac{m}{M}
+		}
+		\]
+		
+		e:
+		
+		\[
+		\boxed{
+			N=nN_A
+		}
+		\]
+		
+	\end{recorda}
+	
+	% ============================================================
+	
+	\begin{exercicio}{Da Tabela Periódica para a massa molar}
+		
+		Utiliza os seguintes valores:
+		
+		\[
+		A_r(\ce{H})=1,008
+		\]
+		
+		\[
+		A_r(\ce{C})=12,01
+		\]
+		
+		\[
+		A_r(\ce{O})=16,00
+		\]
+		
+		\[
+		A_r(\ce{Na})=22,99
+		\]
+		
+		\[
+		A_r(\ce{Mg})=24,31
+		\]
+		
+		\[
+		A_r(\ce{Cl})=35,45
+		\]
+		
+		\[
+		A_r(\ce{Ca})=40,08
+		\]
+		
+		Calcula as massas molares de:
+		
+		\begin{multicols}{2}
+			
+			\begin{enumerate}[label=\alph*)]
+				
+				\item \(\ce{H2O}\)
+				
+				\item \(\ce{CO2}\)
+				
+				\item \(\ce{NaCl}\)
+				
+				\item \(\ce{MgCl2}\)
+				
+				\item \(\ce{CaCO3}\)
+				
+				\item \(\ce{Na2CO3}\)
+				
+			\end{enumerate}
+			
+		\end{multicols}
+		
+		\linhas{5}
+		
+	\end{exercicio}
+	
+	% ============================================================
+	
+	\begin{exercicio}{Uma amostra de magnésio}
+		
+		Uma fita de magnésio apresenta massa:
+		
+		\[
+		m=\SI{4.86}{g}
+		\]
+		
+		Considera:
+		
+		\[
+		M(\ce{Mg})=\SI{24.31}{g\per\mole}
+		\]
+		
+		\begin{enumerate}[label=\alph*)]
+			
+			\item Determina a quantidade de matéria de magnésio.
+			
+			\linhas{2}
+			
+			\item Determina o número de átomos de magnésio.
+			
+			\linhas{2}
+			
+			\item Quantos protões existem, no total, nessa amostra?
+			
+			Recorda que:
+			
+			\[
+			Z(\ce{Mg})=12.
+			\]
+			
+			\linhas{3}
+			
+			\item Quantos eletrões existem na amostra, admitindo átomos neutros?
+			
+			\linhas{2}
+			
+			\item A que grupo e período pertence o magnésio?
+			
+			\linhas{2}
+			
+		\end{enumerate}
+		
+	\end{exercicio}
+	
+	% ============================================================
+	% 6. ESPETROS
+	% ============================================================
+	
+	\newpage
+	
+	\section*{\textcolor{eublue}{6. Elementos químicos e espetros atómicos}}
+	
+	\begin{recorda}
+		
+		Os eletrões dos átomos só podem ocupar determinados estados de energia.
+		
+		Quando um eletrão passa de um estado de maior energia para outro de menor
+		energia, pode ocorrer emissão de um fotão.
+		
+		\[
+		\boxed{
+			E_{\text{fotão}}=|\Delta E|
+		}
+		\]
+		
+		Cada elemento possui um conjunto próprio de estados de energia e,
+		consequentemente, um espetro característico.
+		
+	\end{recorda}
+	
+	% ============================================================
+	% ESPECTROS
+	% ============================================================
+	
+	\begin{figure}[H]
+		\centering
+		
+		\begin{tikzpicture}[x=0.018cm,y=1cm]
+			
+			% H
+			\node[
+			anchor=east,
+			font=\bfseries
+			] at (370,3.7)
+			{\ce{H}};
+			
+			\fill[black]
+			(380,3.3) rectangle (700,4.1);
+			
+			\draw[violet,very thick]
+			(410,3.3)--(410,4.1);
+			
+			\draw[blue!70!violet,very thick]
+			(434,3.3)--(434,4.1);
+			
+			\draw[cyan!70!blue,very thick]
+			(486,3.3)--(486,4.1);
+			
+			\draw[red,very thick]
+			(656,3.3)--(656,4.1);
+			
+			% Na
+			\node[
+			anchor=east,
+			font=\bfseries
+			] at (370,2.4)
+			{\ce{Na}};
+			
+			\fill[black]
+			(380,2.0) rectangle (700,2.8);
+			
+			\draw[yellow!80!orange,very thick]
+			(589,2.0)--(589,2.8);
+			
+			\draw[yellow!80!orange,very thick]
+			(589.6,2.0)--(589.6,2.8);
+			
+			% He
+			\node[
+			anchor=east,
+			font=\bfseries
+			] at (370,1.1)
+			{\ce{He}};
+			
+			\fill[black]
+			(380,0.7) rectangle (700,1.5);
+			
+			\foreach \x in {447,502,588,668}{
+				\draw[euorange,very thick]
+				(\x,0.7)--(\x,1.5);
+			}
+			
+			% X
+			\node[
+			anchor=east,
+			font=\bfseries
+			] at (370,-0.2)
+			{X};
+			
+			\fill[black]
+			(380,-0.6) rectangle (700,0.2);
+			
+			\foreach \x in {410,434,486,589,656}{
+				\draw[eugreen!70!yellow,very thick]
+				(\x,-0.6)--(\x,0.2);
+			}
+			
+			% eixo
+			\draw[-{Latex},thick]
+			(380,-1.0)--(710,-1.0);
+			
+			\foreach \x in {400,450,500,550,600,650,700}{
+				\draw
+				(\x,-1.08)--(\x,-0.92);
+				
+				\node[
+				below,
+				font=\scriptsize
+				] at (\x,-1.08)
+				{\x};
+			}
+			
+			\node at (540,-1.55)
+			{\small Comprimento de onda / nm};
+			
+		\end{tikzpicture}
+		
+		\caption{Espetros de emissão esquemáticos de alguns elementos e de uma
+			amostra X.}
+	\end{figure}
+	
+	% ============================================================
+	
+	\begin{exercicio}{A impressão digital dos elementos}
+		
+		Analisa os espetros anteriores.
+		
+		\begin{enumerate}[label=\alph*)]
+			
+			\item Que elementos parecem existir na amostra X?
+			
+			\linhas{2}
+			
+			\item Explica por que razão uma risca a \(\SI{589}{nm}\) pode fornecer
+			informação sobre a presença de sódio.
+			
+			\linhas{3}
+			
+			\item A posição do sódio na Tabela Periódica é:
+			
+			\[
+			\text{grupo }1,\qquad\text{período }3.
+			\]
+			
+			Escreve a sua distribuição eletrónica.
+			
+			\linhas{1}
+			
+			\item Quantos eletrões de valência possui?
+			
+			\linha
+			
+			\item Qual o ião mais provável formado pelo sódio?
+			
+			\linha
+			
+			\item Explica por que motivo o espetro do sódio não pode ser previsto
+			apenas sabendo que pertence ao grupo 1.
+			
+			\linhas{3}
+			
+		\end{enumerate}
+		
+	\end{exercicio}
+	
+	% ============================================================
+	
+	\begin{exercicio}{Energia de uma risca do sódio}
+		
+		Uma das riscas intensas do sódio apresenta:
+		
+		\[
+		\lambda=\SI{589}{nm}
+		\]
+		
+		\begin{enumerate}[label=\alph*)]
+			
+			\item Converte o comprimento de onda para metros.
+			
+			\linhas{1}
+			
+			\item Determina a frequência da radiação.
+			
+			\linhas{2}
+			
+			\item Calcula a energia de um fotão.
+			
+			\linhas{2}
+			
+			\item Calcula a energia correspondente a um mol destes fotões,
+			em \(\si{\kilo\joule\per\mole}\).
+			
+			\linhas{3}
+			
+			\item A emissão desta radiação corresponde a uma transição eletrónica
+			para um nível de maior ou menor energia?
+			
+			Justifica.
+			
+			\linhas{2}
+			
+		\end{enumerate}
+		
+	\end{exercicio}
+	
+	% ============================================================
+	% 7. HIDROGÉNIO
+	% ============================================================
+	
+	\section*{\textcolor{eublue}{7. O hidrogénio: Tabela Periódica e níveis de energia}}
+	
+	\begin{recorda}
+		
+		Para o átomo de hidrogénio:
+		
+		\[
+		\boxed{
+			E_n=
+			-\frac{2,18\times10^{-18}}{n^2}
+			\ \mathrm{J}
+		}
+		\]
+		
+		A energia aumenta com \(n\), aproximando-se de zero.
+		
+		Para:
+		
+		\[
+		n\rightarrow\infty
+		\]
+		
+		tem-se:
+		
+		\[
+		E=0.
+		\]
+		
+		Numa transição:
+		
+		\[
+		\boxed{
+			\Delta E=E_f-E_i
+		}
+		\]
+		
+		Se:
+		
+		\[
+		\Delta E<0,
+		\]
+		
+		ocorre emissão de energia.
+		
+		Se:
+		
+		\[
+		\Delta E>0,
+		\]
+		
+		ocorre absorção de energia.
+		
+	\end{recorda}
+	
+	% ============================================================
+	% NÍVEIS H
+	% ============================================================
+	
+	\begin{figure}[H]
+		\centering
+		
+		\begin{tikzpicture}[x=1cm,y=0.55cm]
+			
+			\draw[
+			-{Latex[length=3mm]},
+			thick
+			]
+			(0,-14.3)--(0,1.2);
+			
+			\node[
+			rotate=90,
+			font=\bfseries
+			] at (-0.65,-6.5)
+			{Energia / eV};
+			
+			\draw[very thick,eudark]
+			(1,-13.6)--(7,-13.6);
+			
+			\node[left]
+			at (1,-13.6)
+			{\(n=1\)};
+			
+			\node[right]
+			at (7,-13.6)
+			{\(-13,6\)};
+			
+			\draw[very thick,eudark]
+			(1,-3.40)--(7,-3.40);
+			
+			\node[left]
+			at (1,-3.40)
+			{\(n=2\)};
+			
+			\node[right]
+			at (7,-3.40)
+			{\(-3,40\)};
+			
+			\draw[very thick,eudark]
+			(1,-1.51)--(7,-1.51);
+			
+			\node[left]
+			at (1,-1.51)
+			{\(n=3\)};
+			
+			\node[right]
+			at (7,-1.51)
+			{\(-1,51\)};
+			
+			\draw[very thick,eudark]
+			(1,-0.85)--(7,-0.85);
+			
+			\node[left]
+			at (1,-0.85)
+			{\(n=4\)};
+			
+			\node[right]
+			at (7,-0.85)
+			{\(-0,85\)};
+			
+			\draw[very thick,eudark]
+			(1,-0.54)--(7,-0.54);
+			
+			\node[left]
+			at (1,-0.54)
+			{\(n=5\)};
+			
+			\node[right]
+			at (7,-0.54)
+			{\(-0,54\)};
+			
+			\draw[
+			dashed,
+			very thick,
+			eured
+			]
+			(1,0)--(7,0);
+			
+			\node[left]
+			at (1,0)
+			{\(n=\infty\)};
+			
+			\node[right,text=eured]
+			at (7,0)
+			{\(0\)};
+			
+			% transições
+			\draw[
+			-{Latex[length=3mm]},
+			very thick,
+			eublue
+			]
+			(2.5,-0.85)--(2.5,-3.40);
+			
+			\node[
+			right,
+			text=eublue
+			] at (2.55,-2.2)
+			{\small A};
+			
+			\draw[
+			-{Latex[length=3mm]},
+			very thick,
+			eugreen
+			]
+			(4.5,-13.6)--(4.5,-3.40);
+			
+			\node[
+			right,
+			text=eugreen
+			] at (4.55,-8.5)
+			{\small B};
+			
+			\draw[
+			-{Latex[length=3mm]},
+			very thick,
+			euorange
+			]
+			(6,-1.51)--(6,-13.6);
+			
+			\node[
+			right,
+			text=euorange
+			] at (6.05,-7)
+			{\small C};
+			
+		\end{tikzpicture}
+		
+		\caption{Estados de energia do átomo de hidrogénio.}
+	\end{figure}
+	
+	% ============================================================
+	
+	\begin{exercicio}{O elemento mais simples}
+		
+		O hidrogénio apresenta:
+		
+		\[
+		Z=1.
+		\]
+		
+		\begin{enumerate}[label=\alph*)]
+			
+			\item Escreve a distribuição eletrónica do átomo de hidrogénio no estado
+			fundamental.
+			
+			\linha
+			
+			\item Qual o seu período?
+			
+			\linha
+			
+			\item Em que grupo se encontra?
+			
+			\linha
+			
+			\item O hidrogénio possui uma posição particular na Tabela Periódica.
+			Apesar de ser colocado no grupo 1, não é um metal alcalino.
+			
+			Que informação da sua distribuição eletrónica justifica a colocação
+			no grupo 1?
+			
+			\linhas{2}
+			
+			\item Determina a energia do nível \(n=1\), em joule.
+			
+			\linhas{2}
+			
+			\item Determina a energia do nível \(n=2\).
+			
+			\linhas{2}
+			
+		\end{enumerate}
+		
+	\end{exercicio}
+	
+	% ============================================================
+	
+	\begin{exercicio}{Transições no átomo de hidrogénio}
+		
+		Considera as transições A, B e C representadas no diagrama.
+		
+		\begin{enumerate}[label=\alph*)]
+			
+			\item Classifica cada transição como emissão ou absorção.
+			
+			\linhas{2}
+			
+			\item Para a transição A:
+			
+			\[
+			n=4\rightarrow n=2
+			\]
+			
+			determina:
+			
+			\begin{enumerate}[label=\roman*)]
+				
+				\item \(E_4\);
+				
+				\item \(E_2\);
+				
+				\item \(\Delta E\);
+				
+				\item a energia do fotão;
+				
+				\item a frequência do fotão;
+				
+				\item o comprimento de onda.
+				
+			\end{enumerate}
+			
+			\linhas{7}
+			
+			\item Relaciona o comprimento de onda obtido com o espetro de emissão do
+			hidrogénio apresentado anteriormente.
+			
+			\linhas{2}
+			
+			\item Qual das transições representadas deverá envolver maior quantidade
+			de energia?
+			
+			Justifica sem efetuar cálculos detalhados.
+			
+			\linhas{3}
+			
+		\end{enumerate}
+		
+	\end{exercicio}
+	
+	% ============================================================
+	% 8. FOTOELETRÓNICO
+	% ============================================================
+	
+	\newpage
+	
+	\section*{\textcolor{eublue}{8. Espetro fotoeletrónico e Tabela Periódica}}
+	
+	\begin{recorda}
+		
+		A espetroscopia fotoeletrónica permite estudar as energias de remoção
+		dos eletrões.
+		
+		\[
+		\boxed{
+			E_{\text{fotão}}
+			=
+			E_{\text{remoção}}
+			+
+			E_c
+		}
+		\]
+		
+		ou:
+		
+		\[
+		\boxed{
+			E_{\text{remoção}}
+			=
+			E_{\text{fotão}}
+			-
+			E_c
+		}
+		\]
+		
+		A posição dos picos fornece informação sobre a energia de remoção.
+		
+		A intensidade relativa dos picos está relacionada com o número de
+		eletrões existente em cada subnível.
+		
+	\end{recorda}
+	
+	% ============================================================
+	% PES MG
+	% ============================================================
+	
+	\begin{figure}[H]
+		\centering
+		
+		\begin{tikzpicture}[x=1.45cm,y=0.7cm]
+			
+			% eixos
+			\draw[
+			-{Latex[length=3mm]},
+			thick
+			]
+			(0,0)--(8.5,0);
+			
+			\draw[
+			-{Latex[length=3mm]},
+			thick
+			]
+			(0,0)--(0,7.5);
+			
+			\node[
+			rotate=90,
+			font=\bfseries
+			] at (-0.7,3.7)
+			{Intensidade relativa};
+			
+			\node[
+			font=\bfseries
+			] at (4.2,-1.2)
+			{Energia de remoção};
+			
+			% sentido maior energia
+			\draw[
+			-{Latex[length=3mm]},
+			thick,
+			eured
+			]
+			(7.4,-0.6)--(0.9,-0.6);
+			
+			\node[
+			text=eured,
+			font=\small
+			] at (4.2,-0.6)
+			{energia de remoção crescente};
+			
+			% Mg: 1s2, 2s2, 2p6, 3s2
+			
+			\draw[eublue,very thick]
+			(1.1,0)--(1.1,2.0);
+			
+			\node[above,font=\bfseries]
+			at (1.1,2.0)
+			{\(1s\)};
+			
+			\draw[eublue,very thick]
+			(3.0,0)--(3.0,2.0);
+			
+			\node[above,font=\bfseries]
+			at (3.0,2.0)
+			{\(2s\)};
+			
+			\draw[eublue,very thick]
+			(4.8,0)--(4.8,6.0);
+			
+			\node[above,font=\bfseries]
+			at (4.8,6.0)
+			{\(2p\)};
+			
+			\draw[eublue,very thick]
+			(7.0,0)--(7.0,2.0);
+			
+			\node[above,font=\bfseries]
+			at (7.0,2.0)
+			{\(3s\)};
+			
+		\end{tikzpicture}
+		
+		\caption{Espetro fotoeletrónico esquemático de um elemento X. As
+			distâncias horizontais não estão à escala.}
+	\end{figure}
+	
+	% ============================================================
+	
+	\begin{exercicio}{Identificar um elemento a partir do espetro fotoeletrónico}
+		
+		O espetro anterior corresponde a um elemento X.
+		
+		\begin{enumerate}[label=\alph*)]
+			
+			\item Quantos subníveis eletrónicos estão ocupados?
+			
+			\linha
+			
+			\item Com base nas intensidades relativas, determina o número de eletrões
+			em:
+			
+			\[
+			1s,\qquad2s,\qquad2p,\qquad3s.
+			\]
+			
+			\linhas{2}
+			
+			\item Escreve a distribuição eletrónica completa do elemento.
+			
+			\linhas{1}
+			
+			\item Determina o número total de eletrões.
+			
+			\linha
+			
+			\item Determina \(Z\).
+			
+			\linha
+			
+			\item Identifica o elemento na Tabela Periódica.
+			
+			\linha
+			
+			\item Indica o período.
+			
+			\linha
+			
+			\item Indica o grupo.
+			
+			\linha
+			
+			\item Qual dos subníveis apresenta os eletrões mais facilmente removíveis?
+			
+			\linha
+			
+			\item Explica por que motivo esses eletrões são mais fáceis de remover.
+			
+			\linhas{3}
+			
+		\end{enumerate}
+		
+	\end{exercicio}
+	
+	% ============================================================
+	% IONIZAÇÕES SUCESSIVAS
+	% ============================================================
+	
+	\begin{exercicio}{Energias de ionização sucessivas}
+		
+		Para um elemento Y obtiveram-se:
+		
+		\begin{center}
+			
+			\begin{tabular}{cc}
+				\toprule
+				
+				\textbf{Eletrão removido}
+				&
+				\textbf{Energia / \(\si{\kilo\joule\per\mole}\)}
+				\\
+				\midrule
+				
+				1.º & 738\\
+				2.º & 1451\\
+				3.º & 7733\\
+				4.º & 10543\\
+				5.º & 13630\\
+				
+				\bottomrule
+			\end{tabular}
+			
+		\end{center}
+		
+		\begin{enumerate}[label=\alph*)]
+			
+			\item Entre que remoções se observa o maior aumento de energia?
+			
+			\linha
+			
+			\item Quantos eletrões de valência deverá possuir o átomo?
+			
+			\linha
+			
+			\item A que grupo da Tabela Periódica deverá pertencer?
+			
+			\linha
+			
+			\item Sabendo que pertence ao 3.º período, identifica o elemento.
+			
+			\linha
+			
+			\item Escreve a distribuição eletrónica.
+			
+			\linhas{1}
+			
+			\item Representa a configuração de valência num diagrama de orbitais.
+			
+			\vspace{12mm}
+			
+			\item Explica por que motivo a terceira energia de ionização é muito
+			superior à segunda.
+			
+			\linhas{4}
+			
+		\end{enumerate}
+		
+	\end{exercicio}
+	
+	% ============================================================
+	% 9. TABELA PERIÓDICA COMO FERRAMENTA
+	% ============================================================
+	
+	\section*{\textcolor{eublue}{9. A Tabela Periódica como ferramenta de previsão}}
+	
+	\begin{exercicio}{Quem sou eu?}
+		
+		Identifica cada elemento a partir das pistas.
+		
+		\begin{enumerate}[label=\alph*)]
+			
+			\item Tenho \(Z=8\), pertenço ao 2.º período e possuo seis eletrões de
+			valência.
+			
+			\[
+			\boxed{\text{Elemento: }\hspace{3cm}}
+			\]
+			
+			\item A minha distribuição eletrónica termina em \(3s^1\).
+			
+			\[
+			\boxed{\text{Elemento: }\hspace{3cm}}
+			\]
+			
+			\item Sou um gás nobre do 3.º período.
+			
+			\[
+			\boxed{\text{Elemento: }\hspace{3cm}}
+			\]
+			
+			\item Tenho configuração de valência:
+			
+			\[
+			3s^2\,3p^5.
+			\]
+			
+			\[
+			\boxed{\text{Elemento: }\hspace{3cm}}
+			\]
+			
+			\item Formo habitualmente um ião \(2+\), pertenço ao 3.º período e a
+			minha configuração eletrónica termina em \(3s^2\).
+			
+			\[
+			\boxed{\text{Elemento: }\hspace{3cm}}
+			\]
+			
+			\item Possuo 10 eletrões e sou quimicamente muito pouco reativo.
+			
+			\[
+			\boxed{\text{Elemento: }\hspace{3cm}}
+			\]
+			
+		\end{enumerate}
+		
+	\end{exercicio}
+	
+	% ============================================================
+	
+	\begin{exercicio}{Verdadeiro ou falso}
+		
+		Classifica cada afirmação como verdadeira (V) ou falsa (F).
+		Corrige as falsas.
+		
+		\begin{enumerate}
+			
+			\item[\(\square\)]
+			Os elementos estão organizados na Tabela Periódica por ordem crescente
+			de massa atómica.
+			
+			\item[\(\square\)]
+			Elementos do mesmo grupo possuem sempre o mesmo número total de
+			eletrões.
+			
+			\item[\(\square\)]
+			Para elementos representativos, elementos do mesmo grupo apresentam
+			configurações de valência semelhantes.
+			
+			\item[\(\square\)]
+			Ao longo de um período, o número atómico aumenta.
+			
+			\item[\(\square\)]
+			Ao descer num grupo, o número de camadas eletrónicas ocupadas aumenta.
+			
+			\item[\(\square\)]
+			A energia de ionização aumenta sempre, sem qualquer exceção, ao longo
+			de um período.
+			
+			\item[\(\square\)]
+			Um espetro fotoeletrónico pode fornecer informação sobre a distribuição
+			eletrónica.
+			
+			\item[\(\square\)]
+			Todos os elementos de um mesmo grupo apresentam espetros de emissão
+			iguais.
+			
+			\item[\(\square\)]
+			A massa molar de um elemento está relacionada com a sua massa atómica
+			relativa.
+			
+		\end{enumerate}
+		
+		\linhas{5}
+		
+	\end{exercicio}
+	
+	% ============================================================
+	% PROBLEMA INTEGRADOR
+	% ============================================================
+	
+	\newpage
+	
+	\section*{\textcolor{euorange}{10. Problema integrador -- Identificar um elemento desconhecido}}
+	
+	\begin{desafio}
+		
+		Uma equipa de investigação analisa um elemento metálico desconhecido,
+		designado por X.
+		
+		Os cientistas obtiveram as seguintes informações:
+		
+		\begin{itemize}
+			
+			\item o átomo neutro possui 11 eletrões;
+			
+			\item o espetro fotoeletrónico é compatível com:
+			
+			\[
+			1s^2\,2s^2\,2p^6\,3s^1;
+			\]
+			
+			\item uma das linhas de emissão mais intensas ocorre próximo de:
+			
+			\[
+			\lambda=\SI{589}{nm};
+			\]
+			
+			\item a massa molar é aproximadamente:
+			
+			\[
+			M=\SI{22.99}{g\per\mole};
+			\]
+			
+			\item uma amostra apresenta massa:
+			
+			\[
+			m=\SI{2.30}{g}.
+			\]
+			
+		\end{itemize}
+		
+		Responde.
+		
+		\begin{enumerate}[label=\alph*)]
+			
+			\item Determina o número atómico de X.
+			
+			\linhas{1}
+			
+			\item Identifica X.
+			
+			\linhas{1}
+			
+			\item Localiza o elemento na Tabela Periódica, indicando grupo e período.
+			
+			\linhas{2}
+			
+			\item Quantos eletrões de valência apresenta?
+			
+			\linha
+			
+			\item Representa os eletrões de valência num diagrama de orbitais.
+			
+			\vspace{12mm}
+			
+			\item Que ião monoatómico é expectável que forme?
+			
+			Justifica recorrendo à distribuição eletrónica.
+			
+			\linhas{3}
+			
+			\item Determina a frequência da radiação de \(\SI{589}{nm}\).
+			
+			\linhas{2}
+			
+			\item Determina a energia de um fotão dessa radiação.
+			
+			\linhas{2}
+			
+			\item A linha observada resulta de absorção ou de emissão de energia,
+			sabendo que se trata de um espetro de emissão?
+			
+			\linhas{2}
+			
+			\item Determina a quantidade de matéria existente na amostra de
+			\(\SI{2.30}{g}\).
+			
+			\linhas{2}
+			
+			\item Determina o número de átomos presentes na amostra.
+			
+			\linhas{2}
+			
+			\item Cada átomo possui 11 protões.
+			
+			Estima o número total de protões existentes na amostra.
+			
+			\linhas{3}
+			
+			\item O elemento imediatamente à direita de X no mesmo período apresenta
+			maior primeira energia de ionização.
+			
+			Identifica esse elemento e explica a tendência geral.
+			
+			\linhas{3}
+			
+			\item O elemento imediatamente abaixo de X no mesmo grupo apresenta
+			maior raio atómico.
+			
+			Explica porquê.
+			
+			\linhas{3}
+			
+		\end{enumerate}
+		
+	\end{desafio}
+	
+	% ============================================================
+	% STEM
+	% ============================================================
+	
+	\section*{\textcolor{eugreen}{11. Tabela Periódica e mundo real}}
+	
+	\begin{stem}
+		
+		\textbf{De que são feitas as estrelas?}
+		
+		A Tabela Periódica não é apenas uma tabela utilizada em laboratório.
+		
+		Os elementos que nela aparecem constituem também:
+		
+		\begin{itemize}
+			
+			\item estrelas;
+			
+			\item planetas;
+			
+			\item atmosferas;
+			
+			\item seres vivos;
+			
+			\item materiais tecnológicos;
+			
+			\item baterias;
+			
+			\item semicondutores;
+			
+			\item medicamentos;
+			
+			\item painéis solares.
+			
+		\end{itemize}
+		
+		Através da \textbf{espetroscopia}, é possível identificar elementos
+		presentes numa estrela a partir da luz que recebemos.
+		
+		Através da \textbf{espetroscopia fotoeletrónica}, é possível investigar
+		a distribuição dos eletrões num material.
+		
+		A posição de um elemento na Tabela Periódica permite ainda prever muitas
+		das suas propriedades.
+		
+		Assim, a Tabela Periódica representa uma ligação entre:
+		
+		\[
+		\boxed{
+			\text{estrutura atómica}
+			\longrightarrow
+			\text{propriedades}
+			\longrightarrow
+			\text{materiais}
+			\longrightarrow
+			\text{tecnologia}
+		}
+		\]
+		
+	\end{stem}
+	
+	% ============================================================
+	
+	\begin{exercicio}{Escolher um elemento para uma aplicação}
+		
+		Uma equipa pretende escolher materiais para diferentes aplicações.
+		
+		Relaciona cada situação com uma propriedade periódica ou eletrónica
+		relevante.
+		
+		\begin{enumerate}[label=\alph*)]
+			
+			\item Pretende-se um elemento que perca facilmente um eletrão para
+			formar um ião \(+1\).
+			
+			Que região da Tabela Periódica procurarias?
+			
+			\linhas{2}
+			
+			\item Pretende-se um elemento quimicamente pouco reativo.
+			
+			Que grupo seria um ponto de partida razoável?
+			
+			\linhas{2}
+			
+			\item Pretende-se identificar sódio numa amostra distante sem recolher
+			fisicamente o material.
+			
+			Que técnica estudada poderias usar?
+			
+			\linhas{2}
+			
+			\item Pretende-se estudar as energias de ligação dos eletrões de um
+			sólido.
+			
+			Que tipo de espetro seria útil?
+			
+			\linhas{2}
+			
+			\item Explica por que razão a Tabela Periódica pode ser considerada uma
+			ferramenta de previsão e não apenas uma lista de elementos.
+			
+			\linhas{4}
+			
+		\end{enumerate}
+		
+	\end{exercicio}
+	
+	% ============================================================
+	% DESAFIO FINAL
+	% ============================================================
+	
+	\section*{\textcolor{euorange}{12. Desafio final}}
+	
+	\begin{desafio}
+		
+		Três elementos A, B e C encontram-se no 3.º período.
+		
+		Sabe-se que:
+		
+		\begin{itemize}
+			
+			\item A possui configuração de valência \(3s^1\);
+			
+			\item B possui configuração de valência \(3s^2\,3p^4\);
+			
+			\item C apresenta uma camada de valência completa;
+			
+			\item a primeira energia de ionização de A é muito inferior à de C.
+			
+		\end{itemize}
+		
+		\begin{enumerate}[label=\alph*)]
+			
+			\item Identifica A.
+			
+			\linha
+			
+			\item Identifica B.
+			
+			\linha
+			
+			\item Identifica C.
+			
+			\linha
+			
+			\item Indica os grupos de A, B e C.
+			
+			\linhas{2}
+			
+			\item Ordena A, B e C por ordem crescente de primeira energia de
+			ionização.
+			
+			\linhas{2}
+			
+			\item Ordena-os, qualitativamente, por ordem crescente de raio atómico.
+			
+			\linhas{2}
+			
+			\item Qual deverá formar mais facilmente um catião?
+			
+			Justifica.
+			
+			\linhas{3}
+			
+			\item Qual deverá apresentar menor tendência para reagir?
+			
+			Justifica.
+			
+			\linhas{3}
+			
+			\item Explica como a distribuição eletrónica permite prever estas
+			diferenças de comportamento.
+			
+			\linhas{4}
+			
+		\end{enumerate}
+		
+	\end{desafio}
+	
+	% ============================================================
+	% AUTOAVALIAÇÃO
+	% ============================================================
+	
+	\section*{\textcolor{eublue}{13. Autoavaliação}}
+	
+	\begin{center}
+		
+		\small
+		
+		\begin{tabularx}{\textwidth}{
+				>{\raggedright\arraybackslash}X
+				c c c
+			}
+			
+			\toprule
+			
+			&
+			\textbf{Tenho dúvidas}
+			&
+			\textbf{Estou a aprender}
+			&
+			\textbf{Consigo sozinho}
+			\\
+			
+			\midrule
+			
+			Localizo um elemento pelo seu \(Z\).
+			&
+			\(\square\)&\(\square\)&\(\square\)
+			\\[3mm]
+			
+			Relaciono configuração eletrónica, período e grupo.
+			&
+			\(\square\)&\(\square\)&\(\square\)
+			\\[3mm]
+			
+			Identifico eletrões de valência.
+			&
+			\(\square\)&\(\square\)&\(\square\)
+			\\[3mm]
+			
+			Comparo raios atómicos.
+			&
+			\(\square\)&\(\square\)&\(\square\)
+			\\[3mm]
+			
+			Interpreto energias de ionização.
+			&
+			\(\square\)&\(\square\)&\(\square\)
+			\\[3mm]
+			
+			Interpreto um espetro fotoeletrónico.
+			&
+			\(\square\)&\(\square\)&\(\square\)
+			\\[3mm]
+			
+			Relaciono espetros de emissão com elementos.
+			&
+			\(\square\)&\(\square\)&\(\square\)
+			\\[3mm]
+			
+			Calculo a energia de um fotão.
+			&
+			\(\square\)&\(\square\)&\(\square\)
+			\\[3mm]
+			
+			Utilizo a expressão \(E_n\) para o hidrogénio.
+			&
+			\(\square\)&\(\square\)&\(\square\)
+			\\[3mm]
+			
+			Calculo quantidade de matéria e número de entidades.
+			&
+			\(\square\)&\(\square\)&\(\square\)
+			\\[3mm]
+			
+			Integro diferentes informações para identificar um elemento.
+			&
+			\(\square\)&\(\square\)&\(\square\)
+			\\
+			
+			\bottomrule
+			
+		\end{tabularx}
+		
+	\end{center}
+	
+	% ============================================================
+	% MAPA CONCEPTUAL FINAL
+	% ============================================================
+	
+	\section*{\textcolor{eublue}{14. Mapa conceptual}}
+	
+	\begin{center}
+		
+		\begin{tikzpicture}[
+			node distance=1.8cm and 2cm,
+			caixa/.style={
+				draw=eudark,
+				rounded corners,
+				minimum width=3.2cm,
+				minimum height=1.05cm,
+				align=center,
+				font=\small\bfseries
+			}
+			]
+			
+			\node[
+			caixa,
+			fill=eulightblue
+			] (tp)
+			{Tabela\\Periódica};
+			
+			\node[
+			caixa,
+			fill=eulightgreen,
+			below left=of tp
+			] (z)
+			{Número\\atómico};
+			
+			\node[
+			caixa,
+			fill=eulightorange,
+			below=of tp
+			] (config)
+			{Distribuição\\eletrónica};
+			
+			\node[
+			caixa,
+			fill=noblegascolor,
+			below right=of tp
+			] (prop)
+			{Propriedades\\periódicas};
+			
+			\node[
+			caixa,
+			fill=eugray,
+			below=of z
+			] (mol)
+			{Quantidade\\de matéria};
+			
+			\node[
+			caixa,
+			fill=eugray,
+			below=of config
+			] (pes)
+			{Espetro\\fotoeletrónico};
+			
+			\node[
+			caixa,
+			fill=eugray,
+			below=of prop
+			] (espetros)
+			{Espetros de\\emissão/absorção};
+			
+			\node[
+			caixa,
+			fill=eulightblue,
+			below=of pes
+			] (energia)
+			{Energia dos\\eletrões};
+			
+			\node[
+			caixa,
+			fill=eulightgreen,
+			below=of espetros
+			] (foton)
+			{Energia dos\\fotões};
+			
+			\draw[-{Latex},thick]
+			(tp)--(z);
+			
+			\draw[-{Latex},thick]
+			(tp)--(config);
+			
+			\draw[-{Latex},thick]
+			(tp)--(prop);
+			
+			\draw[-{Latex},thick]
+			(z)--(mol);
+			
+			\draw[-{Latex},thick]
+			(config)--(pes);
+			
+			\draw[-{Latex},thick]
+			(prop)--(espetros);
+			
+			\draw[-{Latex},thick]
+			(pes)--(energia);
+			
+			\draw[-{Latex},thick]
+			(espetros)--(foton);
+			
+		\end{tikzpicture}
+		
+	\end{center}
+	
+	\vfill
+	
+	% ============================================================
+	% RODAPÉ VISUAL
+	% ============================================================
+	
+	\begin{center}
+		
+		\begin{tikzpicture}
+			
+			\draw[
+			eublue,
+			very thick
+			]
+			(0,0)--(13,0);
+			
+			\node[
+			text=eublue,
+			font=\Large\bfseries
+			]
+			at (6.5,0.55)
+			{EUFISICA exercícios};
+			
+			\node[
+			text=eudark,
+			font=\small
+			]
+			at (6.5,-0.45)
+			{Física e Química A -- 10.º ano};
+			
+			\node[
+			text=eudark,
+			font=\small
+			]
+			at (6.5,-0.85)
+			{Prof. José Gonçalves};
+			
+		\end{tikzpicture}
+		
+	\end{center}
+	
+\end{document}

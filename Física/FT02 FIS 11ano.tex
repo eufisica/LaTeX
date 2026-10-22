@@ -1,0 +1,364 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage[a4paper, margin=2cm]{geometry}
+\usepackage{fontspec}
+\usepackage[portuguese, bidi=basic, provide=*]{babel}
+\babelprovide[import, onchar=ids fonts]{portuguese}
+\babelfont{rm}{Noto Sans}
+
+\usepackage{amsmath, amssymb}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{patterns}
+\usepackage[hidelinks]{hyperref}
+\usepackage{siunitx}
+\sisetup{output-decimal-marker={,}}
+
+% Define Palette Colors
+\definecolor{primaryNavy}{RGB}{20, 50, 90}
+\definecolor{secondaryBlue}{RGB}{41, 128, 185}
+\definecolor{accentRed}{RGB}{192, 57, 43}
+\definecolor{bgLight}{RGB}{245, 247, 250}
+\definecolor{borderGray}{RGB}{210, 215, 220}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+\begin{document}
+
+% --- CABEÇALHO DA FICHA DE TRABALHO ---
+\noindent
+\begin{tikzpicture}
+  \node[fill=bgLight, draw=primaryNavy, line width=1.2pt, rounded corners=6pt, inner sep=10pt, text width=0.96\textwidth] {
+    \begin{minipage}{0.95\textwidth}
+      \begin{tabular}{@{}ll@{}}
+        \textbf{\large\color{primaryNavy} AGRUPAMENTO DE ESCOLAS DE VALE DE OVIL} \hspace{3cm} \textbf{2026/2027}&  \\
+        \textbf{\color{secondaryBlue} FÍSICA E QUÍMICA A --- 11.º ANO DE ESCOLARIDADE} & \\
+        \multicolumn{2}{@{}l@{}}{\rule{0.99\textwidth}{0.6pt}} \\
+        \textbf{Ficha de Trabalho N.º 1:} Cinemática Retilínia \& Integração com Dinâmica e Energia & \\
+   
+      \end{tabular}
+    \end{minipage}
+  };
+\end{tikzpicture}
+
+\vspace{0.3cm}
+
+% --- CAIXA DE FORMULÁRIO E CONSTANTES ---
+\noindent
+\begin{tikzpicture}
+  \node[fill=primaryNavy!5, draw=primaryNavy!40, line width=0.8pt, rounded corners=4pt, inner sep=8pt, text width=0.96\textwidth] {
+    \begin{minipage}{0.95\textwidth}
+      \centering
+      \textbf{\color{primaryNavy} FORMULÁRIO E CONSTANTES DE APOIO} \\[4pt]
+      \small
+      \begin{tabular}{c c c}
+        $\Delta x = x_f - x_i \quad | \quad s = \sum |\Delta x_k|$ & 
+        $v_m = \frac{\Delta x}{\Delta t} \quad | \quad r_m = \frac{s}{\Delta t}$ & 
+        $a_m = \frac{\Delta v}{\Delta t}$ \\
+        $v(t) = v_0 + a\,t$ & 
+        $x(t) = x_0 + v_0\,t + \frac{1}{2}a\,t^2$ & 
+        $v_f^2 = v_i^2 + 2\,a\,\Delta x$ \\
+        $\vec{F}_R = m\,\vec{a}$ & 
+        $W_{\vec{F}} = F\,d\,\cos\alpha$ & 
+        $W_{\vec{F}_R} = \Delta E_c = \frac{1}{2}m\,v_f^2 - \frac{1}{2}m\,v_i^2$ \\
+      \end{tabular}
+      \\[4pt]
+      \footnotesize \textbf{Aceleração da gravidade junto à superfície da Terra:} $g = \SI{10}{\meter\per\second\squared}$ (ou $\SI{9,8}{\meter\per\second\squared}$, quando especificado).
+    \end{minipage}
+  };
+\end{tikzpicture}
+
+\vspace{0.4cm}
+
+% --- GRUPO I ---
+\section*{}
+\begin{center}
+  \colorbox{primaryNavy}{\parbox{0.97\textwidth}{\color{white}\bfseries\large GRUPO I --- Conceitos Fundamentais de Cinemática}}
+\end{center}
+
+\textbf{1.} Um corpo move-se ao longo de um eixo horizontal $x$. No instante $t = \SI{0}{\second}$, encontra-se na posição $x_1 = \SI{-6,0}{\meter}$. Move-se no sentido positivo do eixo até à posição $x_2 = +\SI{14,0}{\meter}$ e, em seguida, inverte o sentido do movimento, deslocando-se até à posição $x_3 = +\SI{4,0}{\meter}$, onde se imobiliza.
+
+\begin{enumerate}[label=\textbf{1.\arabic*}]
+  \item O valor do deslocamento ($\Delta x$) da partícula no percurso total é:
+  \begin{enumerate}[label=(\textnormal{\Alph*})]
+    \item $+\SI{10,0}{\meter}$
+    \item $\SI{-10,0}{\meter}$
+    \item $+\SI{30,0}{\meter}$
+    \item $+\SI{20,0}{\meter}$
+  \end{enumerate}
+
+  \item A distância percorrida ($s$) pela partícula no percurso total é:
+  \begin{enumerate}[label=(\textnormal{\Alph*})]
+    \item $\SI{10,0}{\meter}$
+    \item $\SI{20,0}{\meter}$
+    \item $\SI{30,0}{\meter}$
+    \item $\SI{40,0}{\meter}$
+  \end{enumerate}
+
+  \item Sabendo que todo o movimento decorreu num intervalo de tempo de $\Delta t = \SI{5,0}{\second}$, calcula:
+  \begin{enumerate}[label=\alph*)]
+    \item A velocidade média ($v_m$) da partícula.
+    \item A rapidez média da partícula.
+  \end{enumerate}
+\end{enumerate}
+
+\vspace{0.2cm}
+
+\textbf{2.} Seleciona a opção correta que completa a afirmação seguinte: \textit{``Um movimento retilínio diz-se acelerado no sentido negativo do eixo dos $x$ quando...''}
+\begin{enumerate}[label=(\textnormal{\Alph*})]
+  \item a velocidade é positiva e a aceleração é negativa.
+  \item a velocidade é negativa e a aceleração é positiva.
+  \item a velocidade e a aceleração são ambas negativas.
+  \item a velocidade é nula e a aceleração é constante e positiva.
+\end{enumerate}
+
+\vspace{0.4cm}
+
+% --- GRUPO II ---
+\section*{}
+\begin{center}
+  \colorbox{primaryNavy}{\parbox{0.97\textwidth}{\color{white}\bfseries\large GRUPO II --- Análise do Gráfico Posição-Tempo $x(t)$}}
+\end{center}
+
+O gráfico da Figura 1 representa a posição, $x$, em função do tempo, $t$, para um carrinho que se desloca numa calha retilínia paralela ao eixo $x$.
+
+\begin{figure}[h!]
+  \centering
+  \begin{tikzpicture}[scale=0.85]
+    % Grelha
+    \draw[gray!20, very thin, step=1] (0,-3) grid (12,11);
+    % Eixos
+    \draw[->, thick, primaryNavy] (-0.5,0) -- (12.8,0) node[right] {$t / \text{s}$};
+    \draw[->, thick, primaryNavy] (0,-3.3) -- (0,11.5) node[above] {$x / \text{m}$};
+    
+    % Marcas no eixo X
+    \foreach \x in {2, 5, 9, 12}
+      \draw[thick, primaryNavy] (\x, 0.1) -- (\x, -0.1) node[below] {\small $\x$};
+    \node[below left] at (0,0) {\small $0$};
+    
+    % Marcas no eixo Y
+    \draw[thick, primaryNavy] (0.1, 10) -- (-0.1, 10) node[left] {\small $10$};
+    \draw[thick, primaryNavy] (0.1, 2) -- (-0.1, 2) node[left] {\small $2$};
+    \draw[thick, primaryNavy] (0.1, -2) -- (-0.1, -2) node[left] {\small $-2$};
+    \draw[thick, primaryNavy] (0.1, 4) -- (-0.1, 4) node[left] {\small $4$};
+
+    % Linhas guia tracejadas
+    \draw[dashed, gray] (0,2) -- (0,2);
+    \draw[dashed, gray] (2,0) -- (2,10) -- (0,10);
+    \draw[dashed, gray] (5,0) -- (5,10);
+    \draw[dashed, gray] (9,0) -- (9,-2) -- (0,-2);
+    \draw[dashed, gray] (12,0) -- (12,4) -- (0,4);
+
+    % Gráfico do movimento
+    \draw[very thick, accentRed] (0,2) -- (2,10) -- (5,10) -- (9,-2) -- (12,4);
+    
+    % PONTOS DESTACADOS
+    \filldraw[primaryNavy] (0,2) circle (2pt);
+    \filldraw[primaryNavy] (2,10) circle (2pt);
+    \filldraw[primaryNavy] (5,10) circle (2pt);
+    \filldraw[primaryNavy] (9,-2) circle (2pt);
+    \filldraw[primaryNavy] (12,4) circle (2pt);
+  \end{tikzpicture}
+  \caption{\textit{Gráfico posição-tempo para o movimento do carrinho.}}
+\end{figure}
+
+\begin{enumerate}[label=\textbf{2.\arabic*}]
+  \item Identifica o(s) intervalo(s) de tempo em que o carrinho:
+  \begin{enumerate}[label=\alph*)]
+    \item Se encontra em repouso.
+    \item Se move no sentido negativo do referencial.
+    \item Apresenta uma velocidade de módulo igual a $\SI{4,0}{\meter\per\second}$.
+  \end{enumerate}
+
+  \item Determina o componente escalar da velocidade instantânea no intervalo $t \in [5, 9] \unit{\second}$.
+
+  \item Calcula o valor do deslocamento total do carrinho entre os instantes $t = \SI{0}{\second}$ e $t = \SI{12}{\second}$.
+
+  \item Determina a distância percorrida total ($s$) nos \SI{12}{\second} de movimento.
+
+  \item Escreve a equação horária da posição, $x(t)$, para o intervalo de tempo $t \in [0, 2] \unit{\second}$.
+\end{enumerate}
+
+\newpage
+
+% --- GRUPO III ---
+\section*{}
+\begin{center}
+  \colorbox{primaryNavy}{\parbox{0.97\textwidth}{\color{white}\bfseries\large GRUPO III --- Gráficos Velocidade-Tempo e Aceleração}}
+\end{center}
+
+Um veículo de ensaio desloca-se em linha reta numa pista horizontal. O gráfico da Figura 2 mostra a variação do componente escalar da sua velocidade, $v$, em função do tempo, $t$.
+
+\begin{figure}[h!]
+  \centering
+  \begin{tikzpicture}[scale=0.85]
+    % Grelha
+    \draw[gray!20, very thin, step=1] (0,0) grid (15,8);
+    % Eixos
+    \draw[->, thick, primaryNavy] (-0.5,0) -- (15.8,0) node[right] {$t / \text{s}$};
+    \draw[->, thick, primaryNavy] (0,-0.5) -- (0,8.5) node[above] {$v / \text{m\,s}^{-1}$};
+    
+    % Marcas no eixo X
+    \draw[thick, primaryNavy] (4, 0.1) -- (4, -0.1) node[below] {\small $4$};
+    \draw[thick, primaryNavy] (10, 0.1) -- (10, -0.1) node[below] {\small $10$};
+    \draw[thick, primaryNavy] (15, 0.1) -- (15, -0.1) node[below] {\small $15$};
+    \node[below left] at (0,0) {\small $0$};
+
+    % Marcas no eixo Y
+    \draw[thick, primaryNavy] (0.1, 6) -- (-0.1, 6) node[left] {\small $15$};
+
+    % Linhas guia tracejadas
+    \draw[dashed, gray] (4,0) -- (4,6) -- (0,6);
+    \draw[dashed, gray] (10,0) -- (10,6);
+
+    % Gráfico
+    \draw[very thick, secondaryBlue] (0,0) -- (4,6) -- (10,6) -- (15,0);
+
+    % Pontos
+    \filldraw[primaryNavy] (0,0) circle (2pt);
+    \filldraw[primaryNavy] (4,6) circle (2pt);
+    \filldraw[primaryNavy] (10,6) circle (2pt);
+    \filldraw[primaryNavy] (15,0) circle (2pt);
+  \end{tikzpicture}
+  \caption{\textit{Gráfico velocidade-tempo do veículo de ensaio.}}
+\end{figure}
+
+\begin{enumerate}[label=\textbf{3.\arabic*}]
+  \item Classifica o tipo de movimento do veículo em cada uma das seguintes etapas:
+  \begin{enumerate}[label=\alph*)]
+    \item Intervalo $t \in [0, 4] \unit{\second}$.
+    \item Intervalo $t \in [4, 10] \unit{\second}$.
+    \item Intervalo $t \in [10, 15] \unit{\second}$.
+  \end{enumerate}
+
+  \item Determina o componente escalar da aceleração ($a$) nos intervalos $[0, 4] \unit{\second}$ e $[10, 15] \unit{\second}$.
+
+  \item Calcula a aceleração média ($a_m$) do veículo entre os instantes $t = \SI{0}{\second}$ e $t = \SI{15}{\second}$.
+
+  \item Utilizando a interpretação geométrica do gráfico $v(t)$, calcula a distância total percorrida pelo veículo durante os $\SI{15}{\second}$ de ensaio.
+
+  \item Justifica a seguinte afirmação: \textit{``No intervalo de $\SI{10}{\second}$ a $\SI{15}{\second}$, os vetores velocidade ($\vec{v}$) e aceleração ($\vec{a}$) têm sentidos opostos.''}
+\end{enumerate}
+
+\vspace{0.4cm}
+
+% --- GRUPO IV ---
+\section*{}
+\begin{center}
+  \colorbox{primaryNavy}{\parbox{0.97\textwidth}{\color{white}\bfseries\large GRUPO IV --- Articulação Cinemática / Dinâmica / Energia (Revisões do 10.º Ano)}}
+\end{center}
+
+Um bloco de massa $m = \SI{2,0}{\kilogram}$ encontra-se inicialmente no ponto $A$ ($x_0 = \SI{0}{\meter}$) de uma superfície horizontal, a deslocar-se para a direita com uma velocidade inicial de módulo $v_0 = \SI{3,0}{\meter\per\second}$.
+
+No instante $t = \SI{0}{\second}$, passa a atuar sobre o bloco uma força constante $\vec{F}$, de intensidade \SI{12,0}{\newton}, paralela à superfície e com o sentido do movimento. Durante o percurso, exerce-se também uma força de atrito constante ($\vec{f}_a$) de intensidade \SI{4,0}{\newton}.
+
+\begin{figure}[h!]
+  \centering
+  \begin{tikzpicture}[scale=1.0]
+    % Superfície
+    \draw[thick, primaryNavy] (-1,0) -- (9,0);
+    \fill[pattern=north east lines, pattern color=gray!50] (-1,-0.3) rectangle (9,0);
+
+    % Bloco
+    \draw[draw=primaryNavy, fill=bgLight, line width=1.2pt] (1,0) rectangle (3,1.5);
+    \node at (2, 0.75) {\textbf{$m = \SI{2,0}{\kilogram}$}};
+
+    % Vetores de Força
+    \draw[->, very thick, accentRed] (3, 0.75) -- (5.2, 0.75) node[right] {\textbf{$\vec{F}$}};
+    \draw[->, very thick, secondaryBlue] (1, 0.75) -- (-0.2, 0.75) node[left] {\textbf{$\vec{f}_a$}};
+    \draw[->, thick, primaryNavy] (2, 0.75) -- (2, -0.6) node[below] {\textbf{$\vec{P}$}};
+    \draw[->, thick, primaryNavy] (2, 0.75) -- (2, 2.1) node[above] {\textbf{$\vec{N}$}};
+
+    % Eixo X
+    \draw[->, dashed] (0,-0.7) -- (8,-0.7) node[right] {$x$};
+    \filldraw (2,-0.7) circle (1.5pt) node[below] {$x_A = 0$};
+    \filldraw (7,-0.7) circle (1.5pt) node[below] {$x_B = \SI{16,0}{\meter}$};
+  \end{tikzpicture}
+  \caption{\textit{Diagrama de forças aplicadas ao bloco em movimento horizontal.}}
+\end{figure}
+
+\begin{enumerate}[label=\textbf{4.\arabic*}]
+  \item Determina a intensidade da força resultante ($\vec{F}_R$) exercida sobre o bloco.
+
+  \item Utilizando a 2.ª Lei de Newton ($\vec{F}_R = m\,\vec{a}$), calcula o módulo da aceleração adquirida pelo bloco.
+
+  \item Sabendo que o bloco se desloca do ponto $A$ ($x_A = \SI{0}{\meter}$) até ao ponto $B$ ($x_B = \SI{16,0}{\meter}$):
+  \begin{enumerate}[label=\alph*)]
+    \item Calcula o trabalho realizado pela força aplicada $\vec{F}$ ($W_{\vec{F}}$) e pela força de atrito ($W_{\vec{f}_a}$).
+    \item Justifica o valor do trabalho realizado pela força gravítica ($\vec{P}$) e pela reação normal ($\vec{N}$).
+    \item Determina o trabalho total (ou trabalho da força resultante, $W_{\vec{F}_R}$) ao longo desse deslocamento.
+  \end{enumerate}
+
+  \item Aplica o \textbf{Teorema da Energia Cinética} ($W_{\vec{F}_R} = \Delta E_k$) para determinar o módulo da velocidade do bloco ao atingir o ponto $B$.
+
+  \item \textbf{Verificação Cinemática:} Utilizando a equação da cinemática $v_f^2 = v_0^2 + 2\,a\,\Delta x$, confirma a velocidade calculada no ponto anterior.
+\end{enumerate}
+
+\newpage
+
+% --- GRUPO V ---
+\section*{}
+\begin{center}
+  \colorbox{primaryNavy}{\parbox{0.97\textwidth}{\color{white}\bfseries\large GRUPO V --- Soluções Detalhadas e Matriz de Resposta}}
+\end{center}
+
+\small
+
+\subsection*{Grupo I}
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{1.1:} \textbf{(A)} $\Delta x = x_f - x_i = (+4{,}0) - (-6{,}0) = +\SI{10,0}{\meter}$.
+  \item \textbf{1.2:} \textbf{(C)} $s = |-6{,}0 \to +14{,}0| + |+14{,}0 \to +4{,}0| = \SI{20,0}{\meter} + \SI{10,0}{\meter} = \SI{30,0}{\meter}$.
+  \item \textbf{1.3:} 
+    a) $v_m = \frac{\Delta x}{\Delta t} = \frac{10,0}{5,0} = \SI{2,0}{\meter\per\second}$. \\
+    b) $\text{Rapidez}_m = \frac{s}{\Delta t} = \frac{30,0}{5,0} = \SI{6,0}{\meter\per\second}$.
+  \item \textbf{2.:} \textbf{(C)} No movimento acelerado no sentido negativo, a velocidade é negativa ($v < 0$) e a aceleração tem o mesmo sentido, logo também negativa ($a < 0$).
+\end{itemize}
+
+\subsection*{Grupo II}
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{2.1:} 
+    a) Em repouso no intervalo $t \in [2, 5]$ \unit{\second} (posição constante $x = \SI{10}{\meter}$). \\
+    b) Sentido negativo no intervalo $t \in [5, 9]$ \unit{\second} (o declive é negativo, a posição diminui). \\
+    c) No intervalo $t \in [0, 2]\text{ s}$, $|v| = \frac{10 - 2}{2 - 0} = \SI{4,0}{\meter\per\second}$.
+  \item \textbf{2.2:} $v = \frac{x(9) - x(5)}{9 - 5} = \frac{-2 - 10}{4} = \SI{-3,0}{\meter\per\second}$.
+  \item \textbf{2.3:} $\Delta x = x(12) - x(0) = 4 - 2 = +\SI{2,0}{\meter}$.
+  \item \textbf{2.4:} $s = |10 - 2| + |10 - 10| + |-2 - 10| + |4 - (-2)| = 8 + 0 + 12 + 6 = \SI{26,0}{\meter}$.
+  \item \textbf{2.5:} Como $x_0 = \SI{2}{\meter}$ e $v = \SI{4,0}{\meter\per\second}$, a equação horária é: $x(t) = 2 + 4,0 t \quad (\text{para } t \text{ em segundos e } x \text{ em metros})$.
+\end{itemize}
+
+\subsection*{Grupo III}
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{3.1:} 
+    a) Movimento Retilínio Uniformemente Acelerado (MRUA) no sentido positivo. \\
+    b) Movimento Retilínio Uniforme (MRU) no sentido positivo. \\
+    c) Movimento Retilínio Uniformemente Retardado (MRUR) no sentido positivo.
+  \item \textbf{3.2:} 
+    Em $[0, 4]\text{ s}$: $a = \frac{15 - 0}{4 - 0} = 3{,}75\text{ m\,s}^{-2}$. \\
+    Em $[10, 15]\text{ s}$: $a = \frac{0 - 15}{15 - 10} = -3{,}0\text{ m\,s}^{-2}$.
+  \item \textbf{3.3:} $a_m = \frac{v(15) - v(0)}{15 - 0} = \frac{0 - 0}{15} = 0\text{ m\,s}^{-2}$.
+  \item \textbf{3.4:} $s = \text{Área do Trapézio} = \frac{\text{Base maior} + \text{Base menor}}{2} \times \text{Altura} = \frac{15 + (10 - 4)}{2} \times 15 = \frac{21}{2} \times 15 = 157{,}5\text{ m}$.
+  \item \textbf{3.5:} Como o veículo está a travar (movimento retardado) e a mover-se no sentido positivo ($v > 0$), o vetor aceleração aponta em sentido oposto ao movimento ($a < 0$), resultando em sentidos opostos entre $\vec{v}$ e $\vec{a}$.
+\end{itemize}
+
+\subsection*{Grupo IV}
+\begin{itemize}[leftmargin=1.5em]
+  \item \textbf{4.1:} Na vertical: $F_{R, y} = N - P = 0 \implies N = P = m\,g = 2,0 \times 10 = \SI{20}{\newton}$. \\
+    Na horizontal: $F_{R, x} = F - f_a = 12,0 - 4,0 = \SI{8,0}{\newton}$.
+  \item \textbf{4.2:} $a = \frac{F_R}{m} = \frac{8,0}{2,0} = \SI{4,0}{\meter\per\second\squared}$.
+  \item \textbf{4.3:} 
+    a) $W_{\vec{F}} = F \, d \, \cos 0^\circ = 12,0 \times 16,0 \times 1 = \SI{192,0}{\joule}$. \\
+    $W_{\vec{f}_a} = f_a \, d \, \cos 180^\circ = 4,0 \times 16,0 \times (-1) = \SI{-64,0}{\joule}$. \\
+    b) $W_{\vec{P}} = W_{\vec{N}} = \SI{0}{\joule}$, pois os vetores força são perpendiculares ao deslocamento ($\cos 90^\circ = 0$). \\
+    c) $W_{\vec{F}_R} = W_{\vec{F}} + W_{\vec{f}_a} = 192,0 - 64,0 = \SI{128,0}{\joule}$ (ou $W = F_R \, d = 8,0 \times 16,0 = \SI{128,0}{\joule}$).
+  \item \textbf{4.4:} Teorema da Energia Cinética:
+    \[ W_{\vec{F}_R} = \Delta E_c \implies 128,0 = \frac{1}{2} m v_f^2 - \frac{1}{2} m v_0^2 \]
+    \[ 128,0 = \frac{1}{2}(2,0) v_f^2 - \frac{1}{2}(2,0)(3,0)^2 \implies 128,0 = v_f^2 - 9,0 \]
+    \[ v_f^2 = 137,0 \implies v_f = \sqrt{137,0} \approx \SI{11,70}{\meter\per\second} \]
+  \item \textbf{4.5:} Verificação por cinemática:
+    \[ v_f^2 = v_0^2 + 2\,a\,\Delta x = (3,0)^2 + 2(4,0)(16,0) = 9,0 + 128,0 = 137,0 \]
+    \[ v_f = \sqrt{137,0} \approx \SI{11,70}{\meter\per\second} \quad \text{(Resultado idêntico!)} \]
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,1720 @@
+\documentclass[11pt,a4paper]{article}
+
+% ============================================================
+% PACOTES
+% ============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese]{babel}
+\usepackage{lmodern}
+\usepackage[a4paper,top=1.8cm,bottom=1.8cm,left=1.7cm,right=1.7cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{graphicx}
+
+\usepackage{siunitx}
+\sisetup{output-decimal-marker={,}}
+
+\usepackage[version=4]{mhchem}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,shapes.geometric}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{hyperref}
+
+% ============================================================
+% CORES
+% ============================================================
+\definecolor{eublue}{HTML}{145A86}
+\definecolor{eudark}{HTML}{17324D}
+\definecolor{eulightblue}{HTML}{E4F2FA}
+\definecolor{eugreen}{HTML}{3F7D58}
+\definecolor{eulightgreen}{HTML}{E8F4EC}
+\definecolor{euorange}{HTML}{E28A2B}
+\definecolor{eulightorange}{HTML}{FFF0DE}
+\definecolor{eured}{HTML}{B33A3A}
+\definecolor{eupurple}{HTML}{67518A}
+\definecolor{eugray}{HTML}{F1F3F5}
+
+% ============================================================
+% CONFIGURAÇÕES
+% ============================================================
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\renewcommand{\arraystretch}{1.35}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=eublue,
+    urlcolor=eublue
+}
+
+% ============================================================
+% CABEÇALHO E RODAPÉ
+% ============================================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textbf{\textcolor{eublue}{EUFISICA exercícios}}}
+\fancyhead[R]{\textcolor{eudark}{Resolução -- Física e Química A -- 10.º ano}}
+\fancyfoot[L]{Prof. José Gonçalves}
+\fancyfoot[C]{EUFISICA}
+\fancyfoot[R]{Página \thepage\ de \pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.6pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% ============================================================
+% CAIXAS
+% ============================================================
+\newcounter{exercicio}
+
+\newenvironment{resolucao}[1]
+{
+\refstepcounter{exercicio}
+\begin{tcolorbox}[
+    enhanced,
+    breakable,
+    colback=white,
+    colframe=eublue,
+    boxrule=0.8pt,
+    arc=2mm,
+    left=3mm,
+    right=3mm,
+    top=2mm,
+    bottom=2mm,
+    title={\textbf{Exercício \theexercicio}\hspace{1mm}--\hspace{1mm}#1},
+    coltitle=white,
+    colbacktitle=eublue,
+    fonttitle=\bfseries
+]
+}
+{
+\end{tcolorbox}
+}
+
+\newtcolorbox{resultado}{
+    enhanced,
+    colback=eulightgreen,
+    colframe=eugreen,
+    arc=2mm,
+    left=3mm,
+    right=3mm
+}
+
+\newtcolorbox{nota}{
+    enhanced,
+    breakable,
+    colback=eulightorange,
+    colframe=euorange,
+    title=\textbf{Nota importante},
+    fonttitle=\bfseries,
+    arc=2mm
+}
+
+\newtcolorbox{recorda}{
+    enhanced,
+    breakable,
+    colback=eulightblue,
+    colframe=eublue,
+    title=\textbf{Expressões úteis},
+    fonttitle=\bfseries,
+    arc=2mm
+}
+
+% ============================================================
+% DOCUMENTO
+% ============================================================
+\begin{document}
+
+% ============================================================
+% TÍTULO
+% ============================================================
+\begin{tcolorbox}[
+    enhanced,
+    colback=eudark,
+    colframe=eudark,
+    arc=3mm,
+    boxrule=0pt,
+    left=5mm,
+    right=5mm,
+    top=5mm,
+    bottom=5mm
+]
+\begin{center}
+{\Huge\bfseries\color{white} EUFISICA exercícios}
+
+\vspace{2mm}
+
+{\Large\bfseries\color{white} Resolução -- Tabela Periódica e Estrutura Atómica}
+
+\vspace{2mm}
+
+{\large\color{eulightblue} Organização • Propriedades periódicas • Distribuição eletrónica}
+
+{\large\color{eulightblue} Espetros • Energia • Quantidade de matéria}
+
+\vspace{3mm}
+
+{\large\color{white}\textbf{Física e Química A -- 10.º ano}}
+
+\vspace{2mm}
+
+{\color{white}\textbf{Prof. José Gonçalves}}
+\end{center}
+\end{tcolorbox}
+
+\begin{recorda}
+\[
+N_A=\SI{6.022e23}{\per\mole}
+\qquad
+h=\SI{6.626e-34}{\joule\second}
+\qquad
+c=\SI{3.00e8}{\meter\per\second}
+\]
+
+\[
+n=\frac{m}{M}
+\qquad
+N=nN_A
+\]
+
+\[
+E_{\text{fotão}}=h\nu
+\qquad
+c=\lambda\nu
+\qquad
+E_{\text{fotão}}=\frac{hc}{\lambda}
+\]
+
+Para o átomo de hidrogénio:
+
+\[
+\boxed{E_n=-\frac{2,18\times10^{-18}}{n^2}\ \mathrm{J}}
+\]
+
+\[
+\boxed{\Delta E=E_f-E_i}
+\]
+\end{recorda}
+
+% ============================================================
+\section*{\textcolor{eublue}{1. Organização da Tabela Periódica}}
+% ============================================================
+
+\begin{resolucao}{Conhecer a Tabela Periódica}
+
+\begin{center}
+\begin{tabular}{ccccc}
+\toprule
+\textbf{Elemento} & \(\boldsymbol{Z}\) & \textbf{Período} & \textbf{Grupo} & \textbf{Classificação}\\
+\midrule
+\ce{Na} & 11 & 3 & 1 & metal\\
+\ce{Mg} & 12 & 3 & 2 & metal\\
+\ce{O}  & 8  & 2 & 16 & não metal\\
+\ce{Cl} & 17 & 3 & 17 & não metal\\
+\ce{Ne} & 10 & 2 & 18 & gás nobre / não metal\\
+\ce{Ca} & 20 & 4 & 2 & metal\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{resultado}
+A posição de cada elemento é determinada pelo seu número atómico, isto é, pelo número de protões do núcleo.
+\end{resultado}
+
+\end{resolucao}
+
+% ============================================================
+
+\begin{resolucao}{A posição revela informação}
+
+\begin{enumerate}[label=\alph*)]
+
+\item Grupo 1 e período 3:
+
+\[
+\boxed{\ce{Na}}
+\]
+
+\item Grupo 17 e período 2:
+
+\[
+\boxed{\ce{F}}
+\]
+
+\item Grupo 18 e período 3:
+
+\[
+\boxed{\ce{Ar}}
+\]
+
+\item Para \(Z=12\), o átomo possui 12 protões e, sendo neutro, 12 eletrões. A distribuição eletrónica é:
+
+\[
+1s^2\,2s^2\,2p^6\,3s^2
+\]
+
+Logo:
+
+\[
+\boxed{\ce{Mg},\quad \text{período 3},\quad \text{grupo 2}}
+\]
+
+\item No mesmo grupo do sódio encontram-se \ce{Li} e \ce{K}.
+
+\[
+\boxed{\ce{Li}\ \text{e}\ \ce{K}}
+\]
+
+\end{enumerate}
+
+\end{resolucao}
+
+% ============================================================
+\section*{\textcolor{eublue}{2. Distribuição eletrónica e posição na Tabela Periódica}}
+% ============================================================
+
+\begin{resolucao}{Da configuração eletrónica à Tabela Periódica}
+
+\begin{center}
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Distribuição eletrónica} & \(\boldsymbol{Z}\) & \textbf{Elemento} & \textbf{Período} & \textbf{Grupo}\\
+\midrule
+\(1s^2\,2s^1\) & 3 & \ce{Li} & 2 & 1\\
+\(1s^2\,2s^2\,2p^4\) & 8 & \ce{O} & 2 & 16\\
+\(1s^2\,2s^2\,2p^6\,3s^1\) & 11 & \ce{Na} & 3 & 1\\
+\(1s^2\,2s^2\,2p^6\,3s^2\) & 12 & \ce{Mg} & 3 & 2\\
+\(1s^2\,2s^2\,2p^6\,3s^2\,3p^5\) & 17 & \ce{Cl} & 3 & 17\\
+\(1s^2\,2s^2\,2p^6\,3s^2\,3p^6\) & 18 & \ce{Ar} & 3 & 18\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+O período é indicado pelo maior valor de \(n\) ocupado. Nos elementos representativos, a configuração eletrónica de valência permite relacionar o elemento com o respetivo grupo.
+
+\end{resolucao}
+
+% ============================================================
+
+\begin{resolucao}{Eletrões de valência}
+
+\begin{center}
+\begin{tabular}{cccc}
+\toprule
+\textbf{Elemento} & \textbf{Configuração de valência} & \textbf{e\textsuperscript{-} de valência} & \textbf{Grupo}\\
+\midrule
+\ce{Li} & \(2s^1\) & 1 & 1\\
+\ce{Mg} & \(3s^2\) & 2 & 2\\
+\ce{Al} & \(3s^2\,3p^1\) & 3 & 13\\
+\ce{O} & \(2s^2\,2p^4\) & 6 & 16\\
+\ce{Cl} & \(3s^2\,3p^5\) & 7 & 17\\
+\ce{Ne} & \(2s^2\,2p^6\) & 8 & 18\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Nos elementos representativos, os elementos de um mesmo grupo apresentam o mesmo número de eletrões de valência, com a exceção particular do hélio, cuja configuração é \(1s^2\), embora pertença ao grupo 18.
+
+Para os grupos 13 a 18, o número de eletrões de valência corresponde, respetivamente, a 3, 4, 5, 6, 7 e 8.
+
+\end{resolucao}
+
+% ============================================================
+
+\begin{resolucao}{Do diagrama de orbitais ao elemento}
+
+O diagrama mostra:
+
+\[
+1s^2\,2s^2\,2p^6\,3s^2
+\]
+
+\begin{enumerate}[label=\alph*)]
+
+\item Número total de eletrões:
+
+\[
+2+2+6+2=12
+\]
+
+\[
+\boxed{12\text{ eletrões}}
+\]
+
+\item Num átomo neutro:
+
+\[
+Z=n(e^-)=12
+\]
+
+\[
+\boxed{Z=12}
+\]
+
+\item Distribuição eletrónica:
+
+\[
+\boxed{1s^2\,2s^2\,2p^6\,3s^2}
+\]
+
+\item O elemento de número atómico 12 é:
+
+\[
+\boxed{\ce{Mg}}
+\]
+
+\item O maior valor de \(n\) ocupado é 3:
+
+\[
+\boxed{\text{3.º período}}
+\]
+
+\item A configuração de valência é \(3s^2\):
+
+\[
+\boxed{\text{grupo 2}}
+\]
+
+\item Possui:
+
+\[
+\boxed{2\text{ eletrões de valência}}
+\]
+
+\item Tende a perder os dois eletrões \(3s\):
+
+\[
+\ce{Mg -> Mg^{2+} + 2e-}
+\]
+
+\[
+\boxed{\ce{Mg^{2+}}}
+\]
+
+\end{enumerate}
+
+\end{resolucao}
+
+% ============================================================
+
+\begin{resolucao}{Átomos e iões}
+
+\begin{center}
+\small
+\begin{tabular}{cclcc}
+\toprule
+\textbf{Espécie} & \textbf{N.º e\textsuperscript{-}} & \textbf{Distribuição eletrónica} & \textbf{Período do átomo} & \textbf{Grupo}\\
+\midrule
+\ce{Na} & 11 & \(1s^2\,2s^2\,2p^6\,3s^1\) & 3 & 1\\
+\ce{Na+} & 10 & \(1s^2\,2s^2\,2p^6\) & 3 & 1\\
+\ce{Mg^{2+}} & 10 & \(1s^2\,2s^2\,2p^6\) & 3 & 2\\
+\ce{O^{2-}} & 10 & \(1s^2\,2s^2\,2p^6\) & 2 & 16\\
+\ce{Cl-} & 18 & \(1s^2\,2s^2\,2p^6\,3s^2\,3p^6\) & 3 & 17\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{enumerate}[label=\alph*)]
+
+\item As espécies isoeletrónicas são:
+
+\[
+\boxed{\ce{Na+},\quad \ce{Mg^{2+}},\quad \ce{O^{2-}}}
+\]
+
+Todas possuem 10 eletrões e a distribuição:
+
+\[
+1s^2\,2s^2\,2p^6.
+\]
+
+O \ce{Cl-} possui 18 eletrões, logo não pertence a este conjunto isoeletrónico.
+
+\item A identidade e a posição de um elemento são determinadas pelo número de protões, isto é, por \(Z\). A formação de um ião altera apenas o número de eletrões; o núcleo e o número atómico não mudam. Por isso, por exemplo, \ce{Na+} continua a corresponder ao elemento sódio, do grupo 1 e período 3.
+
+\end{enumerate}
+
+\end{resolucao}
+
+% ============================================================
+\section*{\textcolor{eublue}{3. Propriedades periódicas}}
+% ============================================================
+
+\begin{resolucao}{Comparar raios atómicos}
+
+\begin{enumerate}[label=\alph*)]
+
+\item \ce{Li} e \ce{Na} pertencem ao mesmo grupo. O sódio possui uma camada eletrónica ocupada adicional.
+
+\[
+\boxed{r(\ce{Na})>r(\ce{Li})}
+\]
+
+\item \ce{Na} e \ce{Cl} pertencem ao 3.º período. Ao longo do período, a carga nuclear aumenta e o raio tende a diminuir.
+
+\[
+\boxed{r(\ce{Na})>r(\ce{Cl})}
+\]
+
+\item \ce{Mg} e \ce{Ca} pertencem ao grupo 2. O cálcio possui mais uma camada eletrónica ocupada.
+
+\[
+\boxed{r(\ce{Ca})>r(\ce{Mg})}
+\]
+
+\item \ce{O} e \ce{F} pertencem ao 2.º período. O flúor possui maior carga nuclear.
+
+\[
+\boxed{r(\ce{O})>r(\ce{F})}
+\]
+
+\item Todos pertencem ao 3.º período. A tendência geral é a diminuição do raio da esquerda para a direita:
+
+\[
+\boxed{\ce{Cl}<\ce{Al}<\ce{Mg}<\ce{Na}}
+\]
+
+por ordem crescente de raio atómico.
+
+\end{enumerate}
+
+\end{resolucao}
+
+% ============================================================
+
+\begin{resolucao}{Interpretar uma propriedade periódica}
+
+\begin{enumerate}[label=\alph*)]
+
+\item A tendência geral da primeira energia de ionização ao longo do 3.º período é de aumento da esquerda para a direita, embora existam pequenas exceções.
+
+\item O menor valor representado corresponde ao:
+
+\[
+\boxed{\ce{Na}:\ \SI{496}{\kilo\joule\per\mole}}
+\]
+
+\item O maior valor corresponde ao:
+
+\[
+\boxed{\ce{Ar}:\ \SI{1521}{\kilo\joule\per\mole}}
+\]
+
+\item Ao longo do período, o número de protões aumenta. Os eletrões de valência continuam na mesma camada principal, \(n=3\), e a blindagem não aumenta suficientemente para compensar o aumento da carga nuclear. Assim, a atração entre o núcleo e os eletrões de valência tende a aumentar, tornando a remoção de um eletrão mais difícil.
+
+\item Para o magnésio:
+
+\[
+\ce{Mg}:1s^2\,2s^2\,2p^6\,3s^2
+\]
+
+O eletrão removido pertence ao subnível \(3s\).
+
+Para o alumínio:
+
+\[
+\ce{Al}:1s^2\,2s^2\,2p^6\,3s^2\,3p^1
+\]
+
+O eletrão removido é \(3p\), que possui energia superior à de um eletrão \(3s\) e é, por isso, mais fácil de remover. Assim, apesar de \(Z\) aumentar, observa-se:
+
+\[
+\boxed{E_{i,1}(\ce{Al})<E_{i,1}(\ce{Mg})}
+\]
+
+\item O fósforo possui:
+
+\[
+3p^3=[\uparrow][\uparrow][\uparrow]
+\]
+
+uma configuração semieletronicamente preenchida particularmente favorável. No enxofre:
+
+\[
+3p^4=[\uparrow\downarrow][\uparrow][\uparrow]
+\]
+
+existe um par de eletrões num mesmo orbital. A repulsão entre estes eletrões facilita ligeiramente a remoção de um deles. Assim:
+
+\[
+\boxed{E_{i,1}(\ce{S})<E_{i,1}(\ce{P})}
+\]
+
+\end{enumerate}
+
+\end{resolucao}
+
+% ============================================================
+
+\begin{resolucao}{Descer num grupo}
+
+\begin{enumerate}[label=\alph*)]
+
+\item A primeira energia de ionização diminui ao descer no grupo 1:
+
+\[
+\boxed{\ce{Li}>\ce{Na}>\ce{K}>\ce{Rb}>\ce{Cs}}
+\]
+
+quanto à primeira energia de ionização.
+
+\item O raio atómico aumenta ao descer no grupo, pois aumenta o número de camadas eletrónicas ocupadas.
+
+\item No césio, o eletrão de valência encontra-se numa camada mais afastada do núcleo e sofre maior efeito de blindagem dos eletrões internos. A atração efetiva núcleo--eletrão é menor, pelo que o eletrão é mais facilmente removido.
+
+\item Dos elementos apresentados, o césio possui a menor primeira energia de ionização. Assim, é o que perde mais facilmente um eletrão:
+
+\[
+\boxed{\ce{Cs -> Cs+ + e-}}
+\]
+
+\end{enumerate}
+
+\end{resolucao}
+
+% ============================================================
+\section*{\textcolor{eublue}{4. Número atómico, isótopos e massa atómica relativa}}
+% ============================================================
+
+\begin{resolucao}{O cloro na Tabela Periódica}
+
+Para ambos os isótopos do cloro:
+
+\[
+Z=17.
+\]
+
+\begin{enumerate}[label=\alph*)]
+
+\item Cada isótopo possui:
+
+\[
+\boxed{17\text{ protões}}
+\]
+
+\item Para \({}^{35}_{17}\ce{Cl}\):
+
+\[
+N=A-Z=35-17=18
+\]
+
+\[
+\boxed{18\text{ neutrões}}
+\]
+
+\item Para \({}^{37}_{17}\ce{Cl}\):
+
+\[
+N=37-17=20
+\]
+
+\[
+\boxed{20\text{ neutrões}}
+\]
+
+\item A massa atómica relativa é a média ponderada:
+
+\[
+A_r(\ce{Cl})=
+34,969\times0,7577+36,966\times0,2423
+\]
+
+\[
+A_r(\ce{Cl})\approx35,4529
+\]
+
+\[
+\boxed{A_r(\ce{Cl})\approx35,45}
+\]
+
+\item O valor obtido coincide, dentro do arredondamento, com o valor habitualmente apresentado na Tabela Periódica:
+
+\[
+\boxed{A_r(\ce{Cl})\approx35,45}
+\]
+
+\item Os dois isótopos possuem o mesmo número de protões:
+
+\[
+Z=17.
+\]
+
+Como a posição na Tabela Periódica é determinada por \(Z\), ambos pertencem à mesma posição correspondente ao cloro.
+
+\end{enumerate}
+
+\end{resolucao}
+
+% ============================================================
+\section*{\textcolor{eublue}{5. Tabela Periódica, massa molar e quantidade de matéria}}
+% ============================================================
+
+\begin{resolucao}{Da Tabela Periódica para a massa molar}
+
+\begin{enumerate}[label=\alph*)]
+
+\item \(\ce{H2O}\)
+
+\[
+M=2(1,008)+16,00=18,016
+\]
+
+\[
+\boxed{M(\ce{H2O})=\SI{18.016}{\gram\per\mole}}
+\]
+
+\item \(\ce{CO2}\)
+
+\[
+M=12,01+2(16,00)=44,01
+\]
+
+\[
+\boxed{M(\ce{CO2})=\SI{44.01}{\gram\per\mole}}
+\]
+
+\item \(\ce{NaCl}\)
+
+\[
+M=22,99+35,45=58,44
+\]
+
+\[
+\boxed{M(\ce{NaCl})=\SI{58.44}{\gram\per\mole}}
+\]
+
+\item \(\ce{MgCl2}\)
+
+\[
+M=24,31+2(35,45)=95,21
+\]
+
+\[
+\boxed{M(\ce{MgCl2})=\SI{95.21}{\gram\per\mole}}
+\]
+
+\item \(\ce{CaCO3}\)
+
+\[
+M=40,08+12,01+3(16,00)=100,09
+\]
+
+\[
+\boxed{M(\ce{CaCO3})=\SI{100.09}{\gram\per\mole}}
+\]
+
+\item \(\ce{Na2CO3}\)
+
+\[
+M=2(22,99)+12,01+3(16,00)
+\]
+
+\[
+M=105,99
+\]
+
+\[
+\boxed{M(\ce{Na2CO3})=\SI{105.99}{\gram\per\mole}}
+\]
+
+\end{enumerate}
+
+\end{resolucao}
+
+% ============================================================
+
+\begin{resolucao}{Uma amostra de magnésio}
+
+Dados:
+
+\[
+m=\SI{4.86}{g}
+\qquad
+M(\ce{Mg})=\SI{24.31}{\gram\per\mole}
+\]
+
+\begin{enumerate}[label=\alph*)]
+
+\item Quantidade de matéria:
+
+\[
+n=\frac{m}{M}=\frac{4,86}{24,31}
+\]
+
+\[
+\boxed{n\approx\SI{0.200}{mol}}
+\]
+
+\item Número de átomos:
+
+\[
+N=nN_A
+\]
+
+\[
+N=0,1999\times6,022\times10^{23}
+\]
+
+\[
+\boxed{N\approx1,20\times10^{23}\text{ átomos}}
+\]
+
+\item Cada átomo de magnésio possui 12 protões. Logo:
+
+\[
+N(p^+)=12N
+\]
+
+\[
+N(p^+)\approx12(1,20\times10^{23})
+\]
+
+\[
+\boxed{N(p^+)\approx1,44\times10^{24}\text{ protões}}
+\]
+
+\item Num átomo neutro existem também 12 eletrões por átomo:
+
+\[
+\boxed{N(e^-)\approx1,44\times10^{24}\text{ eletrões}}
+\]
+
+\item O magnésio encontra-se no:
+
+\[
+\boxed{\text{grupo 2 e período 3}}
+\]
+
+\end{enumerate}
+
+\end{resolucao}
+
+% ============================================================
+\section*{\textcolor{eublue}{6. Elementos químicos e espetros atómicos}}
+% ============================================================
+
+\begin{resolucao}{A impressão digital dos elementos}
+
+\begin{enumerate}[label=\alph*)]
+
+\item A amostra X apresenta riscas coincidentes com as do hidrogénio e uma risca próxima de \(\SI{589}{nm}\), característica do sódio no esquema apresentado.
+
+\[
+\boxed{\text{Hidrogénio e sódio}}
+\]
+
+\item Uma risca a aproximadamente \(\SI{589}{nm}\) coincide com uma transição eletrónica característica do sódio. Como cada elemento possui um conjunto próprio de estados eletrónicos de energia, o padrão de comprimentos de onda emitidos funciona como uma impressão digital espectral.
+
+\item O sódio possui \(Z=11\):
+
+\[
+\boxed{1s^2\,2s^2\,2p^6\,3s^1}
+\]
+
+\item Possui:
+
+\[
+\boxed{1\text{ eletrão de valência}}
+\]
+
+\item Tende a perder esse eletrão:
+
+\[
+\ce{Na -> Na+ + e-}
+\]
+
+\[
+\boxed{\ce{Na+}}
+\]
+
+\item Saber que o sódio pertence ao grupo 1 permite prever a sua configuração de valência e algumas tendências químicas, mas não fornece as diferenças exatas entre todos os estados eletrónicos do átomo. As riscas espectrais dependem dessas diferenças específicas de energia, que não são determinadas apenas pelo número do grupo.
+
+\end{enumerate}
+
+\end{resolucao}
+
+% ============================================================
+
+\begin{resolucao}{Energia de uma risca do sódio}
+
+Dado:
+
+\[
+\lambda=\SI{589}{nm}
+\]
+
+\begin{enumerate}[label=\alph*)]
+
+\item Conversão:
+
+\[
+589\,\mathrm{nm}=589\times10^{-9}\,\mathrm{m}
+\]
+
+\[
+\boxed{\lambda=\SI{5.89e-7}{m}}
+\]
+
+\item Frequência:
+
+\[
+\nu=\frac{c}{\lambda}
+\]
+
+\[
+\nu=\frac{3,00\times10^8}{5,89\times10^{-7}}
+\]
+
+\[
+\boxed{\nu\approx5,09\times10^{14}\,\mathrm{Hz}}
+\]
+
+\item Energia de um fotão:
+
+\[
+E=h\nu
+\]
+
+\[
+E=(6,626\times10^{-34})(5,09\times10^{14})
+\]
+
+\[
+\boxed{E\approx3,37\times10^{-19}\,\mathrm{J}}
+\]
+
+\item Energia correspondente a um mol de fotões:
+
+\[
+E_{\mathrm{mol}}=EN_A
+\]
+
+\[
+E_{\mathrm{mol}}=(3,37\times10^{-19})(6,022\times10^{23})
+\]
+
+\[
+E_{\mathrm{mol}}\approx2,03\times10^5\,\mathrm{J\,mol^{-1}}
+\]
+
+\[
+\boxed{E_{\mathrm{mol}}\approx\SI{203}{\kilo\joule\per\mole}}
+\]
+
+\item Num espetro de emissão, o átomo perde energia. O eletrão transita de um estado de maior energia para outro de menor energia e a diferença é emitida sob a forma de um fotão.
+
+\[
+\boxed{E_i>E_f}
+\]
+
+\end{enumerate}
+
+\end{resolucao}
+
+% ============================================================
+\section*{\textcolor{eublue}{7. O hidrogénio: Tabela Periódica e níveis de energia}}
+% ============================================================
+
+\begin{resolucao}{O elemento mais simples}
+
+\begin{enumerate}[label=\alph*)]
+
+\item Para \(Z=1\):
+
+\[
+\boxed{1s^1}
+\]
+
+\item O maior valor de \(n\) ocupado é 1:
+
+\[
+\boxed{\text{1.º período}}
+\]
+
+\item O hidrogénio é colocado no:
+
+\[
+\boxed{\text{grupo 1}}
+\]
+
+\item A sua configuração eletrónica termina em:
+
+\[
+1s^1,
+\]
+
+ou seja, possui um eletrão de valência num subnível \(s\), tal como os elementos do grupo 1. Contudo, as suas propriedades diferem significativamente das dos metais alcalinos.
+
+\item Para \(n=1\):
+
+\[
+E_1=-\frac{2,18\times10^{-18}}{1^2}
+\]
+
+\[
+\boxed{E_1=-2,18\times10^{-18}\,\mathrm{J}}
+\]
+
+\item Para \(n=2\):
+
+\[
+E_2=-\frac{2,18\times10^{-18}}{2^2}
+\]
+
+\[
+\boxed{E_2=-5,45\times10^{-19}\,\mathrm{J}}
+\]
+
+\end{enumerate}
+
+\end{resolucao}
+
+% ============================================================
+
+\begin{resolucao}{Transições no átomo de hidrogénio}
+
+As transições representadas são:
+
+\[
+A:\ n=4\rightarrow n=2
+\]
+
+\[
+B:\ n=1\rightarrow n=2
+\]
+
+\[
+C:\ n=3\rightarrow n=1
+\]
+
+\begin{enumerate}[label=\alph*)]
+
+\item
+
+\[
+\boxed{A:\ \text{emissão}}
+\]
+
+\[
+\boxed{B:\ \text{absorção}}
+\]
+
+\[
+\boxed{C:\ \text{emissão}}
+\]
+
+\item Para \(A:n=4\rightarrow n=2\):
+
+\textbf{i) Energia de \(n=4\)}
+
+\[
+E_4=-\frac{2,18\times10^{-18}}{16}
+\]
+
+\[
+\boxed{E_4=-1,36\times10^{-19}\,\mathrm{J}}
+\]
+
+\textbf{ii) Energia de \(n=2\)}
+
+\[
+\boxed{E_2=-5,45\times10^{-19}\,\mathrm{J}}
+\]
+
+\textbf{iii) Variação de energia}
+
+\[
+\Delta E=E_f-E_i
+\]
+
+\[
+\Delta E=-5,45\times10^{-19}-(-1,36\times10^{-19})
+\]
+
+\[
+\boxed{\Delta E=-4,09\times10^{-19}\,\mathrm{J}}
+\]
+
+\textbf{iv) Energia do fotão}
+
+\[
+E_{\text{fotão}}=|\Delta E|
+\]
+
+\[
+\boxed{E_{\text{fotão}}=4,09\times10^{-19}\,\mathrm{J}}
+\]
+
+\textbf{v) Frequência}
+
+\[
+\nu=\frac{E}{h}
+\]
+
+\[
+\nu=\frac{4,09\times10^{-19}}{6,626\times10^{-34}}
+\]
+
+\[
+\boxed{\nu\approx6,17\times10^{14}\,\mathrm{Hz}}
+\]
+
+\textbf{vi) Comprimento de onda}
+
+\[
+\lambda=\frac{c}{\nu}
+\]
+
+\[
+\lambda\approx\frac{3,00\times10^8}{6,17\times10^{14}}
+\]
+
+\[
+\lambda\approx4,86\times10^{-7}\,\mathrm{m}
+\]
+
+\[
+\boxed{\lambda\approx\SI{486}{nm}}
+\]
+
+\item O resultado corresponde à risca azul--verde do espetro de emissão do hidrogénio, representada aproximadamente a \(\SI{486}{nm}\).
+
+\item Comparam-se os módulos das diferenças energéticas. A transição C, \(n=3\rightarrow n=1\), envolve uma diferença de energia maior do que \(n=1\rightarrow2\) e muito maior do que \(n=4\rightarrow2\). Assim:
+
+\[
+\boxed{\text{a transição C envolve a maior quantidade de energia}}
+\]
+
+Com efeito, aproximadamente:
+
+\[
+|\Delta E_C|\approx1,94\times10^{-18}\,\mathrm{J}.
+\]
+
+\end{enumerate}
+
+\end{resolucao}
+
+% ============================================================
+\section*{\textcolor{eublue}{8. Espetro fotoeletrónico e Tabela Periódica}}
+% ============================================================
+
+\begin{resolucao}{Identificar um elemento a partir do espetro fotoeletrónico}
+
+O gráfico apresenta os subníveis \(1s\), \(2s\), \(2p\) e \(3s\), com intensidades relativas compatíveis com 2, 2, 6 e 2 eletrões.
+
+\begin{enumerate}[label=\alph*)]
+
+\item
+
+\[
+\boxed{4\text{ subníveis ocupados}}
+\]
+
+\item
+
+\[
+\boxed{1s^2,\quad2s^2,\quad2p^6,\quad3s^2}
+\]
+
+\item
+
+\[
+\boxed{1s^2\,2s^2\,2p^6\,3s^2}
+\]
+
+\item
+
+\[
+2+2+6+2=12
+\]
+
+\[
+\boxed{12\text{ eletrões}}
+\]
+
+\item Num átomo neutro:
+
+\[
+\boxed{Z=12}
+\]
+
+\item O elemento é:
+
+\[
+\boxed{\ce{Mg}}
+\]
+
+\item O maior valor de \(n\) é 3:
+
+\[
+\boxed{\text{período 3}}
+\]
+
+\item A configuração de valência é \(3s^2\):
+
+\[
+\boxed{\text{grupo 2}}
+\]
+
+\item Os eletrões mais facilmente removíveis pertencem ao:
+
+\[
+\boxed{3s}
+\]
+
+\item Os eletrões \(3s\) são os mais externos, encontram-se em média mais afastados do núcleo e estão sujeitos a maior blindagem pelos eletrões internos. Consequentemente, a atração efetiva pelo núcleo é menor do que para os eletrões dos subníveis internos.
+
+\end{enumerate}
+
+\end{resolucao}
+
+% ============================================================
+
+\begin{resolucao}{Energias de ionização sucessivas}
+
+Os valores fornecidos são:
+
+\[
+738,\quad1451,\quad7733,\quad10543,\quad13630\ \mathrm{kJ\,mol^{-1}}.
+\]
+
+\begin{enumerate}[label=\alph*)]
+
+\item O maior salto ocorre entre a segunda e a terceira remoções:
+
+\[
+\boxed{1451\rightarrow7733\ \mathrm{kJ\,mol^{-1}}}
+\]
+
+\item Isto indica que existem dois eletrões de valência relativamente fáceis de remover antes de se atingir uma camada interna:
+
+\[
+\boxed{2\text{ eletrões de valência}}
+\]
+
+\item Para um elemento representativo:
+
+\[
+\boxed{\text{grupo 2}}
+\]
+
+\item Sendo do 3.º período e grupo 2:
+
+\[
+\boxed{\ce{Mg}}
+\]
+
+\item
+
+\[
+\boxed{1s^2\,2s^2\,2p^6\,3s^2}
+\]
+
+\item Configuração de valência:
+
+\begin{center}
+\begin{tikzpicture}[scale=1]
+\node at (-0.6,0.45) {\(3s\)};
+\draw (0,0) rectangle (1,0.9);
+\draw[-{Latex},thick,eublue] (0.28,0.15)--(0.28,0.75);
+\draw[{Latex}-,thick,eured] (0.72,0.15)--(0.72,0.75);
+\node[right] at (1.2,0.45) {\(3s^2=[\uparrow\downarrow]\)};
+\end{tikzpicture}
+\end{center}
+
+\item Depois de remover os dois eletrões \(3s\), o terceiro eletrão teria de ser removido da camada \(n=2\), mais próxima do núcleo e muito mais fortemente ligada. Por isso, a terceira energia de ionização é muito superior à segunda.
+
+\end{enumerate}
+
+\end{resolucao}
+
+% ============================================================
+\section*{\textcolor{eublue}{9. A Tabela Periódica como ferramenta de previsão}}
+% ============================================================
+
+\begin{resolucao}{Quem sou eu?}
+
+\begin{enumerate}[label=\alph*)]
+
+\item \(Z=8\), período 2 e seis eletrões de valência:
+
+\[
+\boxed{\ce{O}}
+\]
+
+\item Distribuição que termina em \(3s^1\):
+
+\[
+1s^2\,2s^2\,2p^6\,3s^1
+\]
+
+\[
+\boxed{\ce{Na}}
+\]
+
+\item Gás nobre do 3.º período:
+
+\[
+\boxed{\ce{Ar}}
+\]
+
+\item Configuração de valência \(3s^2\,3p^5\):
+
+\[
+\boxed{\ce{Cl}}
+\]
+
+\item Forma habitualmente \(2+\), é do 3.º período e termina em \(3s^2\):
+
+\[
+\boxed{\ce{Mg}}
+\]
+
+\item Possui 10 eletrões e é muito pouco reativo:
+
+\[
+\boxed{\ce{Ne}}
+\]
+
+\end{enumerate}
+
+\end{resolucao}
+
+% ============================================================
+
+\begin{resolucao}{Verdadeiro ou falso}
+
+\begin{enumerate}
+
+\item[\textbf{a)}] \textbf{Falsa.} Os elementos estão organizados por ordem crescente de \textbf{número atómico}, não de massa atómica.
+
+\item[\textbf{b)}] \textbf{Falsa.} Elementos do mesmo grupo possuem diferentes números totais de eletrões, mas apresentam configurações de valência semelhantes.
+
+\item[\textbf{c)}] \textbf{Verdadeira.}
+
+\item[\textbf{d)}] \textbf{Verdadeira.}
+
+\item[\textbf{e)}] \textbf{Verdadeira.}
+
+\item[\textbf{f)}] \textbf{Falsa.} Existe uma tendência geral de aumento, mas há exceções, como \ce{Mg}/\ce{Al} e \ce{P}/\ce{S} no 3.º período.
+
+\item[\textbf{g)}] \textbf{Verdadeira.}
+
+\item[\textbf{h)}] \textbf{Falsa.} Elementos do mesmo grupo não têm espetros iguais, pois cada elemento possui estados eletrónicos próprios e diferenças de energia características.
+
+\item[\textbf{i)}] \textbf{Verdadeira.} Numericamente, a massa molar atómica em \(\mathrm{g\,mol^{-1}}\) tem o mesmo valor da massa atómica relativa do elemento, embora sejam grandezas diferentes.
+
+\end{enumerate}
+
+\end{resolucao}
+
+% ============================================================
+\section*{\textcolor{euorange}{10. Problema integrador -- Identificar um elemento desconhecido}}
+% ============================================================
+
+\begin{resolucao}{Elemento metálico X}
+
+Dados:
+
+\[
+n(e^-)=11
+\]
+
+\[
+1s^2\,2s^2\,2p^6\,3s^1
+\]
+
+\[
+\lambda=\SI{589}{nm}
+\]
+
+\[
+M=\SI{22.99}{\gram\per\mole}
+\qquad
+m=\SI{2.30}{g}
+\]
+
+\begin{enumerate}[label=\alph*)]
+
+\item Sendo o átomo neutro:
+
+\[
+Z=n(e^-)=11
+\]
+
+\[
+\boxed{Z=11}
+\]
+
+\item O elemento de número atómico 11 é:
+
+\[
+\boxed{\ce{Na}}
+\]
+
+\item A configuração termina em \(3s^1\):
+
+\[
+\boxed{\text{grupo 1, período 3}}
+\]
+
+\item
+
+\[
+\boxed{1\text{ eletrão de valência}}
+\]
+
+\item Configuração de valência:
+
+\begin{center}
+\begin{tikzpicture}[scale=1]
+\node at (-0.6,0.45) {\(3s\)};
+\draw (0,0) rectangle (1,0.9);
+\draw[-{Latex},thick,eublue] (0.5,0.15)--(0.5,0.75);
+\node[right] at (1.2,0.45) {\(3s^1=[\uparrow]\)};
+\end{tikzpicture}
+\end{center}
+
+\item O sódio tende a perder o eletrão \(3s\):
+
+\[
+\ce{Na -> Na+ + e-}
+\]
+
+\[
+\boxed{\ce{Na+}}
+\]
+
+O ião formado apresenta a configuração eletrónica estável:
+
+\[
+1s^2\,2s^2\,2p^6.
+\]
+
+\item
+
+\[
+\lambda=589\times10^{-9}\,\mathrm{m}=5,89\times10^{-7}\,\mathrm{m}
+\]
+
+\[
+\nu=\frac{c}{\lambda}
+\]
+
+\[
+\boxed{\nu\approx5,09\times10^{14}\,\mathrm{Hz}}
+\]
+
+\item
+
+\[
+E=h\nu
+\]
+
+\[
+E=(6,626\times10^{-34})(5,09\times10^{14})
+\]
+
+\[
+\boxed{E\approx3,37\times10^{-19}\,\mathrm{J}}
+\]
+
+\item Sendo um espetro de emissão, o átomo perde energia e o eletrão passa de um estado de maior energia para outro de menor energia.
+
+\[
+\boxed{\text{emissão}}
+\]
+
+\item
+
+\[
+n=\frac{m}{M}=\frac{2,30}{22,99}
+\]
+
+\[
+\boxed{n\approx\SI{0.100}{mol}}
+\]
+
+\item
+
+\[
+N=nN_A
+\]
+
+\[
+N\approx0,10004\times6,022\times10^{23}
+\]
+
+\[
+\boxed{N\approx6,02\times10^{22}\text{ átomos}}
+\]
+
+\item Cada átomo possui 11 protões:
+
+\[
+N(p^+)=11N
+\]
+
+\[
+N(p^+)\approx11(6,02\times10^{22})
+\]
+
+\[
+\boxed{N(p^+)\approx6,63\times10^{23}\text{ protões}}
+\]
+
+\item O elemento imediatamente à direita do sódio no 3.º período é:
+
+\[
+\boxed{\ce{Mg}}
+\]
+
+Ao avançar no período, a carga nuclear aumenta enquanto os eletrões de valência permanecem na mesma camada principal. Em geral, a atração núcleo--eletrão aumenta, tornando a remoção de um eletrão mais difícil. Por isso:
+
+\[
+E_{i,1}(\ce{Mg})>E_{i,1}(\ce{Na}).
+\]
+
+\item O elemento imediatamente abaixo do sódio no grupo 1 é:
+
+\[
+\boxed{\ce{K}}
+\]
+
+O potássio possui uma camada eletrónica ocupada adicional. O seu eletrão de valência está, em média, mais afastado do núcleo e sofre maior blindagem. Assim:
+
+\[
+\boxed{r(\ce{K})>r(\ce{Na})}
+\]
+
+\end{enumerate}
+
+\end{resolucao}
+
+% ============================================================
+\section*{\textcolor{eugreen}{11. Tabela Periódica e mundo real}}
+% ============================================================
+
+\begin{resolucao}{Escolher um elemento para uma aplicação}
+
+\begin{enumerate}[label=\alph*)]
+
+\item Procuraria principalmente na região esquerda da Tabela Periódica, em particular no \textbf{grupo 1}, cujos elementos apresentam configuração de valência \(ns^1\) e tendem a perder esse eletrão, formando iões \(+1\).
+
+\item O grupo 18, dos gases nobres, constitui um ponto de partida razoável, pois os seus átomos possuem a camada de valência completa e apresentam, em geral, baixa reatividade química.
+
+\item Poderia utilizar-se a:
+
+\[
+\boxed{\text{espetroscopia de emissão ou de absorção}}
+\]
+
+comparando as riscas da amostra com as riscas características do sódio.
+
+\item Seria útil a:
+
+\[
+\boxed{\text{espetroscopia fotoeletrónica}}
+\]
+
+que permite obter informação sobre as energias de remoção eletrónica e a ocupação de subníveis.
+
+\item A Tabela Periódica organiza os elementos segundo \(Z\) e revela padrões relacionados com a distribuição eletrónica. A partir da posição de um elemento é possível prever, de forma qualitativa, propriedades como número de eletrões de valência, raio atómico, energia de ionização, formação de certos iões e semelhanças químicas com outros elementos do mesmo grupo. Por isso, é uma ferramenta de organização e de previsão.
+
+\end{enumerate}
+
+\end{resolucao}
+
+% ============================================================
+\section*{\textcolor{euorange}{12. Desafio final}}
+% ============================================================
+
+\begin{resolucao}{Três elementos do 3.º período}
+
+As pistas são:
+
+\[
+A:\ 3s^1
+\]
+
+\[
+B:\ 3s^2\,3p^4
+\]
+
+\[
+C:\ \text{camada de valência completa}
+\]
+
+\begin{enumerate}[label=\alph*)]
+
+\item No 3.º período, \(3s^1\) corresponde a:
+
+\[
+\boxed{A=\ce{Na}}
+\]
+
+\item \(3s^2\,3p^4\) corresponde a:
+
+\[
+\boxed{B=\ce{S}}
+\]
+
+\item A camada de valência completa no 3.º período é:
+
+\[
+3s^2\,3p^6
+\]
+
+logo:
+
+\[
+\boxed{C=\ce{Ar}}
+\]
+
+\item
+
+\[
+\boxed{\ce{Na}:\text{ grupo 1}}
+\]
+
+\[
+\boxed{\ce{S}:\text{ grupo 16}}
+\]
+
+\[
+\boxed{\ce{Ar}:\text{ grupo 18}}
+\]
+
+\item A primeira energia de ionização tende a aumentar ao longo do período:
+
+\[
+\boxed{\ce{Na}<\ce{S}<\ce{Ar}}
+\]
+
+\item O raio atómico tende a diminuir da esquerda para a direita. Assim, por ordem crescente de raio:
+
+\[
+\boxed{\ce{Ar}<\ce{S}<\ce{Na}}
+\]
+
+\item O sódio forma mais facilmente um catião, pois possui apenas um eletrão de valência e baixa primeira energia de ionização:
+
+\[
+\ce{Na -> Na+ + e-}
+\]
+
+\[
+\boxed{\ce{Na}}
+\]
+
+\item O árgon possui a camada de valência completa:
+
+\[
+3s^2\,3p^6.
+\]
+
+Por isso, é o menos reativo dos três:
+
+\[
+\boxed{\ce{Ar}}
+\]
+
+\item A distribuição eletrónica determina quantos eletrões existem na camada de valência e quão fortemente estão ligados ao núcleo. O sódio possui \(3s^1\), pelo que perde facilmente esse eletrão; o enxofre possui seis eletrões de valência e tende a completar o octeto por ganho ou partilha de eletrões; o árgon já possui uma configuração de valência completa, sendo muito pouco reativo. Estas diferenças eletrónicas explicam as tendências observadas na Tabela Periódica.
+
+\end{enumerate}
+
+\end{resolucao}
+
+% ============================================================
+% SÍNTESE FINAL
+% ============================================================
+\section*{\textcolor{eublue}{13. Síntese da resolução}}
+
+\begin{tcolorbox}[
+    enhanced,
+    breakable,
+    colback=eugray,
+    colframe=eudark,
+    title=\textbf{Ideias fundamentais}
+]
+
+\textbf{1. Tabela Periódica}
+
+\[
+\boxed{\text{posição do elemento}\longleftrightarrow Z\longleftrightarrow\text{distribuição eletrónica}}
+\]
+
+\textbf{2. Período}
+
+Nos elementos estudados, corresponde ao maior valor de \(n\) ocupado no estado fundamental.
+
+\textbf{3. Grupo e eletrões de valência}
+
+Nos elementos representativos, elementos do mesmo grupo possuem configurações de valência semelhantes.
+
+\textbf{4. Tendências gerais}
+
+Ao longo de um período:
+
+\[
+r_{\text{atómico}}\downarrow
+\qquad
+E_{i,1}\uparrow
+\]
+
+Ao descer num grupo:
+
+\[
+r_{\text{atómico}}\uparrow
+\qquad
+E_{i,1}\downarrow
+\]
+
+Estas são tendências gerais e podem existir exceções explicáveis pela distribuição eletrónica.
+
+\textbf{5. Quantidade de matéria}
+
+\[
+\boxed{n=\frac{m}{M}}
+\qquad
+\boxed{N=nN_A}
+\]
+
+\textbf{6. Espetros}
+
+As riscas de emissão e de absorção estão relacionadas com diferenças entre estados eletrónicos de energia.
+
+\[
+\boxed{E_{\text{fotão}}=|\Delta E|=h\nu=\frac{hc}{\lambda}}
+\]
+
+\textbf{7. Espetro fotoeletrónico}
+
+A posição e a intensidade relativa dos picos permitem obter informação sobre as energias de remoção e a ocupação dos subníveis eletrónicos.
+
+\end{tcolorbox}
+
+\vfill
+
+\begin{center}
+\begin{tikzpicture}
+\draw[eublue,very thick] (0,0)--(13,0);
+\node[text=eublue,font=\Large\bfseries] at (6.5,0.55) {EUFISICA exercícios};
+\node[text=eudark,font=\small] at (6.5,-0.45) {Resolução -- Física e Química A -- 10.º ano};
+\node[text=eudark,font=\small] at (6.5,-0.85) {Prof. José Gonçalves};
+\end{tikzpicture}
+\end{center}
+
+\end{document}
