@@ -34,4 +34,5 @@ Resumo conciso do documento abordando os principais tópicos de física discutid
 Texto introdutório sobre o problema físico abordado.
 
 \section{Desenvolvimento Teórico}
+
 Discussão das equações e princípios fundamentais
